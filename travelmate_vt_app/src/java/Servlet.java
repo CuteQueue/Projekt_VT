@@ -32,7 +32,7 @@ public class Servlet extends HttpServlet {
              if (session == null) {
                 out.println("<html><head><title>SessionError</title></head>");
                 out.println("<body><h2>Keine Session vorhanden</h2>");
-                out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
+                out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/travelmate_vt_app\"");
                 out.println("\" method=\"POST\" >");
                 out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
                 out.println("</form>");
@@ -58,7 +58,7 @@ public class Servlet extends HttpServlet {
             
             /*----------------------------HTM-Teil----------------------------*/
             out.println("<html><head><title>Chat</title>");
-            out.println("<meta http-equiv=\"refresh\" content=\"10;URL=\"http://"+session.getAttribute("ip")+":8080/webChat/Servlet></head>");
+            out.println("<meta http-equiv=\"refresh\" content=\"10;URL=\"http://"+session.getAttribute("ip")+":8080/travelmate_vt_app/Servlet></head>");
             out.println("<body style=\"font-family:arial;\">\n");
             out.println("<h2>Willkommen im Chat, " + user.getUsername()
                     + "!</h2>");
@@ -111,7 +111,7 @@ public class Servlet extends HttpServlet {
                 
                 session.invalidate();
                 
-                out.println("<meta http-equiv=\"refresh\" content=\"1; URL=http://localhost:8080/webChat\">");
+                out.println("<meta http-equiv=\"refresh\" content=\"1; URL=http://localhost:8080/travelmate_vt_app\">");
             }
              
             //Ende HTML-Teil

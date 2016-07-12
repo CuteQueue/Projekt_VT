@@ -141,7 +141,7 @@ public class webChat extends HttpServlet  {
 
                 //Button zum Verlassen des Chats
                 out.println("</br>");
-                out.print("<form action=\"http://localhost:8080/webChat\"");
+                out.print("<form action=\"http://localhost:8080/travelmate_vt_app\"");
                 out.println("\" method=\"POST\" >");
                 out.println("<br><br><input type=\"submit\" value=\"Chat verlassen\">");
                 out.println("</body></html>");
@@ -151,7 +151,7 @@ public class webChat extends HttpServlet  {
                 //Ende HTML-Teil
                 out.println("</body></html>");
                 if (vorhanden.equals("nein")){
-                    out.println("<meta http-equiv=\"refresh\" content=\"1;URL=http://localhost:8080/webChat/Servlet\">"); 
+                    out.println("<meta http-equiv=\"refresh\" content=\"1;URL=http://localhost:8080/travelmate_vt_app/Servlet\">"); 
                     //auf Servlet weiterleiten
                 }vorhanden = "";
             }  

@@ -36,7 +36,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
         Registry registry = null;
         try {
-            //registry = LocateRegistry.createRegistry (Registry.REGISTRY_PORT);
+            registry = LocateRegistry.createRegistry (Registry.REGISTRY_PORT); //einkommentieren für Start aus cmd
             registry = LocateRegistry.getRegistry();
             
            
