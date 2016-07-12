@@ -1,15 +1,39 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <title>webChat</title>
-  </head>
-  <body style="font-family:arial;">
-    <form action="webChat" method="POST">
-        <h2>Bitte die Server-IP eingeben:</h2>
-        <input type="text" name="ip">
-        <h2>Bitte gewuenschten Namen eingeben:</h2>
-        <input type="text" name="name">
-        <input type=submit value="Eingabe">
-    </form>
-  </body>
+    <head>
+        <title>TravelMate</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body style="font-family:arial;">
+        <!-- <form action="webChat" method="POST">
+             <h2>Bitte die Server-IP eingeben:</h2>
+             <input type="text" name="ip">
+             <h2>Bitte gewuenschten Namen eingeben:</h2>
+             <input type="text" name="name">
+             <input type=submit value="Eingabe">
+         </form> -->
+        <table border="0">
+            <thead>
+                <tr>
+                    <th>Welcome to Travlemate!</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>To view the profile details of a TravelMate, select a user below:</td>
+                </tr>
+                <tr>
+                    <td><form action="response.jsp">
+                            <strong>Select a user:</strong>
+                            <select name="user_id">
+                                <option></option>
+                                <option></option>
+                            </select>
+                            <input type="submit" value="submit" name="submit" />
+                        </form></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </body>
 </html>

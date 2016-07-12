@@ -27,7 +27,7 @@ import trvmate_db_webservices.Profils;
 @Stateless
 @Path("trvmate_db_webservices.profils")
 public class ProfilsFacadeREST extends AbstractFacade<Profils> {
-
+    
     @PersistenceContext(unitName = "travelmate_vt_appPU")
     private EntityManager em;
 
@@ -54,6 +54,7 @@ public class ProfilsFacadeREST extends AbstractFacade<Profils> {
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
+    
 
     @GET
     @Path("{id}")
