@@ -6,25 +6,29 @@
     Author     : nina
 --%>
 <sql:query var="users" dataSource="jdbc/travelmate_vt_app">
-    SELECT users_id, name FROM users
+    SELECT name FROM users
 </sql:query>
     
-<table border="1">
-    <!-- column headers -->
-    <tr>
-    <c:forEach var="columnName" items="${users.columnNames}">
-        <th><c:out value="${columnName}"/></th>
-    </c:forEach>
-</tr>
-<!-- column data -->
-<c:forEach var="row" items="${users.rowsByIndex}">
-    <tr>
-    <c:forEach var="column" items="${row}">
-        <td><c:out value="${column}"/></td>
-    </c:forEach>
-    </tr>
-</c:forEach>
-</table>
+    <sql:query var="users" dataSource="jdbc/travelmate_vt_app">
+        SELECT name FROM users
+    </sql:query>
+        
+    <table border="1">
+        <!-- column headers -->
+        <tr>
+            <c:forEach var="columnName" items="${users.columnNames}">
+                <th><c:out value="${columnName}"/></th>
+                </c:forEach>
+        </tr>
+        <!-- column data -->
+        <c:forEach var="row" items="${users.rowsByIndex}">
+            <tr>
+                <c:forEach var="column" items="${row}">
+                    <td><c:out value="${column}"/></td>
+                </c:forEach>
+            </tr>
+        </c:forEach>
+    </table>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
@@ -53,7 +57,7 @@
                 <tr>
                     <td><form action="response.jsp">
                             <strong>Select a user:</strong>
-                            <select name="user_id">
+                            <select name="name">
                                 <option></option>
                                 <option></option>
                             </select>
@@ -65,4 +69,3 @@
 
     </body>
 </html>
-
