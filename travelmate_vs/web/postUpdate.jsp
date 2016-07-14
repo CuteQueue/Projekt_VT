@@ -5,13 +5,24 @@
     Created on : 14.07.2016, 10:29:05
     Author     : nina
 --%>
+
+<sql:update var="profils" dataSource="jdbc/travelmate_vs">
+    UPDATE profils
+    SET location = ? <sql:param value="${param.location}"/>, sex = ? <sql:param value="${param.sex}"/>,
+    destination = ? <sql:param value="${param.destination}"/>, startdate = ? <sql:param value="${param.startdate}"/>,
+    interests = ? <sql:param value="${param.interests}"/>, looking_for = ? <sql:param value="${param.looking_for}"/>,
+    about = ? <sql:param value="${param.about}"/>
+    WHERE user_id = 26
+</sql:update>
+
 <sql:query var="profileQuery" dataSource="jdbc/travelmate_vs">
     SELECT * FROM profils, users
-    WHERE  profils.user_id = ? <sql:param value="${param.user_id}"/> 
+    WHERE  profils.user_id = 26
     AND profils.user_id = users.id
 
 </sql:query>
-<c:set var="profileDetails" value="${profileQuery.rows[0]}"/>    
+<c:set var="profileDetails" value="${profileQuery.rows[0]}"/> 
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -55,13 +66,6 @@
             <tr>
                 <td><strong>About: </strong></td>
                 <td><span style="font-size:smaller; font-style:italic;">${profileDetails.about}</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <form action="update.jsp" method="GET">
-                        <input type="submit" value="Edit Profile" name="Update" />
-                    </form>    
-                </td>
             </tr>
         </tbody>
     </table>

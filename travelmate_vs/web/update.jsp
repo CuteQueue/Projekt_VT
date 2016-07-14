@@ -30,56 +30,57 @@
         <title>Update Profile</title>
     </head>
     <table border="0">
-        <thead>
-            <tr>
-            <th colspan="2"><input type="text" name="name" value="${profileDetails.name}" /></th>
-               <!-- <th colspan="2">${profileDetails.name} ${profileDetails.last_name}</th> -->
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>Location: </strong></td>
-                <td>
-                    <span style="font-size:smaller; font-style:italic;"><input type="text" name="location" value="${profileDetails.location}" /></span>
-                </td>
-            </tr>
-            <tr>
-                <td><strong>Gender: </strong></td>
-                <td>
-                    <span style="font-size:smaller; font-style:italic;"><input type="text" name="sex" value="${profileDetails.sex}" /></span>
-                </td>
-            </tr>
-            <tr>
-                <td><strong>Destination: </strong></td>
-                <td><span style="font-size:smaller; font-style:italic;"><input type="text" name="destination" value="${profileDetails.destination}" /></span></td>
-            </tr>
-            <tr>
-                <td><strong>Startdate: </strong></td>
-                <td><span style="font-size:smaller; font-style:italic;"><input type="text" name="startdate" value="${profileDetails.startdate}" /></span></td>
-            </tr>
-            <tr>
-                <td><strong>Interests: </strong></td>
-                <td><span style="font-size:smaller; font-style:italic;"><input type="text" name="interests" value="${profileDetails.interests}" /></span></td>
-            </tr>
-            <tr>
-                <td><strong>Looking for: </strong></td>
-                <td><span style="font-size:smaller; font-style:italic;"><input type="text" name="looking_for" value="${profileDetails.looking_for}" /></span></td>
-            </tr
-            <tr>
-                <td><strong>About: </strong></td>
-                <td><textarea name="about" rows="8" cols="25">
-                    ${profileDetails.about}
-                 </textarea>
-                </td>
-            </tr>
-              <tr>
-                <td>
-                    <form action="response.jsp" method="POST">
+        <form action="postUpdate.jsp" method="POST">
+            <thead>
+                <tr>
+                       <th colspan="2">${profileDetails.name} ${profileDetails.last_name}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Location: </strong></td>
+                    <td>
+                        <span style="font-size:smaller; font-style:italic;"><input type="text" name="location" value="${profileDetails.location}" /></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Gender: </strong></td>
+                    <td>
+                        <span style="font-size:smaller; font-style:italic;"><input type="text" name="sex" value="${profileDetails.sex}" /></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Destination: </strong></td>
+                    <td><span style="font-size:smaller; font-style:italic;"><input type="text" name="destination" value="${profileDetails.destination}" /></span></td>
+                </tr>
+                <tr>
+                    <td><strong>Startdate: </strong></td>
+                    <td><span style="font-size:smaller; font-style:italic;"><input type="text" name="startdate" value="${profileDetails.startdate}" /></span></td>
+                </tr>
+                <tr>
+                    <td><strong>Interests: </strong></td>
+                    <td><span style="font-size:smaller; font-style:italic;"><input type="text" name="interests" value="${profileDetails.interests}" /></span></td>
+                </tr>
+                <tr>
+                    <td><strong>Looking for: </strong></td>
+                    <td><span style="font-size:smaller; font-style:italic;"><input type="text" name="looking_for" value="${profileDetails.looking_for}" /></span></td>
+                </tr
+                <tr>
+                    <td><strong>About: </strong></td>
+                    <td><textarea name="about" rows="8" cols="25">
+                            ${profileDetails.about}
+                        </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
                         <input type="submit" value="Save" name="Update" />
-                    </form>
-                    
-                </td>
-            </tr>
-        </tbody>
-    </table>
+
+                    </td>
+                </tr>
+        </form>
+
+    </tbody>
+</table>
 </html>
