@@ -6,7 +6,7 @@
     Author     : nina
 --%>
 <sql:query var="users" dataSource="jdbc/travelmate_vs">
-    SELECT name FROM users
+    SELECT id FROM users
 </sql:query>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
