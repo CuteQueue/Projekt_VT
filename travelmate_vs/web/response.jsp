@@ -58,17 +58,13 @@
             </tr>
             <tr>
                 <td>
-                    <form action="update.jsp" method="POST">
-                        <input type="text" name="update_location" value="New Location" />
-                        <input type="submit" value="submit" name="Update" />
+                    <form action="update.jsp" method="GET">
+                       <!-- New Location: <input type="text" name="update_location" value="" /> -->
+                        <input type="submit" value="Edit" name="Update" />
                     </form>
                     
                 </td>
             </tr>
-
-
-
         </tbody>
-
     </table>
 </html>
