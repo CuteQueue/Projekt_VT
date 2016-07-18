@@ -23,6 +23,8 @@ public class LoginServlet extends HttpServlet {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
     private TmWebService_Service service;
 
+    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,12 +34,12 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           String loginMail = request.getParameter("email");   
-           String loginPassword = request.getParameter("pw");  
+           String loginMail = request.getParameterValues("email")[0];   
+           String loginPassword = request.getParameterValues("pw")[0];  
            out.println("Willkommen:  ");
            out.println(login(loginMail, loginPassword));
         }
@@ -83,10 +85,12 @@ public class LoginServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private String login(String mail, String pw) {
+    
+
+    private String login(java.lang.String email, java.lang.String pw) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         webservice.TmWebService port = service.getTmWebServicePort();
-        return port.login(mail, pw);
+        return port.login(email, pw);
     }
 }
