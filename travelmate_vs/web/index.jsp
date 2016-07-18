@@ -5,7 +5,11 @@
     Created on : 14.07.2016, 10:29:05
     Author     : nina
 --%>
+<sql:query var="users" dataSource="jdbc/travelmate_vs">
+    SELECT id FROM users
+</sql:query>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -20,28 +24,31 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h2><strong>TravelMate</strong>
+        <h2><strong>TravelMate</strong>!
         </h2>
 
         <table border="0">
             <thead>
                 <tr>
-                    <th>Please Log in:</th>
+                    <th>Welcome!</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
+                    <td>To view the profile details of a TravelMate, select a user below:</td>
+                </tr>
+                <tr>
                     <td>
-                        <form>
-                            <tr> 
-                                <td>Email: <input type="text" name="email" value="" /></td>
-                                <td>Password: <input type="text" name="password" value="" /></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <button onClick="postHttpRequest('LoginServlet')">Log in</button>
-                                </td>
-                            </tr>
+                        <form action="response.jsp">
+                            <strong>Select a user:</strong>
+                            <select name="user_id">
+                                <c:forEach var="row" items="${users.rowsByIndex}">
+                                    <c:forEach var="column" items="${row}">
+                                        <option value="<c:out value="${column}"/>"><c:out value="${column}"/></option>
+                                    </c:forEach>
+                                </c:forEach>
+                            </select>
+                            <input type="submit" value="submit" name="submit" />
                         </form>
                     </td>
                 </tr>
