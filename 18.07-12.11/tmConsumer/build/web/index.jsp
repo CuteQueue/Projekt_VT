@@ -12,10 +12,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="getName">
+        <form action="login">
+            
+            <input type=submit value="Abschicken">
+        </form>
+        <!--<form action="getName">
             Enter id:
             <input type="text" name="txtid" value="" />
             <input type="submit" value="GetName" />
-        </form>
+        </form>-->
     </body>
 </html>

@@ -28,6 +28,8 @@ public class ObjectFactory {
     private final static QName _GetNameResponse_QNAME = new QName("http://WebService/", "getNameResponse");
     private final static QName _Hello_QNAME = new QName("http://WebService/", "hello");
     private final static QName _HelloResponse_QNAME = new QName("http://WebService/", "helloResponse");
+    private final static QName _Login_QNAME = new QName("http://WebService/", "login");
+    private final static QName _LoginResponse_QNAME = new QName("http://WebService/", "loginResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: webservice
@@ -69,6 +71,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Login }
+     * 
+     */
+    public Login createLogin() {
+        return new Login();
+    }
+
+    /**
+     * Create an instance of {@link LoginResponse }
+     * 
+     */
+    public LoginResponse createLoginResponse() {
+        return new LoginResponse();
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetName }{@code >}}
      * 
      */
@@ -102,6 +120,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://WebService/", name = "helloResponse")
     public JAXBElement<HelloResponse> createHelloResponse(HelloResponse value) {
         return new JAXBElement<HelloResponse>(_HelloResponse_QNAME, HelloResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Login }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "login")
+    public JAXBElement<Login> createLogin(Login value) {
+        return new JAXBElement<Login>(_Login_QNAME, Login.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link LoginResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "loginResponse")
+    public JAXBElement<LoginResponse> createLoginResponse(LoginResponse value) {
+        return new JAXBElement<LoginResponse>(_LoginResponse_QNAME, LoginResponse.class, null, value);
     }
 
 }
