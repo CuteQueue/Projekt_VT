@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.annotation.Resource;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -43,11 +44,13 @@ public class tmWebService {
         try {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
-            PreparedStatement pstmt = con.prepareStatement("select name from users where id = 31"); //where id = ?
-            pstmt.setInt(1, 1);
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE id = ?"); //where id = ?
+            
+            pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
-            String text = rs.getString(1);
+            //String text = "butz";
+            String text = rs.getString("name");
             rs.close();
             con.close();
             return text;
