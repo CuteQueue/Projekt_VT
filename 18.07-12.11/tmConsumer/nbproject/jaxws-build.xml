@@ -58,5 +58,21 @@
         <delete dir="${build.generated.sources.dir}/jax-ws/webservice"/>
         <delete dir="${build.generated.dir}/jax-wsCache/tmWebService_1"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-tmWebService, wsimport-client-tmWebService_1"/>
+    <target name="wsimport-client-tmWebService_2" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/tmWebService_2"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/tmWebService_2" destdir="${build.generated.dir}/jax-wsCache/tmWebService_2" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/tmWebService_2/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/travelmate_vs/tmWebService?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/tmWebService_2/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/tmWebService_2"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/tmWebService_2">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-tmWebService_2" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/webservice"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/tmWebService_2"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-tmWebService, wsimport-client-tmWebService_1, wsimport-client-tmWebService_2"/>
 </project>
