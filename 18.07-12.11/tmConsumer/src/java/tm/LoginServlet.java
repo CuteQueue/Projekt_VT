@@ -34,7 +34,13 @@ public class LoginServlet extends HttpServlet {
      */
         protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+           String loginMail = request.getParameter("email");   
+           String loginPassword = request.getParameter("pw");  
+           out.println("Willkommen:  ");
+           out.println(login(loginMail, loginPassword));
+        }
         
     }
 
@@ -64,13 +70,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-           //String loginMail = request.getParameter("email");   
-          // String loginPassword = request.getParameter("pw");  
-           out.println("Willkommen:  ");
-           //out.println(login(loginMail, loginPassword));
-        }
+        processRequest(request, response);
     }
 
     /**
