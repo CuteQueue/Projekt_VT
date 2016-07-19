@@ -48,9 +48,11 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           //String salt = request.getParameterValues("email")[0];   
-           //String attemptedPassword = request.getParameterValues("pw")[0];  
-           if(authenticate(request.getParameterValues("pw")[0], retrieveEncryptedPw(request.getParameterValues("email")[0]), retrieveSalt(request.getParameterValues("email")[0]))){
+           String email = request.getParameterValues("email")[0];   
+           byte[] salt = retrieveSalt(email);
+           byte[] encryptedPassword = retrieveEncryptedPw(email);
+           String attemptedPassword = request.getParameterValues("pw")[0];  
+           if(authenticate(attemptedPassword, encryptedPassword, salt)){
                out.println("Willkommen!");
            }
            else{
@@ -137,8 +139,9 @@ public class LoginServlet extends HttpServlet {
         throws NoSuchAlgorithmException, InvalidKeySpecException {
         // Encrypt the clear-text password using the same salt that was used to
         // encrypt the original password
+        System.out.println("authenticate 1");
         byte[] encryptedAttemptedPassword = getEncryptedPassword(attemptedPassword, salt);
-
+        System.out.println("ENCRYPTED PW: " + encryptedAttemptedPassword);
         // Authentication succeeds if encrypted password that the user entered
         // is equal to the stored hash
         return Arrays.equals(encryptedPassword, encryptedAttemptedPassword);

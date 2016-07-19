@@ -12,15 +12,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <!-- <strong>Login:</strong><br>
-        <form action="Login" method=POST">
-            <strong>Email:</strong>
+       <strong>Login:</strong><br>
+        <form action="Login" method="POST">
+            Email:
             <input type="text" name="email"><br>
-            <strong>Password:</strong>
-            <input type="text" name="pw">
+            Password:
+            <input type="password" name="pw">
             <input type=submit value="Abschicken">
         </form>
-        <br>-->
+       <br><br>
         <strong>Register:</strong><br>
         <form action="Register" method="POST">
             Name:

@@ -45,10 +45,17 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+           System.out.println("!XXXXXXX");
            byte[] newSalt = generateSalt();
-           byte[] encryptedPw = getEncryptedPassword((request.getParameter("pw")), newSalt);
+           String pw = request.getParameterValues("pw")[0];
+           System.out.println(newSalt);
+           byte[] encryptedPw = getEncryptedPassword(pw, newSalt);
+           System.out.println(encryptedPw);
+           String name = request.getParameterValues("name")[0];
+           String last_name = request.getParameterValues("last_name")[0];
+           String email = request.getParameterValues("email")[0];
            
-           out.printf(newUser(request.getParameterValues("name")[0],request.getParameterValues("last_name")[0],request.getParameterValues("email")[0], newSalt, encryptedPw));
+           out.printf(newUser(name ,last_name,email, newSalt, encryptedPw));
           
         }
         
