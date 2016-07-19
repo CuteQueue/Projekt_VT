@@ -10,30 +10,60 @@
 <message name="getNameResponse">
 <part name="parameters" element="tns:getNameResponse"/>
 </message>
-<message name="login">
-<part name="parameters" element="tns:login"/>
-</message>
-<message name="loginResponse">
-<part name="parameters" element="tns:loginResponse"/>
-</message>
 <message name="hello">
 <part name="parameters" element="tns:hello"/>
 </message>
 <message name="helloResponse">
 <part name="parameters" element="tns:helloResponse"/>
 </message>
+<message name="login">
+<part name="parameters" element="tns:login"/>
+</message>
+<message name="loginResponse">
+<part name="parameters" element="tns:loginResponse"/>
+</message>
+<message name="getEncryptedPw">
+<part name="parameters" element="tns:getEncryptedPw"/>
+</message>
+<message name="getEncryptedPwResponse">
+<part name="parameters" element="tns:getEncryptedPwResponse"/>
+</message>
+<message name="getSalt">
+<part name="parameters" element="tns:getSalt"/>
+</message>
+<message name="getSaltResponse">
+<part name="parameters" element="tns:getSaltResponse"/>
+</message>
+<message name="newUser">
+<part name="parameters" element="tns:newUser"/>
+</message>
+<message name="newUserResponse">
+<part name="parameters" element="tns:newUserResponse"/>
+</message>
 <portType name="tmWebService">
 <operation name="getName">
 <input wsam:Action="http://WebService/tmWebService/getNameRequest" message="tns:getName"/>
 <output wsam:Action="http://WebService/tmWebService/getNameResponse" message="tns:getNameResponse"/>
 </operation>
+<operation name="hello">
+<input wsam:Action="http://WebService/tmWebService/helloRequest" message="tns:hello"/>
+<output wsam:Action="http://WebService/tmWebService/helloResponse" message="tns:helloResponse"/>
+</operation>
 <operation name="login">
 <input wsam:Action="http://WebService/tmWebService/loginRequest" message="tns:login"/>
 <output wsam:Action="http://WebService/tmWebService/loginResponse" message="tns:loginResponse"/>
 </operation>
-<operation name="hello">
-<input wsam:Action="http://WebService/tmWebService/helloRequest" message="tns:hello"/>
-<output wsam:Action="http://WebService/tmWebService/helloResponse" message="tns:helloResponse"/>
+<operation name="getEncryptedPw">
+<input wsam:Action="http://WebService/tmWebService/getEncryptedPwRequest" message="tns:getEncryptedPw"/>
+<output wsam:Action="http://WebService/tmWebService/getEncryptedPwResponse" message="tns:getEncryptedPwResponse"/>
+</operation>
+<operation name="getSalt">
+<input wsam:Action="http://WebService/tmWebService/getSaltRequest" message="tns:getSalt"/>
+<output wsam:Action="http://WebService/tmWebService/getSaltResponse" message="tns:getSaltResponse"/>
+</operation>
+<operation name="newUser">
+<input wsam:Action="http://WebService/tmWebService/newUserRequest" message="tns:newUser"/>
+<output wsam:Action="http://WebService/tmWebService/newUserResponse" message="tns:newUserResponse"/>
 </operation>
 </portType>
 <binding name="tmWebServicePortBinding" type="tns:tmWebService">
@@ -47,6 +77,15 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="hello">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="login">
 <soap:operation soapAction=""/>
 <input>
@@ -56,7 +95,25 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="hello">
+<operation name="getEncryptedPw">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getSalt">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="newUser">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

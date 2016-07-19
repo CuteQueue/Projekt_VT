@@ -23,6 +23,10 @@ public class getNameServlet extends HttpServlet {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
     private TmWebService_Service service;
 
+    
+
+    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -87,5 +91,8 @@ public class getNameServlet extends HttpServlet {
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.getName(id);
     }
+
+    
+    
 
 }

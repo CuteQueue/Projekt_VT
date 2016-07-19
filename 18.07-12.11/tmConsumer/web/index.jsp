@@ -12,17 +12,32 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="Login">
+       <!-- <strong>Login:</strong><br>
+        <form action="Login" method=POST">
             <strong>Email:</strong>
             <input type="text" name="email"><br>
             <strong>Password:</strong>
             <input type="text" name="pw">
             <input type=submit value="Abschicken">
         </form>
-        <form action="getName">
+        <br>-->
+        <strong>Register:</strong><br>
+        <form action="Register" method="POST">
+            Name:
+            <input type="text" name="name"><br>
+            Last name:
+            <input type="text" name="last_name"><br>
+            Email:
+            <input type="text" name="email"><br>
+            Password:
+            <input type="text" name="pw">
+            <input type=submit value="Abschicken">
+        </form>
+        <br>
+       <!-- <form action="getName">
             Enter id:
             <input type="text" name="txtid" value="" />
             <input type="submit" value="GetName" />
-        </form>
+        </form>-->
     </body>
 </html>

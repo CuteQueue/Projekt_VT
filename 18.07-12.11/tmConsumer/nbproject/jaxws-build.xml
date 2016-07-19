@@ -26,21 +26,21 @@
             <isset property="conf.dir"/>
         </condition>
     </target>
-    <target name="wsimport-client-tmWebService_3" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/tmWebService_3"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/tmWebService_3" destdir="${build.generated.dir}/jax-wsCache/tmWebService_3" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/tmWebService_3/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/travelmate_vs/tmWebService?wsdl" xnocompile="true" xendorsed="true">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/tmWebService_3/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/tmWebService_3"/>
+    <target name="wsimport-client-tmWebService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/tmWebService"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/tmWebService" destdir="${build.generated.dir}/jax-wsCache/tmWebService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/tmWebService/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/travelmate_vs/tmWebService?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/tmWebService/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/tmWebService"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/tmWebService_3">
+            <fileset dir="${build.generated.dir}/jax-wsCache/tmWebService">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-tmWebService_3" depends="-init-project">
+    <target name="wsimport-client-clean-tmWebService" depends="-init-project">
         <delete dir="${build.generated.sources.dir}/jax-ws/webservice"/>
-        <delete dir="${build.generated.dir}/jax-wsCache/tmWebService_3"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/tmWebService"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-tmWebService_3"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-tmWebService"/>
 </project>

@@ -5,18 +5,16 @@
  */
 package tm;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
-import java.util.Arrays;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,13 +26,12 @@ import webservice.TmWebService_Service;
  *
  * @author Manuela
  */
-public class LoginServlet extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
     private TmWebService_Service service;
-
     
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,18 +41,15 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-       response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           //String salt = request.getParameterValues("email")[0];   
-           //String attemptedPassword = request.getParameterValues("pw")[0];  
-           if(authenticate(request.getParameterValues("pw")[0], retrieveEncryptedPw(request.getParameterValues("email")[0]), retrieveSalt(request.getParameterValues("email")[0]))){
-               out.println("Willkommen!");
-           }
-           else{
-               out.println("Oooops, something went wrong!");
-           }
+           byte[] newSalt = generateSalt();
+           byte[] encryptedPw = getEncryptedPassword((request.getParameter("pw")), newSalt);
+           
+           out.printf(newUser(request.getParameterValues("name")[0],request.getParameterValues("last_name")[0],request.getParameterValues("email")[0], newSalt, encryptedPw));
+          
         }
         
     }
@@ -75,9 +69,9 @@ public class LoginServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvalidKeySpecException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -95,9 +89,9 @@ public class LoginServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvalidKeySpecException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -111,38 +105,6 @@ public class LoginServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
-
-   /* private String login(java.lang.String email, java.lang.String pw) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        webservice.TmWebService port = service.getTmWebServicePort();
-        return port.login(email, pw);
-    }*/
-
-    
-    public byte[] retrieveSalt(String email){
-        webservice.TmWebService port = service.getTmWebServicePort();
-        return port.getSalt(email);
-    }
-    
-    
-    public byte[] retrieveEncryptedPw(String email){
-        webservice.TmWebService port = service.getTmWebServicePort();
-        return port.getEncryptedPw(email);
-    }
-
-
-    public boolean authenticate(String attemptedPassword, byte[] encryptedPassword, byte[] salt)
-        throws NoSuchAlgorithmException, InvalidKeySpecException {
-        // Encrypt the clear-text password using the same salt that was used to
-        // encrypt the original password
-        byte[] encryptedAttemptedPassword = getEncryptedPassword(attemptedPassword, salt);
-
-        // Authentication succeeds if encrypted password that the user entered
-        // is equal to the stored hash
-        return Arrays.equals(encryptedPassword, encryptedAttemptedPassword);
-     }
     
     public byte[] getEncryptedPassword(String password, byte[] salt)
         throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -164,5 +126,25 @@ public class LoginServlet extends HttpServlet {
 
        return f.generateSecret(spec).getEncoded();
      }
+    
+    public String newUser(String name, String last_name, String email, byte[] salt, byte[] password){
+        webservice.TmWebService port = service.getTmWebServicePort();
+        return port.newUser(name, last_name, email, salt, password);
+    }
      
+    public byte[] generateSalt() throws NoSuchAlgorithmException {
+        // VERY important to use SecureRandom instead of just Random
+        SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+
+        // Generate a 8 byte (64 bit) salt as recommended by RSA PKCS5
+        byte[] salt = new byte[8];
+        random.nextBytes(salt);
+
+        return salt;
+   }
+
+    
+    
+    
+    
 }

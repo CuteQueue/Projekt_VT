@@ -2,7 +2,7 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services/>
   <clients>
-    <client name="tmWebService_3">
+    <client name="tmWebService">
       <wsdl-url>http://localhost:8080/travelmate_vs/tmWebService?wsdl</wsdl-url>
       <local-wsdl-file>localhost_8080/travelmate_vs/tmWebService.wsdl</local-wsdl-file>
       <package-name>webservice</package-name>

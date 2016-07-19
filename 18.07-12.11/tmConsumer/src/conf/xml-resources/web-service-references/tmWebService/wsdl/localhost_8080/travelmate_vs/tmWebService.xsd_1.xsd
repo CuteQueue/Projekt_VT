@@ -1,8 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://WebService/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://WebService/">
 
+<xs:element name="getEncryptedPw" type="tns:getEncryptedPw"/>
+
+<xs:element name="getEncryptedPwResponse" type="tns:getEncryptedPwResponse"/>
+
 <xs:element name="getName" type="tns:getName"/>
 
 <xs:element name="getNameResponse" type="tns:getNameResponse"/>
+
+<xs:element name="getSalt" type="tns:getSalt"/>
+
+<xs:element name="getSaltResponse" type="tns:getSaltResponse"/>
 
 <xs:element name="hello" type="tns:hello"/>
 
@@ -11,6 +19,22 @@
 <xs:element name="login" type="tns:login"/>
 
 <xs:element name="loginResponse" type="tns:loginResponse"/>
+
+<xs:element name="newUser" type="tns:newUser"/>
+
+<xs:element name="newUserResponse" type="tns:newUserResponse"/>
+
+<xs:complexType name="getEncryptedPw">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getEncryptedPwResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
 
 <xs:complexType name="hello">
 <xs:sequence>
@@ -21,6 +45,18 @@
 <xs:complexType name="helloResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getSalt">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getSaltResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -44,6 +80,22 @@
 </xs:complexType>
 
 <xs:complexType name="getNameResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="newUser">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="last_name" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="salt" type="xs:base64Binary" nillable="true" minOccurs="0"/>
+<xs:element name="password" type="xs:base64Binary" nillable="true" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="newUserResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
