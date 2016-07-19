@@ -19,10 +19,10 @@
             <input type="text" name="pw">
             <input type=submit value="Abschicken">
         </form>
-        <form action="getName">
+       <!-- <form action="getName">
             Enter id:
             <input type="text" name="txtid" value="" />
             <input type="submit" value="GetName" />
-        </form>
+        </form>-->
     </body>
 </html>
