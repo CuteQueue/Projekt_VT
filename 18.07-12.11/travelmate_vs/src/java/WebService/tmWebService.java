@@ -6,6 +6,7 @@
 package WebService;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -155,6 +156,38 @@ public class tmWebService {
             //rs.close();
             con.close();
             String answer = "User added to db!";
+            return answer;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "createProfile")
+    public String createProfile(@WebParam(name = "mobilenumber") String mobilenumber, @WebParam(name = "age") int age, @WebParam(name = "location") String location, @WebParam(name = "sex") String sex, @WebParam(name = "destination") String destination, @WebParam(name = "startdate") Date startdate, @WebParam(name = "interests") String interests, @WebParam(name = "looking_for") String looking_for, @WebParam(name = "about") String about) {
+       try {
+            //TODO write your implementation code here:
+            Connection con = travelmate_vs.getConnection();
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO profiles VALUES (?,?,?,?,?,?,?,?,?)"); //where id = ?
+            
+            pstmt.setString(1, mobilenumber);
+            pstmt.setInt(2, age);
+            pstmt.setString(3, location);
+            pstmt.setString(4, sex);
+            pstmt.setString(5, destination);
+            pstmt.setDate(3, startdate);
+            pstmt.setString(4, interests);
+            pstmt.setString(5, looking_for);
+            pstmt.setString(5, about);
+            pstmt.executeUpdate();
+            //rs.next();
+            //byte[] encryptedPw = rs.getBytes("password");
+            //rs.close();
+            con.close();
+            String answer = "Profile added to db!";
             return answer;
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
