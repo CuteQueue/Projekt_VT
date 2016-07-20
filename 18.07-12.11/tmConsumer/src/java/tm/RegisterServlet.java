@@ -55,7 +55,7 @@ public class RegisterServlet extends HttpServlet {
            String last_name = request.getParameterValues("last_name")[0];
            String email = request.getParameterValues("email")[0];
            
-           out.printf(newUser(name ,last_name,email, newSalt, encryptedPw));
+           System.out.println(newUser(name ,last_name,email, newSalt, encryptedPw));
           
         }
         

@@ -154,7 +154,7 @@ public class tmWebService {
             //byte[] encryptedPw = rs.getBytes("password");
             //rs.close();
             con.close();
-            String answer = "User added to db!";
+            String answer = "Added!";
             return answer;
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());

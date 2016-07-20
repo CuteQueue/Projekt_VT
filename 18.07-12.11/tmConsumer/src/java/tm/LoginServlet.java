@@ -32,9 +32,6 @@ public class LoginServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
     private TmWebService_Service service;
-
-    
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,19 +44,21 @@ public class LoginServlet extends HttpServlet {
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()){
            String email = request.getParameterValues("email")[0];   
            byte[] salt = retrieveSalt(email);
            byte[] encryptedPassword = retrieveEncryptedPw(email);
            String attemptedPassword = request.getParameterValues("pw")[0];  
            if(authenticate(attemptedPassword, encryptedPassword, salt)){
-               out.println("Willkommen!");
+                out.println("<h2>Willkommen!</h2>");
+                out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost:8080/tmConsumer/Home\">");
+                  
            }
            else{
-               out.println("Oooops, something went wrong!");
+               out.println("ooooops!");
+               
            }
-        }
-        
+        }  
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
