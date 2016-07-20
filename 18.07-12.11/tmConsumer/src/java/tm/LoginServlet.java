@@ -21,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.WebServiceRef;
 import webservice.TmWebService_Service;
 
@@ -50,8 +51,11 @@ public class LoginServlet extends HttpServlet {
            byte[] encryptedPassword = retrieveEncryptedPw(email);
            String attemptedPassword = request.getParameterValues("pw")[0];  
            if(authenticate(attemptedPassword, encryptedPassword, salt)){
-                out.println("<h2>Willkommen!</h2>");
-                out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost:8080/tmConsumer/Home\">");
+               
+               HttpSession session = request.getSession(true); //Erzeugt eine neue Session, wenn noch keine vorhanden und speichert diese in session
+               session.setAttribute("email", email); //in Session gespeichert
+               
+               out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost:8080/tmConsumer/Home\">");
                   
            }
            else{

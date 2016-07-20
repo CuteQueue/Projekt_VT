@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,10 +31,35 @@ public class HomeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String email = null;
+        
         try(PrintWriter out = response.getWriter()){
             /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession(false); //Liefert null zurück, wenn es keine aktuelle Session gibt
+             if (session == null) {
+                out.println("<html><head><title>SessionError</title></head>");
+                out.println("<body><h2>Keine Session vorhanden</h2>");
+                out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
+                out.println("\" method=\"POST\" >");
+                out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
+                out.println("</form>");
+                out.println("</body>");
+                out.close();
+                return;
+            }
             
-            out.println("<h2>Willkommen!</h2>");
+            email = (String)session.getAttribute("email"); //email aus Session holen
+ 
+            User u = new User(email);
+            session.setAttribute("user", u); //in Session gespeichert 
+            User user = (User)session.getAttribute("user");
+            
+            out.println("<h2>Willkommen " + user.getName() + " " + user.getLast_name()+ "!</h2>");
+            // Neue Session anlegen
+            
+            
+            
+            
         }
         
     }
@@ -77,4 +103,6 @@ public class HomeServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    
+   
 }
