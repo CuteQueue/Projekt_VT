@@ -45,23 +45,39 @@ public class LoginServlet extends HttpServlet {
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
        response.setContentType("text/html;charset=UTF-8");
+       String email;
         try (PrintWriter out = response.getWriter()){
-           String email = request.getParameterValues("email")[0];   
-           byte[] salt = retrieveSalt(email);
-           byte[] encryptedPassword = retrieveEncryptedPw(email);
-           String attemptedPassword = request.getParameterValues("pw")[0];  
-           if(authenticate(attemptedPassword, encryptedPassword, salt)){
-               
-               HttpSession session = request.getSession(true); //Erzeugt eine neue Session, wenn noch keine vorhanden und speichert diese in session
-               session.setAttribute("email", email); //in Session gespeichert
-               
-               out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost:8080/tmConsumer/Home\">");
-                  
-           }
-           else{
-               out.println("ooooops!");
-               
-           }
+            // Neue Session anlegen
+            HttpSession session = request.getSession(true); //Erzeugt eine neue Session, wenn noch keine vorhanden und speichert diese in session
+            System.out.println("Session created");
+            try {
+                email = request.getParameterValues("email")[0];   
+                byte[] salt = retrieveSalt(email);
+                byte[] encryptedPassword = retrieveEncryptedPw(email);
+                String attemptedPassword = request.getParameterValues("pw")[0]; 
+                if(authenticate(attemptedPassword, encryptedPassword, salt)){
+                    session.setAttribute("email", email); //in Session gespeichert
+                    System.out.println("session set");
+                    out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost:8080/tmConsumer/Login\">");
+                }
+            }catch(Exception err){
+                System.out.println("email holen");
+                email = (String)session.getAttribute("email"); //email aus Session holen
+                System.out.println("email geholt");
+            }
+        
+            try {
+                User u = new User(email);
+                session.setAttribute("user", u); //in Session gespeichert 
+                User user = (User)session.getAttribute("user");
+                out.println("<h2>Willkommen " + user.getName() + " " + user.getLast_name()+ "!</h2>");
+            }catch(Exception err1){
+                System.out.println("ooooopsi");
+            }
+            
+           
+        }catch(Exception err2){
+            System.out.println("ooooops");
         }  
     }
 
