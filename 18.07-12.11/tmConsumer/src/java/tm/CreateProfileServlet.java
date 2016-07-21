@@ -32,13 +32,31 @@ public class CreateProfileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+        response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
+        response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+        response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
+        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+
             HttpSession session = request.getSession(true);
+            if (session.getAttribute("email") == null) {
+                out.println("<html><head><title>SessionError</title></head>");
+                out.println("<body><h2>Keine Session vorhanden</h2>");
+                //out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
+                out.print("<form action=\"http://localhost:8080/tmConsumer\"");
+                out.println("\" method=\"POST\" >");
+                out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
+                out.println("</form>");
+                out.println("</body>");
+                out.close();
+                return;
+            }
             String email = (String) session.getAttribute("email");
             User u = new User(email);
             session.setAttribute("user", u); //in Session gespeichert 
             User user = (User) session.getAttribute("user");
-            
+
             System.out.println("CreateProfileServlet");
 
             String mobilenumber = request.getParameterValues("mobilenumber")[0];
@@ -58,11 +76,9 @@ public class CreateProfileServlet extends HttpServlet {
             String about = request.getParameterValues("about")[0];
 
             String answer = createProfile(user.getId(), mobilenumber, age, location, sex, destination, startdate, interests, looking_for, about);
-            
-          
-            
+
             if (answer.equals("ok")) {
-                out.println("<meta http-equiv=\"refresh\" content=\"1;URL=http://localhost:8080/tmConsumer/Home\">");
+                response.sendRedirect("Home");
             } else {
                 out.println("Ooooops, something went wrong!");
             }
@@ -115,7 +131,4 @@ public class CreateProfileServlet extends HttpServlet {
         return port.createProfile(id, mobilenumber, age, location, sex, destination, startdate, interests, lookingFor, about);
     }
 
-  
-
-   
 }

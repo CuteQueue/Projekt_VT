@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>getNameServlet</servlet-name>
-        <servlet-class>tm.getNameServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>tm.LoginServlet</servlet-class>
     </servlet>
@@ -28,10 +24,10 @@
         <servlet-name>StartServlet</servlet-name>
         <servlet-class>tm.StartServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>getNameServlet</servlet-name>
-        <url-pattern>/getName</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>WeiterleitungCreateProfileServlet</servlet-name>
+        <servlet-class>Weiterleitung.WeiterleitungCreateProfileServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -40,7 +36,7 @@
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/Register</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CreateProfileServlet</servlet-name>
         <url-pattern>/CreateProfile</url-pattern>
     </servlet-mapping>
@@ -55,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>StartServlet</servlet-name>
         <url-pattern>/Start</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WeiterleitungCreateProfileServlet</servlet-name>
+        <url-pattern>/Create</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
