@@ -1,8 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
+/**
+ *
+ * @author Manuela
  */
+
 package tm;
 
 import java.security.NoSuchAlgorithmException;
@@ -17,7 +18,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,8 +30,8 @@ import webservice.TmWebService_Service;
  *
  * @author Manuela
  */
-public class LoginServlet extends HttpServlet {
-    
+public class HomeServlet extends HttpServlet {
+
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
     private TmWebService_Service service;
     /**
@@ -43,50 +43,50 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-     int exit = 0;
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-         response.setContentType("text/html;charset=UTF-8");
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
         response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
         response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
-       HttpSession session = request.getSession(false);
-       
        
        String email;
+       
         try (PrintWriter out = response.getWriter()){
+             
             // Neue Session anlegen
-          
-       
-            //System.out.println("Session created");
-            
+            HttpSession session = request.getSession(true); //Erzeugt eine neue Session, wenn noch keine vorhanden und speichert diese in session
+            System.out.println("Session created");
             try {
-                email = request.getParameterValues("email")[0];   
-                byte[] salt = retrieveSalt(email);
-                byte[] encryptedPassword = retrieveEncryptedPw(email);
-                String attemptedPassword = request.getParameterValues("pw")[0]; 
-                if(authenticate(attemptedPassword, encryptedPassword, salt)){
-                    session.setAttribute("email", email);
-                    out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost:8080/tmConsumer/Home\">");
-                    System.out.println("eingeloggt");
-                }else{
-                    out.println("<meta http-equiv=\"refresh\" content=\"10;URL=http://localhost:8080/tmConsumer/Login\">");
-                    out.println("<h2>Sie konnten sich nicht einloggen.</h2>");   
-                }
-                    
-            }catch(Exception homeErr0){
-                   out.println("<meta http-equiv=\"refresh\" content=\"10;URL=http://localhost:8080/tmConsumer/Login\">");
-                   out.println("<h2>Sie konnten sich nicht einloggen.</h2>");   
+                if (session.getAttribute("email") == null) {
+                out.println("<html><head><title>SessionError</title></head>");
+                out.println("<body><h2>Keine Session vorhanden</h2>");
+                //out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
+                out.print("<form action=\"http://localhost:8080/tmConsumer\"");
+                out.println("\" method=\"POST\" >");
+                out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
+                out.println("</form>");
+                out.println("</body>");
+                out.close();
+                return;
             }
-       
-        }catch(Exception homeErr1){
-            System.out.println("ooooops");
+                email = (String)session.getAttribute("email");
+                User u = new User(email);
+                session.setAttribute("user", u); //in Session gespeichert 
+                User user = (User)session.getAttribute("user");
+                out.println("<h2>Willkommen " + user.getName() + " " + user.getLast_name()+ "!</h2>");
+                out.println("</br>");
+                out.print("<form action=\"Logout");
+                out.println("\" method=\"POST\" >");
+                out.println("<br><br><input type=\"submit\" name=\"logout\" value=\"Logout\">");
+                out.println("</form>");
+                
+        }catch(Exception err2){
+            System.out.println("catch, HomeServlet 86");
         }  
-        
-        
-       
     }
+}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -102,9 +102,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvalidKeySpecException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -122,10 +120,9 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (NoSuchAlgorithmException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvalidKeySpecException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        
         }
     }
 
@@ -193,6 +190,5 @@ public class LoginServlet extends HttpServlet {
 
        return f.generateSecret(spec).getEncoded();
      }
-    
      
 }

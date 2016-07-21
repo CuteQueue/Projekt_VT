@@ -12,6 +12,18 @@
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>tm.RegisterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>tm.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>tm.HomeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StartServlet</servlet-name>
+        <servlet-class>tm.StartServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>getNameServlet</servlet-name>
         <url-pattern>/getName</url-pattern>
@@ -23,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/Home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StartServlet</servlet-name>
+        <url-pattern>/Start</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
