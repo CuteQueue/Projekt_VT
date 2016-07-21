@@ -15,18 +15,13 @@
     </head>
     <body>
        <strong>Login:</strong><br>
-        <form action="Login" method="POST">
-            Email:
-            <input type="text" name="email"><br>
-            Password:
-            <input type="password" name="pw">
+        <form action="Start" method="POST">
+            Server IP:
+            <input type="text" name="serverIp"><br>
             <input type=submit value="Abschicken">
         </form>
        <br><br>
-        <form action="http://localhost:8080/tmConsumer/register.jsp">
-            <input type=submit value="Register">
-        </form>
-        <br>
+   
      
     </body>
 </html>

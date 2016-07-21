@@ -64,7 +64,7 @@ public class RegisterServlet extends HttpServlet {
             System.out.println(newUser(name, last_name, email, newSalt, encryptedPw));
             
             //Weiterleitung auf die index-Seite, damit sich der neue User einloggen kann
-            response.sendRedirect("Start");
+            response.sendRedirect("toLogin");
           
         }
         

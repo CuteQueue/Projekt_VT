@@ -62,21 +62,25 @@ public class LoginServlet extends HttpServlet {
             //System.out.println("Session created");
             
             try {
+                String serverIp;
+                serverIp = request.getParameterValues("serverIp")[0];
+                session.setAttribute("serverIp", serverIp);
+                
                 email = request.getParameterValues("email")[0];   
                 byte[] salt = retrieveSalt(email);
                 byte[] encryptedPassword = retrieveEncryptedPw(email);
                 String attemptedPassword = request.getParameterValues("pw")[0]; 
                 if(authenticate(attemptedPassword, encryptedPassword, salt)){
                     session.setAttribute("email", email);
-                    out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost:8080/tmConsumer/Home\">");
+                    out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Home\">");
                     System.out.println("eingeloggt");
                 }else{
-                    out.println("<meta http-equiv=\"refresh\" content=\"10;URL=http://localhost:8080/tmConsumer/Login\">");
+                    out.println("<meta http-equiv=\"refresh\" content=\"10;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Login\">");
                     out.println("<h2>Sie konnten sich nicht einloggen.</h2>");   
                 }
                     
             }catch(Exception homeErr0){
-                   out.println("<meta http-equiv=\"refresh\" content=\"10;URL=http://localhost:8080/tmConsumer/Login\">");
+                   out.println("<meta http-equiv=\"refresh\" content=\"10;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Login\">");
                    out.println("<h2>Sie konnten sich nicht einloggen.</h2>");   
             }
        

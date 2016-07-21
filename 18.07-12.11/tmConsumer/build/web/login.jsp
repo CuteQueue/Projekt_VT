@@ -1,5 +1,5 @@
 <%-- 
-    Document   : index
+    Document   : login
     Created on : 18.07.2016, 11:36:16
     Author     : nina
 --%>
@@ -15,13 +15,18 @@
     </head>
     <body>
        <strong>Login:</strong><br>
-        <form action="Start" method="POST">
-            Server IP:
-            <input type="text" name="serverIp"><br>
+        <form action="Login" method="POST">
+            Email:
+            <input type="text" name="email"><br>
+            Password:
+            <input type="password" name="pw">
             <input type=submit value="Abschicken">
         </form>
        <br><br>
-   
+        <form action="http://localhost:8080/tmConsumer/register.jsp">
+            <input type=submit value="Register">
+        </form>
+        <br>
      
     </body>
 </html>
