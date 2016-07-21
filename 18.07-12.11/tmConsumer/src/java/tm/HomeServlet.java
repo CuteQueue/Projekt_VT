@@ -60,17 +60,17 @@ public class HomeServlet extends HttpServlet {
             System.out.println("Session created");
             try {
                 if (session.getAttribute("email") == null) {
-                out.println("<html><head><title>SessionError</title></head>");
-                out.println("<body><h2>Keine Session vorhanden</h2>");
-                //out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
-                out.print("<form action=\"http://localhost:8080/tmConsumer\"");
-                out.println("\" method=\"POST\" >");
-                out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
-                out.println("</form>");
-                out.println("</body>");
-                out.close();
-                return;
-            }
+                    out.println("<html><head><title>SessionError</title></head>");
+                    out.println("<body><h2>Keine Session vorhanden</h2>");
+                    //out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
+                    out.print("<form action=\"http://localhost:8080/tmConsumer\"");
+                    out.println("\" method=\"POST\" >");
+                    out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
+                    out.println("</form>");
+                    out.println("</body>");
+                    out.close();
+                    return;
+                }
                 email = (String)session.getAttribute("email");
                 User u = new User(email);
                 session.setAttribute("user", u); //in Session gespeichert 

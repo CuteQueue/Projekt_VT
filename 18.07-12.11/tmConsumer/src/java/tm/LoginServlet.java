@@ -46,12 +46,12 @@ public class LoginServlet extends HttpServlet {
      int exit = 0;
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-         response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
         response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
         response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
-       HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(false);
        
        
        String email;

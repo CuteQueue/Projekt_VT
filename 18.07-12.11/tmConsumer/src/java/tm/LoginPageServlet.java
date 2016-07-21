@@ -7,25 +7,18 @@ package tm;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.WebServiceRef;
-import webservice.TmWebService_Service;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author nina
+ * @author Manuela
  */
-public class getNameServlet extends HttpServlet {
-
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
-    private TmWebService_Service service;
-
-    
-
-    
+public class LoginPageServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,11 +32,18 @@ public class getNameServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+        response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
+        response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+        response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
+        
         try (PrintWriter out = response.getWriter()) {
-           int id = Integer.parseInt(request.getParameter("txtid"));    
-           out.println("Id: "+ id);
-           out.println(getName(id));
-        }
+                
+                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+                rd.forward(request, response);
+             
+            
+        }     
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -84,15 +84,5 @@ public class getNameServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private String getName(int id) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        webservice.TmWebService port = service.getTmWebServicePort();
-        return port.getName(id);
-    }
-
-    
-    
 
 }

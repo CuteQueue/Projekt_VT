@@ -14,32 +14,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <strong>Login:</strong><br>
-        <form action="Login" method="POST">
-            Email:
-            <input type="text" name="email"><br>
-            Password:
-            <input type="password" name="pw">
+       <strong>Serververbindung herstellen:</strong><br>
+        <form action="Start" method="POST">
+            Server IP:
+            <input type="text" name="serverIp"><br>
             <input type=submit value="Abschicken">
         </form>
        <br><br>
-        <strong>Register:</strong><br>
-        <form action="Register" method="POST">
-            Name:
-            <input type="text" name="name"><br>
-            Last name:
-            <input type="text" name="last_name"><br>
-            Email:
-            <input type="text" name="email"><br>
-            Password:
-            <input type="text" name="pw">
-            <input type=submit value="Abschicken">
-        </form>
-        <br>
-       <!-- <form action="getName">
-            Enter id:
-            <input type="text" name="txtid" value="" />
-            <input type="submit" value="GetName" />
-        </form>-->
     </body>
 </html>
+
