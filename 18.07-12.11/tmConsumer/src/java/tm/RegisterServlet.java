@@ -45,17 +45,21 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           System.out.println("!XXXXXXX");
-           byte[] newSalt = generateSalt();
-           String pw = request.getParameterValues("pw")[0];
-           System.out.println(newSalt);
-           byte[] encryptedPw = getEncryptedPassword(pw, newSalt);
-           System.out.println(encryptedPw);
-           String name = request.getParameterValues("name")[0];
-           String last_name = request.getParameterValues("last_name")[0];
-           String email = request.getParameterValues("email")[0];
-           
-           System.out.println(newUser(name ,last_name,email, newSalt, encryptedPw));
+          System.out.println("RegisterServlet");
+            byte[] newSalt = generateSalt();
+            String pw = request.getParameterValues("pw")[0];
+            System.out.println(newSalt);
+            byte[] encryptedPw = getEncryptedPassword(pw, newSalt);
+            System.out.println(encryptedPw);
+            String name = request.getParameterValues("name")[0];
+            String last_name = request.getParameterValues("last_name")[0];
+            String email = request.getParameterValues("email")[0];
+            
+            //Neuer User wird in der Datenbank angelegt
+            System.out.println(newUser(name, last_name, email, newSalt, encryptedPw));
+            
+            //Weiterleitung auf die index-Seite, damit sich der neue User einloggen kann
+            response.sendRedirect("Start");
           
         }
         

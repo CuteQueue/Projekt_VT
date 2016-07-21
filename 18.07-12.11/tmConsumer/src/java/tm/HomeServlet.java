@@ -77,6 +77,27 @@ public class HomeServlet extends HttpServlet {
                 User user = (User)session.getAttribute("user");
                 out.println("<h2>Willkommen " + user.getName() + " " + user.getLast_name()+ "!</h2>");
                 out.println("</br>");
+                
+            //-------TODO: Ausbessern (ist noch keine optimale Lösung)------------------
+                u.getProfileData(); //Profildaten holen
+            if (u.getLocation() != null) { //Wenn Profil schon vorhanden: Daten ausgeben
+                out.println("Location: " + u.getLocation() + "</br>");
+                out.println("Age: " + u.getAge()+ "</br>");
+                out.println("Destination: " + u.getDestination()+ "</br>");
+                out.println("Startdate: " + u.getStartdate()+ "</br>");
+                out.println("<form action=\"http://localhost:8080/tmConsumer/editProfile.jsp\">");
+                out.println("<input type=submit value=\"Edit\">");
+                out.println("</form>");
+                
+            } else { //Wenn noch kein Profil vorhanden:
+                out.println("Noch kein Profil vorhanden");
+                out.println("Jetzt anlegen: ");
+                out.println("<form action=\"http://localhost:8080/tmConsumer/createProfile.jsp\">");
+                out.println("<input type=submit value=\"Create Profile\">");
+                out.println("</form>");
+
+            }
+            
                 out.print("<form action=\"Logout");
                 out.println("\" method=\"POST\" >");
                 out.println("<br><br><input type=\"submit\" name=\"logout\" value=\"Logout\">");

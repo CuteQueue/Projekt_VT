@@ -13,6 +13,10 @@
         <servlet-class>tm.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CreateProfileServlet</servlet-name>
+        <servlet-class>tm.CreateProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>tm.LogoutServlet</servlet-class>
     </servlet>
@@ -35,6 +39,10 @@
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>CreateProfileServlet</servlet-name>
+        <url-pattern>/CreateProfile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>

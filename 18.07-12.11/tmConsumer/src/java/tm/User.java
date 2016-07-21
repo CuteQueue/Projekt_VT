@@ -76,6 +76,43 @@ public class User {
             rs = stmt.executeQuery(SQL2);
             
             rs.next();
+          /*  this.mobilenumber = rs.getString("mobilenumber");
+            this.location = rs.getString("location");
+            this.updated_at = rs.getString("updated_at");
+            this.sex = rs.getString("sex");
+            this.destination = rs.getString("destination");
+            this.startdate = rs.getString("startdate");
+            this.interests = rs.getString("interests");
+            this.looking_for = rs.getString("looking_for");
+            this.about = rs.getString("about");
+            this.user_id = rs.getInt("user_id");
+            this.age = rs.getInt("age");*/
+    
+
+            returnUser = name + " " + last_name + " " + user_id + "wurde angelegt.";
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        System.out.println(returnUser);
+    }
+    
+      public void getProfileData(){
+        String returnProfile = "kein Profile gefunden";
+        try {
+            stmt = con.createStatement();
+            String SQL = "SELECT * FROM users WHERE email = \"" + this.email + "\"";
+            rs = stmt.executeQuery(SQL);
+        
+            rs.next();
+            this.id = rs.getInt("id");
+            this.name = rs.getString("name");
+            this.last_name = rs.getString("last_name");
+  
+            String SQL2 = "SELECT * FROM profils WHERE user_id = " + this.id;
+            rs = stmt.executeQuery(SQL2);
+            
+            rs.next();
             this.mobilenumber = rs.getString("mobilenumber");
             this.location = rs.getString("location");
             this.updated_at = rs.getString("updated_at");
@@ -89,12 +126,12 @@ public class User {
             this.age = rs.getInt("age");
     
 
-            returnUser = name + " " + last_name + " " + user_id + "wurde angelegt.";
+            returnProfile = "Profil von" + " " + name + " " + last_name + " wurde mit user_id " + user_id + "angelegt.";
             
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }    
-        System.out.println(returnUser);
+        System.out.println(returnProfile);
     }
 
     public String getHost() {

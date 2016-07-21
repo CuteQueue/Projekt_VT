@@ -24,6 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _CreateProfile_QNAME = new QName("http://WebService/", "createProfile");
+    private final static QName _CreateProfileResponse_QNAME = new QName("http://WebService/", "createProfileResponse");
     private final static QName _GetEncryptedPw_QNAME = new QName("http://WebService/", "getEncryptedPw");
     private final static QName _GetEncryptedPwResponse_QNAME = new QName("http://WebService/", "getEncryptedPwResponse");
     private final static QName _GetName_QNAME = new QName("http://WebService/", "getName");
@@ -45,6 +47,22 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link CreateProfile }
+     * 
+     */
+    public CreateProfile createCreateProfile() {
+        return new CreateProfile();
+    }
+
+    /**
+     * Create an instance of {@link CreateProfileResponse }
+     * 
+     */
+    public CreateProfileResponse createCreateProfileResponse() {
+        return new CreateProfileResponse();
     }
 
     /**
@@ -141,6 +159,24 @@ public class ObjectFactory {
      */
     public NewUserResponse createNewUserResponse() {
         return new NewUserResponse();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CreateProfile }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "createProfile")
+    public JAXBElement<CreateProfile> createCreateProfile(CreateProfile value) {
+        return new JAXBElement<CreateProfile>(_CreateProfile_QNAME, CreateProfile.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CreateProfileResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "createProfileResponse")
+    public JAXBElement<CreateProfileResponse> createCreateProfileResponse(CreateProfileResponse value) {
+        return new JAXBElement<CreateProfileResponse>(_CreateProfileResponse_QNAME, CreateProfileResponse.class, null, value);
     }
 
     /**

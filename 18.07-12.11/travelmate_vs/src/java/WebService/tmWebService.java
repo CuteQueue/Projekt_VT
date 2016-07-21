@@ -161,6 +161,39 @@ public class tmWebService {
             return null;
         }
     }
+    
+     /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "createProfile")
+    public String createProfile(@WebParam(name = "id") int id, @WebParam(name = "mobilenumber") String mobilenumber, @WebParam(name = "age") int age, @WebParam(name = "location") String location, @WebParam(name = "sex") String sex, @WebParam(name = "destination") String destination, @WebParam(name = "startdate") String startdate, @WebParam(name = "interests") String interests, @WebParam(name = "looking_for") String looking_for, @WebParam(name = "about") String about) {
+       try {
+            //TODO write your implementation code here:
+            Connection con = travelmate_vs.getConnection();
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO profils (user_id, mobilenumber, age, location, sex, destination, startdate, interests, looking_for, about) VALUES (?,?,?,?,?,?,?,?,?,?)"); //where id = ?
+            
+            pstmt.setInt(1,id); 
+            pstmt.setString(2, mobilenumber);
+            pstmt.setInt(3, age);
+            pstmt.setString(4, location);
+            pstmt.setString(5, sex);
+            pstmt.setString(6, destination);
+           // pstmt.setDate(7, startdate);
+            pstmt.setString(7, startdate);
+            pstmt.setString(8, interests);
+            pstmt.setString(9, looking_for);
+            pstmt.setString(10, about);
+            pstmt.executeUpdate();
+            //rs.next();
+            //byte[] encryptedPw = rs.getBytes("password");
+            //rs.close();
+            con.close();
+            return "ok";
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            return "error";
+        }
+    }
 
 
 
