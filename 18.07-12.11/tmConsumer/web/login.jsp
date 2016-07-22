@@ -16,6 +16,8 @@
     <body>
        <strong>Login:</strong><br>
         <form action="Login" method="POST">
+              Server IP:
+            <input type="text" name="serverIp"><br>
             Email:
             <input type="text" name="email"><br>
             Password:

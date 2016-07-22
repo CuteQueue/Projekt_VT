@@ -5,7 +5,7 @@
     Created on : 21.07.2016, 11:07:33
     Author     : nina
 --%>
-<sql:query var="result" dataSource="jdbc/travelmate_vs">
+<%--<sql:query var="result" dataSource="jdbc/travelmate">
     SELECT name FROM users WHERE id = 31
 </sql:query>
     
@@ -23,8 +23,8 @@
         <td><c:out value="${column}"/></td>
     </c:forEach>
     </tr>
-</c:forEach>
-</table>
+</c:forEach> 
+</table> --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -47,6 +47,7 @@
                     <tr>
                         <td><input type="text" value="${sessionScope.email}" /></td>
                         <td><input type="text" value="${sessionScope.id}" /></td>
+                        <td><input type="text" value="${sessionScope.serverIp}" /></td>
                        
                     </tr>
                     <tr>
