@@ -21,12 +21,20 @@
         <servlet-class>tm.HomeServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>WeiterleitungCreateProfileServlet</servlet-name>
+        <servlet-class>Weiterleitung.WeiterleitungCreateProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WeiterleitungLoginServlet</servlet-name>
+        <servlet-class>tm.WeiterleitungLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>StartServlet</servlet-name>
         <servlet-class>tm.StartServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>WeiterleitungCreateProfileServlet</servlet-name>
-        <servlet-class>Weiterleitung.WeiterleitungCreateProfileServlet</servlet-class>
+        <servlet-name>WeiterleitungHomeServlet</servlet-name>
+        <servlet-class>Weiterleitung.WeiterleitungHomeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -49,12 +57,20 @@
         <url-pattern>/Home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>WeiterleitungCreateProfileServlet</servlet-name>
+        <url-pattern>/Create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WeiterleitungLoginServlet</servlet-name>
+        <url-pattern>/toLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>StartServlet</servlet-name>
         <url-pattern>/Start</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>WeiterleitungCreateProfileServlet</servlet-name>
-        <url-pattern>/Create</url-pattern>
+        <servlet-name>WeiterleitungHomeServlet</servlet-name>
+        <url-pattern>/toHome</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

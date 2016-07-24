@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
         response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
         response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
-       HttpSession session = request.getSession(false);
+       HttpSession session = request.getSession(true);
        
        
        String email;
@@ -60,24 +60,29 @@ public class LoginServlet extends HttpServlet {
           
        
             //System.out.println("Session created");
-            
             try {
-                email = request.getParameterValues("email")[0];   
+               // String serverIp = request.getParameterValues("serverIp")[0];
+                String serverIp = request.getParameterValues("serverIp")[0];
+                session.setAttribute("serverIp", serverIp);
+                email = request.getParameterValues("email")[0]; 
+                String attemptedPassword = request.getParameterValues("pw")[0];
+               
                 byte[] salt = retrieveSalt(email);
                 byte[] encryptedPassword = retrieveEncryptedPw(email);
-                String attemptedPassword = request.getParameterValues("pw")[0]; 
                 if(authenticate(attemptedPassword, encryptedPassword, salt)){
                     session.setAttribute("email", email);
-                    out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost:8080/tmConsumer/Home\">");
+                    //out.println(email + session.getAttribute("serverIp"));
+                     //request.getRequestDispatcher("/toHome").forward(request, response);
+                    out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Home\">");
                     System.out.println("eingeloggt");
                 }else{
-                    out.println("<meta http-equiv=\"refresh\" content=\"10;URL=http://localhost:8080/tmConsumer/Login\">");
-                    out.println("<h2>Sie konnten sich nicht einloggen.</h2>");   
+                    out.println("<meta http-equiv=\"refresh\" content=\"10;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Login\">");
+                    out.println("<h2>Sie konnten sich nicht einloggen(1).</h2>");   
                 }
                     
             }catch(Exception homeErr0){
-                   out.println("<meta http-equiv=\"refresh\" content=\"10;URL=http://localhost:8080/tmConsumer/Login\">");
-                   out.println("<h2>Sie konnten sich nicht einloggen.</h2>");   
+                   out.println("<meta http-equiv=\"refresh\" content=\"10;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Login\">");
+                   out.println("<h2>Sie konnten sich nicht einloggen(2).</h2>");   
             }
        
         }catch(Exception homeErr1){

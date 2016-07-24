@@ -18,7 +18,7 @@
             <center>
             <h1>You have logged out!</h1>
             <li>
-                <form action="Start" method="POST">
+                <form action="toLogin" method="POST">
                 <input type="hidden" name="start"><br>
                 <input type=submit value="Head to login.">
                 </form>

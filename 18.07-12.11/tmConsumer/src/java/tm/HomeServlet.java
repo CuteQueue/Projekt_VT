@@ -45,24 +45,24 @@ public class HomeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(true); //Erzeugt eine neue Session, wenn noch keine vorhanden und speichert diese in session
         response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
         response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
         response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 
         String email;
-
+        
         try (PrintWriter out = response.getWriter()) {
-
-            // Neue Session anlegen
-            HttpSession session = request.getSession(true); //Erzeugt eine neue Session, wenn noch keine vorhanden und speichert diese in session
-            System.out.println("Session created");
+            
             try {
+                 //out.println("Email: " + session.getAttribute("email"));
+                 //out.println("ServerIp: " + session.getAttribute("serverIp"));
                 if (session.getAttribute("email") == null) {
                     out.println("<html><head><title>SessionError</title></head>");
-                    out.println("<body><h2>Keine Session vorhanden</h2>");
+                    out.println("<body><h2>Keine Session vorhanden1</h2>");
                     //out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
-                    out.print("<form action=\"http://localhost:8080/tmConsumer\"");
+                    out.print("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer\"");
                     out.println("\" method=\"POST\" >");
                     out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
                     out.println("</form>");
@@ -84,14 +84,14 @@ public class HomeServlet extends HttpServlet {
                     out.println("Age: " + u.getAge() + "</br>");
                     out.println("Destination: " + u.getDestination() + "</br>");
                     out.println("Startdate: " + u.getStartdate() + "</br>");
-                    out.println("<form action=\"http://localhost:8080/tmConsumer/editProfile.jsp\">");
+                    out.println("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/editProfile.jsp\">");
                     out.println("<input type=submit value=\"Edit\">");
                     out.println("</form>");
 
                 } else { //Wenn noch kein Profil vorhanden:
                     out.println("Noch kein Profil vorhanden");
                     out.println("Jetzt anlegen: ");
-                    out.println("<form action=\"http://localhost:8080/tmConsumer/Create\">");
+                    out.println("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Create\">");
                     out.println("<input type=submit value=\"Create Profile\">");
                     out.println("</form>");
 
