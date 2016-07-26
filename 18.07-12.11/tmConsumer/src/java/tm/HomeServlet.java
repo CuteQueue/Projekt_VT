@@ -99,7 +99,12 @@ public class HomeServlet extends HttpServlet {
 
                 out.print("<form action=\"Logout");
                 out.println("\" method=\"POST\" >");
-                out.println("<br><br><input type=\"submit\" name=\"logout\" value=\"Logout\">");
+                out.println("<input type=\"submit\" name=\"logout\" value=\"Logout\">");
+                out.println("</form>");
+                
+                out.println("<form action=\"http://"+session.getAttribute("serverIp")+":9999/TestChat/index.html\">");
+                //out.println("\" method=\"POST\" >");
+                out.println("<br><br><input type=\"submit\" name=\"logout\" value=\"Chat\">");
                 out.println("</form>");
 
             } catch (Exception err2) {

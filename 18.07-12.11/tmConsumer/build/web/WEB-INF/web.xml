@@ -40,6 +40,10 @@
         <servlet-name>WeiterleitungRegisterServlet</servlet-name>
         <servlet-class>Weiterleitung.WeiterleitungRegisterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>WeiterleitungChatServlet</servlet-name>
+        <servlet-class>Weiterleitung.WeiterleitungChatServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>WeiterleitungRegisterServlet</servlet-name>
         <url-pattern>/toRegister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WeiterleitungChatServlet</servlet-name>
+        <url-pattern>/toChat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
