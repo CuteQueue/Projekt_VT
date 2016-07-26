@@ -45,9 +45,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="text" value="${sessionScope.email}" /></td>
-                        <td><input type="text" value="${sessionScope.id}" /></td>
-                        <td><input type="text" value="${sessionScope.serverIp}" /></td>
+                        <td>${sessionScope.email}</td>
+                        <td>${sessionScope.name}</td>
+                        <td>${sessionScope.serverIp}</td>
                        
                     </tr>
                     <tr>

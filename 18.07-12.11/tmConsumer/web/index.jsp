@@ -18,6 +18,8 @@
         <form action="Start" method="POST">
             Server IP:
             <input type="text" name="serverIp"><br>
+            email:
+            <input type="text" name="email"><br>
             <input type=submit value="Abschicken">
         </form>
        <br><br>
