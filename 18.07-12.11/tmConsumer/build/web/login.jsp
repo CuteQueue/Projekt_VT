@@ -28,7 +28,7 @@
             <input type=submit value="Abschicken">
         </form>
        
-        <script>
+        <!--<script>
             function getLocation() {
                 //alert(window.location.href);
                 var href = window.location.href ;
@@ -38,7 +38,7 @@
                 return l.hostname;
             };
             document.getElementById("serverIp").value = getLocation();
-        </script>
+        </script>-->
        
        <!--LOCALSTORAGE abfragen-->
        <!-- <script>
@@ -50,9 +50,22 @@
             document.getElementById("serverIp").value = load();  
        </script>-->
        <br><br>
-        <form action="http://localhost:8080/tmConsumer/register.jsp">
+        <form action="toRegister">
+            <input type="hidden" name="serverIp2" id="serverIp2" >   
             <input type=submit value="Register">
         </form>
+       <script>
+            function getLocation() {
+                //alert(window.location.href);
+                var href = window.location.href ;
+                var l = document.createElement("a");
+                l.href = href;
+                //alert(l.hostname);
+                return l.hostname;
+            };
+            document.getElementById("serverIp").value = getLocation();
+            document.getElementById("serverIp2").value = getLocation();
+        </script>
         <br>
      
     </body>

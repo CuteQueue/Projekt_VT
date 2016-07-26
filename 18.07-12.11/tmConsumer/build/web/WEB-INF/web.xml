@@ -36,6 +36,10 @@
         <servlet-name>WeiterleitungHomeServlet</servlet-name>
         <servlet-class>Weiterleitung.WeiterleitungHomeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>WeiterleitungRegisterServlet</servlet-name>
+        <servlet-class>Weiterleitung.WeiterleitungRegisterServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>WeiterleitungHomeServlet</servlet-name>
         <url-pattern>/toHome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WeiterleitungRegisterServlet</servlet-name>
+        <url-pattern>/toRegister</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
