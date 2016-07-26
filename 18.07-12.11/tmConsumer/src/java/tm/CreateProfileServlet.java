@@ -78,7 +78,8 @@ public class CreateProfileServlet extends HttpServlet {
             String answer = createProfile(user.getId(), mobilenumber, age, location, sex, destination, startdate, interests, looking_for, about);
 
             if (answer.equals("ok")) {
-                response.sendRedirect("Home");
+                request.getRequestDispatcher("/Home").forward(request, response);
+                //response.sendRedirect("Home");
             } else {
                 out.println("Ooooops, something went wrong!");
             }
