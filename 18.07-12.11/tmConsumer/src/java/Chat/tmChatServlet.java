@@ -73,13 +73,13 @@ public class tmChatServlet extends HttpServlet {
             //Name des Nutzers
              try{
                 //Wird beim ersten Aufruf aufgerufen
-                name = (String) session.getAttribute("email");
+                name = (String) session.getAttribute("nickname");
                 //name = req.getParameterValues("name")[0];
                 session.setAttribute("name", name);
-                System.out.println("email aus Session geholt.");
+                System.out.println("nickname aus Session geholt.");
             } catch (Exception ex){
                 //Wird beim refresh aufgerufen
-                name = (String) session.getAttribute("email");
+                name = (String) session.getAttribute("nickname");
             }
 
             

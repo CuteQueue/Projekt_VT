@@ -10,6 +10,12 @@
 <message name="getNameResponse">
 <part name="parameters" element="tns:getNameResponse"/>
 </message>
+<message name="login">
+<part name="parameters" element="tns:login"/>
+</message>
+<message name="loginResponse">
+<part name="parameters" element="tns:loginResponse"/>
+</message>
 <message name="newUser">
 <part name="parameters" element="tns:newUser"/>
 </message>
@@ -40,16 +46,14 @@
 <message name="createProfileResponse">
 <part name="parameters" element="tns:createProfileResponse"/>
 </message>
-<message name="login">
-<part name="parameters" element="tns:login"/>
-</message>
-<message name="loginResponse">
-<part name="parameters" element="tns:loginResponse"/>
-</message>
 <portType name="tmWebService">
 <operation name="getName">
 <input wsam:Action="http://WebService/tmWebService/getNameRequest" message="tns:getName"/>
 <output wsam:Action="http://WebService/tmWebService/getNameResponse" message="tns:getNameResponse"/>
+</operation>
+<operation name="login">
+<input wsam:Action="http://WebService/tmWebService/loginRequest" message="tns:login"/>
+<output wsam:Action="http://WebService/tmWebService/loginResponse" message="tns:loginResponse"/>
 </operation>
 <operation name="newUser">
 <input wsam:Action="http://WebService/tmWebService/newUserRequest" message="tns:newUser"/>
@@ -71,14 +75,19 @@
 <input wsam:Action="http://WebService/tmWebService/createProfileRequest" message="tns:createProfile"/>
 <output wsam:Action="http://WebService/tmWebService/createProfileResponse" message="tns:createProfileResponse"/>
 </operation>
-<operation name="login">
-<input wsam:Action="http://WebService/tmWebService/loginRequest" message="tns:login"/>
-<output wsam:Action="http://WebService/tmWebService/loginResponse" message="tns:loginResponse"/>
-</operation>
 </portType>
 <binding name="tmWebServicePortBinding" type="tns:tmWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 <operation name="getName">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="login">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -124,15 +133,6 @@
 </output>
 </operation>
 <operation name="createProfile">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="login">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

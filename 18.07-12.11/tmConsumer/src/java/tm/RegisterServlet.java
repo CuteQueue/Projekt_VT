@@ -58,10 +58,11 @@ public class RegisterServlet extends HttpServlet {
             System.out.println(encryptedPw);
             String name = request.getParameterValues("name")[0];
             String last_name = request.getParameterValues("last_name")[0];
+            String nickname = request.getParameterValues("nickname")[0];
             String email = request.getParameterValues("email")[0];
             
             //Neuer User wird in der Datenbank angelegt
-            System.out.println(newUser(name, last_name, email, newSalt, encryptedPw));
+            System.out.println(newUser(name, last_name, nickname, email, newSalt, encryptedPw));
             
             //Weiterleitung auf die index-Seite, damit sich der neue User einloggen kann
             response.sendRedirect("toLogin");
@@ -143,9 +144,9 @@ public class RegisterServlet extends HttpServlet {
        return f.generateSecret(spec).getEncoded();
      }
     
-    public String newUser(String name, String last_name, String email, byte[] salt, byte[] password){
+    public String newUser(String name, String last_name, String nickname, String email, byte[] salt, byte[] password){
         webservice.TmWebService port = service.getTmWebServicePort();
-        return port.newUser(name, last_name, email, salt, password);
+        return port.newUser(name, last_name, nickname, email, salt, password);
     }
      
     public byte[] generateSalt() throws NoSuchAlgorithmException {

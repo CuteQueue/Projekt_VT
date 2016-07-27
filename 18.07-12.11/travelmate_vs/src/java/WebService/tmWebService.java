@@ -60,6 +60,8 @@ public class tmWebService {
             return null;
         }
     }
+    
+    
 
     /**
      * Web service operation
@@ -138,17 +140,18 @@ public class tmWebService {
      * Web service operation
      */
     @WebMethod(operationName = "newUser")
-    public String newUser(@WebParam(name = "name") String name, @WebParam(name = "last_name") String last_name, @WebParam(name = "email") String email, @WebParam(name = "salt") byte[] salt, @WebParam(name = "password") byte[] password) {
+    public String newUser(@WebParam(name = "name") String name, @WebParam(name = "last_name") String last_name, @WebParam(name = "nickname") String nickname, @WebParam(name = "email") String email, @WebParam(name = "salt") byte[] salt, @WebParam(name = "password") byte[] password) {
         try {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
-            PreparedStatement pstmt = con.prepareStatement("INSERT INTO users (name, last_name, email, salt, password) VALUES (?,?,?,?,?)"); //where id = ?
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO users (name, last_name, nickname, email, salt, password) VALUES (?,?,?,?,?,?)"); //where id = ?
             
             pstmt.setString(1, name);
             pstmt.setString(2, last_name);
-            pstmt.setString(3, email);
-            pstmt.setBytes(4, salt);
-            pstmt.setBytes(5, password);
+            pstmt.setString(3, nickname);
+            pstmt.setString(4, email);
+            pstmt.setBytes(5, salt);
+            pstmt.setBytes(6, password);
             pstmt.executeUpdate();
             //rs.next();
             //byte[] encryptedPw = rs.getBytes("password");

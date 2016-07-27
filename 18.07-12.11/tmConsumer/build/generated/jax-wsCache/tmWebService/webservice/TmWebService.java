@@ -41,10 +41,29 @@ public interface TmWebService {
 
     /**
      * 
+     * @param pw
+     * @param email
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "login", targetNamespace = "http://WebService/", className = "webservice.Login")
+    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://WebService/", className = "webservice.LoginResponse")
+    @Action(input = "http://WebService/tmWebService/loginRequest", output = "http://WebService/tmWebService/loginResponse")
+    public String login(
+        @WebParam(name = "email", targetNamespace = "")
+        String email,
+        @WebParam(name = "pw", targetNamespace = "")
+        String pw);
+
+    /**
+     * 
      * @param lastName
      * @param password
      * @param salt
      * @param name
+     * @param nickname
      * @param email
      * @return
      *     returns java.lang.String
@@ -59,6 +78,8 @@ public interface TmWebService {
         String name,
         @WebParam(name = "last_name", targetNamespace = "")
         String lastName,
+        @WebParam(name = "nickname", targetNamespace = "")
+        String nickname,
         @WebParam(name = "email", targetNamespace = "")
         String email,
         @WebParam(name = "salt", targetNamespace = "")
@@ -152,23 +173,5 @@ public interface TmWebService {
         String lookingFor,
         @WebParam(name = "about", targetNamespace = "")
         String about);
-
-    /**
-     * 
-     * @param pw
-     * @param email
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "login", targetNamespace = "http://WebService/", className = "webservice.Login")
-    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://WebService/", className = "webservice.LoginResponse")
-    @Action(input = "http://WebService/tmWebService/loginRequest", output = "http://WebService/tmWebService/loginResponse")
-    public String login(
-        @WebParam(name = "email", targetNamespace = "")
-        String email,
-        @WebParam(name = "pw", targetNamespace = "")
-        String pw);
 
 }

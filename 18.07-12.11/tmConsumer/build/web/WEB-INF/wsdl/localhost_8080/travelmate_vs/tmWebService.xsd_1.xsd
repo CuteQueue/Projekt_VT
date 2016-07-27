@@ -114,6 +114,7 @@
 <xs:sequence>
 <xs:element name="name" type="xs:string" minOccurs="0"/>
 <xs:element name="last_name" type="xs:string" minOccurs="0"/>
+<xs:element name="nickname" type="xs:string" minOccurs="0"/>
 <xs:element name="email" type="xs:string" minOccurs="0"/>
 <xs:element name="salt" type="xs:base64Binary" nillable="true" minOccurs="0"/>
 <xs:element name="password" type="xs:base64Binary" nillable="true" minOccurs="0"/>

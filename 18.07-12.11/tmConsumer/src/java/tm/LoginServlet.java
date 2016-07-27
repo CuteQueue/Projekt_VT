@@ -71,6 +71,10 @@ public class LoginServlet extends HttpServlet {
                 byte[] encryptedPassword = retrieveEncryptedPw(email);
                 if(authenticate(attemptedPassword, encryptedPassword, salt)){
                     session.setAttribute("email", email);
+                    User user = new User(email);
+                    String nickname = user.getNickname();
+                    System.out.println("NICKNAME: " + nickname);
+                    session.setAttribute("nickname", nickname);
                     //out.println(email + session.getAttribute("serverIp"));
                      //request.getRequestDispatcher("/toHome").forward(request, response);
                     out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Home\">");

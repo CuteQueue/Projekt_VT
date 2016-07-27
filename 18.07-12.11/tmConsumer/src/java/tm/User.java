@@ -28,6 +28,7 @@ public class User {
     
     private String name = null;
     private String last_name = null;
+    private String nickname = null;
     private String email = null;
     private String mobilenumber = null;
     private String location = null;
@@ -70,6 +71,7 @@ public class User {
             this.id = rs.getInt("id");
             this.name = rs.getString("name");
             this.last_name = rs.getString("last_name");
+            this.nickname = rs.getString("nickname");
             this.created_at = rs.getString("created_at");
             
             String SQL2 = "SELECT * FROM profils WHERE user_id = " + this.id;
@@ -89,7 +91,7 @@ public class User {
             this.age = rs.getInt("age");*/
     
 
-            returnUser = name + " " + last_name + " " + user_id + "wurde angelegt.";
+            returnUser = name + " " + last_name + " " + nickname + " " + user_id + "wurde angelegt.";
             
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
@@ -311,6 +313,15 @@ public class User {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+    
     
     
 }

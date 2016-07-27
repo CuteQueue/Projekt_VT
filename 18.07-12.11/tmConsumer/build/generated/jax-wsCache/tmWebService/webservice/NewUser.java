@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence&gt;
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="last_name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="nickname" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="salt" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/&gt;
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/&gt;
@@ -36,6 +37,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "newUser", propOrder = {
     "name",
     "lastName",
+    "nickname",
     "email",
     "salt",
     "password"
@@ -45,6 +47,7 @@ public class NewUser {
     protected String name;
     @XmlElement(name = "last_name")
     protected String lastName;
+    protected String nickname;
     protected String email;
     @XmlElementRef(name = "salt", type = JAXBElement.class, required = false)
     protected JAXBElement<byte[]> salt;
@@ -97,6 +100,30 @@ public class NewUser {
      */
     public void setLastName(String value) {
         this.lastName = value;
+    }
+
+    /**
+     * Ruft den Wert der nickname-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNickname() {
+        return nickname;
+    }
+
+    /**
+     * Legt den Wert der nickname-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNickname(String value) {
+        this.nickname = value;
     }
 
     /**

@@ -31,6 +31,10 @@
                         <td><input type="text" name="last_name" required><br></td>
                     </tr>
                     <tr>
+                        <td>Nickname:</td>
+                        <td><input type="text" name="nickname" required><br></td>
+                    </tr>
+                    <tr>
                         <td>Email:</td>
                         <td><input type="text" name="email" required><br></td>
                     </tr>
