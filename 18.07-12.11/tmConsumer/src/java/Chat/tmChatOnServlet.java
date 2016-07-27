@@ -63,7 +63,7 @@ String exit = "";
          
             
             
-            /*----------------------------HTM-Teil----------------------------*/
+            /*----------------------------HTML-Teil----------------------------*/
             out.println("<html><head><title>Chat</title>");
             out.println("<meta http-equiv=\"refresh\" content=\"10;URL=\"http://"+session.getAttribute("ip")+":8080/tmConsumer/tmChatOn></head>");
             out.println("<body style=\"font-family:arial;\">\n");
@@ -106,7 +106,7 @@ String exit = "";
             out.println("</br>");
             out.print("<form action=\"");
             out.println("\" method=\"POST\" >");
-            out.println("<br><br><input type=\"submit\" name=\"logout\" value=\"Chat verlassen\">");
+            out.println("<br><br><input type=\"submit\" name=\"logout\" value=\"Home\">");
             out.println("</form>");
             
             

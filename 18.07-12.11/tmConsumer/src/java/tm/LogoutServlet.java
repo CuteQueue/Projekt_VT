@@ -44,10 +44,15 @@ public class LogoutServlet extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession(false); //Liefert null zurück, wenn es keine aktuelle Session gibt
-             if (session.getAttribute("name") == null) {
-                
+             if (session != null) {  
+                //aktuelle Session vorhanden
                 RequestDispatcher rd = request.getRequestDispatcher("logout.jsp");
                 rd.forward(request, response);
+             } else {
+                 //keine aktuelle Session vorhanden
+                /*RequestDispatcher rd = request.getRequestDispatcher("logout.jsp");
+                rd.forward(request, response);*/
+                out.println("keine aktuelle Session vorhanden");
              }
             
         }     

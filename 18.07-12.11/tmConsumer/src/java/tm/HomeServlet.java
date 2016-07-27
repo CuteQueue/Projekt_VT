@@ -58,7 +58,7 @@ public class HomeServlet extends HttpServlet {
             try {
                  //out.println("Email: " + session.getAttribute("email"));
                  //out.println("ServerIp: " + session.getAttribute("serverIp"));
-                if (session == null) {
+                if (session.getAttribute("email") == null) {
                     out.println("<html><head><title>SessionError</title></head>");
                     out.println("<body><h2>Keine Session vorhanden1</h2>");
                     out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
@@ -70,6 +70,7 @@ public class HomeServlet extends HttpServlet {
                     out.close();
                     return;
                 }
+                
                 email = (String) session.getAttribute("email");
                 User u = new User(email);
                 session.setAttribute("user", u); //in Session gespeichert 

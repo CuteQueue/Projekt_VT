@@ -85,19 +85,16 @@ public class tmChatServlet extends HttpServlet {
             
             ClientInterface user = null; 
             try {
-                System.out.println("neuen chatUser erstellen");
             user = new ClientImpl(ip); //neuen User erstellen
-            System.out.println("neuen chatUser erstellt");
             session.setAttribute("chatUser", user); //in Session speichern
-            System.out.println("neuen chatUser in session gespeichert");
             } catch (RemoteException | MalformedURLException | NotBoundException ex) {
-                out.printf("Error71");
+                out.printf("Server nicht erreichbar");
                 out.close();
             }
             //Prüfung ob der Nickname schon vergeben ist:
             if(user.getStub().getClients().containsKey(name)){ 
                 vorhanden = "ja";
-                out.println("<html><head><body>");
+                /*out.println("<html><head><body>");
                 out.print("<form action=\"");
                 out.print(res.encodeURL ("tmChatOn"));
                 out.println("\" method=\"POST\" >");
@@ -112,7 +109,7 @@ public class tmChatServlet extends HttpServlet {
                     vorhanden = "nein";
                     
                     session.setAttribute("name", name);
-                }
+                }*/
            
             } else {
                 vorhanden = "nein";
@@ -164,7 +161,7 @@ public class tmChatServlet extends HttpServlet {
                 //Ende HTML-Teil
                 out.println("</body></html>");
                 if (vorhanden.equals("nein")){
-                    out.println("<meta http-equiv=\"refresh\" content=\"1;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/tmChatOn\">"); 
+                    out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/tmChatOn\">"); 
                     //auf Servlet weiterleiten
                 }vorhanden = "";
             }  
