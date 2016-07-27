@@ -48,6 +48,14 @@ String exit = "";
             }
             res.setContentType("text/html;charset=UTF-8");
             
+   System.out.println("Session-email: " + session.getAttribute("email"));        
+   String test = (String)session.getAttribute("email");
+   if(test == null) {
+       out.println("null");
+      res.sendRedirect("logout.jsp");
+   }
+
+            
             System.out.println("Session serverIp: " + session.getAttribute("serverIp"));
             System.out.println("Session Ip: " + session.getAttribute("ip"));
             ClientInterface user = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
