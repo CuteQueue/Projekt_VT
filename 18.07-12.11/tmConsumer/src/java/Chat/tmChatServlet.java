@@ -153,7 +153,7 @@ public class tmChatServlet extends HttpServlet {
                 out.println("</br>");
                 out.print("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Home\"");
                 out.println("\" method=\"POST\" >");
-                out.println("<br><br><input type=\"submit\" value=\"Chat verlassen\">");
+                out.println("<br><br><input type=\"submit\" value=\"Home\">");
                 out.println("</body></html>");
                 out.println("</form>");
                 
