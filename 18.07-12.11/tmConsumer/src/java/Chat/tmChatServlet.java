@@ -125,9 +125,9 @@ public class tmChatServlet extends HttpServlet {
                 session.setAttribute("chat", chat); //Chat in Session speichern
 
 
-                /*----------------------------HTM-Teil----------------------------*/
+                /*----------------------------HTML-Teil----------------------------*/
                 out.println("<html><head><title>Chat</title>");
-                out.println("<meta http-equiv=\"refresh\" content=\"10;URL=\"http://localhost:8080/tmConsumer/tmChatOn\"></head>"); 
+                out.println("<meta http-equiv=\"refresh\" content=\"10;URL=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/tmChatOn\"></head>"); 
                 //auf Servlet weiterleiten
                 out.println("<body style=\"font-family:arial;\">\n");
                out.println("<h2>Willkommen im Chat, " + user.getUsername()
@@ -154,7 +154,7 @@ public class tmChatServlet extends HttpServlet {
 
                 //Button zum Verlassen des Chats
                 out.println("</br>");
-                out.print("<form action=\"http://localhost:8080/tmConsumer/Home\"");
+                out.print("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Home\"");
                 out.println("\" method=\"POST\" >");
                 out.println("<br><br><input type=\"submit\" value=\"Chat verlassen\">");
                 out.println("</body></html>");
@@ -164,7 +164,7 @@ public class tmChatServlet extends HttpServlet {
                 //Ende HTML-Teil
                 out.println("</body></html>");
                 if (vorhanden.equals("nein")){
-                    out.println("<meta http-equiv=\"refresh\" content=\"1;URL=http://localhost:8080/tmConsumer/tmChatOn\">"); 
+                    out.println("<meta http-equiv=\"refresh\" content=\"1;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/tmChatOn\">"); 
                     //auf Servlet weiterleiten
                 }vorhanden = "";
             }  
