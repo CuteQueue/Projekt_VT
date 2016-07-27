@@ -64,7 +64,7 @@
                 return l.hostname;
             };
             document.getElementById("serverIp").value = getLocation();
-            document.getElementById("serverIp2").value = getLocation();
+          document.getElementById("serverIp2").value = getLocation();
         </script>
         <br>
      

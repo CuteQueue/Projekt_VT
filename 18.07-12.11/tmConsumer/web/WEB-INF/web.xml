@@ -44,14 +44,6 @@
         <servlet-name>WeiterleitungChatServlet</servlet-name>
         <servlet-class>Weiterleitung.WeiterleitungChatServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>tmChatServlet</servlet-name>
-        <servlet-class>Chat.tmChatServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>tmChatOnServlet</servlet-name>
-        <servlet-class>Chat.tmChatOnServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -95,14 +87,6 @@
     <servlet-mapping>
         <servlet-name>WeiterleitungChatServlet</servlet-name>
         <url-pattern>/toChat</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>tmChatServlet</servlet-name>
-        <url-pattern>/tmChat</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>tmChatOnServlet</servlet-name>
-        <url-pattern>/tmChatOn</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
