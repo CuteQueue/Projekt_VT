@@ -6,18 +6,19 @@
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/LogoutServlet.java</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/CreateProfileServlet.java</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/RegisterServlet.java</file>
+            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/createProfile.jsp</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/login.jsp</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungHomeServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungRegisterServlet.java</file>
+            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Chat/tmChatServlet.java</file>
+            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Chat/tmChatOnServlet.java</file>
+            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/register.jsp</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/StartServlet.java</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungCreateProfileServlet.java</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/LoginServlet.java</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/home.jsp</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/HomeServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungChatServlet.java</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/index.jsp</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl</file>
+            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/logout.jsp</file>
         </group>
     </open-files>
 </project-private>

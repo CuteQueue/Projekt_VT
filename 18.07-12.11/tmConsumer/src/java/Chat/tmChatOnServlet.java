@@ -35,6 +35,7 @@ String exit = "";
         PrintWriter out = res.getWriter();
            try {
             HttpSession session = req.getSession(false); //Liefert null zurück, wenn es keine aktuelle Session gibt
+            session.setMaxInactiveInterval(11);
              if (session == null) {
                 out.println("<html><head><title>SessionError</title></head>");
                 out.println("<body><h2>Keine Session vorhanden</h2>");
@@ -47,7 +48,6 @@ String exit = "";
                 return;
             }
             res.setContentType("text/html;charset=UTF-8");
-            
             System.out.println("Session serverIp: " + session.getAttribute("serverIp"));
             System.out.println("Session Ip: " + session.getAttribute("ip"));
             ClientInterface user = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
@@ -117,7 +117,6 @@ String exit = "";
                 exit ="";
                 
                 //session.invalidate();
-                
                 out.println("<meta http-equiv=\"refresh\" content=\"1; URL=http://"+session.getAttribute("ip")+":8080/tmConsumer/Home\">");
             }
              
@@ -182,6 +181,7 @@ String exit = "";
         if (request.getParameter("logout")!=null) {
             HttpSession session = request.getSession();
             ClientInterface user = (ClientInterface) session.getAttribute("chatUser");
+            
             exit = "exit";
         }
     }

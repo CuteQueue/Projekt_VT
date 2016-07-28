@@ -26,6 +26,18 @@
             </center>
         </body>
     </html>
+    
+    
+
+<script>
+    window.location.hash="session ended";
+    window.location.hash="session ended";//again because google chrome don't insert first hash into history
+    window.onhashchange=function(){window.location.hash="session ended";};
+    
+</script> 
+
+
+        
 <%
     session.invalidate();
 %>
