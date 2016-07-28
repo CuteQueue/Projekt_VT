@@ -44,6 +44,7 @@ public class User {
     private int user_id;
     private int age;
     
+    
     public User (String email){
         this.email = email;
         connect();

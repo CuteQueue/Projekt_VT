@@ -10,11 +10,23 @@
 <message name="getNameResponse">
 <part name="parameters" element="tns:getNameResponse"/>
 </message>
-<message name="login">
-<part name="parameters" element="tns:login"/>
+<message name="getEncryptedPw">
+<part name="parameters" element="tns:getEncryptedPw"/>
 </message>
-<message name="loginResponse">
-<part name="parameters" element="tns:loginResponse"/>
+<message name="getEncryptedPwResponse">
+<part name="parameters" element="tns:getEncryptedPwResponse"/>
+</message>
+<message name="hello">
+<part name="parameters" element="tns:hello"/>
+</message>
+<message name="helloResponse">
+<part name="parameters" element="tns:helloResponse"/>
+</message>
+<message name="createProfile">
+<part name="parameters" element="tns:createProfile"/>
+</message>
+<message name="createProfileResponse">
+<part name="parameters" element="tns:createProfileResponse"/>
 </message>
 <message name="newUser">
 <part name="parameters" element="tns:newUser"/>
@@ -28,32 +40,34 @@
 <message name="getSaltResponse">
 <part name="parameters" element="tns:getSaltResponse"/>
 </message>
-<message name="hello">
-<part name="parameters" element="tns:hello"/>
+<message name="login">
+<part name="parameters" element="tns:login"/>
 </message>
-<message name="helloResponse">
-<part name="parameters" element="tns:helloResponse"/>
+<message name="loginResponse">
+<part name="parameters" element="tns:loginResponse"/>
 </message>
-<message name="getEncryptedPw">
-<part name="parameters" element="tns:getEncryptedPw"/>
+<message name="findTravelmates">
+<part name="parameters" element="tns:findTravelmates"/>
 </message>
-<message name="getEncryptedPwResponse">
-<part name="parameters" element="tns:getEncryptedPwResponse"/>
-</message>
-<message name="createProfile">
-<part name="parameters" element="tns:createProfile"/>
-</message>
-<message name="createProfileResponse">
-<part name="parameters" element="tns:createProfileResponse"/>
+<message name="findTravelmatesResponse">
+<part name="parameters" element="tns:findTravelmatesResponse"/>
 </message>
 <portType name="tmWebService">
 <operation name="getName">
 <input wsam:Action="http://WebService/tmWebService/getNameRequest" message="tns:getName"/>
 <output wsam:Action="http://WebService/tmWebService/getNameResponse" message="tns:getNameResponse"/>
 </operation>
-<operation name="login">
-<input wsam:Action="http://WebService/tmWebService/loginRequest" message="tns:login"/>
-<output wsam:Action="http://WebService/tmWebService/loginResponse" message="tns:loginResponse"/>
+<operation name="getEncryptedPw">
+<input wsam:Action="http://WebService/tmWebService/getEncryptedPwRequest" message="tns:getEncryptedPw"/>
+<output wsam:Action="http://WebService/tmWebService/getEncryptedPwResponse" message="tns:getEncryptedPwResponse"/>
+</operation>
+<operation name="hello">
+<input wsam:Action="http://WebService/tmWebService/helloRequest" message="tns:hello"/>
+<output wsam:Action="http://WebService/tmWebService/helloResponse" message="tns:helloResponse"/>
+</operation>
+<operation name="createProfile">
+<input wsam:Action="http://WebService/tmWebService/createProfileRequest" message="tns:createProfile"/>
+<output wsam:Action="http://WebService/tmWebService/createProfileResponse" message="tns:createProfileResponse"/>
 </operation>
 <operation name="newUser">
 <input wsam:Action="http://WebService/tmWebService/newUserRequest" message="tns:newUser"/>
@@ -63,17 +77,13 @@
 <input wsam:Action="http://WebService/tmWebService/getSaltRequest" message="tns:getSalt"/>
 <output wsam:Action="http://WebService/tmWebService/getSaltResponse" message="tns:getSaltResponse"/>
 </operation>
-<operation name="hello">
-<input wsam:Action="http://WebService/tmWebService/helloRequest" message="tns:hello"/>
-<output wsam:Action="http://WebService/tmWebService/helloResponse" message="tns:helloResponse"/>
+<operation name="login">
+<input wsam:Action="http://WebService/tmWebService/loginRequest" message="tns:login"/>
+<output wsam:Action="http://WebService/tmWebService/loginResponse" message="tns:loginResponse"/>
 </operation>
-<operation name="getEncryptedPw">
-<input wsam:Action="http://WebService/tmWebService/getEncryptedPwRequest" message="tns:getEncryptedPw"/>
-<output wsam:Action="http://WebService/tmWebService/getEncryptedPwResponse" message="tns:getEncryptedPwResponse"/>
-</operation>
-<operation name="createProfile">
-<input wsam:Action="http://WebService/tmWebService/createProfileRequest" message="tns:createProfile"/>
-<output wsam:Action="http://WebService/tmWebService/createProfileResponse" message="tns:createProfileResponse"/>
+<operation name="findTravelmates">
+<input wsam:Action="http://WebService/tmWebService/findTravelmatesRequest" message="tns:findTravelmates"/>
+<output wsam:Action="http://WebService/tmWebService/findTravelmatesResponse" message="tns:findTravelmatesResponse"/>
 </operation>
 </portType>
 <binding name="tmWebServicePortBinding" type="tns:tmWebService">
@@ -87,7 +97,25 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="login">
+<operation name="getEncryptedPw">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="hello">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="createProfile">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -114,7 +142,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="hello">
+<operation name="login">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -123,16 +151,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getEncryptedPw">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="createProfile">
+<operation name="findTravelmates">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

@@ -5,17 +5,21 @@
  */
 package WebService;
 
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.sql.DataSource;
 import static sun.security.krb5.Confounder.bytes;
+import tm.User;
 
 /**
  *
@@ -195,6 +199,39 @@ public class tmWebService {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
             return "error";
+        }
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "findTravelmates")
+    public List<User> findTravelmates(@WebParam(name = "destination") String destination, @WebParam(name = "gender") String gender) {
+      try {
+            //TODO write your implementation code here:
+            Connection con = travelmate_vs.getConnection();
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM profils, users WHERE destination = ? AND profils.user_id = users.id "); //where id = ?
+            List<User> travelmates = new ArrayList();
+            //List<String> travelmatesIds = new ArrayList();
+            
+            pstmt.setString(1, destination);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+            //String text = "butz";
+            User tm = new User(rs.getInt("user_id"), rs.getString("name"), rs.getString("last_name"), rs.getString("looking_for"));
+            travelmates.add(tm);
+           // travelmatesIds.add(rs.getString("user_id"));
+            
+            System.out.println(tm.getName() + ", " );
+             
+             
+            }
+            rs.close();
+            con.close();
+            return travelmates;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            return null;
         }
     }
 

@@ -48,12 +48,12 @@ String exit = "";
             }
             res.setContentType("text/html;charset=UTF-8");
             
-   System.out.println("Session-email: " + session.getAttribute("email"));        
+  /* System.out.println("Session-email: " + session.getAttribute("email"));        
    String test = (String)session.getAttribute("email");
-   if(test == null) {
+   if(test.equals("null")) {
        out.println("null");
-      res.sendRedirect("logout.jsp");
-   }
+      res.sendRedirect("toLogin");
+   }*/
 
             
             System.out.println("Session serverIp: " + session.getAttribute("serverIp"));

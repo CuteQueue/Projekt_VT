@@ -27,7 +27,7 @@
         </body>
     </html>
 <%  
-    session.setAttribute("email", null); 
+    //session.setAttribute("email", "null"); 
     session.invalidate();
     
 %>

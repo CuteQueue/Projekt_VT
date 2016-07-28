@@ -97,6 +97,11 @@ public class HomeServlet extends HttpServlet {
                     out.println("</form>");
 
                 }
+                
+                out.print("<form action=\"search.jsp");
+                out.println("\" method=\"POST\" >");
+                out.println("<input type=\"submit\" name=\"search\" value=\"Search\">");
+                out.println("</form>");
 
                 out.print("<form action=\"Logout");
                 out.println("\" method=\"POST\" >");
