@@ -57,17 +57,13 @@ public class SearchServlet extends HttpServlet {
                     out.close();
                     return;
                 }
-                String email = (String) session.getAttribute("email");
-                User u = new User(email);
-                session.setAttribute("user", u); //in Session gespeichert 
-                User user = (User) session.getAttribute("user");
-
+                
                 System.out.println("SearchServlet");
 
                 String destination = request.getParameterValues("Destination")[0];
                 String gender = request.getParameterValues("Gender")[0];
                 
-                //Change destinaton:
+                //Button "Change destinaton":
                 out.print("<form action=\"search.jsp");
                 out.println("\" method=\"POST\" >");
                 out.println("<input type=\"submit\" name=\"search\" value=\"Change Destination\">");
@@ -77,7 +73,7 @@ public class SearchServlet extends HttpServlet {
                 out.println("</br><h2> Destination: " +destination + "</h2>");
                 
 
-              //  out.println("Gender: " + gender);
+                //out.println("Gender: " + gender);
               
               
               
@@ -107,13 +103,7 @@ public class SearchServlet extends HttpServlet {
                 }
                 out.println("</ul>");
               
-              // out.println(answer);
-              /*  if (answer.equals("ok")) {
-                    request.getRequestDispatcher("/Home").forward(request, response);
-                    //response.sendRedirect("Home");
-                } else {
-                    out.println("Ooooops, something went wrong!");
-                }*/
+            
             }
         }
 

@@ -30,8 +30,6 @@ public class tmWebService {
 
     @Resource(name = "travelmate_vs")
     private DataSource travelmate_vs;
-    
-    
 
     /**
      * This is a sample web service operation
@@ -44,13 +42,13 @@ public class tmWebService {
     /**
      * Web service operation
      */
-   @WebMethod(operationName = "getName")
+    @WebMethod(operationName = "getName")
     public String getName(@WebParam(name = "id") int id) {
         try {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE id = ?"); //where id = ?
-            
+
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
@@ -64,8 +62,6 @@ public class tmWebService {
             return null;
         }
     }
-    
-    
 
     /**
      * Web service operation
@@ -76,7 +72,7 @@ public class tmWebService {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?"); //where id = ?
-            
+
             pstmt.setString(1, email);
             pstmt.setString(2, pw);
             ResultSet rs = pstmt.executeQuery();
@@ -92,7 +88,6 @@ public class tmWebService {
         }
     }
 
-
     /**
      * Web service operation
      */
@@ -100,9 +95,9 @@ public class tmWebService {
     public byte[] getSalt(@WebParam(name = "email") String email) {
         try {
             //TODO write your implementation code here:
-        Connection con = travelmate_vs.getConnection();
+            Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ?"); //where id = ?
-            
+
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
@@ -126,7 +121,7 @@ public class tmWebService {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ?"); //where id = ?
-            
+
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
@@ -149,7 +144,7 @@ public class tmWebService {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO users (name, last_name, nickname, email, salt, password) VALUES (?,?,?,?,?,?)"); //where id = ?
-            
+
             pstmt.setString(1, name);
             pstmt.setString(2, last_name);
             pstmt.setString(3, nickname);
@@ -168,24 +163,24 @@ public class tmWebService {
             return null;
         }
     }
-    
-     /**
+
+    /**
      * Web service operation
      */
     @WebMethod(operationName = "createProfile")
     public String createProfile(@WebParam(name = "id") int id, @WebParam(name = "mobilenumber") String mobilenumber, @WebParam(name = "age") int age, @WebParam(name = "location") String location, @WebParam(name = "sex") String sex, @WebParam(name = "destination") String destination, @WebParam(name = "startdate") String startdate, @WebParam(name = "interests") String interests, @WebParam(name = "looking_for") String looking_for, @WebParam(name = "about") String about) {
-       try {
+        try {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO profils (user_id, mobilenumber, age, location, sex, destination, startdate, interests, looking_for, about) VALUES (?,?,?,?,?,?,?,?,?,?)"); //where id = ?
-            
-            pstmt.setInt(1,id); 
+
+            pstmt.setInt(1, id);
             pstmt.setString(2, mobilenumber);
             pstmt.setInt(3, age);
             pstmt.setString(4, location);
             pstmt.setString(5, sex);
             pstmt.setString(6, destination);
-           // pstmt.setDate(7, startdate);
+            // pstmt.setDate(7, startdate);
             pstmt.setString(7, startdate);
             pstmt.setString(8, interests);
             pstmt.setString(9, looking_for);
@@ -207,24 +202,21 @@ public class tmWebService {
      */
     @WebMethod(operationName = "findTravelmates")
     public List<User> findTravelmates(@WebParam(name = "destination") String destination, @WebParam(name = "gender") String gender) {
-      try {
-            //TODO write your implementation code here:
+        try {
+            //Bisher werden alle user in der Datenbank gesucht, die das gesuchte Reiseziel haben,
+            //diese werden dann in einer Liste gespeichert und zurückgegeben
+
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM profils, users WHERE destination = ? AND profils.user_id = users.id "); //where id = ?
             List<User> travelmates = new ArrayList();
-            //List<String> travelmatesIds = new ArrayList();
-            
+
             pstmt.setString(1, destination);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-            //String text = "butz";
-            User tm = new User(rs.getInt("user_id"), rs.getString("name"), rs.getString("last_name"), rs.getString("looking_for"));
-            travelmates.add(tm);
-           // travelmatesIds.add(rs.getString("user_id"));
-            
-            System.out.println(tm.getName() + ", " );
-             
-             
+
+                User tm = new User(rs.getInt("user_id"), rs.getString("name"), rs.getString("last_name"), rs.getString("looking_for"));
+                travelmates.add(tm);
+
             }
             rs.close();
             con.close();
@@ -235,11 +227,4 @@ public class tmWebService {
         }
     }
 
-
-
-    
-    
-    
-    
-    
 }
