@@ -65,6 +65,7 @@
             };
             document.getElementById("serverIp").value = getLocation();
             document.getElementById("serverIp2").value = getLocation();
+            localStorage.clear();
         </script>
         <br>
      

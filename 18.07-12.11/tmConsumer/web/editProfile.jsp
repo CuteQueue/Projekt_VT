@@ -5,7 +5,7 @@
     Created on : 21.07.2016, 11:07:33
     Author     : nina
 --%>
-<sql:query var="result" dataSource="jdbc/travelmate_vs">
+<%--<sql:query var="result" dataSource="jdbc/travelmate_vs">
     SELECT name FROM users WHERE id = 31
 </sql:query>
     
@@ -24,7 +24,7 @@
     </c:forEach>
     </tr>
 </c:forEach>
-</table>
+</table>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
