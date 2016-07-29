@@ -81,7 +81,11 @@ public class CreateProfileServlet extends HttpServlet {
                 request.getRequestDispatcher("/Home").forward(request, response);
                 //response.sendRedirect("Home");
             } else {
-                out.println("Ooooops, something went wrong!");
+                //out.println("Ooooops, something went wrong!");
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Please check all inputs, something seems to be missing.');");
+                out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Create\';");
+                out.println("</script>");  
             }
         }
     }
