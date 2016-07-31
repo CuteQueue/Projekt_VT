@@ -39,36 +39,36 @@
         }
         </script>   
         
-    <script>
-        
-        window.onload = load;
-        var ids = ['mobilenumber', 'age', 'location', 'destination', 'startdate', 'interests', 'looking_for', 'about'];
-        var idsCheck = ['male', 'female'];
-        
-        //function check(){
-        //    document.getElementById("mobilenumber").value = load();
-        //};
-        
-        function store() {
-            for (i = 0; i < ids.length; i++) { 
-                var data = ids[i];
-                var value = document.getElementById(data).value;
-           
-                // Save the name in localStorage.
-                localStorage.setItem(data, value);
-                //alert(localStorage.getItem(data));
-            }
-        };
-        
-        function load(){
-            for (i = 0; i < ids.length; i++) { 
-                var data = ids[i];
-                var value = localStorage.getItem(data);
-                document.getElementById(data).value = value;
-            }
-        };
-        //document.getElementById("mobilenumber").value = load();  
-    </script>
+        <script>
+
+            window.onload = load;
+            var ids = ['mobilenumber', 'age', 'location', 'destination', 'startdate', 'interests', 'looking_for', 'about'];
+            var idsCheck = ['male', 'female'];
+
+            //function check(){
+            //    document.getElementById("mobilenumber").value = load();
+            //};
+
+            function store() {
+                for (i = 0; i < ids.length; i++) { 
+                    var data = ids[i];
+                    var value = document.getElementById(data).value;
+
+                    // Save the name in localStorage.
+                    localStorage.setItem(data, value);
+                    //alert(localStorage.getItem(data));
+                }
+            };
+
+            function load(){
+                for (i = 0; i < ids.length; i++) { 
+                    var data = ids[i];
+                    var value = localStorage.getItem(data);
+                    document.getElementById(data).value = value;
+                }
+            };
+            //document.getElementById("mobilenumber").value = load();  
+        </script>
     </head>
     <body>
         <form action="CreateProfile" method = "POST">
