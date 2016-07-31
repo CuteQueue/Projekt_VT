@@ -5,38 +5,52 @@
     Created on : 21.07.2016, 11:07:33
     Author     : nina
 --%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-
-<sql:query var="result" dataSource="jdbc:mysql://localhost:3306/trvmate_db?zeroDateTimeBehavior=convertToNull">
-    SELECT name FROM users WHERE id = 31
+<sql:query var="result" dataSource="jdbc/travelmate">
+    SELECT name FROM users WHERE id = ${sessionScope.userId}
 </sql:query>
     
-<table border="1">
-    <!-- column headers -->
-    <tr>
-    <c:forEach var="columnName" items="${result.columnNames}">
-        <th><c:out value="${columnName}"/></th>
-    </c:forEach>
-</tr>
-<!-- column data -->
-<c:forEach var="row" items="${result.rowsByIndex}">
-    <tr>
-    <c:forEach var="column" items="${row}">
-        <td><c:out value="${column}"/></td>
-    </c:forEach>
-    </tr>
-</c:forEach>
-</table>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<sql:query var="destination" dataSource="jdbc/travelmate">
+    SELECT destination FROM profils WHERE user_id = ${sessionScope.userId}
+</sql:query>
+    
+
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="-1">
-        <title>Create Profile</title>
+        <title>Edit Profile</title>
     </head>
+    <script>
+        var destination = <sql:query var="destination" dataSource="jdbc/travelmate">
+                            SELECT destination FROM profils WHERE user_id = ${sessionScope.userId}
+                        </sql:query>;
+    </script>
+    
     <body>
+        <table border="1">
+            <!-- column headers -->
+            <tr>
+                <c:forEach var="columnName" items="${result.columnNames}">
+                    <th><c:out value="${columnName}"/></th>
+                    </c:forEach>
+            </tr>
+            <!-- column data -->
+            <c:forEach var="row" items="${result.rowsByIndex}">
+                <tr>
+                    <c:forEach var="column" items="${row}">
+                        <td><c:out value="${column}"/></td>
+                    </c:forEach>
+                </tr>
+            </c:forEach>
+        </table>
+        
         <form action="CreateProfile" method = "POST">
             <table border="0">
                 <thead>
@@ -63,7 +77,7 @@
                     </tr>
                     <tr>
                         <td>Destination:</td>
-                        <td><input type="text" name="destination" value="" /></td>
+                        <td><input type="text" name="destination" value="${destination}" /></td>
                     </tr>
                     <tr>
                         <td>Startdate:</td>
@@ -83,7 +97,7 @@
                     </tr
                     <tr>
                         <td></td>
-                        <td><input type="submit" value="Create Profile" /></td>
+                        <td><input type="submit" value="Edit Profile" /></td>
                     </tr>
                 </tbody>
             </table>
