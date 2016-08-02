@@ -21,6 +21,8 @@
         <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
         <script language="javascript" type="text/javascript"> </script>
         
+        
+        <!--Datepicker für die Datumseingabe anlegen, falls Browser das Eingabeformat date nicht unterstützt-->
         <script type="text/javascript">
             var datefield=document.createElement("input");
             datefield.setAttribute("type", "date");
@@ -30,9 +32,10 @@
                 document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n'); 
             }
         </script>
-
+        
+        <!--Datepicker initialisieren, falls Browser das Eingabeformat date nicht unterstützt-->
         <script>
-        if (datefield.type!=="date"){ //if browser doesn't support input type="date", initialize date picker widget:
+        if (datefield.type!=="date"){ 
             jQuery(function($){ //on document.ready
                 $('#startdate').datepicker({ dateFormat: 'yy-mm-dd' });
             });
@@ -45,10 +48,7 @@
             var ids = ['mobilenumber', 'age', 'location', 'destination', 'startdate', 'interests', 'looking_for', 'about'];
             var idsCheck = ['male', 'female'];
 
-            //function check(){
-            //    document.getElementById("mobilenumber").value = load();
-            //};
-
+            ///Eingegebene Daten im LocalStorage hinterlegen
             function store() {
                 for (i = 0; i < ids.length; i++) { 
                     var data = ids[i];
@@ -59,15 +59,39 @@
                     //alert(localStorage.getItem(data));
                 }
             };
-
+            
+            ///bereits eingegebene Daten aus dem LocalStorage laden
             function load(){
                 for (i = 0; i < ids.length; i++) { 
                     var data = ids[i];
                     var value = localStorage.getItem(data);
                     document.getElementById(data).value = value;
                 }
+                checkBoxes();
             };
-            //document.getElementById("mobilenumber").value = load();  
+            
+            ///Wert für gewählte Checkbox im localStorage setzen
+            function setStatus() {
+                if(document.getElementById('female').checked) {
+                    localStorage.setItem('female', "store");
+                    alert("female: " + localStorage.getItem('female'));
+                } else {
+                    localStorage.setItem('male', "store");
+                    alert("male: " + localStorage.getItem('male'));
+                }
+            };
+            
+            ///Checkboxen prüfen und localStorage abfragen
+            function checkBoxes(){
+                var getStatus = localStorage.getItem('female');
+                if (getStatus === "store") {
+                    document.getElementById("female").checked = true;
+                } else {
+                    document.getElementById("male").checked = true;
+                }   
+
+            };
+            
         </script>
     </head>
     <body>
@@ -95,8 +119,8 @@
                     <tr>
                         <td>Gender:</td>
 
-                        <td><input type="radio" name="sex" value="male" id="male" onchange="storeCheck()" checked> Male<br></td>
-                        <td><input type="radio" name="sex" value="female" id="female" onchange="storeCheck()"> Female<br></td>
+                        <td><input type="radio" name="sex" value="male" id="male" onclick="setStatus()" checked> Male<br></td>
+                        <td><input type="radio" name="sex" value="female" id="female" onclick="setStatus()"> Female<br></td>
                     </tr>
                     <tr>
                         <td>Destination:</td>
