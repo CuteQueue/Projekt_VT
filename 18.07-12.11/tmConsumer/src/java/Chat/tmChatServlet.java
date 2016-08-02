@@ -99,7 +99,9 @@ public class tmChatServlet extends HttpServlet {
             if(user.getStub().getClients().containsKey(name)){ 
                 System.out.println("if(user.getStub().getClients().containsKey(name))");
                 vorhanden = "ja";
-                System.out.println("Nickname ist in Clientliste bereits angelegt.");
+                System.out.println("Nickname aus Clientliste werfen, weil nicht korrekt ausgeloggt.");
+                user.getStub().unsubscribeUser(name);
+                
                 /*out.println("<html><head><body>");
                 out.print("<form action=\"");
                 out.print(res.encodeURL ("tmChatOn"));
@@ -117,8 +119,7 @@ public class tmChatServlet extends HttpServlet {
                     session.setAttribute("name", name);
                 }*/
            
-            } else {
-                vorhanden = "nein";
+            } 
                 user.setUsername(name); //Usernamen festlegen
                 ChatInterface chat = user.getStub().subscribeUser(user.getUsername(), user); //User beim Chat anmelden
                 
@@ -186,7 +187,7 @@ public class tmChatServlet extends HttpServlet {
                 out.println("<input type=\"submit\" value=\"Home\">");
                 out.println("</body></html>");
                 out.println("</form>");
-                
+                System.out.println("!!!!!!!!!!!!!!!!!!! SessionIP ChatServlet: " + session.getAttribute("serverIp"));
                 
                 //Ende HTML-Teil
                 out.println("</body></html>");
@@ -194,7 +195,7 @@ public class tmChatServlet extends HttpServlet {
                     out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/tmChatOn\">"); 
                     //auf Servlet weiterleiten
                 }vorhanden = "";
-            }  
+            
 
             
             

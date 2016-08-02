@@ -36,7 +36,6 @@ String exit = "";
         PrintWriter out = res.getWriter();
            try {
             HttpSession session = req.getSession(false); //Liefert null zurück, wenn es keine aktuelle Session gibt
-            session.setMaxInactiveInterval(11);
              if (session == null) {
                 out.println("<html><head><title>SessionError</title></head>");
                 out.println("<body><h2>Keine Session vorhanden</h2>");
@@ -151,11 +150,12 @@ String exit = "";
                 user.getStub().unsubscribeUser(user.getUsername());
                 exit ="";
                 
-                //session.invalidate();
+                
                 out.println("<meta http-equiv=\"refresh\" content=\"1; URL=http://"+session.getAttribute("ip")+":8080/tmConsumer/Home\">");
             }
              
             //Ende HTML-Teil
+            System.out.println("!!!!!!!!!!!!!!!!!!! SessionIP ChatOnServlet: " + session.getAttribute("serverIp"));
             out.println("</body></html>");
             
             } finally {

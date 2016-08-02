@@ -54,15 +54,15 @@ public class HomeServlet extends HttpServlet {
         String email;
         
         try (PrintWriter out = response.getWriter()) {
-            
+            System.out.println("SESSION???????????????????? " + session.getAttribute("serverIp"));
             try {
                  //out.println("Email: " + session.getAttribute("email"));
                  //out.println("ServerIp: " + session.getAttribute("serverIp"));
                 if (session.getAttribute("email") == null) {
                     out.println("<html><head><title>SessionError</title></head>");
                     out.println("<body><h2>Keine Session vorhanden1</h2>");
-                    out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
-                    //out.print("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer\"");
+                    //out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
+                    out.print("<form action=\"http://localhost:8080/tmConsumer\"");
                     out.println("\" method=\"POST\" >");
                     out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
                     out.println("</form>");
