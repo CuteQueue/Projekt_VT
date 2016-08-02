@@ -82,34 +82,7 @@ String exit = "";
                         "</script>");
             
             
-            //Eingabefeld für die Nachricht
-            out.print("<form action=\"");
-            out.print(res.encodeURL ("tmChatOn")); //damit das Session-Tracking auch funktioniert, wenn Cookies deaktiviert sind
-            out.println("\" method=\"POST\" >");
-            out.println("<h3>Nachricht hier:</h3>");
-            out.println("<input type=\"hidden\" name=\"name\" value="+user.getUsername()+">");
-            out.println("<div>\n" +
-                            "	<td>\n" +
-                            "		<input vk_13ff6=\"subscribed\" size=\"50\" name=\"message\" type=\"text\">\n" +
-                            "	</td>\n" +
-                            "	<td>\n" +
-                            "		<input value=\"Abschicken\" type=\"submit\">\n" +
-                            "	</td>\n" +
-                            "</div>\n" +
-                            "</form>");
             
-             try{
-                msg = req.getParameterValues("message")[0]; //eingebene Nachricht in msg speichern
-                               
-            }catch(Exception ex){
-               
-                msg = " "; 
-            }
-             if(!msg.equals(" ")){
-                //user.getStub().ausgabeHinzu(user.getUsername() + ": " + msg); //Name des Users + seine Nachricht zur ausgaben-Liste hinzufügen
-                chat.sendMessage(user.getUsername(), msg); //Nachricht senden
-                msg="";
-            }
              
             //Chatfenster und Client-Ausgabeliste
             out.println("<div>\n" +
@@ -133,7 +106,35 @@ String exit = "";
                         "		</td>\n" +
                         "	</table>\n" +
                         "</div>");
+            //Eingabefeld für die Nachricht
+            out.print("<form action=\"");
+            out.print(res.encodeURL ("tmChatOn")); //damit das Session-Tracking auch funktioniert, wenn Cookies deaktiviert sind
+            out.println("\" method=\"POST\" >");
+            out.println("<h3>Nachricht hier:</h3>");
+            out.println("<input type=\"hidden\" name=\"name\" value="+user.getUsername()+">");
+            out.println("<div>\n" +
+                            "	<td>\n" +
+                            "		<input vk_13ff6=\"subscribed\" size=\"50\" name=\"message\" type=\"text\">\n" +
+                            "	</td>\n" +
+                            "	<td>\n" +
+                            "		<input value=\"Abschicken\" type=\"submit\">\n" +
+                            "	</td>\n" +
+                            "</div>\n" +
+                            "</form>");
             
+             try{
+                msg = req.getParameterValues("message")[0]; //eingebene Nachricht in msg speichern
+                out.println("<meta http-equiv=\"refresh\" content=\"0; URL=http://"+session.getAttribute("ip")+":8080/tmConsumer/tmChatOn\">");
+                               
+            }catch(Exception ex){
+               
+                msg = " "; 
+            }
+             if(!msg.equals(" ")){
+                //user.getStub().ausgabeHinzu(user.getUsername() + ": " + msg); //Name des Users + seine Nachricht zur ausgaben-Liste hinzufügen
+                chat.sendMessage(user.getUsername(), msg); //Nachricht senden
+                msg="";
+            }
             
            
             //Button zum Verlassen des Chats
