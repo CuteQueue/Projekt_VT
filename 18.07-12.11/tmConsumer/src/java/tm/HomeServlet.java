@@ -110,6 +110,7 @@ public class HomeServlet extends HttpServlet {
                 //out.println("\" method=\"POST\" >");
                 out.println("<br><br><input type=\"submit\" name=\"logout\" value=\"Chat\">");
                 out.println("</form>");
+                
 
             } catch (Exception err2) {
                 System.out.println("catch, HomeServlet 86");

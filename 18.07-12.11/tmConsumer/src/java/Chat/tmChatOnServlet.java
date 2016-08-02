@@ -12,6 +12,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
@@ -66,9 +67,20 @@ String exit = "";
             /*----------------------------HTML-Teil----------------------------*/
             out.println("<html><head><title>Chat</title>");
             out.println("<meta http-equiv=\"refresh\" content=\"10;URL=\"http://"+session.getAttribute("ip")+":8080/tmConsumer/tmChatOn></head>");
+            out.println("<style>textarea {resize: none;}</style>");
             out.println("<body style=\"font-family:arial;\">\n");
             out.println("<h2>Willkommen im Chat, " + user.getUsername()
                     + "!</h2>");
+            
+            //Scrollbalken des Chatfensters immer unten
+            out.println("<script>\n" +
+                        "window.onload = load;\n" +
+                        "function load(){\n" +
+                        "	var chatWindow = document.getElementById(\"chatWindow\");\n" +
+                        "	chatWindow.scrollTop = chatWindow.scrollHeight;\n" +
+                        "};\n" +
+                        "</script>");
+            
             
             //Eingabefeld für die Nachricht
             out.print("<form action=\"");
@@ -76,9 +88,15 @@ String exit = "";
             out.println("\" method=\"POST\" >");
             out.println("<h3>Nachricht hier:</h3>");
             out.println("<input type=\"hidden\" name=\"name\" value="+user.getUsername()+">");
-            out.println("<input type=\"text\" name=\"message\">");
-            out.println("<br><br><input type=\"submit\" value=\"Abschicken\">");
-            out.println("</form>");
+            out.println("<div>\n" +
+                            "	<td>\n" +
+                            "		<input vk_13ff6=\"subscribed\" size=\"50\" name=\"message\" type=\"text\">\n" +
+                            "	</td>\n" +
+                            "	<td>\n" +
+                            "		<input value=\"Abschicken\" type=\"submit\">\n" +
+                            "	</td>\n" +
+                            "</div>\n" +
+                            "</form>");
             
              try{
                 msg = req.getParameterValues("message")[0]; //eingebene Nachricht in msg speichern
@@ -93,20 +111,36 @@ String exit = "";
                 msg="";
             }
              
-            //Chatfenster
-            out.println("<textarea name=\"chatoutput\" cols=\"50\" rows=\"10\"readonly>");
+            //Chatfenster und Client-Ausgabeliste
+            out.println("<div>\n" +
+                        "	<table>\n" +
+                        "		<td>\n" +
+                        "			<textarea name=\"chatoutput\" id =\"chatWindow\" cols=\"100\" rows=\"30\" readonly=\"\">");
             List <String> chatAusgabe = user.getAusgaben();
-           for (String nachricht : chatAusgabe) {
+            for (String nachricht : chatAusgabe) {
                 out.println(nachricht + "\n");
             }
-            out.println("</textarea>");
+            
+            out.println("</textarea>\n" +
+                        "		</td>\n" +
+                        "		<td>\n" +
+                        "			<textarea name=\"clientsOnline\" cols=\"15\" rows=\"30\" readonly=\"\">");
+            Set<String> clientsOnline = user.getStub().getClients().keySet();
+            for ( String key : clientsOnline ) {
+                out.println( key );
+            }
+            out.println("</textarea>\n" +
+                        "		</td>\n" +
+                        "	</table>\n" +
+                        "</div>");
+            
             
            
             //Button zum Verlassen des Chats
             out.println("</br>");
             out.print("<form action=\"");
             out.println("\" method=\"POST\" >");
-            out.println("<br><br><input type=\"submit\" name=\"logout\" value=\"Home\">");
+            out.println("<input type=\"submit\" name=\"logout\" value=\"Home\">");
             out.println("</form>");
             
             

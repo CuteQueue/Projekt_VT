@@ -26,8 +26,6 @@ public class tmWebService {
 
     @Resource(name = "travelmate_vs")
     private DataSource travelmate_vs;
-    
-    
 
     /**
      * This is a sample web service operation
@@ -40,13 +38,13 @@ public class tmWebService {
     /**
      * Web service operation
      */
-   @WebMethod(operationName = "getName")
+    @WebMethod(operationName = "getName")
     public String getName(@WebParam(name = "id") int id) {
         try {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE id = ?"); //where id = ?
-            
+
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
@@ -60,8 +58,6 @@ public class tmWebService {
             return null;
         }
     }
-    
-    
 
     /**
      * Web service operation
@@ -72,7 +68,7 @@ public class tmWebService {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?"); //where id = ?
-            
+
             pstmt.setString(1, email);
             pstmt.setString(2, pw);
             ResultSet rs = pstmt.executeQuery();
@@ -88,7 +84,6 @@ public class tmWebService {
         }
     }
 
-
     /**
      * Web service operation
      */
@@ -96,9 +91,9 @@ public class tmWebService {
     public byte[] getSalt(@WebParam(name = "email") String email) {
         try {
             //TODO write your implementation code here:
-        Connection con = travelmate_vs.getConnection();
+            Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ?"); //where id = ?
-            
+
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
@@ -122,7 +117,7 @@ public class tmWebService {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ?"); //where id = ?
-            
+
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
@@ -145,7 +140,7 @@ public class tmWebService {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO users (name, last_name, nickname, email, salt, password) VALUES (?,?,?,?,?,?)"); //where id = ?
-            
+
             pstmt.setString(1, name);
             pstmt.setString(2, last_name);
             pstmt.setString(3, nickname);
@@ -164,24 +159,24 @@ public class tmWebService {
             return null;
         }
     }
-    
-     /**
+
+    /**
      * Web service operation
      */
     @WebMethod(operationName = "createProfile")
     public String createProfile(@WebParam(name = "id") int id, @WebParam(name = "mobilenumber") String mobilenumber, @WebParam(name = "age") int age, @WebParam(name = "location") String location, @WebParam(name = "sex") String sex, @WebParam(name = "destination") String destination, @WebParam(name = "startdate") String startdate, @WebParam(name = "interests") String interests, @WebParam(name = "looking_for") String looking_for, @WebParam(name = "about") String about) {
-       try {
+        try {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO profils (user_id, mobilenumber, age, location, sex, destination, startdate, interests, looking_for, about) VALUES (?,?,?,?,?,?,?,?,?,?)"); //where id = ?
-            
-            pstmt.setInt(1,id); 
+
+            pstmt.setInt(1, id);
             pstmt.setString(2, mobilenumber);
             pstmt.setInt(3, age);
             pstmt.setString(4, location);
             pstmt.setString(5, sex);
             pstmt.setString(6, destination);
-           // pstmt.setDate(7, startdate);
+            // pstmt.setDate(7, startdate);
             pstmt.setString(7, startdate);
             pstmt.setString(8, interests);
             pstmt.setString(9, looking_for);
@@ -197,18 +192,17 @@ public class tmWebService {
             return "error";
         }
     }
-    
-     /**
+
+    /**
      * Web service operation
      */
     @WebMethod(operationName = "editProfile")
     public String editProfile(@WebParam(name = "id") int id, @WebParam(name = "mobilenumber") String mobilenumber, @WebParam(name = "age") int age, @WebParam(name = "location") String location, @WebParam(name = "sex") String sex, @WebParam(name = "destination") String destination, @WebParam(name = "startdate") String startdate, @WebParam(name = "interests") String interests, @WebParam(name = "looking_for") String looking_for, @WebParam(name = "about") String about) {
-       try {
+        try {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("UPDATE profils SET mobilenumber = ?, age = ?, location = ?, sex = ?, destination = ?, startdate = ?, interests = ?, looking_for = ?, about = ? WHERE user_id = ?"); //where id = ?
-            
-           
+
             pstmt.setString(1, mobilenumber);
             pstmt.setInt(2, age);
             pstmt.setString(3, location);
@@ -218,7 +212,7 @@ public class tmWebService {
             pstmt.setString(7, interests);
             pstmt.setString(8, looking_for);
             pstmt.setString(9, about);
-             pstmt.setInt(10, id);
+            pstmt.setInt(10, id);
             int update = pstmt.executeUpdate();
             //rs.next();
             //byte[] encryptedPw = rs.getBytes("password");
@@ -226,10 +220,9 @@ public class tmWebService {
             con.close();
             System.out.println(id);
             System.out.println(age);
-            if (update == 1){
+            if (update == 1) {
                 System.out.println("Profile is updated!");
-            }
-            else {
+            } else {
                 System.out.println("Error! Could not update profile");
             }
             return "ok";
@@ -239,11 +232,4 @@ public class tmWebService {
         }
     }
 
-
-
-    
-    
-    
-    
-    
 }

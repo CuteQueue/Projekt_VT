@@ -52,7 +52,7 @@
         <servlet-name>tmChatOnServlet</servlet-name>
         <servlet-class>Chat.tmChatOnServlet</servlet-class>
     </servlet>
-    <servlet>
+     <servlet>
         <servlet-name>EditProfileServlet</servlet-name>
         <servlet-class>tm.EditProfileServlet</servlet-class>
     </servlet>

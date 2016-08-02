@@ -12,6 +12,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
@@ -98,6 +99,7 @@ public class tmChatServlet extends HttpServlet {
             if(user.getStub().getClients().containsKey(name)){ 
                 System.out.println("if(user.getStub().getClients().containsKey(name))");
                 vorhanden = "ja";
+                System.out.println("Nickname ist in Clientliste bereits angelegt.");
                 /*out.println("<html><head><body>");
                 out.print("<form action=\"");
                 out.print(res.encodeURL ("tmChatOn"));
@@ -130,30 +132,55 @@ public class tmChatServlet extends HttpServlet {
 
                 /*----------------------------HTML-Teil----------------------------*/
                 out.println("<html><head><title>Chat</title>");
-                out.println("<meta http-equiv=\"refresh\" content=\"10;URL=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/tmChatOn\"></head>"); 
+                out.println("<meta http-equiv=\"refresh\" content=\"8;URL=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/tmChatOn\"></head>"); 
+                out.println("<style>textarea {resize: none;}</style>");
                 //auf Servlet weiterleiten
                 out.println("<body style=\"font-family:arial;\">\n");
-               out.println("<h2>Willkommen im Chat, " + user.getUsername()
+                out.println("<h2>Willkommen im Chat, " + user.getUsername()
                         + "!</h2>");
                
-  
+                
+                
                 //Eingabefeld für die Nachricht
                 out.print("<form action=\"");
                 out.print(res.encodeURL ("tmChatOn")); //damit das Session-Tracking auch funktioniert, wenn Cookies deaktiviert sind
                 out.println("\" method=\"POST\" >");
                 out.println("<h3>Nachricht hier:</h3>");
                 out.println("<input type=\"hidden\" name=\"name\" value="+user.getUsername()+">");
-                out.println("<input type=\"text\" name=\"message\">");
-                out.println("<br><br><input type=\"submit\" value=\"Abschicken\">");
-                out.println("</form>");
-
-                //Chatfenster
-                out.println("<textarea name=\"chatoutput\" cols=\"50\" rows=\"10\"readonly>");
+                out.println("<div>\n" +
+                            "	<td>\n" +
+                            "		<input vk_13ff6=\"subscribed\" size=\"50\" name=\"message\" type=\"text\">\n" +
+                            "	</td>\n" +
+                            "	<td>\n" +
+                            "		<input value=\"Abschicken\" type=\"submit\">\n" +
+                            "	</td>\n" +
+                            "</div>\n" +
+                            "</form>");
+                
+                
+                
+                //Chatfenster und Client-Ausgabeliste
+                out.println("<div>\n" +
+                            "	<table>\n" +
+                            "		<td>\n" +
+                            "			<textarea name=\"chatoutput\" cols=\"50\" rows=\"10\" readonly=\"\">");
                 List <String> chatAusgabe = user.getAusgaben();
                 for (String nachricht : chatAusgabe) {
                     out.println(nachricht + "\n");
                 }
-                out.println("</textarea>");
+
+                out.println("</textarea>\n" +
+                            "		</td>\n" +
+                            "		<td>\n" +
+                            "			<textarea name=\"clientsOnline\" cols=\"15\" rows=\"10\" readonly=\"\">");
+                Set<String> clientsOnline = user.getStub().getClients().keySet();
+                for ( String key : clientsOnline ) {
+                    out.println( key );
+                }
+                out.println("</textarea>\n" +
+                            "		</td>\n" +
+                            "	</table>\n" +
+                            "</div>");
 
                 //Button zum Verlassen des Chats
                 out.println("</br>");

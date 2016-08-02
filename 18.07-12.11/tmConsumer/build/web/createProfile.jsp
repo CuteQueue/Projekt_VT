@@ -46,7 +46,6 @@
 
             window.onload = load;
             var ids = ['mobilenumber', 'age', 'location', 'destination', 'startdate', 'interests', 'looking_for', 'about'];
-            var idsCheck = ['male', 'female'];
 
             ///Eingegebene Daten im LocalStorage hinterlegen
             function store() {

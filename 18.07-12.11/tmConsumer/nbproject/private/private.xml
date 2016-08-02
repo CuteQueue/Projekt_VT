@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/WEB-INF/glassfish-resources.xml</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/createProfile.jsp</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/editProfile.jsp</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/HomeServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/WEB-INF/web.xml</file>
+            <file>file:/C:/_nina/Programme/Github/Projekt_VT-ela_02_08/18.07-12.11/tmConsumer/web/editProfile.jsp</file>
+            <file>file:/C:/_nina/Programme/Github/Projekt_VT-ela_02_08/18.07-12.11/tmConsumer/web/WEB-INF/web.xml</file>
+            <file>file:/C:/_nina/Programme/Github/Projekt_VT-ela_02_08/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungEditProfile.java</file>
+            <file>file:/C:/_nina/Programme/Github/Projekt_VT-ela_02_08/18.07-12.11/tmConsumer/src/java/tm/EditProfileServlet.java</file>
         </group>
     </open-files>
 </project-private>
