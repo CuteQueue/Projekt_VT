@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
+
+
 <html>
    <script>
         function store() {
@@ -36,12 +38,33 @@
         </form>
        
        
-       <br><br>
+    <br><br>
 
      
     </body>
 </html>
 
+<!-- Umleitung bei Nutzung des Back-Buttons
+<script>
+    (function(window, location) {
+        var href = window.location.href ;
+        var l = document.createElement("a");
+        l.href = href;
+        var host = l.hostname;
+        
+        history.replaceState(null, document.title, location.pathname+"#!/history");
+        history.pushState(null, document.title, location.pathname);
+
+        window.addEventListener("popstate", function() {
+          if(location.hash === "#!/history") {
+            history.replaceState(null, document.title, location.pathname);
+            setTimeout(function(){
+              location.replace("http://"+host+":8080/tmConsumer");
+            },0);
+          }
+        }, false);
+    }(window, location));
+</script>-->
 
 
 
