@@ -138,9 +138,31 @@ public class tmChatServlet extends HttpServlet {
                 out.println("<body style=\"font-family:arial;\">\n");
                 out.println("<h2>Willkommen im Chat, " + user.getUsername()
                         + "!</h2>");
-               
+
                 
-                
+                //Chatfenster und Client-Ausgabeliste
+                out.println("<div>\n" +
+                            "	<table>\n" +
+                            "		<td>\n" +
+                            "			<textarea name=\"chatoutput\" cols=\"100\" rows=\"30\" readonly=\"\">");
+                List <String> chatAusgabe = user.getAusgaben();
+                for (String nachricht : chatAusgabe) {
+                    out.println(nachricht + "\n");
+                }
+
+                out.println("</textarea>\n" +
+                            "		</td>\n" +
+                            "		<td>\n" +
+                            "			<textarea name=\"clientsOnline\" cols=\"15\" rows=\"30\" readonly=\"\">");
+                Set<String> clientsOnline = user.getStub().getClients().keySet();
+                for ( String key : clientsOnline ) {
+                    out.println( key );
+                }
+                out.println("</textarea>\n" +
+                            "		</td>\n" +
+                            "	</table>\n" +
+                            "</div>");
+
                 //Eingabefeld für die Nachricht
                 out.print("<form action=\"");
                 out.print(res.encodeURL ("tmChatOn")); //damit das Session-Tracking auch funktioniert, wenn Cookies deaktiviert sind
@@ -157,36 +179,11 @@ public class tmChatServlet extends HttpServlet {
                             "</div>\n" +
                             "</form>");
                 
-                
-                
-                //Chatfenster und Client-Ausgabeliste
-                out.println("<div>\n" +
-                            "	<table>\n" +
-                            "		<td>\n" +
-                            "			<textarea name=\"chatoutput\" cols=\"50\" rows=\"10\" readonly=\"\">");
-                List <String> chatAusgabe = user.getAusgaben();
-                for (String nachricht : chatAusgabe) {
-                    out.println(nachricht + "\n");
-                }
-
-                out.println("</textarea>\n" +
-                            "		</td>\n" +
-                            "		<td>\n" +
-                            "			<textarea name=\"clientsOnline\" cols=\"15\" rows=\"10\" readonly=\"\">");
-                Set<String> clientsOnline = user.getStub().getClients().keySet();
-                for ( String key : clientsOnline ) {
-                    out.println( key );
-                }
-                out.println("</textarea>\n" +
-                            "		</td>\n" +
-                            "	</table>\n" +
-                            "</div>");
-
                 //Button zum Verlassen des Chats
                 out.println("</br>");
                 out.print("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Home\"");
                 out.println("\" method=\"POST\" >");
-                out.println("<br><br><input type=\"submit\" value=\"Home\">");
+                out.println("<input type=\"submit\" value=\"Home\">");
                 out.println("</body></html>");
                 out.println("</form>");
                 
