@@ -197,6 +197,47 @@ public class tmWebService {
             return "error";
         }
     }
+    
+     /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "editProfile")
+    public String editProfile(@WebParam(name = "id") int id, @WebParam(name = "mobilenumber") String mobilenumber, @WebParam(name = "age") int age, @WebParam(name = "location") String location, @WebParam(name = "sex") String sex, @WebParam(name = "destination") String destination, @WebParam(name = "startdate") String startdate, @WebParam(name = "interests") String interests, @WebParam(name = "looking_for") String looking_for, @WebParam(name = "about") String about) {
+       try {
+            //TODO write your implementation code here:
+            Connection con = travelmate_vs.getConnection();
+            PreparedStatement pstmt = con.prepareStatement("UPDATE profils SET mobilenumber = ?, age = ?, location = ?, sex = ?, destination = ?, startdate = ?, interests = ?, looking_for = ?, about = ? WHERE user_id = ?"); //where id = ?
+            
+           
+            pstmt.setString(1, mobilenumber);
+            pstmt.setInt(2, age);
+            pstmt.setString(3, location);
+            pstmt.setString(4, sex);
+            pstmt.setString(5, destination);
+            pstmt.setString(6, startdate);
+            pstmt.setString(7, interests);
+            pstmt.setString(8, looking_for);
+            pstmt.setString(9, about);
+             pstmt.setInt(10, id);
+            int update = pstmt.executeUpdate();
+            //rs.next();
+            //byte[] encryptedPw = rs.getBytes("password");
+            //rs.close();
+            con.close();
+            System.out.println(id);
+            System.out.println(age);
+            if (update == 1){
+                System.out.println("Profile is updated!");
+            }
+            else {
+                System.out.println("Error! Could not update profile");
+            }
+            return "ok";
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            return "error";
+        }
+    }
 
 
 

@@ -4,6 +4,10 @@
 
 <xs:element name="createProfileResponse" type="tns:createProfileResponse"/>
 
+<xs:element name="editProfile" type="tns:editProfile"/>
+
+<xs:element name="editProfileResponse" type="tns:editProfileResponse"/>
+
 <xs:element name="getEncryptedPw" type="tns:getEncryptedPw"/>
 
 <xs:element name="getEncryptedPwResponse" type="tns:getEncryptedPwResponse"/>
@@ -122,6 +126,27 @@
 </xs:complexType>
 
 <xs:complexType name="newUserResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editProfile">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="mobilenumber" type="xs:string" minOccurs="0"/>
+<xs:element name="age" type="xs:int"/>
+<xs:element name="location" type="xs:string" minOccurs="0"/>
+<xs:element name="sex" type="xs:string" minOccurs="0"/>
+<xs:element name="destination" type="xs:string" minOccurs="0"/>
+<xs:element name="startdate" type="xs:string" minOccurs="0"/>
+<xs:element name="interests" type="xs:string" minOccurs="0"/>
+<xs:element name="looking_for" type="xs:string" minOccurs="0"/>
+<xs:element name="about" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editProfileResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>

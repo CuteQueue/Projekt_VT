@@ -52,6 +52,14 @@
         <servlet-name>tmChatOnServlet</servlet-name>
         <servlet-class>Chat.tmChatOnServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <servlet-class>tm.EditProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WeiterleitungEditProfile</servlet-name>
+        <servlet-class>Weiterleitung.WeiterleitungEditProfile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -103,6 +111,14 @@
     <servlet-mapping>
         <servlet-name>tmChatOnServlet</servlet-name>
         <url-pattern>/tmChatOn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <url-pattern>/EditProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WeiterleitungEditProfile</servlet-name>
+        <url-pattern>/Edit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
