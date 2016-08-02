@@ -74,10 +74,12 @@
             function setStatus() {
                 if(document.getElementById('female').checked) {
                     localStorage.setItem('female', "store");
-                    alert("female: " + localStorage.getItem('female'));
+                    localStorage.setItem('male', "unstore");
+                    //alert("female: " + localStorage.getItem('female'));
                 } else {
                     localStorage.setItem('male', "store");
-                    alert("male: " + localStorage.getItem('male'));
+                    localStorage.setItem('female', "unstore");
+                    //alert("male: " + localStorage.getItem('male'));
                 }
             };
             
