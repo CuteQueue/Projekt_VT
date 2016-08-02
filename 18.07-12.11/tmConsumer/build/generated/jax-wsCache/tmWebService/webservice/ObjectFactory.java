@@ -26,8 +26,6 @@ public class ObjectFactory {
 
     private final static QName _CreateProfile_QNAME = new QName("http://WebService/", "createProfile");
     private final static QName _CreateProfileResponse_QNAME = new QName("http://WebService/", "createProfileResponse");
-    private final static QName _FindTravelmates_QNAME = new QName("http://WebService/", "findTravelmates");
-    private final static QName _FindTravelmatesResponse_QNAME = new QName("http://WebService/", "findTravelmatesResponse");
     private final static QName _GetEncryptedPw_QNAME = new QName("http://WebService/", "getEncryptedPw");
     private final static QName _GetEncryptedPwResponse_QNAME = new QName("http://WebService/", "getEncryptedPwResponse");
     private final static QName _GetName_QNAME = new QName("http://WebService/", "getName");
@@ -65,22 +63,6 @@ public class ObjectFactory {
      */
     public CreateProfileResponse createCreateProfileResponse() {
         return new CreateProfileResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindTravelmates }
-     * 
-     */
-    public FindTravelmates createFindTravelmates() {
-        return new FindTravelmates();
-    }
-
-    /**
-     * Create an instance of {@link FindTravelmatesResponse }
-     * 
-     */
-    public FindTravelmatesResponse createFindTravelmatesResponse() {
-        return new FindTravelmatesResponse();
     }
 
     /**
@@ -180,14 +162,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link User }
-     * 
-     */
-    public User createUser() {
-        return new User();
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateProfile }{@code >}}
      * 
      */
@@ -203,24 +177,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://WebService/", name = "createProfileResponse")
     public JAXBElement<CreateProfileResponse> createCreateProfileResponse(CreateProfileResponse value) {
         return new JAXBElement<CreateProfileResponse>(_CreateProfileResponse_QNAME, CreateProfileResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindTravelmates }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://WebService/", name = "findTravelmates")
-    public JAXBElement<FindTravelmates> createFindTravelmates(FindTravelmates value) {
-        return new JAXBElement<FindTravelmates>(_FindTravelmates_QNAME, FindTravelmates.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindTravelmatesResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://WebService/", name = "findTravelmatesResponse")
-    public JAXBElement<FindTravelmatesResponse> createFindTravelmatesResponse(FindTravelmatesResponse value) {
-        return new JAXBElement<FindTravelmatesResponse>(_FindTravelmatesResponse_QNAME, FindTravelmatesResponse.class, null, value);
     }
 
     /**

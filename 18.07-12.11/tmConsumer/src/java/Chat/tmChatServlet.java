@@ -55,6 +55,7 @@ public class tmChatServlet extends HttpServlet {
             String msg = "Moin moin";
            
             // Neue Session anlegen
+            
             HttpSession session = req.getSession(true); //Erzeugt eine neue Session, wenn noch keine vorhanden und speichert diese in session
             
             
@@ -86,13 +87,16 @@ public class tmChatServlet extends HttpServlet {
             ClientInterface user = null; 
             try {
             user = new ClientImpl(ip); //neuen User erstellen
+            System.out.println("neuer ChatUser erstellt");
             session.setAttribute("chatUser", user); //in Session speichern
+            System.out.println("ChatUser in Session gespeichert.");
             } catch (RemoteException | MalformedURLException | NotBoundException ex) {
                 out.printf("Server nicht erreichbar");
                 out.close();
             }
             //Prüfung ob der Nickname schon vergeben ist:
             if(user.getStub().getClients().containsKey(name)){ 
+                System.out.println("if(user.getStub().getClients().containsKey(name))");
                 vorhanden = "ja";
                 /*out.println("<html><head><body>");
                 out.print("<form action=\"");
@@ -119,7 +123,9 @@ public class tmChatServlet extends HttpServlet {
                 if (session.isNew()){ //Damit "User hat sich eingeloggt" nicht mehrfach ausgeben wird
                     chat.sendMessage(user.getUsername(),"hat sich eingeloggt.");
                 }
+                System.out.println("bevor chat in session gespeichert wird");
                 session.setAttribute("chat", chat); //Chat in Session speichern
+                 System.out.println("nachdem chat in session gespeichert wird");
 
 
                 /*----------------------------HTML-Teil----------------------------*/

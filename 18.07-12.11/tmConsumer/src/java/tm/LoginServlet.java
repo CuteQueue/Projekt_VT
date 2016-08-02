@@ -80,13 +80,18 @@ public class LoginServlet extends HttpServlet {
                     out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Home\">");
                     System.out.println("eingeloggt");
                 }else{
-                    out.println("<meta http-equiv=\"refresh\" content=\"10;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Login\">");
-                    out.println("<h2>Sie konnten sich nicht einloggen(1).</h2>");   
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('User or password incorrect.');");
+                    out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/toLogin\';");
+                    out.println("</script>");   
                 }
                     
             }catch(Exception homeErr0){
-                   out.println("<meta http-equiv=\"refresh\" content=\"10;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Login\">");
-                   out.println("<h2>Sie konnten sich nicht einloggen(2).</h2>");   
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Please use username and password to login.');");
+                out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/toLogin\';");
+                out.println("</script>");
+                
             }
        
         }catch(Exception homeErr1){

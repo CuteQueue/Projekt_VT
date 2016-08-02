@@ -24,23 +24,23 @@
                 <tbody>
                     <tr>
                         <td>Name:</td>
-                        <td><input type="text" name="name" required><br></td>
+                        <td><input type="text" name="name" id="name" onchange="store();load()" required><br></td>
                     </tr>
                     <tr>
                         <td>Last name:</td>
-                        <td><input type="text" name="last_name" required><br></td>
+                        <td><input type="text" name="last_name" id="last_name" onchange="store()" required><br></td>
                     </tr>
                     <tr>
                         <td>Nickname:</td>
-                        <td><input type="text" name="nickname" required><br></td>
+                        <td><input type="text" name="nickname" id="nickname" onchange="store()" required><br></td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td><input type="text" name="email" required><br></td>
+                        <td><input type="text" name="email" id="email" onchange="store()" required><br></td>
                     </tr>
                     <tr>
                         <td>Password:</td>
-                        <td><input type="text" name="pw" required></td>
+                        <td><input type="password" name="pw" required></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -49,5 +49,33 @@
                 </tbody>
             </table>
         </form>
+        <!--LOCALSTORAGE abfragen-->
+       
+        
     </body>
+    <script>
+        function store() {
+            var serverIp = document.getElementById('name').value;
+            var serverIp = document.getElementById('last_name').value;
+            var serverIp = document.getElementById('nickname').value;
+            var serverIp = document.getElementById('email').value;
+            // Save the name in localStorage.
+            localStorage.setItem('name', name);
+            localStorage.setItem('last_name', last_name);
+            localStorage.setItem('nickname', nickname);
+            localStorage.setItem('email', email);
+            //alert(localStorage.getItem('serverIp'));
+        }
+    </script>
+    
+    <script>
+        function load(){
+            var name = localStorage.getItem('name');
+            var last_name = localStorage.getItem('last_name');
+            var nickname = localStorage.getItem('nickname');
+            var email = localStorage.getItem('email');
+            return name;
+        };
+        document.getElementById("name").value = load();  
+    </script>
 </html>

@@ -74,6 +74,7 @@ public class HomeServlet extends HttpServlet {
                 email = (String) session.getAttribute("email");
                 User u = new User(email);
                 session.setAttribute("user", u); //in Session gespeichert 
+                session.setAttribute("userId", u.getId());
                 User user = (User) session.getAttribute("user");
                 out.println("<h2>Willkommen " + user.getName() + " " + user.getLast_name() + "!</h2>");
                 out.println("</br>");
@@ -97,11 +98,6 @@ public class HomeServlet extends HttpServlet {
                     out.println("</form>");
 
                 }
-                
-                out.print("<form action=\"search.jsp");
-                out.println("\" method=\"POST\" >");
-                out.println("<input type=\"submit\" name=\"search\" value=\"Search\">");
-                out.println("</form>");
 
                 out.print("<form action=\"Logout");
                 out.println("\" method=\"POST\" >");
