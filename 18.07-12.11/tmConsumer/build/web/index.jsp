@@ -66,7 +66,7 @@
           margin: 0 auto;
         }
         
-        
+        /*für Hintergrunddarstellung im Browser*/
         html { 
             background: url(backgrounds/pexels-photo-25562_edit.jpg) no-repeat center center fixed; 
             -webkit-background-size: 100%; 
@@ -79,9 +79,20 @@
             background-size: cover; 
             min-height: 100%;
           }
+        
+         /*fixed-bg für korrekte Darstellung auf dem Smartphone bei Wisch-Geste*/
+        .fixed-bg {
+            background-image: url(backgrounds/pexels-photo-25562_edit.jpg);
+            min-height: 600px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     </style>
     
     <body>
+        <div class="fixed-bg">
         <div class="parent">
           <div class="child">
             <div class="row">
@@ -107,6 +118,7 @@
               <div class="col-xs-12 col-sm-12 text-center"></div>
             </div>
           </div>
+        </div>
         </div>
       </body>
     </html>
