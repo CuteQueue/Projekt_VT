@@ -52,16 +52,14 @@ public class HomeServlet extends HttpServlet {
         response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 
         String email;
-        
+
         try (PrintWriter out = response.getWriter()) {
-            System.out.println("SESSION???????????????????? " + session.getAttribute("serverIp"));
             try {
-                 //out.println("Email: " + session.getAttribute("email"));
-                 //out.println("ServerIp: " + session.getAttribute("serverIp"));
+
+                //----------Falls keine Session vorhanden-----------------------------------------
                 if (session.getAttribute("email") == null) {
                     out.println("<html><head><title>SessionError</title></head>");
                     out.println("<body><h2>Keine Session vorhanden1</h2>");
-                    //out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
                     out.print("<form action=\"http://localhost:8080/tmConsumer\"");
                     out.println("\" method=\"POST\" >");
                     out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
@@ -70,7 +68,8 @@ public class HomeServlet extends HttpServlet {
                     out.close();
                     return;
                 }
-                
+
+                //--------Passende Userdaten holen ----------------------------------
                 email = (String) session.getAttribute("email");
                 User u = new User(email);
                 session.setAttribute("user", u); //in Session gespeichert 
@@ -79,45 +78,47 @@ public class HomeServlet extends HttpServlet {
                 out.println("<h2>Willkommen " + user.getName() + " " + user.getLast_name() + "!</h2>");
                 out.println("</br>");
 
-                //-------TODO: Ausbessern (ist noch keine optimale Lösung)------------------
                 u.getProfileData(); //Profildaten holen
-                if (u.getLocation() != null) { //Wenn Profil schon vorhanden: Daten ausgeben
+                if (u.getLocation() != null) { //Wenn Profil schon vorhanden
+                    //-----------Ausgabe der Profildaten------------------------------------------
                     out.println("Location: " + u.getLocation() + "</br>");
                     out.println("Age: " + u.getAge() + "</br>");
                     out.println("Destination: " + u.getDestination() + "</br>");
                     out.println("Startdate: " + u.getStartdate() + "</br>");
-                    out.println("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/editProfile.jsp\">");
+                    out.println("Interests: " + u.getInterests() + "</br>");
+                    out.println("Looking for: " + u.getLooking_for() + "</br>");
+                    out.println("About: " + u.getAbout() + "</b>");
+
+                    //--------Edit Button----------------------------------------------------
+                    out.println("<form action=\"http://" + session.getAttribute("serverIp") + ":8080/tmConsumer/editProfile.jsp\">");
                     out.println("<input type=submit value=\"Edit\">");
                     out.println("</form>");
 
                 } else { //Wenn noch kein Profil vorhanden:
                     out.println("Noch kein Profil vorhanden");
                     out.println("Jetzt anlegen: ");
-                    out.println("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Create\">");
+                    out.println("<form action=\"http://" + session.getAttribute("serverIp") + ":8080/tmConsumer/Create\">");
                     out.println("<input type=submit value=\"Create Profile\">");
                     out.println("</form>");
 
                 }
-                
+
                 //------Search Button --------------------------------------
                 out.print("<form action=\"search.jsp");
                 out.println("\" method=\"POST\" >");
                 out.println("<input type=\"submit\" name=\"search\" value=\"Search\">");
                 out.println("</form>");
-                
+
                 //------Logout Button --------------------------------------
                 out.print("<form action=\"Logout");
                 out.println("\" method=\"POST\" >");
                 out.println("<input type=\"submit\" name=\"logout\" value=\"Logout\">");
                 out.println("</form>");
-                
-                //out.println("<form action=\"http://"+session.getAttribute("serverIp")+":9999/TestChat\">");
-                //out.println("<form action=\"http://"+session.getAttribute("serverIp")+":9999/webChat\">");
-                out.println("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/tmChat\">");
-                //out.println("\" method=\"POST\" >");
+
+                //------Chat Button-------------------------------------------------------
+                out.println("<form action=\"http://" + session.getAttribute("serverIp") + ":8080/tmConsumer/tmChat\">");
                 out.println("<br><br><input type=\"submit\" name=\"logout\" value=\"Chat\">");
                 out.println("</form>");
-                
 
             } catch (Exception err2) {
                 System.out.println("catch, HomeServlet 86");

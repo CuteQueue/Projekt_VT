@@ -37,15 +37,11 @@ public class SearchServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
-        response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
-        response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
-        response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
-        response.setContentType("text/html;charset=UTF-8");
-        
+
         try (PrintWriter out = response.getWriter()) {
 
             HttpSession session = request.getSession(true);
+            User user = (User) session.getAttribute("user");
 
             //----------Falls keine Session vorhanden-----------------------------------------
             if (session.getAttribute("email") == null) {
@@ -75,8 +71,6 @@ public class SearchServlet extends HttpServlet {
             //Ausgewählte Destination:
             out.println("</br><h2> Destination: " + destination + "</h2>");
 
-           
-
             /*---------------Find TravelMates--------------------------------------------------------------
                 - Die Methode findTravelmates() gibt eine Liste mit Objekten von User zurück, die zu den
                 gesuchten Vorgaben passen
@@ -88,12 +82,22 @@ public class SearchServlet extends HttpServlet {
             //Ausgabe der potenziellen Travelmates
             out.println("<ul>");
             for (int i = 0; i < travelmates.size(); i++) {
-                out.println("</br>");
-                out.println("<li>" + travelmates.get(i).getName() + " " + travelmates.get(i).getLastName() + "</br>");
-                out.println("Looking for: " + travelmates.get(i).getLookingFor() + "</br>");
-                out.println(" <a href=\"Home\" target=\"_blank\">profile</a>");
-                out.println("</li>");
-                out.println("</br>");
+
+                System.out.println("TM: " + travelmates.get(i).getUserId());
+                System.out.println("Session: " + user.getId());
+                if (travelmates.get(i).getUserId() != user.getId()) { //Somit wird der aktuelle User nicht selbst bei der Suche ausgeben
+
+                    out.println("</br>");
+                    out.println("<li>" + travelmates.get(i).getName() + " " + travelmates.get(i).getLastName() + "</br>");
+                    out.println("Looking for: " + travelmates.get(i).getLookingFor() + "</br>");
+                    out.println("Startdate: " + travelmates.get(i).getStartdate() + "</br>");
+                    out.println(" <form action=\"Profile\" method=\"POST\">");
+                    out.println(" <input type=\"hidden\" name=\"email\" value=\"" + travelmates.get(i).getEmail() + "\">");
+                    out.println(" <input type=submit value=\"Show Profile\">\n"
+                            + "        </form>");
+                    out.println("</li>");
+                    out.println("</br>");
+                }
             }
             out.println("</ul>");
         }

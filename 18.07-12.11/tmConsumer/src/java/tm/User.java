@@ -18,14 +18,15 @@ import java.util.logging.Logger;
  * @author Manuela
  */
 public class User {
+
     String host = "jdbc:mysql://localhost:3306/trvmate_db?zeroDateTimeBehavior=convertToNull";
     String uName = "root";
-    String uPass= "root";
+    String uPass = "root";
     Connection con;
     //String SQL;
     Statement stmt;
-    ResultSet rs;    
-    
+    ResultSet rs;
+
     private String name = null;
     private String last_name = null;
     private String nickname = null;
@@ -43,42 +44,41 @@ public class User {
     private int id;
     private int user_id;
     private int age;
-    
-    public User (String email){
+
+    public User(String email) {
         this.email = email;
         connect();
         getUserData();
     }
-    
-    public void connect(){
+
+    public void connect() {
         try {
             con = DriverManager.getConnection(host, uName, uPass);
             System.out.println("connected!");
+        } catch (SQLException err) {
+            System.out.println(err.getMessage());
         }
-        catch ( SQLException err ) {
-            System.out.println( err.getMessage( ) );
-        } 
     }
-    
-    public void getUserData(){
+
+    public void getUserData() {
         String returnUser = "kein User gefunden";
         try {
             stmt = con.createStatement();
             String SQL = "SELECT * FROM users WHERE email = \"" + this.email + "\"";
             rs = stmt.executeQuery(SQL);
-        
+
             rs.next();
             this.id = rs.getInt("id");
             this.name = rs.getString("name");
             this.last_name = rs.getString("last_name");
             this.nickname = rs.getString("nickname");
             this.created_at = rs.getString("created_at");
-            
+
             String SQL2 = "SELECT * FROM profils WHERE user_id = " + this.id;
             rs = stmt.executeQuery(SQL2);
-            
+
             rs.next();
-          /*  this.mobilenumber = rs.getString("mobilenumber");
+            /*  this.mobilenumber = rs.getString("mobilenumber");
             this.location = rs.getString("location");
             this.updated_at = rs.getString("updated_at");
             this.sex = rs.getString("sex");
@@ -89,31 +89,30 @@ public class User {
             this.about = rs.getString("about");
             this.user_id = rs.getInt("user_id");
             this.age = rs.getInt("age");*/
-    
 
             returnUser = name + " " + last_name + " " + nickname + " " + user_id + "wurde angelegt.";
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }    
+        }
         System.out.println(returnUser);
     }
-    
-      public void getProfileData(){
+
+    public void getProfileData() {
         String returnProfile = "kein Profile gefunden";
         try {
             stmt = con.createStatement();
             String SQL = "SELECT * FROM users WHERE email = \"" + this.email + "\"";
             rs = stmt.executeQuery(SQL);
-        
+
             rs.next();
             this.id = rs.getInt("id");
             this.name = rs.getString("name");
             this.last_name = rs.getString("last_name");
-  
+
             String SQL2 = "SELECT * FROM profils WHERE user_id = " + this.id;
             rs = stmt.executeQuery(SQL2);
-            
+
             rs.next();
             this.mobilenumber = rs.getString("mobilenumber");
             this.location = rs.getString("location");
@@ -126,13 +125,12 @@ public class User {
             this.about = rs.getString("about");
             this.user_id = rs.getInt("user_id");
             this.age = rs.getInt("age");
-    
 
             returnProfile = "Profil von" + " " + name + " " + last_name + " wurde mit user_id " + user_id + "angelegt.";
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }    
+        }
         System.out.println(returnProfile);
     }
 
@@ -167,8 +165,6 @@ public class User {
     public void setCon(Connection con) {
         this.con = con;
     }
-
-    
 
     public Statement getStmt() {
         return stmt;
@@ -321,7 +317,5 @@ public class User {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
-    
-    
-    
+
 }

@@ -234,7 +234,7 @@ public class tmWebService {
             return "error";
         }
     }
-    
+
     /**
      * Web service operation
      */
@@ -247,21 +247,19 @@ public class tmWebService {
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = null;
             List<User> travelmates = new ArrayList();
-            
-            
-            if (gender.equals("both")){
+
+            if (gender.equals("both")) {
                 pstmt = con.prepareStatement("SELECT * FROM profils, users WHERE destination = ? AND profils.user_id = users.id ");
                 pstmt.setString(1, destination);
-            }else{
-                 pstmt = con.prepareStatement("SELECT * FROM profils, users WHERE destination = ? AND profils.user_id = users.id AND sex = ?");
-                 pstmt.setString(1, destination);
-                 pstmt.setString(2, gender);
+            } else {
+                pstmt = con.prepareStatement("SELECT * FROM profils, users WHERE destination = ? AND profils.user_id = users.id AND sex = ?");
+                pstmt.setString(1, destination);
+                pstmt.setString(2, gender);
             }
-            
+
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-
-                User tm = new User(rs.getInt("user_id"), rs.getString("name"), rs.getString("last_name"), rs.getString("looking_for"));
+                User tm = new User(rs.getInt("user_id"), rs.getString("email"), rs.getString("name"), rs.getString("last_name"), rs.getString("looking_for"),rs.getString("startdate"));
                 travelmates.add(tm);
 
             }
@@ -273,6 +271,5 @@ public class tmWebService {
             return null;
         }
     }
-
 
 }

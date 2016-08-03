@@ -17,7 +17,8 @@ import java.util.logging.Logger;
  *
  * @author Manuela
  */
-public class User {    
+public class User {
+
     private String name = null;
     private String last_name = null;
     private String nickname = null;
@@ -36,11 +37,14 @@ public class User {
     private int user_id;
     private int age;
 
-    public User(int user_id, String name, String last_name, String looking_for) {
+    public User(int user_id, String email, String name, String last_name, String looking_for, String startdate) {
+        //Folgende Attribute werden von tm_Consumer benötigt:
         this.user_id = user_id;
+        this.email = email;
         this.name = name;
         this.last_name = last_name;
         this.looking_for = looking_for;
+        this.startdate = startdate;
     }
 
     public String getName() {
@@ -178,8 +182,5 @@ public class User {
     public void setAge(int age) {
         this.age = age;
     }
-    
-    
-    
-    
+
 }
