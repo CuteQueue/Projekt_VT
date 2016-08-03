@@ -77,15 +77,16 @@ public class SearchServlet extends HttpServlet {
                 - Diese werden dann mit in einer Liste ausgeben, um dann die Möglichkeit zu haben auf das Profil
                 weitergeleitet zu werden
              */
+            
             java.util.List<webservice.User> travelmates = findTravelmates(destination, gender); //Aufruf der webService Methode 
 
             //Ausgabe der potenziellen Travelmates
             out.println("<ul>");
             for (int i = 0; i < travelmates.size(); i++) {
-
-                System.out.println("TM: " + travelmates.get(i).getUserId());
-                System.out.println("Session: " + user.getId());
-                if (travelmates.get(i).getUserId() != user.getId()) { //Somit wird der aktuelle User nicht selbst bei der Suche ausgeben
+                
+                //Damit der aktuelle User nicht selbst bei der Suche ausgeben wird:
+                if (travelmates.get(i).getUserId() != user.getId()) { 
+                
 
                     out.println("</br>");
                     out.println("<li>" + travelmates.get(i).getName() + " " + travelmates.get(i).getLastName() + "</br>");

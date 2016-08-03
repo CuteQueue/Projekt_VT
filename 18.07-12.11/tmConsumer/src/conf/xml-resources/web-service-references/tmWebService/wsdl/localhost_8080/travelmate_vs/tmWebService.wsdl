@@ -10,6 +10,30 @@
 <message name="getNameResponse">
 <part name="parameters" element="tns:getNameResponse"/>
 </message>
+<message name="login">
+<part name="parameters" element="tns:login"/>
+</message>
+<message name="loginResponse">
+<part name="parameters" element="tns:loginResponse"/>
+</message>
+<message name="newUser">
+<part name="parameters" element="tns:newUser"/>
+</message>
+<message name="newUserResponse">
+<part name="parameters" element="tns:newUserResponse"/>
+</message>
+<message name="getSalt">
+<part name="parameters" element="tns:getSalt"/>
+</message>
+<message name="getSaltResponse">
+<part name="parameters" element="tns:getSaltResponse"/>
+</message>
+<message name="editProfile">
+<part name="parameters" element="tns:editProfile"/>
+</message>
+<message name="editProfileResponse">
+<part name="parameters" element="tns:editProfileResponse"/>
+</message>
 <message name="hello">
 <part name="parameters" element="tns:hello"/>
 </message>
@@ -28,30 +52,6 @@
 <message name="createProfileResponse">
 <part name="parameters" element="tns:createProfileResponse"/>
 </message>
-<message name="login">
-<part name="parameters" element="tns:login"/>
-</message>
-<message name="loginResponse">
-<part name="parameters" element="tns:loginResponse"/>
-</message>
-<message name="getSalt">
-<part name="parameters" element="tns:getSalt"/>
-</message>
-<message name="getSaltResponse">
-<part name="parameters" element="tns:getSaltResponse"/>
-</message>
-<message name="newUser">
-<part name="parameters" element="tns:newUser"/>
-</message>
-<message name="newUserResponse">
-<part name="parameters" element="tns:newUserResponse"/>
-</message>
-<message name="editProfile">
-<part name="parameters" element="tns:editProfile"/>
-</message>
-<message name="editProfileResponse">
-<part name="parameters" element="tns:editProfileResponse"/>
-</message>
 <message name="findTravelmates">
 <part name="parameters" element="tns:findTravelmates"/>
 </message>
@@ -62,6 +62,22 @@
 <operation name="getName">
 <input wsam:Action="http://WebService/tmWebService/getNameRequest" message="tns:getName"/>
 <output wsam:Action="http://WebService/tmWebService/getNameResponse" message="tns:getNameResponse"/>
+</operation>
+<operation name="login">
+<input wsam:Action="http://WebService/tmWebService/loginRequest" message="tns:login"/>
+<output wsam:Action="http://WebService/tmWebService/loginResponse" message="tns:loginResponse"/>
+</operation>
+<operation name="newUser">
+<input wsam:Action="http://WebService/tmWebService/newUserRequest" message="tns:newUser"/>
+<output wsam:Action="http://WebService/tmWebService/newUserResponse" message="tns:newUserResponse"/>
+</operation>
+<operation name="getSalt">
+<input wsam:Action="http://WebService/tmWebService/getSaltRequest" message="tns:getSalt"/>
+<output wsam:Action="http://WebService/tmWebService/getSaltResponse" message="tns:getSaltResponse"/>
+</operation>
+<operation name="editProfile">
+<input wsam:Action="http://WebService/tmWebService/editProfileRequest" message="tns:editProfile"/>
+<output wsam:Action="http://WebService/tmWebService/editProfileResponse" message="tns:editProfileResponse"/>
 </operation>
 <operation name="hello">
 <input wsam:Action="http://WebService/tmWebService/helloRequest" message="tns:hello"/>
@@ -74,22 +90,6 @@
 <operation name="createProfile">
 <input wsam:Action="http://WebService/tmWebService/createProfileRequest" message="tns:createProfile"/>
 <output wsam:Action="http://WebService/tmWebService/createProfileResponse" message="tns:createProfileResponse"/>
-</operation>
-<operation name="login">
-<input wsam:Action="http://WebService/tmWebService/loginRequest" message="tns:login"/>
-<output wsam:Action="http://WebService/tmWebService/loginResponse" message="tns:loginResponse"/>
-</operation>
-<operation name="getSalt">
-<input wsam:Action="http://WebService/tmWebService/getSaltRequest" message="tns:getSalt"/>
-<output wsam:Action="http://WebService/tmWebService/getSaltResponse" message="tns:getSaltResponse"/>
-</operation>
-<operation name="newUser">
-<input wsam:Action="http://WebService/tmWebService/newUserRequest" message="tns:newUser"/>
-<output wsam:Action="http://WebService/tmWebService/newUserResponse" message="tns:newUserResponse"/>
-</operation>
-<operation name="editProfile">
-<input wsam:Action="http://WebService/tmWebService/editProfileRequest" message="tns:editProfile"/>
-<output wsam:Action="http://WebService/tmWebService/editProfileResponse" message="tns:editProfileResponse"/>
 </operation>
 <operation name="findTravelmates">
 <input wsam:Action="http://WebService/tmWebService/findTravelmatesRequest" message="tns:findTravelmates"/>
@@ -107,6 +107,42 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="login">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="newUser">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getSalt">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="editProfile">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="hello">
 <soap:operation soapAction=""/>
 <input>
@@ -126,42 +162,6 @@
 </output>
 </operation>
 <operation name="createProfile">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="login">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getSalt">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="newUser">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="editProfile">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

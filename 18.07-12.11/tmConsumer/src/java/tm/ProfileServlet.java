@@ -59,10 +59,9 @@ public class ProfileServlet extends HttpServlet {
             //--------Passende Userdaten holen ----------------------------------
             String email = request.getParameterValues("email")[0];
             User u = new User(email);
-            User user = (User) session.getAttribute("user");
             u.getProfileData(); //Profildaten holen
 
-            out.println("<h2>Profil von " + user.getName() + " " + user.getLast_name() + "</h2>");
+            out.println("<h2>Profil von " + u.getName() + " " + u.getLast_name() + "</h2>");
             out.println("</br>");
 
             //-------------Ausgabe der Profildaten---------------------------

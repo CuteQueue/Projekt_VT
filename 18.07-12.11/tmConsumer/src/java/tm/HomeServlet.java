@@ -52,8 +52,9 @@ public class HomeServlet extends HttpServlet {
         response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 
         String email;
-
+        
         try (PrintWriter out = response.getWriter()) {
+            System.out.println("SESSION???????????????????? " + session.getAttribute("serverIp"));
             try {
 
                 //----------Falls keine Session vorhanden-----------------------------------------
@@ -109,16 +110,19 @@ public class HomeServlet extends HttpServlet {
                 out.println("<input type=\"submit\" name=\"search\" value=\"Search\">");
                 out.println("</form>");
 
+                //------Chat Button-------------------------------------------------------
+                out.println("<form action=\"http://" + session.getAttribute("serverIp") + ":8080/tmConsumer/tmChat\">");
+                out.println("<br><br><input type=\"submit\" name=\"chat\" value=\"Chat\">");
+                out.println("</form>");
+                
                 //------Logout Button --------------------------------------
                 out.print("<form action=\"Logout");
                 out.println("\" method=\"POST\" >");
                 out.println("<input type=\"submit\" name=\"logout\" value=\"Logout\">");
                 out.println("</form>");
 
-                //------Chat Button-------------------------------------------------------
-                out.println("<form action=\"http://" + session.getAttribute("serverIp") + ":8080/tmConsumer/tmChat\">");
-                out.println("<br><br><input type=\"submit\" name=\"logout\" value=\"Chat\">");
-                out.println("</form>");
+                
+                
 
             } catch (Exception err2) {
                 System.out.println("catch, HomeServlet 86");
