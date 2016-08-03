@@ -12,6 +12,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
@@ -47,15 +48,6 @@ String exit = "";
                 return;
             }
             res.setContentType("text/html;charset=UTF-8");
-            
-  /* System.out.println("Session-email: " + session.getAttribute("email"));        
-   String test = (String)session.getAttribute("email");
-   if(test.equals("null")) {
-       out.println("null");
-      res.sendRedirect("toLogin");
-   }*/
-
-            
             System.out.println("Session serverIp: " + session.getAttribute("serverIp"));
             System.out.println("Session Ip: " + session.getAttribute("ip"));
             ClientInterface user = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
@@ -74,22 +66,64 @@ String exit = "";
             /*----------------------------HTML-Teil----------------------------*/
             out.println("<html><head><title>Chat</title>");
             out.println("<meta http-equiv=\"refresh\" content=\"10;URL=\"http://"+session.getAttribute("ip")+":8080/tmConsumer/tmChatOn></head>");
+            out.println("<style>textarea {resize: none;}</style>");
             out.println("<body style=\"font-family:arial;\">\n");
             out.println("<h2>Willkommen im Chat, " + user.getUsername()
                     + "!</h2>");
             
+            //Scrollbalken des Chatfensters immer unten
+            out.println("<script>\n" +
+                        "window.onload = load;\n" +
+                        "function load(){\n" +
+                        "	var chatWindow = document.getElementById(\"chatWindow\");\n" +
+                        "	chatWindow.scrollTop = chatWindow.scrollHeight;\n" +
+                        "};\n" +
+                        "</script>");
+            
+            
+            
+             
+            //Chatfenster und Client-Ausgabeliste
+            out.println("<div>\n" +
+                        "	<table>\n" +
+                        "		<td>\n" +
+                        "			<textarea name=\"chatoutput\" id =\"chatWindow\" cols=\"100\" rows=\"30\" readonly=\"\">");
+            List <String> chatAusgabe = user.getAusgaben();
+            for (String nachricht : chatAusgabe) {
+                out.println(nachricht + "\n");
+            }
+            
+            out.println("</textarea>\n" +
+                        "		</td>\n" +
+                        "		<td>\n" +
+                        "			<textarea name=\"clientsOnline\" cols=\"15\" rows=\"30\" readonly=\"\">");
+            Set<String> clientsOnline = user.getStub().getClients().keySet();
+            for ( String key : clientsOnline ) {
+                out.println( key );
+            }
+            out.println("</textarea>\n" +
+                        "		</td>\n" +
+                        "	</table>\n" +
+                        "</div>");
             //Eingabefeld für die Nachricht
             out.print("<form action=\"");
             out.print(res.encodeURL ("tmChatOn")); //damit das Session-Tracking auch funktioniert, wenn Cookies deaktiviert sind
             out.println("\" method=\"POST\" >");
             out.println("<h3>Nachricht hier:</h3>");
             out.println("<input type=\"hidden\" name=\"name\" value="+user.getUsername()+">");
-            out.println("<input type=\"text\" name=\"message\">");
-            out.println("<br><br><input type=\"submit\" value=\"Abschicken\">");
-            out.println("</form>");
+            out.println("<div>\n" +
+                            "	<td>\n" +
+                            "		<input vk_13ff6=\"subscribed\" size=\"50\" name=\"message\" type=\"text\">\n" +
+                            "	</td>\n" +
+                            "	<td>\n" +
+                            "		<input value=\"Abschicken\" type=\"submit\">\n" +
+                            "	</td>\n" +
+                            "</div>\n" +
+                            "</form>");
             
              try{
                 msg = req.getParameterValues("message")[0]; //eingebene Nachricht in msg speichern
+                out.println("<meta http-equiv=\"refresh\" content=\"0; URL=http://"+session.getAttribute("ip")+":8080/tmConsumer/tmChatOn\">");
                                
             }catch(Exception ex){
                
@@ -100,21 +134,13 @@ String exit = "";
                 chat.sendMessage(user.getUsername(), msg); //Nachricht senden
                 msg="";
             }
-             
-            //Chatfenster
-            out.println("<textarea name=\"chatoutput\" cols=\"50\" rows=\"10\"readonly>");
-            List <String> chatAusgabe = user.getAusgaben();
-           for (String nachricht : chatAusgabe) {
-                out.println(nachricht + "\n");
-            }
-            out.println("</textarea>");
             
            
             //Button zum Verlassen des Chats
             out.println("</br>");
             out.print("<form action=\"");
             out.println("\" method=\"POST\" >");
-            out.println("<br><br><input type=\"submit\" name=\"logout\" value=\"Home\">");
+            out.println("<input type=\"submit\" name=\"logout\" value=\"Home\">");
             out.println("</form>");
             
             
@@ -124,12 +150,12 @@ String exit = "";
                 user.getStub().unsubscribeUser(user.getUsername());
                 exit ="";
                 
-                //session.invalidate();
                 
                 out.println("<meta http-equiv=\"refresh\" content=\"1; URL=http://"+session.getAttribute("ip")+":8080/tmConsumer/Home\">");
             }
              
             //Ende HTML-Teil
+            System.out.println("!!!!!!!!!!!!!!!!!!! SessionIP ChatOnServlet: " + session.getAttribute("serverIp"));
             out.println("</body></html>");
             
             } finally {
@@ -190,6 +216,7 @@ String exit = "";
         if (request.getParameter("logout")!=null) {
             HttpSession session = request.getSession();
             ClientInterface user = (ClientInterface) session.getAttribute("chatUser");
+            
             exit = "exit";
         }
     }

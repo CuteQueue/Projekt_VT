@@ -1,8 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package tm;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +19,7 @@ import webservice.TmWebService_Service;
  *
  * @author nina
  */
-public class CreateProfileServlet extends HttpServlet {
+public class EditProfileServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
     private TmWebService_Service service;
@@ -37,9 +41,8 @@ public class CreateProfileServlet extends HttpServlet {
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
         response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
         try (PrintWriter out = response.getWriter()) {
-            
+
             HttpSession session = request.getSession(true);
-            System.out.println("!!!!!!!!!!!!!!!!!!! SessionIP ChatOnServlet: " + session.getAttribute("serverIp"));
             if (session.getAttribute("email") == null) {
                 out.println("<html><head><title>SessionError</title></head>");
                 out.println("<body><h2>Keine Session vorhanden</h2>");
@@ -57,7 +60,7 @@ public class CreateProfileServlet extends HttpServlet {
             session.setAttribute("user", u); //in Session gespeichert 
             User user = (User) session.getAttribute("user");
 
-            System.out.println("CreateProfileServlet");
+            System.out.println("EditProfileServlet");
 
             String mobilenumber = request.getParameterValues("mobilenumber")[0];
 
@@ -74,17 +77,18 @@ public class CreateProfileServlet extends HttpServlet {
             String interests = request.getParameterValues("interests")[0];
             String looking_for = request.getParameterValues("looking_for")[0];
             String about = request.getParameterValues("about")[0];
-
-            String answer = createProfile(user.getId(), mobilenumber, age, location, sex, destination, startdate, interests, looking_for, about);
-
+            System.out.println("userid: " + user.getId());
+            String answer = editProfile(user.getId(), mobilenumber, age, location, sex, destination, startdate, interests, looking_for, about);
+           
             if (answer.equals("ok")) {
-                request.getRequestDispatcher("/Home").forward(request, response);
+                System.out.println("OK");
+                      out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Home\">");
                 //response.sendRedirect("Home");
             } else {
                 //out.println("Ooooops, something went wrong!");
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please check all inputs, something seems to be missing.');");
-                out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Create\';");
+                out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Edit\';");
                 out.println("</script>");  
             }
         }
@@ -129,11 +133,11 @@ public class CreateProfileServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private String createProfile(int id, java.lang.String mobilenumber, int age, java.lang.String location, java.lang.String sex, java.lang.String destination, java.lang.String startdate, java.lang.String interests, java.lang.String lookingFor, java.lang.String about) {
+    private String editProfile(int id, java.lang.String mobilenumber, int age, java.lang.String location, java.lang.String sex, java.lang.String destination, java.lang.String startdate, java.lang.String interests, java.lang.String lookingFor, java.lang.String about) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         webservice.TmWebService port = service.getTmWebServicePort();
-        return port.createProfile(id, mobilenumber, age, location, sex, destination, startdate, interests, lookingFor, about);
+        return port.editProfile(id, mobilenumber, age, location, sex, destination, startdate, interests, lookingFor, about);
     }
 
 }

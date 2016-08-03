@@ -12,6 +12,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
@@ -55,6 +56,7 @@ public class tmChatServlet extends HttpServlet {
             String msg = "Moin moin";
            
             // Neue Session anlegen
+            
             HttpSession session = req.getSession(true); //Erzeugt eine neue Session, wenn noch keine vorhanden und speichert diese in session
             
             
@@ -86,14 +88,20 @@ public class tmChatServlet extends HttpServlet {
             ClientInterface user = null; 
             try {
             user = new ClientImpl(ip); //neuen User erstellen
+            System.out.println("neuer ChatUser erstellt");
             session.setAttribute("chatUser", user); //in Session speichern
+            System.out.println("ChatUser in Session gespeichert.");
             } catch (RemoteException | MalformedURLException | NotBoundException ex) {
                 out.printf("Server nicht erreichbar");
                 out.close();
             }
             //Prüfung ob der Nickname schon vergeben ist:
             if(user.getStub().getClients().containsKey(name)){ 
+                System.out.println("if(user.getStub().getClients().containsKey(name))");
                 vorhanden = "ja";
+                System.out.println("Nickname aus Clientliste werfen, weil nicht korrekt ausgeloggt.");
+                user.getStub().unsubscribeUser(name);
+                
                 /*out.println("<html><head><body>");
                 out.print("<form action=\"");
                 out.print(res.encodeURL ("tmChatOn"));
@@ -111,52 +119,75 @@ public class tmChatServlet extends HttpServlet {
                     session.setAttribute("name", name);
                 }*/
            
-            } else {
-                vorhanden = "nein";
+            } 
                 user.setUsername(name); //Usernamen festlegen
                 ChatInterface chat = user.getStub().subscribeUser(user.getUsername(), user); //User beim Chat anmelden
                 
                 if (session.isNew()){ //Damit "User hat sich eingeloggt" nicht mehrfach ausgeben wird
                     chat.sendMessage(user.getUsername(),"hat sich eingeloggt.");
                 }
+                System.out.println("bevor chat in session gespeichert wird");
                 session.setAttribute("chat", chat); //Chat in Session speichern
+                 System.out.println("nachdem chat in session gespeichert wird");
 
 
                 /*----------------------------HTML-Teil----------------------------*/
                 out.println("<html><head><title>Chat</title>");
-                out.println("<meta http-equiv=\"refresh\" content=\"10;URL=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/tmChatOn\"></head>"); 
+                out.println("<meta http-equiv=\"refresh\" content=\"8;URL=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/tmChatOn\"></head>"); 
+                out.println("<style>textarea {resize: none;}</style>");
                 //auf Servlet weiterleiten
                 out.println("<body style=\"font-family:arial;\">\n");
-               out.println("<h2>Willkommen im Chat, " + user.getUsername()
+                out.println("<h2>Willkommen im Chat, " + user.getUsername()
                         + "!</h2>");
-               
-  
+
+                
+                //Chatfenster und Client-Ausgabeliste
+                out.println("<div>\n" +
+                            "	<table>\n" +
+                            "		<td>\n" +
+                            "			<textarea name=\"chatoutput\" cols=\"100\" rows=\"30\" readonly=\"\">");
+                List <String> chatAusgabe = user.getAusgaben();
+                for (String nachricht : chatAusgabe) {
+                    out.println(nachricht + "\n");
+                }
+
+                out.println("</textarea>\n" +
+                            "		</td>\n" +
+                            "		<td>\n" +
+                            "			<textarea name=\"clientsOnline\" cols=\"15\" rows=\"30\" readonly=\"\">");
+                Set<String> clientsOnline = user.getStub().getClients().keySet();
+                for ( String key : clientsOnline ) {
+                    out.println( key );
+                }
+                out.println("</textarea>\n" +
+                            "		</td>\n" +
+                            "	</table>\n" +
+                            "</div>");
+
                 //Eingabefeld für die Nachricht
                 out.print("<form action=\"");
                 out.print(res.encodeURL ("tmChatOn")); //damit das Session-Tracking auch funktioniert, wenn Cookies deaktiviert sind
                 out.println("\" method=\"POST\" >");
                 out.println("<h3>Nachricht hier:</h3>");
                 out.println("<input type=\"hidden\" name=\"name\" value="+user.getUsername()+">");
-                out.println("<input type=\"text\" name=\"message\">");
-                out.println("<br><br><input type=\"submit\" value=\"Abschicken\">");
-                out.println("</form>");
-
-                //Chatfenster
-                out.println("<textarea name=\"chatoutput\" cols=\"50\" rows=\"10\"readonly>");
-                List <String> chatAusgabe = user.getAusgaben();
-                for (String nachricht : chatAusgabe) {
-                    out.println(nachricht + "\n");
-                }
-                out.println("</textarea>");
-
+                out.println("<div>\n" +
+                            "	<td>\n" +
+                            "		<input vk_13ff6=\"subscribed\" size=\"50\" name=\"message\" type=\"text\">\n" +
+                            "	</td>\n" +
+                            "	<td>\n" +
+                            "		<input value=\"Abschicken\" type=\"submit\">\n" +
+                            "	</td>\n" +
+                            "</div>\n" +
+                            "</form>");
+                
                 //Button zum Verlassen des Chats
                 out.println("</br>");
                 out.print("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Home\"");
                 out.println("\" method=\"POST\" >");
-                out.println("<br><br><input type=\"submit\" value=\"Home\">");
+                out.println("<input type=\"submit\" value=\"Home\">");
                 out.println("</body></html>");
                 out.println("</form>");
-                
+                System.out.println("!!!!!!!!!!!!!!!!!!! SessionIP ChatServlet: " + session.getAttribute("serverIp"));
                 
                 //Ende HTML-Teil
                 out.println("</body></html>");
@@ -164,7 +195,7 @@ public class tmChatServlet extends HttpServlet {
                     out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/tmChatOn\">"); 
                     //auf Servlet weiterleiten
                 }vorhanden = "";
-            }  
+            
 
             
             

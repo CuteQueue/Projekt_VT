@@ -54,15 +54,15 @@ public class HomeServlet extends HttpServlet {
         String email;
         
         try (PrintWriter out = response.getWriter()) {
-            
+            System.out.println("SESSION???????????????????? " + session.getAttribute("serverIp"));
             try {
                  //out.println("Email: " + session.getAttribute("email"));
                  //out.println("ServerIp: " + session.getAttribute("serverIp"));
                 if (session.getAttribute("email") == null) {
                     out.println("<html><head><title>SessionError</title></head>");
                     out.println("<body><h2>Keine Session vorhanden1</h2>");
-                    out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
-                    //out.print("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer\"");
+                    //out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
+                    out.print("<form action=\"http://localhost:8080/tmConsumer\"");
                     out.println("\" method=\"POST\" >");
                     out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
                     out.println("</form>");
@@ -74,6 +74,7 @@ public class HomeServlet extends HttpServlet {
                 email = (String) session.getAttribute("email");
                 User u = new User(email);
                 session.setAttribute("user", u); //in Session gespeichert 
+                session.setAttribute("userId", u.getId());
                 User user = (User) session.getAttribute("user");
                 out.println("<h2>Willkommen " + user.getName() + " " + user.getLast_name() + "!</h2>");
                 out.println("</br>");
@@ -98,11 +99,13 @@ public class HomeServlet extends HttpServlet {
 
                 }
                 
+                //------Search Button --------------------------------------
                 out.print("<form action=\"search.jsp");
                 out.println("\" method=\"POST\" >");
                 out.println("<input type=\"submit\" name=\"search\" value=\"Search\">");
                 out.println("</form>");
-
+                
+                //------Logout Button --------------------------------------
                 out.print("<form action=\"Logout");
                 out.println("\" method=\"POST\" >");
                 out.println("<input type=\"submit\" name=\"logout\" value=\"Logout\">");
@@ -114,6 +117,7 @@ public class HomeServlet extends HttpServlet {
                 //out.println("\" method=\"POST\" >");
                 out.println("<br><br><input type=\"submit\" name=\"logout\" value=\"Chat\">");
                 out.println("</form>");
+                
 
             } catch (Exception err2) {
                 System.out.println("catch, HomeServlet 86");

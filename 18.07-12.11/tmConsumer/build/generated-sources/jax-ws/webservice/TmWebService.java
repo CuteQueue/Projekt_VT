@@ -42,21 +42,6 @@ public interface TmWebService {
 
     /**
      * 
-     * @param email
-     * @return
-     *     returns byte[]
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getEncryptedPw", targetNamespace = "http://WebService/", className = "webservice.GetEncryptedPw")
-    @ResponseWrapper(localName = "getEncryptedPwResponse", targetNamespace = "http://WebService/", className = "webservice.GetEncryptedPwResponse")
-    @Action(input = "http://WebService/tmWebService/getEncryptedPwRequest", output = "http://WebService/tmWebService/getEncryptedPwResponse")
-    public byte[] getEncryptedPw(
-        @WebParam(name = "email", targetNamespace = "")
-        String email);
-
-    /**
-     * 
      * @param name
      * @return
      *     returns java.lang.String
@@ -69,6 +54,21 @@ public interface TmWebService {
     public String hello(
         @WebParam(name = "name", targetNamespace = "")
         String name);
+
+    /**
+     * 
+     * @param email
+     * @return
+     *     returns byte[]
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getEncryptedPw", targetNamespace = "http://WebService/", className = "webservice.GetEncryptedPw")
+    @ResponseWrapper(localName = "getEncryptedPwResponse", targetNamespace = "http://WebService/", className = "webservice.GetEncryptedPwResponse")
+    @Action(input = "http://WebService/tmWebService/getEncryptedPwRequest", output = "http://WebService/tmWebService/getEncryptedPwResponse")
+    public byte[] getEncryptedPw(
+        @WebParam(name = "email", targetNamespace = "")
+        String email);
 
     /**
      * 
@@ -114,6 +114,39 @@ public interface TmWebService {
 
     /**
      * 
+     * @param pw
+     * @param email
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "login", targetNamespace = "http://WebService/", className = "webservice.Login")
+    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://WebService/", className = "webservice.LoginResponse")
+    @Action(input = "http://WebService/tmWebService/loginRequest", output = "http://WebService/tmWebService/loginResponse")
+    public String login(
+        @WebParam(name = "email", targetNamespace = "")
+        String email,
+        @WebParam(name = "pw", targetNamespace = "")
+        String pw);
+
+    /**
+     * 
+     * @param email
+     * @return
+     *     returns byte[]
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getSalt", targetNamespace = "http://WebService/", className = "webservice.GetSalt")
+    @ResponseWrapper(localName = "getSaltResponse", targetNamespace = "http://WebService/", className = "webservice.GetSaltResponse")
+    @Action(input = "http://WebService/tmWebService/getSaltRequest", output = "http://WebService/tmWebService/getSaltResponse")
+    public byte[] getSalt(
+        @WebParam(name = "email", targetNamespace = "")
+        String email);
+
+    /**
+     * 
      * @param lastName
      * @param password
      * @param salt
@@ -144,36 +177,45 @@ public interface TmWebService {
 
     /**
      * 
-     * @param email
-     * @return
-     *     returns byte[]
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getSalt", targetNamespace = "http://WebService/", className = "webservice.GetSalt")
-    @ResponseWrapper(localName = "getSaltResponse", targetNamespace = "http://WebService/", className = "webservice.GetSaltResponse")
-    @Action(input = "http://WebService/tmWebService/getSaltRequest", output = "http://WebService/tmWebService/getSaltResponse")
-    public byte[] getSalt(
-        @WebParam(name = "email", targetNamespace = "")
-        String email);
-
-    /**
-     * 
-     * @param pw
-     * @param email
+     * @param mobilenumber
+     * @param sex
+     * @param destination
+     * @param about
+     * @param lookingFor
+     * @param location
+     * @param id
+     * @param startdate
+     * @param interests
+     * @param age
      * @return
      *     returns java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "login", targetNamespace = "http://WebService/", className = "webservice.Login")
-    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://WebService/", className = "webservice.LoginResponse")
-    @Action(input = "http://WebService/tmWebService/loginRequest", output = "http://WebService/tmWebService/loginResponse")
-    public String login(
-        @WebParam(name = "email", targetNamespace = "")
-        String email,
-        @WebParam(name = "pw", targetNamespace = "")
-        String pw);
+    @RequestWrapper(localName = "editProfile", targetNamespace = "http://WebService/", className = "webservice.EditProfile")
+    @ResponseWrapper(localName = "editProfileResponse", targetNamespace = "http://WebService/", className = "webservice.EditProfileResponse")
+    @Action(input = "http://WebService/tmWebService/editProfileRequest", output = "http://WebService/tmWebService/editProfileResponse")
+    public String editProfile(
+        @WebParam(name = "id", targetNamespace = "")
+        int id,
+        @WebParam(name = "mobilenumber", targetNamespace = "")
+        String mobilenumber,
+        @WebParam(name = "age", targetNamespace = "")
+        int age,
+        @WebParam(name = "location", targetNamespace = "")
+        String location,
+        @WebParam(name = "sex", targetNamespace = "")
+        String sex,
+        @WebParam(name = "destination", targetNamespace = "")
+        String destination,
+        @WebParam(name = "startdate", targetNamespace = "")
+        String startdate,
+        @WebParam(name = "interests", targetNamespace = "")
+        String interests,
+        @WebParam(name = "looking_for", targetNamespace = "")
+        String lookingFor,
+        @WebParam(name = "about", targetNamespace = "")
+        String about);
 
     /**
      * 

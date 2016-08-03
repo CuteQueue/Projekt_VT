@@ -35,7 +35,7 @@ public class ChatImpl extends UnicastRemoteObject implements ChatInterface{
         Set<String> names = clients.keySet();
           for(String name : names){
               if(stub.clientPruefenSenden(name)){
-   
+                
                 System.out.println("Nachricht kann gesendet werden an " + name);
             }
             else{

@@ -26,6 +26,8 @@ public class ObjectFactory {
 
     private final static QName _CreateProfile_QNAME = new QName("http://WebService/", "createProfile");
     private final static QName _CreateProfileResponse_QNAME = new QName("http://WebService/", "createProfileResponse");
+    private final static QName _EditProfile_QNAME = new QName("http://WebService/", "editProfile");
+    private final static QName _EditProfileResponse_QNAME = new QName("http://WebService/", "editProfileResponse");
     private final static QName _FindTravelmates_QNAME = new QName("http://WebService/", "findTravelmates");
     private final static QName _FindTravelmatesResponse_QNAME = new QName("http://WebService/", "findTravelmatesResponse");
     private final static QName _GetEncryptedPw_QNAME = new QName("http://WebService/", "getEncryptedPw");
@@ -65,6 +67,22 @@ public class ObjectFactory {
      */
     public CreateProfileResponse createCreateProfileResponse() {
         return new CreateProfileResponse();
+    }
+
+    /**
+     * Create an instance of {@link EditProfile }
+     * 
+     */
+    public EditProfile createEditProfile() {
+        return new EditProfile();
+    }
+
+    /**
+     * Create an instance of {@link EditProfileResponse }
+     * 
+     */
+    public EditProfileResponse createEditProfileResponse() {
+        return new EditProfileResponse();
     }
 
     /**
@@ -203,6 +221,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://WebService/", name = "createProfileResponse")
     public JAXBElement<CreateProfileResponse> createCreateProfileResponse(CreateProfileResponse value) {
         return new JAXBElement<CreateProfileResponse>(_CreateProfileResponse_QNAME, CreateProfileResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EditProfile }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "editProfile")
+    public JAXBElement<EditProfile> createEditProfile(EditProfile value) {
+        return new JAXBElement<EditProfile>(_EditProfile_QNAME, EditProfile.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EditProfileResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "editProfileResponse")
+    public JAXBElement<EditProfileResponse> createEditProfileResponse(EditProfileResponse value) {
+        return new JAXBElement<EditProfileResponse>(_EditProfileResponse_QNAME, EditProfileResponse.class, null, value);
     }
 
     /**

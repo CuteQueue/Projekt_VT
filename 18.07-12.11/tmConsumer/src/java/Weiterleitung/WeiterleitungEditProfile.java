@@ -3,27 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tm;
+package Weiterleitung;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 
 /**
  *
- * @author Manuela
+ * @author nina
  */
-public class LogoutServlet extends HttpServlet {
+public class WeiterleitungEditProfile extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,27 +30,17 @@ public class LogoutServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
-        response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
+         response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+        response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
-        response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
-        
+        response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
+        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession(false); //Liefert null zurück, wenn es keine aktuelle Session gibt
-             if (session != null) {  
-                //aktuelle Session vorhanden
-                RequestDispatcher rd = request.getRequestDispatcher("logout.jsp");
-                rd.forward(request, response);
-             } else {
-                 //keine aktuelle Session vorhanden
-                /*RequestDispatcher rd = request.getRequestDispatcher("logout.jsp");
-                rd.forward(request, response);*/
-                out.println("keine aktuelle Session vorhanden");
-             }
             
-        }     
-        
+            /* TODO output your page here. You may use following sample code. */
+           RequestDispatcher rd = request.getRequestDispatcher("editProfile.jsp");
+           rd.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -68,16 +52,10 @@ public class LogoutServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -103,6 +81,5 @@ public class LogoutServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 
 }
