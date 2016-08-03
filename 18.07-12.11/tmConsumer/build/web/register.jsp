@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +14,7 @@
         <meta http-equiv="Expires" content="-1">
         <title>Register</title>
     </head>
+   
     <body>
         <form action="Register" method="POST">
             <table border="0">

@@ -37,8 +37,7 @@ public class WeiterleitungRegisterServlet extends HttpServlet {
         response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
         
         try (PrintWriter out = response.getWriter()) {
-                String serverIp = request.getParameterValues("serverIp2")[0];
-                out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+serverIp+":8080/tmConsumer/register.jsp\">");     
+                request.getRequestDispatcher("/Register").forward(request, response);
         }  
     }
 
