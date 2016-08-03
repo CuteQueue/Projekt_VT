@@ -79,10 +79,10 @@
           <div class="child">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 text-center">
-                    <img src="backgrounds/TravelMateLogo.png" style="max-width:350px;padding-bottom: 30pt;"> 
+                    <img src="backgrounds/TravelMateLogo.png" style="max-width:300px;padding-bottom: 15pt;"> 
                 </div>
               <div class="col-xs-12 col-sm-12 text-center">
-                <div class="panel panel-default center-me" style="max-width:400px;">
+                <div class="panel panel-default center-me" style="max-width:300px;">
                   <!-- Default panel contents -->
                   <div class="panel-heading">Server-IP</div>
                     <form id="IP" action="Start" method="POST">
