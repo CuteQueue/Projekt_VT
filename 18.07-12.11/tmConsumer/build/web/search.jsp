@@ -1,8 +1,18 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : search
     Created on : 28.07.2016, 09:24:41
     Author     : nina
 --%>
+
+<%-- Alle Reiseziele (Destination) werden aus der Datenbank gelesen und in result gespeichert --%>
+<sql:query var="result" dataSource="jdbc/travelmate">
+    SELECT DISTINCT destination FROM profils ORDER BY destination ASC
+</sql:query>
+
+
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,12 +34,13 @@
                 <tbody>
                     <tr>
                         <td>Destination:</td>
-                        <td> <select name="Destination">
-                                <option>Amsterdam</option>
-                                <option>Berlin</option>
-                                <option>London</option>
-                                <option>New York</option>
-                                <option>Rom</option>
+                        <td>
+                            <select name="Destination">
+                                <c:forEach var="row" items="${result.rowsByIndex}">
+                                    <c:forEach var="column" items="${row}">
+                                        <option><c:out value="${column}"/></option>
+                                    </c:forEach>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -45,8 +56,6 @@
                         <td></td>
                         <td><input type=submit value="Abschicken"></td>
                     </tr>
-               
-
                 </tbody>
             </table>
         </form>

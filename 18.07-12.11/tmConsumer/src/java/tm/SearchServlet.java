@@ -36,76 +36,68 @@ public class SearchServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            response.setContentType("text/html;charset=UTF-8");
-            response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
-            response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
-            response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
-            response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
-            response.setContentType("text/html;charset=UTF-8");
-            try (PrintWriter out = response.getWriter()) {
+        response.setContentType("text/html;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+        response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
+        response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+        response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
+        response.setContentType("text/html;charset=UTF-8");
+        
+        try (PrintWriter out = response.getWriter()) {
 
-                HttpSession session = request.getSession(true);
-                if (session.getAttribute("email") == null) {
-                    out.println("<html><head><title>SessionError</title></head>");
-                    out.println("<body><h2>Keine Session vorhanden</h2>");
-                    //out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
-                    out.print("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer\"");
-                    out.println("\" method=\"POST\" >");
-                    out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
-                    out.println("</form>");
-                    out.println("</body>");
-                    out.close();
-                    return;
-                }
-                
-                System.out.println("SearchServlet");
+            HttpSession session = request.getSession(true);
 
-                String destination = request.getParameterValues("Destination")[0];
-                String gender = request.getParameterValues("Gender")[0];
-                
-                //Button "Change destinaton":
-                out.print("<form action=\"search.jsp");
+            //----------Falls keine Session vorhanden-----------------------------------------
+            if (session.getAttribute("email") == null) {
+                out.println("<html><head><title>SessionError</title></head>");
+                out.println("<body><h2>Keine Session vorhanden</h2>");
+                out.print("<form action=\"http://" + session.getAttribute("serverIp") + ":8080/tmConsumer\"");
                 out.println("\" method=\"POST\" >");
-                out.println("<input type=\"submit\" name=\"search\" value=\"Change Destination\">");
+                out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
                 out.println("</form>");
-                
-                //Angebene Destination:
-                out.println("</br><h2> Destination: " +destination + "</h2>");
-                
+                out.println("</body>");
+                out.close();
+                return;
+            }
 
-                //out.println("Gender: " + gender);
-              
-              
-              
-              //TODO:
-                if (gender.equals("both")){
-                    
-                }
-                
-                /*---------------Find TravelMates--------------------------------------------------------------
+            System.out.println("SearchServlet");
+
+            //In search.jsp ausgewählte Parameter
+            String destination = request.getParameterValues("Destination")[0];
+            String gender = request.getParameterValues("Gender")[0];
+
+            //Button "New Search":
+            out.print("<form action=\"search.jsp");
+            out.println("\" method=\"POST\" >");
+            out.println("<input type=\"submit\" name=\"search\" value=\"New Search\">");
+            out.println("</form>");
+
+            //Ausgewählte Destination:
+            out.println("</br><h2> Destination: " + destination + "</h2>");
+
+           
+
+            /*---------------Find TravelMates--------------------------------------------------------------
                 - Die Methode findTravelmates() gibt eine Liste mit Objekten von User zurück, die zu den
                 gesuchten Vorgaben passen
                 - Diese werden dann mit in einer Liste ausgeben, um dann die Möglichkeit zu haben auf das Profil
                 weitergeleitet zu werden
-                */
-                
-               java.util.List<webservice.User> travelmates = findTravelmates(destination, gender); //Aufruf der webService Methode 
-                
-                //Ausgabe der potenziellen Travelmates
-                out.println("<ul>");
-                for (int i = 0; i < travelmates.size(); i++){
-                    out.println("</br>");
-                    out.println("<li>"+travelmates.get(i).getName() + " " + travelmates.get(i).getLastName()+"</br>");
-                    out.println("Looking for: " + travelmates.get(i).getLookingFor() + "</br>");
-                    out.println(" <a href=\"Home\" target=\"_blank\">profile</a>");
-                    out.println("</li>");
-                    out.println("</br>");
-                }
-                out.println("</ul>");
-              
-            
+             */
+            java.util.List<webservice.User> travelmates = findTravelmates(destination, gender); //Aufruf der webService Methode 
+
+            //Ausgabe der potenziellen Travelmates
+            out.println("<ul>");
+            for (int i = 0; i < travelmates.size(); i++) {
+                out.println("</br>");
+                out.println("<li>" + travelmates.get(i).getName() + " " + travelmates.get(i).getLastName() + "</br>");
+                out.println("Looking for: " + travelmates.get(i).getLookingFor() + "</br>");
+                out.println(" <a href=\"Home\" target=\"_blank\">profile</a>");
+                out.println("</li>");
+                out.println("</br>");
             }
+            out.println("</ul>");
         }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -152,9 +144,5 @@ public class SearchServlet extends HttpServlet {
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.findTravelmates(destination, gender);
     }
-
-  
-
-   
 
 }

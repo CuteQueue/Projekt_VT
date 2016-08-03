@@ -241,14 +241,23 @@ public class tmWebService {
     @WebMethod(operationName = "findTravelmates")
     public List<User> findTravelmates(@WebParam(name = "destination") String destination, @WebParam(name = "gender") String gender) {
         try {
-            //Bisher werden alle user in der Datenbank gesucht, die das gesuchte Reiseziel haben,
+            //Es werden alle User in der Datenbank gesucht, die den Kriterien entsprechen (Reiseziel, Geschlecht)
             //diese werden dann in einer Liste gespeichert und zurückgegeben
 
             Connection con = travelmate_vs.getConnection();
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM profils, users WHERE destination = ? AND profils.user_id = users.id "); //where id = ?
+            PreparedStatement pstmt = null;
             List<User> travelmates = new ArrayList();
-
-            pstmt.setString(1, destination);
+            
+            
+            if (gender.equals("both")){
+                pstmt = con.prepareStatement("SELECT * FROM profils, users WHERE destination = ? AND profils.user_id = users.id ");
+                pstmt.setString(1, destination);
+            }else{
+                 pstmt = con.prepareStatement("SELECT * FROM profils, users WHERE destination = ? AND profils.user_id = users.id AND sex = ?");
+                 pstmt.setString(1, destination);
+                 pstmt.setString(2, gender);
+            }
+            
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
 
