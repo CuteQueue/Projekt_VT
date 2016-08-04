@@ -22,7 +22,20 @@
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="-1">
         <title>Search</title>
+        
+        <script>
+            function meldung(){
+              alert("No valid session, please login!");
+              location= window.location.href='Index';
+            };
+        </script>
     </head>
+    <!--Abfrage, ob Session gültig ist, sonst kein Zugriff auf create.jsp-->
+    <% HttpSession nsession = request.getSession(true);
+        if(nsession.getAttribute("email")==null) {
+            %><script>meldung();</script><%     
+        } 
+    %>
     <body>
         <form action="Search" method="POST">
             <table border="0">

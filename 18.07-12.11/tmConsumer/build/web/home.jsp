@@ -28,8 +28,18 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-   
+    <script>
+        function meldung(){
+              alert("No valid session, please login!");
+              location= window.location.href='Index';
+            };
+    </script>
   </head>
+    <% HttpSession nsession = request.getSession(true);
+        if(nsession.getAttribute("email")==null) {
+            %><script>meldung();</script><%     
+        } 
+    %>
     <body>
         <nav class="navbar navbar-default">
           <div class="container-fluid">
@@ -48,9 +58,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Search</a></li>
+                <li><a href="${pageContext.request.contextPath}/toSearch">Search</a></li>
                 <li><a href="#">Messages</a></li>
-                <li><a href="#">Chat</a></li>
+                <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>

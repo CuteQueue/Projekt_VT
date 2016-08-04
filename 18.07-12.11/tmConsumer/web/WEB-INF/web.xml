@@ -52,7 +52,7 @@
         <servlet-name>tmChatOnServlet</servlet-name>
         <servlet-class>Chat.tmChatOnServlet</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>EditProfileServlet</servlet-name>
         <servlet-class>tm.EditProfileServlet</servlet-class>
     </servlet>
@@ -60,13 +60,21 @@
         <servlet-name>WeiterleitungEditProfile</servlet-name>
         <servlet-class>Weiterleitung.WeiterleitungEditProfile</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>SearchServlet</servlet-name>
         <servlet-class>tm.SearchServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProfileServlet</servlet-name>
         <servlet-class>tm.ProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WeiterleitungSearchServlet</servlet-name>
+        <servlet-class>Weiterleitung.WeiterleitungSearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WeiterleitungIndexServlet</servlet-name>
+        <servlet-class>Weiterleitung.WeiterleitungIndexServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -128,13 +136,21 @@
         <servlet-name>WeiterleitungEditProfile</servlet-name>
         <url-pattern>/Edit</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/Search</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProfileServlet</servlet-name>
         <url-pattern>/Profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WeiterleitungSearchServlet</servlet-name>
+        <url-pattern>/toSearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WeiterleitungIndexServlet</servlet-name>
+        <url-pattern>/Index</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

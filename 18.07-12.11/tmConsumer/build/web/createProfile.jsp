@@ -97,7 +97,7 @@
             
             function meldung(){
               alert("No valid session, please login!");
-              location= window.location.href='index.jsp';
+              location= window.location.href='Index';
             };
            
         </script>

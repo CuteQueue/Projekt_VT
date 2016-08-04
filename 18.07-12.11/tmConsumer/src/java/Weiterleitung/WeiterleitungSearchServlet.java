@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Manuela
  */
-public class WeiterleitungChatServlet extends HttpServlet {
+public class WeiterleitungSearchServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,16 +30,19 @@ public class WeiterleitungChatServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
-        response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
-        response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
-        response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
         response.setContentType("text/html;charset=UTF-8");
+        response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+        response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
+        response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+        response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
+        
         try (PrintWriter out = response.getWriter()) {
-  
-           RequestDispatcher rd = request.getRequestDispatcher("tmChat");
-           rd.forward(request, response);
-        }
+                
+                RequestDispatcher rd = request.getRequestDispatcher("search.jsp");
+                rd.forward(request, response);
+             
+            
+        }     
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

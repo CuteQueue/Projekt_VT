@@ -36,9 +36,18 @@
                 }
 
             };
-
+            
+            function meldung(){
+              alert("No valid session, please login!");
+              location= window.location.href='Index';
+            };
         </script>
     </head>
+    <% HttpSession nsession = request.getSession(true);
+        if(nsession.getAttribute("email")==null) {
+            %><script>meldung();</script><%     
+        } 
+    %>
     <body>
         <form action="EditProfile" method = "POST">
             <table border="0">
