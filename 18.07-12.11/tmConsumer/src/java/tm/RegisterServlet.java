@@ -19,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.WebServiceRef;
 import webservice.TmWebService_Service;
 
@@ -49,6 +50,8 @@ public class RegisterServlet extends HttpServlet {
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
         response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(true);
+        session.setAttribute("registered", null);
         try (PrintWriter out = response.getWriter()) {
           System.out.println("RegisterServlet");
             byte[] newSalt = generateSalt();
@@ -62,11 +65,21 @@ public class RegisterServlet extends HttpServlet {
             String email = request.getParameterValues("email")[0];
             
             //Neuer User wird in der Datenbank angelegt
-            System.out.println(newUser(name, last_name, nickname, email, newSalt, encryptedPw));
-            
+            //System.out.println(newUser(name, last_name, nickname, email, newSalt, encryptedPw));
+            String addUser = newUser(name, last_name, nickname, email, newSalt, encryptedPw);
+            System.out.println("addUser: " + addUser);
+            if(addUser==null){
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Mail already in use.');");
+                out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/register.jsp\';");
+                out.println("</script>");
+                
+            }else{
+            session.setAttribute("registered", "true");
             //Weiterleitung auf die index-Seite, damit sich der neue User einloggen kann
             response.sendRedirect("toLogin");
-          
+            }
+           
         }
         
     }

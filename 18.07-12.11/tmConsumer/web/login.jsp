@@ -15,6 +15,7 @@
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="-1">
         <title>TravelMate</title>
+        <link rel="stylesheet" href="css/css01.css" type="text/css">
         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -23,52 +24,24 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+        <script>
+            function meldung(){
+              alert("Welcome to TravelMate!\nLogin and let the adventure begin!");
+              location= window.location.href='login.jsp';
+            };
+        </script>
     </head>
-    
-    <style>
-        .parent {
-          width: 100%;
-          height: 100%;
-        }
-        .child {
-          width: 100%;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-        }
-        .center-me {
-          margin: 0 auto;
-        }
-        
-        /*für Hintergrunddarstellung im Browser*/
-        html { 
-            background: url(backgrounds/pexels-photo-25562_edit.jpg) no-repeat center center fixed; 
-            -webkit-background-size: 100%; 
-            -moz-background-size: 100%; 
-            -o-background-size: 100%; 
-            background-size: 100%; 
-            -webkit-background-size: cover; 
-            -moz-background-size: cover; 
-            -o-background-size: cover; 
-            background-size: cover; 
-            min-height: 100%;
-          }
-        
-         /*fixed-bg für korrekte Darstellung auf dem Smartphone bei Wisch-Geste*/
-        .fixed-bg {
-            background-image: url(backgrounds/pexels-photo-25562_edit.jpg);
-            min-height: 600px;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-    </style>
-    
+    <!--Abfrage, ob Session gültig ist, sonst kein Zugriff auf create.jsp-->
+    <% HttpSession nsession = request.getSession(true);
+        if(nsession.getAttribute("registered")!=null) {
+            nsession.removeAttribute("registered");
+            %><script>meldung();</script><%  
+        } %>
     <body>
         <div class="fixed-bg">
         <div class="parent">
-          <div class="child">
+          <div class="child container-fluid">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 text-center">
                     <img src="backgrounds/TravelMateLogo.png" style="max-width:300px;padding-bottom:15pt;"> 
@@ -88,7 +61,7 @@
                         <br><br>
                         <input type=submit class="btn btn-primary btn-s" value="Submit">
                         <input type="button" class="btn btn-primary btn-s" onclick="window.location.href='register.jsp'" value="Register" name="button" id="button"/>​<br>
-                        <input type="button" class="btn btn-default btn-xs" style="margin-top:15px;" onclick="window.location.href='index.jsp'" value="Change Server-Ip" name="button" id="button"/>​ 
+                        <input type="button" class="btn btn-default btn-xs" style="margin-top:15px;" onclick="window.location.href='index.jsp'" value="Change Server-IP" name="button" id="button"/>​ 
                         <br><br>
                       </div>
                     </form>
