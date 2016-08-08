@@ -77,6 +77,13 @@ and open the template in the editor.
           min-width:280px;
           min-height: 260px;
         }
+        
+        .profilesheet-search{
+          background-color:white;
+          max-width:600px;
+          min-width:280px;
+          min-height: 220px;
+        }
 
         .profilesheet-about{
           background-color:aliceblue;
