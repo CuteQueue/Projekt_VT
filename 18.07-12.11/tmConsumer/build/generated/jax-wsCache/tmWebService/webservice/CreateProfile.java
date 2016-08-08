@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="inputStream" type="{http://WebService/}inputStream" minOccurs="0"/&gt;
  *         &lt;element name="mobilenumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="age" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="location" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
@@ -38,6 +39,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "createProfile", propOrder = {
     "id",
+    "inputStream",
     "mobilenumber",
     "age",
     "location",
@@ -51,6 +53,7 @@ import javax.xml.bind.annotation.XmlType;
 public class CreateProfile {
 
     protected int id;
+    protected InputStream inputStream;
     protected String mobilenumber;
     protected int age;
     protected String location;
@@ -76,6 +79,30 @@ public class CreateProfile {
      */
     public void setId(int value) {
         this.id = value;
+    }
+
+    /**
+     * Ruft den Wert der inputStream-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link InputStream }
+     *     
+     */
+    public InputStream getInputStream() {
+        return inputStream;
+    }
+
+    /**
+     * Legt den Wert der inputStream-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link InputStream }
+     *     
+     */
+    public void setInputStream(InputStream value) {
+        this.inputStream = value;
     }
 
     /**

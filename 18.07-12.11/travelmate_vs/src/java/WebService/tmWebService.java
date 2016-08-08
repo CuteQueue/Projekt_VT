@@ -5,6 +5,7 @@
  */
 package WebService;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +17,7 @@ import javax.annotation.Resource;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.servlet.annotation.MultipartConfig;
 import javax.sql.DataSource;
 import static sun.security.krb5.Confounder.bytes;
 import tm.User;
@@ -25,6 +27,7 @@ import tm.User;
  * @author nina
  */
 @WebService(serviceName = "tmWebService")
+@MultipartConfig(maxFileSize = 16177215)    // upload file's size up to 16MB
 public class tmWebService {
 
     @Resource(name = "travelmate_vs")
@@ -167,7 +170,7 @@ public class tmWebService {
      * Web service operation
      */
     @WebMethod(operationName = "createProfile")
-    public String createProfile(@WebParam(name = "id") int id, @WebParam(name = "mobilenumber") String mobilenumber, @WebParam(name = "age") int age, @WebParam(name = "location") String location, @WebParam(name = "sex") String sex, @WebParam(name = "destination") String destination, @WebParam(name = "startdate") String startdate, @WebParam(name = "interests") String interests, @WebParam(name = "looking_for") String looking_for, @WebParam(name = "about") String about) {
+    public String createProfile(@WebParam(name = "id") int id, @WebParam(name = "inputStream") InputStream inputStream, @WebParam(name = "mobilenumber") String mobilenumber, @WebParam(name = "age") int age, @WebParam(name = "location") String location, @WebParam(name = "sex") String sex, @WebParam(name = "destination") String destination, @WebParam(name = "startdate") String startdate, @WebParam(name = "interests") String interests, @WebParam(name = "looking_for") String looking_for, @WebParam(name = "about") String about) {
         try {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();

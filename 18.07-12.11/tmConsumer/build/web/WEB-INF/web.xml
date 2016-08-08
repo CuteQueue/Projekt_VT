@@ -52,7 +52,7 @@
         <servlet-name>tmChatOnServlet</servlet-name>
         <servlet-class>Chat.tmChatOnServlet</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>EditProfileServlet</servlet-name>
         <servlet-class>tm.EditProfileServlet</servlet-class>
     </servlet>
@@ -60,7 +60,7 @@
         <servlet-name>WeiterleitungEditProfile</servlet-name>
         <servlet-class>Weiterleitung.WeiterleitungEditProfile</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>SearchServlet</servlet-name>
         <servlet-class>tm.SearchServlet</servlet-class>
     </servlet>
@@ -128,7 +128,7 @@
         <servlet-name>WeiterleitungEditProfile</servlet-name>
         <url-pattern>/Edit</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/Search</url-pattern>
     </servlet-mapping>
@@ -141,6 +141,7 @@
             150
         </session-timeout>
     </session-config>
+    
     <resource-ref>
         <res-ref-name>jdbc/travelmate</res-ref-name>
         <res-type>javax.sql.ConnectionPoolDataSource</res-type>

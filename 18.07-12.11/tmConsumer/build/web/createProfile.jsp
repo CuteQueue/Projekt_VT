@@ -96,7 +96,7 @@
         </script>
     </head>
     <body>
-        <form action="CreateProfile" method = "POST">
+        <form action="CreateProfile" method = "POST" enctype="multipart/form-data">
             <table border="0">
                 <thead>
                     <tr>
@@ -105,6 +105,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>Photo:</td>
+                        <td><input type="file" name="photo" size = "50"/></td>
+                    </tr>
                     <tr>
                         <td>Mobilenumber:</td>
                         <td><input type="number" name="mobilenumber" id="mobilenumber" onchange="store()" value="" /></td>

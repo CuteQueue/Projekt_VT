@@ -42,24 +42,6 @@ public interface TmWebService {
 
     /**
      * 
-     * @param pw
-     * @param email
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "login", targetNamespace = "http://WebService/", className = "webservice.Login")
-    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://WebService/", className = "webservice.LoginResponse")
-    @Action(input = "http://WebService/tmWebService/loginRequest", output = "http://WebService/tmWebService/loginResponse")
-    public String login(
-        @WebParam(name = "email", targetNamespace = "")
-        String email,
-        @WebParam(name = "pw", targetNamespace = "")
-        String pw);
-
-    /**
-     * 
      * @param lastName
      * @param password
      * @param salt
@@ -105,10 +87,44 @@ public interface TmWebService {
 
     /**
      * 
+     * @param pw
+     * @param email
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "login", targetNamespace = "http://WebService/", className = "webservice.Login")
+    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://WebService/", className = "webservice.LoginResponse")
+    @Action(input = "http://WebService/tmWebService/loginRequest", output = "http://WebService/tmWebService/loginResponse")
+    public String login(
+        @WebParam(name = "email", targetNamespace = "")
+        String email,
+        @WebParam(name = "pw", targetNamespace = "")
+        String pw);
+
+    /**
+     * 
+     * @param name
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "hello", targetNamespace = "http://WebService/", className = "webservice.Hello")
+    @ResponseWrapper(localName = "helloResponse", targetNamespace = "http://WebService/", className = "webservice.HelloResponse")
+    @Action(input = "http://WebService/tmWebService/helloRequest", output = "http://WebService/tmWebService/helloResponse")
+    public String hello(
+        @WebParam(name = "name", targetNamespace = "")
+        String name);
+
+    /**
+     * 
      * @param mobilenumber
      * @param sex
      * @param destination
      * @param about
+     * @param inputStream
      * @param lookingFor
      * @param location
      * @param id
@@ -120,12 +136,14 @@ public interface TmWebService {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "editProfile", targetNamespace = "http://WebService/", className = "webservice.EditProfile")
-    @ResponseWrapper(localName = "editProfileResponse", targetNamespace = "http://WebService/", className = "webservice.EditProfileResponse")
-    @Action(input = "http://WebService/tmWebService/editProfileRequest", output = "http://WebService/tmWebService/editProfileResponse")
-    public String editProfile(
+    @RequestWrapper(localName = "createProfile", targetNamespace = "http://WebService/", className = "webservice.CreateProfile")
+    @ResponseWrapper(localName = "createProfileResponse", targetNamespace = "http://WebService/", className = "webservice.CreateProfileResponse")
+    @Action(input = "http://WebService/tmWebService/createProfileRequest", output = "http://WebService/tmWebService/createProfileResponse")
+    public String createProfile(
         @WebParam(name = "id", targetNamespace = "")
         int id,
+        @WebParam(name = "inputStream", targetNamespace = "")
+        InputStream inputStream,
         @WebParam(name = "mobilenumber", targetNamespace = "")
         String mobilenumber,
         @WebParam(name = "age", targetNamespace = "")
@@ -144,21 +162,6 @@ public interface TmWebService {
         String lookingFor,
         @WebParam(name = "about", targetNamespace = "")
         String about);
-
-    /**
-     * 
-     * @param name
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "hello", targetNamespace = "http://WebService/", className = "webservice.Hello")
-    @ResponseWrapper(localName = "helloResponse", targetNamespace = "http://WebService/", className = "webservice.HelloResponse")
-    @Action(input = "http://WebService/tmWebService/helloRequest", output = "http://WebService/tmWebService/helloResponse")
-    public String hello(
-        @WebParam(name = "name", targetNamespace = "")
-        String name);
 
     /**
      * 
@@ -192,10 +195,10 @@ public interface TmWebService {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "createProfile", targetNamespace = "http://WebService/", className = "webservice.CreateProfile")
-    @ResponseWrapper(localName = "createProfileResponse", targetNamespace = "http://WebService/", className = "webservice.CreateProfileResponse")
-    @Action(input = "http://WebService/tmWebService/createProfileRequest", output = "http://WebService/tmWebService/createProfileResponse")
-    public String createProfile(
+    @RequestWrapper(localName = "editProfile", targetNamespace = "http://WebService/", className = "webservice.EditProfile")
+    @ResponseWrapper(localName = "editProfileResponse", targetNamespace = "http://WebService/", className = "webservice.EditProfileResponse")
+    @Action(input = "http://WebService/tmWebService/editProfileRequest", output = "http://WebService/tmWebService/editProfileResponse")
+    public String editProfile(
         @WebParam(name = "id", targetNamespace = "")
         int id,
         @WebParam(name = "mobilenumber", targetNamespace = "")

@@ -1,20 +1,25 @@
 package tm;
 
+
+
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import javax.xml.ws.WebServiceRef;
 import webservice.TmWebService_Service;
+import javax.servlet.annotation.MultipartConfig;
 
 /**
  *
  * @author nina
  */
+@MultipartConfig(maxFileSize = 16177215)    // upload file's size up to 16MB
 public class CreateProfileServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
@@ -37,14 +42,12 @@ public class CreateProfileServlet extends HttpServlet {
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
         response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
         try (PrintWriter out = response.getWriter()) {
-            
+
             HttpSession session = request.getSession(true);
-            System.out.println("!!!!!!!!!!!!!!!!!!! SessionIP ChatOnServlet: " + session.getAttribute("serverIp"));
             if (session.getAttribute("email") == null) {
                 out.println("<html><head><title>SessionError</title></head>");
                 out.println("<body><h2>Keine Session vorhanden</h2>");
-                //out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
-                out.print("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer\"");
+                out.print("<form action=\"http://" + session.getAttribute("serverIp") + ":8080/tmConsumer\"");
                 out.println("\" method=\"POST\" >");
                 out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
                 out.println("</form>");
@@ -52,30 +55,42 @@ public class CreateProfileServlet extends HttpServlet {
                 out.close();
                 return;
             }
+            System.out.println("CreateProfileServlet");
+
             String email = (String) session.getAttribute("email");
             User u = new User(email);
             session.setAttribute("user", u); //in Session gespeichert 
             User user = (User) session.getAttribute("user");
 
-            System.out.println("CreateProfileServlet");
+            InputStream inputStream = null; // input stream of the upload file
+
+            // obtains the upload file part in this multipart request
+            Part filePart = request.getPart("photo");
+            if (filePart != null) {
+                // prints out some information for debugging
+                System.out.println(filePart.getName());
+                System.out.println(filePart.getSize());
+                System.out.println(filePart.getContentType());
+
+                // obtains input stream of the upload file
+                inputStream = filePart.getInputStream();
+                
+            }
+            
+            //webservice.InputStream test = (webservice.InputStream) inputStream;
 
             String mobilenumber = request.getParameterValues("mobilenumber")[0];
-
             String ageString = request.getParameterValues("age")[0];
             int age = Integer.parseInt(ageString);
-
             String location = request.getParameterValues("location")[0];
             String sex = request.getParameterValues("sex")[0];
             String destination = request.getParameterValues("destination")[0];
-
             String startdate = request.getParameterValues("startdate")[0];
-            // String startdate = java.sql.Date.valueOf(startdateString); 
-
             String interests = request.getParameterValues("interests")[0];
             String looking_for = request.getParameterValues("looking_for")[0];
             String about = request.getParameterValues("about")[0];
 
-            String answer = createProfile(user.getId(), mobilenumber, age, location, sex, destination, startdate, interests, looking_for, about);
+            String answer = createProfile(user.getId(), inputStream, mobilenumber, age, location, sex, destination, startdate, interests, looking_for, about);
 
             if (answer.equals("ok")) {
                 request.getRequestDispatcher("/Home").forward(request, response);
@@ -84,8 +99,8 @@ public class CreateProfileServlet extends HttpServlet {
                 //out.println("Ooooops, something went wrong!");
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please check all inputs, something seems to be missing.');");
-                out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Create\';");
-                out.println("</script>");  
+                out.println("location='http://" + session.getAttribute("serverIp") + ":8080/tmConsumer/Create\';");
+                out.println("</script>");
             }
         }
     }
@@ -129,11 +144,15 @@ public class CreateProfileServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private String createProfile(int id, java.lang.String mobilenumber, int age, java.lang.String location, java.lang.String sex, java.lang.String destination, java.lang.String startdate, java.lang.String interests, java.lang.String lookingFor, java.lang.String about) {
+    private String createProfile(int id, InputStream inputStream, java.lang.String mobilenumber, int age, java.lang.String location, java.lang.String sex, java.lang.String destination, java.lang.String startdate, java.lang.String interests, java.lang.String lookingFor, java.lang.String about) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         webservice.TmWebService port = service.getTmWebServicePort();
-        return port.createProfile(id, mobilenumber, age, location, sex, destination, startdate, interests, lookingFor, about);
+        return port.createProfile(id, inputStream, mobilenumber, age, location, sex, destination, startdate, interests, lookingFor, about);
     }
+
+  
+
+    
 
 }
