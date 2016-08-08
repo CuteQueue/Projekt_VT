@@ -130,6 +130,7 @@
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               </button>
+              <a class="navbar-brand" href="${pageContext.request.contextPath}/toHome">TravelMate</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -141,6 +142,7 @@
                 <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
+                <li><a href="${pageContext.request.contextPath}/Logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->

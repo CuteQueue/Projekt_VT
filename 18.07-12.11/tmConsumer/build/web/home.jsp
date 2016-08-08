@@ -10,10 +10,11 @@
 <!DOCTYPE html>
 
   <head>
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
     <title>TravelMate</title>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -34,24 +35,25 @@
               location= window.location.href='Index';
             };
     </script>
-  </head>
-    <% HttpSession nsession = request.getSession(true);
-        if(nsession.getAttribute("email")==null) {
-            %><script>meldung();</script><%     
-        } 
-    %>
+    <link rel="stylesheet" href="css/css02.css" type="text/css">
+    
+    
+    </head>
+      <% HttpSession nsession = request.getSession(true);
+          if(nsession.getAttribute("email")==null) {
+              %><script>meldung();</script><%     
+          } 
+      %>
+
     <body>
+      <div>
         <nav class="navbar navbar-default">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">TravelMate</a>
+              <a class="navbar-brand" href="${pageContext.request.contextPath}/toHome">TravelMate</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -63,58 +65,195 @@
                 <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
+                <li><a href="${pageContext.request.contextPath}/Logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
-            
-        <% String email;
-        
-            try {
-        
-            //--------Passende Userdaten holen ----------------------------------
-                email = (String) session.getAttribute("email");
-                User u = new User(email);
-                session.setAttribute("user", u); //in Session gespeichert 
-                session.setAttribute("userId", u.getId());
-                User user = (User) session.getAttribute("user");
-                out.println("<h2>Willkommen " + user.getName() + " " + user.getLast_name() + "!</h2>");
-                out.println("</br>");
+       </div>     
 
-                u.getProfileData(); //Profildaten holen
-                if (u.getLocation() != null) { //Wenn Profil schon vorhanden
-                    //-----------Ausgabe der Profildaten------------------------------------------
-                    out.println("Location: " + u.getLocation() + "</br>");
-                    out.println("Age: " + u.getAge() + "</br>");
-                    out.println("Destination: " + u.getDestination() + "</br>");
-                    out.println("Startdate: " + u.getStartdate() + "</br>");
-                    out.println("Interests: " + u.getInterests() + "</br>");
-                    out.println("Looking for: " + u.getLooking_for() + "</br>");
-                    out.println("About: " + u.getAbout() + "</b>");
 
-                    //--------Edit Button----------------------------------------------------
-                    out.println("<form action=\"http://" + session.getAttribute("serverIp") + ":8080/tmConsumer/editProfile.jsp\">");
-                    out.println("<input type=submit value=\"Edit\">");
-                    out.println("</form>");
+        <div class="fixed-bg container">
+              <div class="row center-me profilesheet" >
+                <div class="col-xs-12 col-sm-5 col-md-5 abstand">
+                  <img src="images/blank-profile-picture-973460_1280.png" class="img-fluid img-rounded pull-xs-left profile-img" alt="responsive img">
+                </div>
+                <div class="col-xs-3 col-sm-2 col-md-2 ">
+                  <table class="table abstand table-borderless">
+                    <tbody>
+                      <tr>
+                        <td><h4><font color="#2a96c0">Profile </font><h4></td>
+                      </tr>
+                      <tr>
+                        <td>Name: </td>
+                      </tr>
+                      <tr>
+                        <td>Last&nbspname: </td>
+                      </tr>
+                      <tr>
+                        <td>Nickname: </td>
+                      </tr>
+                      <tr>
+                        <td>Age: </td>
+                      </tr>
+                      <tr>
+                        <td>Gender: </td>
+                      </tr>
 
-                } else { //Wenn noch kein Profil vorhanden:
-                    out.println("Noch kein Profil vorhanden");
-                    out.println("Jetzt anlegen: ");
-                    out.println("<form action=\"http://" + session.getAttribute("serverIp") + ":8080/tmConsumer/Create\">");
-                    out.println("<input type=submit value=\"Create Profile\">");
-                    out.println("</form>");
+                    </tbody>
+                  </table>
+                </div> 
+                <div class="col-xs-5 col-sm-5 col-md-5 ">
+                  <table class="table abstand table-borderless">
+                    <tbody>
+                      <tr>
+                        <td><h4></br><h4></td>
+                      </tr>
+                      <tr>
+                        <td>
+                            <% 
+                                User u = new User((String) session.getAttribute("email"));
+                                User user = (User) session.getAttribute("user");
+                                u.getProfileData(); //Profildaten holen
+                                out.println(u.getName());
+                            %> 
+                        </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <% 
+                                out.println(u.getLast_name());
+                              %> 
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <% 
+                                out.println(u.getNickname());
+                              %> 
+                          </td>
+                      </tr>
+                      <tr>
+                        <td>
+                              <% 
+                                out.println(u.getAge());
+                              %> 
+                          </td>
+                      </tr>
+                      <tr>
+                        <td>
+                              <% 
+                                out.println(u.getSex());
+                              %> 
+                          </td>
+                      </tr>
 
-                }
-                
-            }catch(Exception err){
-                System.out.println("catch, home.jsp");
-            }
+                    </tbody>
+                  </table>
+                </div> 
+              </div>
 
-        %>
+              <div class="row center-me profilesheet-about" >
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <table class="table abstand table-borderless">
+                    <tbody>
+                      <tr>
+                        <td><h4><font color="#2a96c0">About&nbspme</font><h4></td>
+                      </tr>
+                      <tr>
+                        <td>
+                            <% 
+                              out.println(u.getAbout());
+                            %> 
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
 
-      
-      
-      
+              <div class="row center-me profilesheet-bottom" >
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <table class="table abstand table-borderless">
+                    <tbody>
+                      <tr>
+                        <td><h4><font color="#2a96c0">My&nbsptravel&nbspplans</font><h4></td>
+                      </tr>
+                      <tr>
+                        <td>Current&nbsplocation: </td>
+                      </tr>
+                      <tr>
+                        <td>Next&nbspdestination: </td>
+                      </tr>
+                      <tr>
+                        <td>Startdate: </td>
+                      </tr>
+                      <tr>
+                        <td>Looking&nbspfor: </td>
+                      </tr>
+                      <tr>
+                        <td>Interests: </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                  <table class="table abstand table-borderless">
+                    <tbody>
+                      <tr>
+                        <td><h4></br><h4></td>
+                      </tr>
+                      <tr>
+                        <td>
+                              <% 
+                                out.println(u.getLocation());
+                              %> 
+                          </td>
+                      </tr>
+                      <tr>
+                        <td>
+                              <% 
+                                out.println(u.getDestination());
+                              %> 
+                          </td>
+                      </tr>
+                      <tr>
+                        <td>
+                              <% 
+                                out.println(u.getStartdate());
+                              %> 
+                          </td>
+                      </tr>
+                      <tr>
+                        <td>
+                              <% 
+                                out.println(u.getLooking_for());
+                              %> 
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                              <% 
+                                out.println(u.getInterests());
+                              %> 
+                          </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> 
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <td>
+                            <input type="button" class="btn btn-primary btn-s" style="margin-top:5px;" onclick="window.location.href='Edit'" value="edit profile" name="button" id="button"/>​
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+        </div></br></br>
     </body>
 </html>
+
