@@ -109,6 +109,12 @@ public class HomeServlet extends HttpServlet {
                 out.println("\" method=\"POST\" >");
                 out.println("<input type=\"submit\" name=\"search\" value=\"Search\">");
                 out.println("</form>");
+                
+                //------Inbox Button --------------------------------------
+                out.print("<form action=\"Inbox");
+                out.println("\" method=\"POST\" >");
+                out.println("<input type=\"submit\" name=\"inbox\" value=\"Inbox\">");
+                out.println("</form>");
 
                 //------Chat Button-------------------------------------------------------
                 out.println("<form action=\"http://" + session.getAttribute("serverIp") + ":8080/tmConsumer/tmChat\">");

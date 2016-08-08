@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <style>
@@ -95,8 +96,69 @@
             
         </script>
     </head>
-    <body>
-        <form action="CreateProfile" method = "POST" enctype="multipart/form-data">
+<body>
+    <% HttpSession nsession = request.getSession(true);
+        if(nsession.getAttribute("email")==null) {
+           String data=(String)session.getAttribute( "fname" );
+            out.println("no valid session");
+        } else{
+            out.println("<form action=\"CreateProfile\" method = \"POST\">\n" +
+"            <table border=\"0\">\n" +
+"                <thead>\n" +
+"                    <tr>\n" +
+"                        <th>Create Profile</th>\n" +
+"                        <th></th>\n" +
+"                    </tr>\n" +
+"                </thead>\n" +
+"                <tbody>\n" +
+"                    <tr>\n" +
+"                        <td>Mobilenumber:</td>\n" +
+"                        <td><input type=\"number\" name=\"mobilenumber\" id=\"mobilenumber\" onchange=\"store()\" value=\"\" /></td>\n" +
+"                    </tr>\n" +
+"                    <tr>\n" +
+"                        <td>Age:</td>\n" +
+"                        <td><input type=\"number\" name=\"age\" value=\"\" id=\"age\" onchange=\"store()\" /></td>\n" +
+"                    </tr>\n" +
+"                    <tr>\n" +
+"                        <td>Location:</td>\n" +
+"                        <td><input type=\"text\" name=\"location\" value=\"\" id=\"location\" onchange=\"store()\"/></td>\n" +
+"                    </tr>\n" +
+"                    <tr>\n" +
+"                        <td>Gender:</td>\n" +
+"\n" +
+"                        <td><input type=\"radio\" name=\"sex\" value=\"male\" id=\"male\" onclick=\"setStatus()\" checked> Male<br></td>\n" +
+"                        <td><input type=\"radio\" name=\"sex\" value=\"female\" id=\"female\" onclick=\"setStatus()\"> Female<br></td>\n" +
+"                    </tr>\n" +
+"                    <tr>\n" +
+"                        <td>Destination:</td>\n" +
+"                        <td><input type=\"text\" name=\"destination\" value=\"\" id=\"destination\" onchange=\"store()\"/></td>\n" +
+"                    </tr>\n" +
+"                    <tr>\n" +
+"                        <td>Startdate:</td>\n" +
+"                        <td><input type=\"date\" name=\"startdate\" value=\"\" id=\"startdate\" onchange=\"store()\" /></td>\n" +
+"                    </tr>\n" +
+"                    <tr>\n" +
+"                        <td>Interests:</td>\n" +
+"                        <td><input type=\"text\" name=\"interests\" value=\"\"  id=\"interests\" onchange=\"store()\"/></td>\n" +
+"                    </tr>\n" +
+"                    <tr>\n" +
+"                        <td>Looking for:</td>\n" +
+"                        <td><input type=\"text\" name=\"looking_for\" value=\"\"  id=\"looking_for\" onchange=\"store()\"/></td>\n" +
+"                    </tr>\n" +
+"                    <tr>\n" +
+"                        <td>About</td>\n" +
+"                        <td><input type=\"text\" name=\"about\" value=\"\"  id=\"about\" onchange=\"store()\"/></td>\n" +
+"                    </tr\n" +
+"                    <tr>\n" +
+"                        <td></td>\n" +
+"                        <td><input type=\"submit\" value=\"Create Profile\" /></td>\n" +
+"                    </tr>\n" +
+"                </tbody>\n" +
+"            </table>\n" +
+"        </form>");
+        };
+    %>
+   <!--<form action="CreateProfile" method = "POST">
             <table border="0">
                 <thead>
                     <tr>
@@ -105,10 +167,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Photo:</td>
-                        <td><input type="file" name="photo" size = "50"/></td>
-                    </tr>
                     <tr>
                         <td>Mobilenumber:</td>
                         <td><input type="number" name="mobilenumber" id="mobilenumber" onchange="store()" value="" /></td>
@@ -153,7 +211,8 @@
                     </tr>
                 </tbody>
             </table>
-        </form>
+        </form>-->
+        
          
     </body>
 

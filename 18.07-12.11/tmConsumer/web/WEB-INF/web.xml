@@ -68,6 +68,22 @@
         <servlet-name>ProfileServlet</servlet-name>
         <servlet-class>tm.ProfileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewMessageServlet</servlet-name>
+        <servlet-class>Messages.NewMessageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SendNewMessageServlet</servlet-name>
+        <servlet-class>Messages.SendNewMessageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InboxServlet</servlet-name>
+        <servlet-class>Messages.InboxServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MessagesServlet</servlet-name>
+        <servlet-class>Messages.MessagesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -136,12 +152,27 @@
         <servlet-name>ProfileServlet</servlet-name>
         <url-pattern>/Profile</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewMessageServlet</servlet-name>
+        <url-pattern>/NewMessage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendNewMessageServlet</servlet-name>
+        <url-pattern>/SendNewMessage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InboxServlet</servlet-name>
+        <url-pattern>/Inbox</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MessagesServlet</servlet-name>
+        <url-pattern>/Messages</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             150
         </session-timeout>
     </session-config>
-    
     <resource-ref>
         <res-ref-name>jdbc/travelmate</res-ref-name>
         <res-type>javax.sql.ConnectionPoolDataSource</res-type>

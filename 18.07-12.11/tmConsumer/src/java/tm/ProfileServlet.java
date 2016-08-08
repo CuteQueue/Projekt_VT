@@ -56,7 +56,7 @@ public class ProfileServlet extends HttpServlet {
 
             System.out.println("ProfileServlet");
 
-            //--------Passende Userdaten holen ----------------------------------
+            //--------Userdaten vom aktuellen User holen ----------------------------------
             String email = request.getParameterValues("email")[0];
             User u = new User(email);
             u.getProfileData(); //Profildaten holen
@@ -75,6 +75,18 @@ public class ProfileServlet extends HttpServlet {
             out.println("</br></br>");
             out.println("Contact details: " + "</br>");
             out.println("Email: " + u.getEmail());
+
+             out.println(" <form action=\"NewMessage\" method=\"POST\">");
+            out.println(" <input type=\"hidden\" name=\"chatPartnerId\" value=\"" + u.getId() + "\">");
+             out.println(" <input type=\"hidden\" name=\"chatPartnerName\" value=\"" + u.getName()+ "\">");
+              System.out.println("chatPartnerName: " + u.getName());
+            out.println(" <input type=submit value=\"Send Message\"></form>");
+            
+           /* session.setAttribute("chatPartnerId", u.getId()); 
+            session.setAttribute("chatPartnerName", u.getName()); 
+          
+            out.println(" <form action=\"newMessage.jsp\" method=\"POST\">");            
+            out.println(" <input type=submit value=\"Send Message\"></form>");*/
 
         }
     }

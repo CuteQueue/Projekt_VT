@@ -42,6 +42,12 @@ public class ObjectFactory {
     private final static QName _LoginResponse_QNAME = new QName("http://WebService/", "loginResponse");
     private final static QName _NewUser_QNAME = new QName("http://WebService/", "newUser");
     private final static QName _NewUserResponse_QNAME = new QName("http://WebService/", "newUserResponse");
+    private final static QName _ShowConversations_QNAME = new QName("http://WebService/", "showConversations");
+    private final static QName _ShowConversationsResponse_QNAME = new QName("http://WebService/", "showConversationsResponse");
+    private final static QName _ShowMessages_QNAME = new QName("http://WebService/", "showMessages");
+    private final static QName _ShowMessagesResponse_QNAME = new QName("http://WebService/", "showMessagesResponse");
+    private final static QName _StoreMessage_QNAME = new QName("http://WebService/", "storeMessage");
+    private final static QName _StoreMessageResponse_QNAME = new QName("http://WebService/", "storeMessageResponse");
     private final static QName _NewUserSalt_QNAME = new QName("", "salt");
     private final static QName _NewUserPassword_QNAME = new QName("", "password");
     private final static QName _GetSaltResponseReturn_QNAME = new QName("", "return");
@@ -198,11 +204,67 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ShowConversations }
+     * 
+     */
+    public ShowConversations createShowConversations() {
+        return new ShowConversations();
+    }
+
+    /**
+     * Create an instance of {@link ShowConversationsResponse }
+     * 
+     */
+    public ShowConversationsResponse createShowConversationsResponse() {
+        return new ShowConversationsResponse();
+    }
+
+    /**
+     * Create an instance of {@link ShowMessages }
+     * 
+     */
+    public ShowMessages createShowMessages() {
+        return new ShowMessages();
+    }
+
+    /**
+     * Create an instance of {@link ShowMessagesResponse }
+     * 
+     */
+    public ShowMessagesResponse createShowMessagesResponse() {
+        return new ShowMessagesResponse();
+    }
+
+    /**
+     * Create an instance of {@link StoreMessage }
+     * 
+     */
+    public StoreMessage createStoreMessage() {
+        return new StoreMessage();
+    }
+
+    /**
+     * Create an instance of {@link StoreMessageResponse }
+     * 
+     */
+    public StoreMessageResponse createStoreMessageResponse() {
+        return new StoreMessageResponse();
+    }
+
+    /**
      * Create an instance of {@link User }
      * 
      */
     public User createUser() {
         return new User();
+    }
+
+    /**
+     * Create an instance of {@link Message }
+     * 
+     */
+    public Message createMessage() {
+        return new Message();
     }
 
     /**
@@ -365,6 +427,60 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://WebService/", name = "newUserResponse")
     public JAXBElement<NewUserResponse> createNewUserResponse(NewUserResponse value) {
         return new JAXBElement<NewUserResponse>(_NewUserResponse_QNAME, NewUserResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ShowConversations }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "showConversations")
+    public JAXBElement<ShowConversations> createShowConversations(ShowConversations value) {
+        return new JAXBElement<ShowConversations>(_ShowConversations_QNAME, ShowConversations.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ShowConversationsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "showConversationsResponse")
+    public JAXBElement<ShowConversationsResponse> createShowConversationsResponse(ShowConversationsResponse value) {
+        return new JAXBElement<ShowConversationsResponse>(_ShowConversationsResponse_QNAME, ShowConversationsResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ShowMessages }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "showMessages")
+    public JAXBElement<ShowMessages> createShowMessages(ShowMessages value) {
+        return new JAXBElement<ShowMessages>(_ShowMessages_QNAME, ShowMessages.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ShowMessagesResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "showMessagesResponse")
+    public JAXBElement<ShowMessagesResponse> createShowMessagesResponse(ShowMessagesResponse value) {
+        return new JAXBElement<ShowMessagesResponse>(_ShowMessagesResponse_QNAME, ShowMessagesResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link StoreMessage }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "storeMessage")
+    public JAXBElement<StoreMessage> createStoreMessage(StoreMessage value) {
+        return new JAXBElement<StoreMessage>(_StoreMessage_QNAME, StoreMessage.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link StoreMessageResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "storeMessageResponse")
+    public JAXBElement<StoreMessageResponse> createStoreMessageResponse(StoreMessageResponse value) {
+        return new JAXBElement<StoreMessageResponse>(_StoreMessageResponse_QNAME, StoreMessageResponse.class, null, value);
     }
 
     /**
