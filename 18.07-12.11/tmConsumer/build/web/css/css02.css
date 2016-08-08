@@ -74,21 +74,21 @@ and open the template in the editor.
         .profilesheet{
           background-color:white;
           max-width:600px;
-          min-width:250px;
+          min-width:280px;
           min-height: 260px;
         }
 
         .profilesheet-about{
           background-color:aliceblue;
           max-width:600px;
-          min-width: 250px;
+          min-width: 280px;
           min-height: 50px;
         }
 
         .profilesheet-bottom{
           background-color:#e0eff9;
           max-width:600px;
-          min-width: 250px;
+          min-width: 280px;
           min-height: 260px;
         }
         

@@ -9,6 +9,7 @@
 <%@page import="tm.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <%-- Profildaten aus der Datenbank holen --%>
 <sql:query var="profileQuery" dataSource="jdbc/travelmate">
     SELECT * FROM profils WHERE user_id = ${sessionScope.userId}
@@ -125,7 +126,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4 abstand-edit">      
                       Mobilenumber:
                     </div>
-                    <div class="col-xs-12 col-sm-2 col-md-8 ">
+                    <div class="col-xs-12 col-sm-2 col-md-8 abstand-edit">
                       <input type="number" name="mobilenumber" value="${profileDetails.mobilenumber}" />
                     </div>
                   </div>
@@ -133,7 +134,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4 abstand-edit">      
                       Age: 
                     </div>
-                    <div class="col-xs-12 col-sm-2 col-md-8 ">
+                    <div class="col-xs-12 col-sm-2 col-md-8 abstand-edit">
                       <input type="number" name="age" value="${profileDetails.age}" />
                     </div>
                   </div>
@@ -141,7 +142,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4 abstand-edit">      
                       Gender: 
                     </div>
-                    <div class="col-xs-12 col-sm-4 col-md-8 ">
+                    <div class="col-xs-12 col-sm-4 col-md-8 abstand-edit">
                       <input type="radio" name="sex" value="male" id="male" checked><font size="2"> Male</font></br>
                       <input type="radio" name="sex" value="female" id="female"><font size="2"> Female</font></br>
                     </div>
@@ -150,7 +151,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4 abstand-edit">      
                       About: 
                     </div>
-                    <div class="col-xs-12 col-sm-2 col-md-8 ">
+                    <div class="col-xs-12 col-sm-2 col-md-8 abstand-edit">
                       <input type="text" name="about" value="${profileDetails.about}" />
                     </div>
                   </div>
@@ -158,7 +159,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4 abstand-edit">      
                       Location: 
                     </div>
-                    <div class="col-xs-12 col-sm-2 col-md-8 ">
+                    <div class="col-xs-12 col-sm-2 col-md-8 abstand-edit">
                       <input type="text" name="location" value="${profileDetails.location}" />
                     </div>
                   </div>
@@ -166,7 +167,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4 abstand-edit">      
                       Destination: 
                     </div>
-                    <div class="col-xs-12 col-sm-2 col-md-8 ">
+                    <div class="col-xs-12 col-sm-2 col-md-8 abstand-edit">
                       <input type="text" name="destination" value="${profileDetails.destination}" />
                     </div>
                   </div>
@@ -174,7 +175,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4 abstand-edit">      
                       Startdate: 
                     </div>
-                    <div class="col-xs-12 col-sm-2 col-md-8 ">
+                    <div class="col-xs-12 col-sm-2 col-md-8 abstand-edit">
                       <input type="date" name="startdate" value="${profileDetails.startdate}" id="startdate" />
                     </div>
                   </div>
@@ -182,7 +183,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4 abstand-edit">      
                       Looking&nbspfor: 
                     </div>
-                    <div class="col-xs-12 col-sm-2 col-md-8 ">
+                    <div class="col-xs-12 col-sm-2 col-md-8 abstand-edit">
                       <input type="text" name="looking_for" value="${profileDetails.looking_for}" />
                     </div>
                   </div>
@@ -190,7 +191,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4 abstand-edit">      
                       Interests: 
                     </div>
-                    <div class="col-xs-12 col-sm-2 col-md-8 ">
+                    <div class="col-xs-12 col-sm-2 col-md-8 abstand-edit">
                       <input type="text" name="interests" value="${profileDetails.interests}" />
                     </div>
                   </div>
