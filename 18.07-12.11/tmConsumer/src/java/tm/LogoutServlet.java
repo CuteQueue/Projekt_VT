@@ -5,6 +5,8 @@
  */
 package tm;
 
+import Chat.ChatInterface;
+import Chat.ClientInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -35,7 +37,7 @@ public class LogoutServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
         response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
@@ -44,7 +46,16 @@ public class LogoutServlet extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession(false); //Liefert null zurück, wenn es keine aktuelle Session gibt
-             if (session != null) {  
+             if (session != null) {
+                 try{
+                    ClientInterface user = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
+                    ChatInterface chat = (ChatInterface) session.getAttribute("chat"); //chat aus Session erholen
+                    String ipSession = (String) session.getAttribute("ip");
+                    chat.sendMessage(user.getUsername(), "hat sich ausgeloggt");
+                    user.getStub().unsubscribeUser(user.getUsername());
+                }catch(Exception err){
+                    System.out.println("User nicht im Chat aktiv. Muss nicht ausgeloggt werden.");
+                }
                 //aktuelle Session vorhanden
                 RequestDispatcher rd = request.getRequestDispatcher("logout.jsp");
                 rd.forward(request, response);

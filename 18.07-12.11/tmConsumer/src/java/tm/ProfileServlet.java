@@ -5,6 +5,8 @@
  */
 package tm;
 
+import Chat.ChatInterface;
+import Chat.ClientInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -53,8 +55,16 @@ public class ProfileServlet extends HttpServlet {
                 out.close();
                 return;
             }
+            try{
+                ClientInterface user = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
+                ChatInterface chat = (ChatInterface) session.getAttribute("chat"); //chat aus Session erholen
+                String ipSession = (String) session.getAttribute("ip");
+                chat.sendMessage(user.getUsername(), "hat sich ausgeloggt");
+                user.getStub().unsubscribeUser(user.getUsername());
+            }catch(Exception err){
+                System.out.println("User nicht im Chat aktiv. Muss nicht ausgeloggt werden.");
+            }
 
-            System.out.println("ProfileServlet");
 
             //--------Passende Userdaten holen ----------------------------------
             String email = request.getParameterValues("email")[0];

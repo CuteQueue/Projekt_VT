@@ -174,7 +174,7 @@
               </div>
 
               <div class="row center-me profilesheet-bottom" >
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
                   <table class="table abstand table-borderless">
                     <tbody>
                       <tr>
@@ -198,7 +198,7 @@
                     </tbody>
                   </table>
                 </div>
-                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                <div class="col-xs-7 col-sm-7 col-md-9 col-lg-9">
                   <table class="table abstand table-borderless">
                     <tbody>
                       <tr>
