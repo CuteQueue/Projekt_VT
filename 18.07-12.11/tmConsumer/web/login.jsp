@@ -28,7 +28,7 @@
         <script>
             function meldung(){
               alert("Welcome to TravelMate!\nLogin and let the adventure begin!");
-              location= window.location.href='login.jsp';
+              location= window.location.href='toLogin';
             };
         </script>
     </head>
@@ -60,8 +60,8 @@
                         <input type="password" name="pw">
                         <br><br>
                         <input type=submit class="btn btn-primary btn-s" value="Submit">
-                        <input type="button" class="btn btn-primary btn-s" onclick="window.location.href='register.jsp'" value="Register" name="button" id="button"/>​<br>
-                        <input type="button" class="btn btn-default btn-xs" style="margin-top:15px;" onclick="window.location.href='index.jsp'" value="Change Server-IP" name="button" id="button"/>​ 
+                        <input type="button" class="btn btn-primary btn-s" onclick="window.location.href='toRegister'" value="Register" name="button" id="button"/>​<br>
+                        <input type="button" class="btn btn-default btn-xs" style="margin-top:15px;" onclick="window.location.href='Index'" value="Change Server-IP" name="button" id="button"/>​ 
                         <br><br>
                       </div>
                     </form>

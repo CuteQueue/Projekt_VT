@@ -98,7 +98,6 @@
                             </tbody>
                         </table>
                     </form>
-        <!--LOCALSTORAGE abfragen-->
                 </div>
               </div>        
     </body>

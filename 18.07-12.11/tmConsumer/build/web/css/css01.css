@@ -24,7 +24,7 @@ and open the template in the editor.
         
         /*für Hintergrunddarstellung im Browser*/
         body { 
-            background: url(../backgrounds/pexels-photo-25562_edit.jpg) no-repeat center center fixed; 
+            background: url(../images/pexels-photo-25562_edit.jpg) no-repeat center center fixed; 
             -webkit-background-size: 100%; 
             -moz-background-size: 100%; 
             -o-background-size: 100%; 
@@ -38,7 +38,7 @@ and open the template in the editor.
         
          /*fixed-bg für korrekte Darstellung auf dem Smartphone bei Wisch-Geste*/
         .fixed-bg {
-            background-image: url(../backgrounds/pexels-photo-25562_edit.jpg);
+            background-image: url(../images/pexels-photo-25562_edit.jpg);
             min-height: 600px;
             background-attachment: fixed;
             background-position: center;
@@ -53,4 +53,8 @@ and open the template in the editor.
         
         input:required {
             box-shadow:none;
+        }
+        
+        .checkboxTypo{
+            font-size: 5pt;
         }

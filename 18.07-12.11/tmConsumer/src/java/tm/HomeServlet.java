@@ -61,7 +61,7 @@ public class HomeServlet extends HttpServlet {
                 if (session.getAttribute("email") == null) {
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('Keine Session vorhanden');");
-                    out.println("location= window.location.href='index.jsp';");
+                    out.println("location= window.location.href='Index';");
                     out.println("</script>");
                     out.close();
                     return;
@@ -83,7 +83,7 @@ public class HomeServlet extends HttpServlet {
                     rd.forward(request, response);
 
                 } else { //Wenn noch kein Profil vorhanden:
-                    RequestDispatcher rd = request.getRequestDispatcher("noprofile.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("createProfile.jsp");
                     rd.forward(request, response);
 
                 }

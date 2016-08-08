@@ -1,0 +1,109 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 08.08.2016, 11:48:34
+    Author     : Manuela
+*/
+
+        .parent {
+          width: 100%;
+          height: 100%;
+        }
+        .child {
+          width: 100%;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        
+        .table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+            border: none;
+        }
+        .center-me {
+          margin: 0 auto;
+        }
+        
+        /*für Hintergrunddarstellung im Browser*/
+        body { 
+          padding-top: 0px;
+            background: url(../images/pexels-photo.jpg) no-repeat center center fixed; 
+            -webkit-background-size: 100%; 
+            -moz-background-size: 100%; 
+            -o-background-size: 100%; 
+            background-size: 100%; 
+            -webkit-background-size: cover; 
+            -moz-background-size: cover; 
+            -o-background-size: cover; 
+            background-size: cover; 
+            min-height: 100%;
+
+          }
+        
+         /*fixed-bg für korrekte Darstellung auf dem Smartphone bei Wisch-Geste*/
+        .fixed-bg {
+            background-image: url(../images/pexels-photo.jpg);
+            min-height: 600px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+
+        .demo-card {
+          background-color: white;
+          width:200px;
+          max-width: 200px;
+        }
+        
+        h4.title {
+          text-align: center;
+        }
+
+        .abstand{
+          margin-top:15px;
+        }
+        
+        .abstand-edit{
+          margin-top:12px;
+        }
+
+        .profilesheet{
+          background-color:white;
+          max-width:600px;
+          min-width:250px;
+          min-height: 260px;
+        }
+
+        .profilesheet-about{
+          background-color:aliceblue;
+          max-width:600px;
+          min-width: 250px;
+          min-height: 50px;
+        }
+
+        .profilesheet-bottom{
+          background-color:#e0eff9;
+          max-width:600px;
+          min-width: 250px;
+          min-height: 260px;
+        }
+        
+        .profilesheet-edit{
+          background-color:white;
+          max-width:300px;
+          min-width:200px;
+          min-height: 260px;
+        }
+
+        .profile-img{
+          max-width:240px;
+          max-height:240px;
+        }
+        
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
