@@ -123,26 +123,41 @@ import java.util.List;
                         </br><h2> Destination: <%out.println(destination);%> </h2>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 abstand" style="text-align: center">
-                        Gender:
-                            <select name="Gender">
-                                <option>both</option>
-                                <option>female</option>
-                                <option>male</option>
-                            </select>
+
+                        <!--
+                        *-------------------------------Find TravelMates------------------------------------------------*
+                        - Die Methode findTravelmates() gibt eine Liste mit Objekten von User zurück, die zu den
+                          gesuchten Vorgaben passen
+                        - Diese werden dann mit in einer Liste ausgeben, um dann die Möglichkeit zu haben auf das Profil
+                          weitergeleitet zu werden
+                        -->
+
+                        <%java.util.List<webservice.User> travelmates = findTravelmates(destination, gender);%> //Aufruf der webService Methode 
+
+                        <!--Ausgabe der potenziellen Travelmates-->
+                        <ul>
+                        <%for (int i = 0; i < travelmates.size(); i++) {
+
+                            //Damit der aktuelle User nicht selbst bei der Suche ausgeben wird:
+                            if (travelmates.get(i).getUserId() != user.getId()) { 
+
+
+                                out.println("</br>");
+                                out.println("<li>" + travelmates.get(i).getName() + " " + travelmates.get(i).getLastName() + "</br>");
+                                out.println("Looking for: " + travelmates.get(i).getLookingFor() + "</br>");
+                                out.println("Startdate: " + travelmates.get(i).getStartdate() + "</br>");
+                                out.println(" <form action=\"Profile\" method=\"POST\">");
+                                out.println(" <input type=\"hidden\" name=\"email\" value=\"" + travelmates.get(i).getEmail() + "\">");
+                                out.println(" <input type=submit class=\"btn btn-primary btn-s\" style=\"margin-top:5px;\" value=\"Submit\">\n"
+                                        + "        </form>");
+                                out.println("</li>");
+                                out.println("</br>");
+                            }
+                        }%>
+                        </ul>
                     </div>
-                    <!--
-                    *-------------------------------Find TravelMates------------------------------------------------*
-                    - Die Methode findTravelmates() gibt eine Liste mit Objekten von User zurück, die zu den
-                      gesuchten Vorgaben passen
-                    - Diese werden dann mit in einer Liste ausgeben, um dann die Möglichkeit zu haben auf das Profil
-                      weitergeleitet zu werden
-                    -->
-                    
-                    <%java.util.List<webservice.User> travelmates = findTravelmates(destination, gender);%> //Aufruf der webService Methode 
-                    
                     
                     <div class="col-xs-12 col-sm-12 col-md-12 abstand" style="text-align: center">
-                        <input type=submit class="btn btn-primary btn-s" style="margin-top:5px;" value="Submit">
                     </div>
                 </form>
             </div>
