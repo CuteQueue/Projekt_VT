@@ -7,6 +7,7 @@ package Messages;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,21 +46,13 @@ public class InboxServlet extends HttpServlet {
             int user_id = user.getId();
             
             //Die verschiedenen Unterhaltungen laden
-            java.util.List<webservice.User> sender = showConversations(user_id);
+            java.util.List<webservice.User> conversations = showConversations(user_id);
             
-            //Die verschiedenen Unterhalten mit den jeweiligen Nutzernamen anzeigen
-            //Wird der Name angeklickt, wird der zugehörige Chatverlauf angezeigt
-            for (int i = 0; i < sender.size(); i++) {
-                out.println("</br>");
-                out.println(" <form action=\"Messages\" method=\"POST\">");
-                out.println("   <input type=\"hidden\" name=\"chatPartnerId\" value=\"" + sender.get(i).getUserId() + "\">");
-                out.println("   <input type=\"hidden\" name=\"chatPartnerName\" value=\"" + sender.get(i).getName() + "\">");
-                out.println("   <input type=submit value=" + sender.get(i).getName() + ">\n"
-                          + " </form>");
-                out.println("</li>");
-                out.println("</br>");
-
-            }
+            session.setAttribute("conversations", conversations);
+            
+            //Weiterleitung zu "inbox.jsp", um die verschiedenen Gesprächspartner anzuzeigen
+            RequestDispatcher rd = request.getRequestDispatcher("inbox.jsp");
+           rd.forward(request, response);
         }
     }
 

@@ -60,7 +60,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="${pageContext.request.contextPath}/toProfil">Profile<span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
                         <li><a href="${pageContext.request.contextPath}/toSearch">Search</a></li>
                         <li><a href="${pageContext.request.contextPath}/Inbox">Messages</a></li>
                         <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
@@ -80,19 +80,17 @@
 
                 <%
                     String chatPartnerName = (String) session.getAttribute("chatPartnerName");
-
+                    java.util.List<webservice.Message> messages = (java.util.List<webservice.Message>) session.getAttribute("messages");
+                    User user = (User) session.getAttribute("user");
                 %> 
 
 
                 <h2>Messages with <% out.println(chatPartnerName);%></h2></br>
                 
-             <% out.println(messages.get(1).getContent());%>
-                <%-- for (int i = 0; i < messages.size(); i++) {
-                    
-                     
+                <% for (int i = 0; i < messages.size(); i++) {
                      //Wenn die zur Nachrichten gespeicherte UserId gleich der Id des aktuellen Users ist,
                      //dann wurde die Nachricht vom aktuellen User gesendet:
-                     if (messages.get(i).getUserId() == user.getId()) {
+                     if (messages.get(i).getUserId() == user.getId()) { 
                          out.println("</br>");
                          out.println("<li style=\"text-align:right;background-color:blue;\">" + messages.get(i).getContent() + "</br>");
                          out.println("</li>");
@@ -104,13 +102,13 @@
                          out.println("</li>");
                          out.println("</br>");
                      }
-                 } 
+                 } %>
                  
-                 //Chatfenster zum Senden einer neuen Nachricht:--%>
+                <%-- Chatfenster zum Senden einer neuen Nachricht: --%>
                 <form action="SendNewMessage" method="post">
                     <table border="0" align="center">
                         <tr>
-                            <td><textarea rows="5" cols="39" name="content"></textarea> </td>
+                            <td><textarea rows="5" cols="50"  name="content"></textarea> </td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" value="Send"/></td>

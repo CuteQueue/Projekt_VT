@@ -7,6 +7,7 @@ package Messages;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,48 +45,16 @@ public class MessagesServlet extends HttpServlet {
             User user = (User) session.getAttribute("user");
             
             //aktueller Chatpartner:
-            String chatPartnerIdString = request.getParameter("chatPartnerId");
-            int chatPartnerId = Integer.parseInt(chatPartnerIdString);
-            String chatPartnerName = request.getParameter("chatPartnerName");
+            int chatPartnerId = (int) session.getAttribute("chatPartnerId");
             
-            //Chatverlauf laden
+            //Chatverlauf laden:
             java.util.List<webservice.Message> messages = showMessages(user.getId(), chatPartnerId);
-            
+            //Und in Session speichern:
             session.setAttribute("messages", messages);
-            //Ausgabe der Nachrichten:
-            out.println("<h2>Messages with " + chatPartnerName + "</h2></br>");
-            for (int i = 0; i < messages.size(); i++) {
-               
-                
-                //Wenn die zur Nachrichten gespeicherte UserId gleich der Id des aktuellen Users ist,
-                //dann wurde die Nachricht vom aktuellen User gesendet:
-                if (messages.get(i).getUserId() == user.getId()) {
-                    out.println("</br>");
-                    out.println("<li style=\"text-align:right;background-color:blue;\">" + messages.get(i).getContent() + "</br>");
-                    out.println("</li>");
-                    out.println("</br>");
-                } else {
-                //Ansonsten wurde die Nachricht vom Chatpartner gesendet:
-                    out.println("</br>");
-                    out.println("<li style=\"background-color:cyan\">" + messages.get(i).getContent() + "</br>");
-                    out.println("</li>");
-                    out.println("</br>");
-                }
-            }
-            
-            //Chatfenster zum Senden einer neuen Nachricht:
-            out.println("    <form action=\"SendNewMessage\" method=\"post\">\n"
-                    + "        <table border=\"0\" align=\"center\">\n"
-                    + "            <input type=\"hidden\" name=\"chatPartnerId\" value=\"" + chatPartnerId + "\" size=\"50\"/>\n"
-                    + "            <input type=\"hidden\" name=\"chatPartnerName\" value=\"" + chatPartnerName + "\" size=\"50\"/>\n"
-                    + "            <tr>\n"
-                    + "                <td><textarea rows=\"10\" cols=\"39\" name=\"content\"></textarea> </td>\n"
-                    + "            </tr>\n"
-                    + "            <tr>\n"
-                    + "                <td colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"Send\"/></td>\n"
-                    + "            </tr>\n"
-                    + "        </table>\n"
-                    + "         \n");
+           
+            //Weiterleitung zu "message.jsp", um die Nachrichten anzuzeigen
+            RequestDispatcher rd = request.getRequestDispatcher("messages.jsp");
+           rd.forward(request, response);
 
         }
     }

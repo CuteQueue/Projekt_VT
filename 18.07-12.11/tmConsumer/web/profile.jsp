@@ -1,7 +1,7 @@
 <%-- 
     Document   : profile
     Created on : 09.08.2016, 15:23:39
-    Author     : Manuela
+    Author     : Nina
 --%>
 
 <%@page import="java.io.PrintWriter"%>
@@ -254,7 +254,7 @@
                         <td>
                             <%
                                 if(tm==null){
-                                    out.println("<input type=\"button\" class=\"btn btn-primary btn-s\" style=\"margin-top:5px;\" onclick=\"window.location.href='Edit'\" value=\"edit profile\" name=\"button\" id=\"button\"/>​");
+                                    out.println("<input type=\"button\" class=\"btn btn-primary btn-s\" style=\"margin-top:5px;\" onclick=\"window.location.href='Edit'\" value=\"edit profile\" name=\"button\" id=\"button\"/>");
                                 }else{
                                     tm=null;
                                 }

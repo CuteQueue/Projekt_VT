@@ -197,7 +197,7 @@
                   </div>
                   <div class="row center-me">
                     <div class="col-xs-12 col-sm-12 col-md-12 abstand">
-                      <input type="button" class="btn btn-primary btn-s" onclick="window.location.href='toProfil'" value="cancel" name="button" id="button"/>​  
+                      <input type="button" class="btn btn-primary btn-s" onclick="window.location.href='toProfil'" value="cancel" name="button" id="button"/>  
                       <input class="btn btn-primary btn-s" type="submit" value="save changes" />
                     </div>                        
                   </div>

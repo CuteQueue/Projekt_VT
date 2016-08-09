@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,33 +42,24 @@ public class SendNewMessageServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            //akuteller User:
+            
             HttpSession session = request.getSession(true);
+            
+            //akuteller User:
             User user = (User) session.getAttribute("user");
 
             //aktueller Chatpartner:
             int chatPartnerId =  (int)session.getAttribute("chatPartnerId");
-          //  int chatPartnerId = Integer.parseInt(chatPartnerIdString);
-            String chatPartnerName = (String) session.getAttribute("chatPartnerName");
-
+         
             //Inhalt der Nachricht:
             String content = request.getParameter("content");
             
             //Nachricht in der Datenbank mit Inhalt, aktueller User und Chatpartner speichern:
             String answer = storeMessage(user.getId(), chatPartnerId, content);
             System.out.println(answer);
-       
             
-            //Ausgabe:
-            out.println("Nachricht wurde gesendet!");
-            out.println(" <form action=\"messages.jsp\" method=\"POST\">");
-            //In session speichern!
-            out.println(" <input type=\"hidden\" name=\"chatPartnerId\" value=\"" + chatPartnerId + "\">");
-            out.println("   <input type=\"hidden\" name=\"chatPartnerName\" value=\"" + chatPartnerName + "\">");
-            out.println("   <input type=submit value=\"Show Messages\">"
-                      + " </form>");
-            out.println("</li>");
-
+            //Weiterleitung zu "MessagesServlet, um den Chatverlauf zu  laden
+            out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Messages\">");
         }
     }
 
