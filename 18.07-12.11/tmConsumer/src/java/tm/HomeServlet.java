@@ -4,8 +4,6 @@
  */
 package tm;
 
-import Chat.ChatInterface;
-import Chat.ClientInterface;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
@@ -68,15 +66,6 @@ public class HomeServlet extends HttpServlet {
                     out.close();
                     return;
                 }
-                try{
-                    ClientInterface user = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
-                    ChatInterface chat = (ChatInterface) session.getAttribute("chat"); //chat aus Session erholen
-                    String ipSession = (String) session.getAttribute("ip");
-                    chat.sendMessage(user.getUsername(), "hat sich ausgeloggt");
-                    user.getStub().unsubscribeUser(user.getUsername());
-                }catch(Exception err){
-                    System.out.println("User nicht im Chat aktiv. Muss nicht ausgeloggt werden.");
-                }
 
                 
                 //--------Passende Userdaten holen ----------------------------------
@@ -90,7 +79,7 @@ public class HomeServlet extends HttpServlet {
 
                 u.getProfileData(); //Profildaten holen
                 if (u.getLocation() != null) { //Wenn Profil schon vorhanden
-                    RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
                     rd.forward(request, response);
 
                 } else { //Wenn noch kein Profil vorhanden:

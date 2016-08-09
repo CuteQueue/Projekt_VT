@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
@@ -18,6 +19,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.sql.DataSource;
 import static sun.security.krb5.Confounder.bytes;
+import tm.Message;
 import tm.User;
 
 /**
@@ -221,8 +223,7 @@ public class tmWebService {
             //byte[] encryptedPw = rs.getBytes("password");
             //rs.close();
             con.close();
-            System.out.println(id);
-            System.out.println(age);
+
             if (update == 1) {
                 System.out.println("Profile is updated!");
             } else {
@@ -271,6 +272,105 @@ public class tmWebService {
             return null;
         }
     }
+    
+      /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "storeMessage")
+    public String storeMessage(@WebParam(name = "senderId") int senderId, @WebParam(name = "recipientId") int recipientId, @WebParam(name = "message") String message) {
+        try {
+            //TODO write your implementation code here:
+            Connection con = travelmate_vs.getConnection();
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO messages (senderId, recipientId, message) VALUES (?,?,?)"); 
+            
+            
+            pstmt.setInt(1, senderId);
+            pstmt.setInt(2, recipientId);
+            pstmt.setString(3, message);
+            pstmt.executeUpdate();
+
+            con.close();
+            String answer = "Added Message!";
+            return answer;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "showConversations")
+    public List<User> showConversations(@WebParam(name = "user_id") int user_id) {
+        try {
+             //TODO write your implementation code here:
+            List<User> sender = new ArrayList();
+            Connection con = travelmate_vs.getConnection();
+            PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT senderId, user_id, email, name, last_name FROM messages, users,profils WHERE recipientId = ? AND senderId = users.id AND profils.user_id = users.id"); //where id = ?
+
+            pstmt.setInt(1, user_id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                User user = new User(rs.getInt("user_id"), rs.getString("email"), rs.getString("name"), rs.getString("last_name"));;
+             
+                sender.add(user);
+            }
+            rs.close();
+            con.close();
+            return sender;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "showMessages")
+    public List<Message> showMessages(@WebParam(name = "user_id") int user_id, @WebParam(name = "chatPartnerId") int chatPartnerId) {
+      try {
+          
+            List<Message> messages = new ArrayList();
+            Connection con = travelmate_vs.getConnection();
+            
+            //Es werden alle Nachrichten zurückgegeben, die zwischen dem aktuellen User und dem 
+            //ausgewählten Chatpartner ausgetauscht wurden. D.h. sowohl die Nachrichten, die der akutelle
+            //User an den ausgewählten Chatpartner gesendet, als auch die Nachrichten, die er vom 
+            //ausgewählten Chatpartner empfangen hat
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM messages WHERE (recipientId = ? OR recipientId = ?) AND (senderId = ? OR senderId = ?) ORDER BY time ASC"); 
+
+            pstmt.setInt(1, user_id);
+            pstmt.setInt(2, chatPartnerId);
+            pstmt.setInt(3, user_id);
+            pstmt.setInt(4, chatPartnerId);
+            ResultSet rs = pstmt.executeQuery();
+            
+            //Für jede Nachricht zwischen aktuellem User und ausgewähltem Chatpartner wird ein
+            //Message-Objekt erstellt mit:
+            // - Nachrichteninhalt
+            // - Id desjenigen, der die Nachricht gesendet hat
+            // - Id desjenigen, der die Nachricht empfangen hat
+            // Diese Nachrichten werden dann in einer Liste ("messages") gespeichert 
+            while (rs.next()) {
+                Message m = new Message(rs.getString("message"), rs.getInt("senderId"), rs.getInt("recipientId"));
+                messages.add(m);
+            }
+            rs.close();
+            con.close();
+            
+            //Die Nachrichtenliste wird zurückgegeben:
+            return messages;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
+    
+    
+    
 
 
 }

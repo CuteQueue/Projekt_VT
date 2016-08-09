@@ -1,13 +1,14 @@
+
 <%-- 
     Document   : searchRes
-    Created on : 09.08.2016, 10:22:58
-    Author     : Manuela
+    Created on : 08.08.2016, 11:24:41
+    Author     : manuela
 --%>
 
 <%-- Alle Reiseziele (Destination) werden aus der Datenbank gelesen und in result gespeichert --%>
-<sql:query var="result" dataSource="jdbc/travelmate">
+<script><sql:query var="result" dataSource="jdbc/travelmate">
     SELECT DISTINCT destination FROM profils ORDER BY destination ASC
-</sql:query>
+</sql:query></script>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Chat.ChatInterface"%>
@@ -16,10 +17,9 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page import="javax.xml.ws.WebServiceRef"%>
 <%@page import="webservice.TmWebService_Service"%>
-<%@page import="tm.User"%>
+<%@page import="webservice.User"%>
+<%@page import="java.util.List"%>
 
-
-import java.util.List;
 
 <!DOCTYPE html>
 <html>
@@ -27,8 +27,7 @@ import java.util.List;
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="-1">
+
     <title>TravelMate</title>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -48,6 +47,7 @@ import java.util.List;
               alert("No valid session, please login!");
               location= window.location.href='Index';
             };
+            
     </script>
     <link rel="stylesheet" href="css/css02.css" type="text/css">
     
@@ -60,20 +60,7 @@ import java.util.List;
         } 
       %>
       
-      <% //Prüfen, ob User noch im Chat angemeldet ist, wenn dies der Fall ist, wird er dort ausgeloggt
-        nsession = request.getSession(true);
-        User user = (User) nsession.getAttribute("user");
-        
-        try{
-                ClientInterface userI = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
-                ChatInterface chat = (ChatInterface) session.getAttribute("chat"); //chat aus Session erholen
-                String ipSession = (String) session.getAttribute("ip");
-                chat.sendMessage(userI.getUsername(), "hat sich ausgeloggt");
-                userI.getStub().unsubscribeUser(userI.getUsername());
-            }catch(Exception err){
-                System.out.println("User nicht im Chat aktiv. Muss nicht ausgeloggt werden.");
-            }
-      %>
+      
       
       <% //In search.jsp ausgewählte Parameter
          String destination = request.getParameterValues("Destination")[0];
@@ -94,9 +81,9 @@ import java.util.List;
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
-                <li><a href="${pageContext.request.contextPath}/toSearch">Search</a></li>
-                <li><a href="#">Messages</a></li>
+                <li><a href="${pageContext.request.contextPath}/toProfil">Profile</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/toSearch">Search<span class="sr-only">(current)</span></a></li>
+                <li><a href="${pageContext.request.contextPath}/Inbox">Messages</a></li>
                 <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
@@ -110,19 +97,25 @@ import java.util.List;
     <div class="fixed-bg container">
         <div class="row center-me profilesheet-search" >
             <div class="col-xs-12 col-sm-12 col-md-12 abstand" style="text-align: center">
-                <form action="Search" method="POST">
+                
                     <h4><font size="5" color="#2a96c0">Find your travelmates</font><h4>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 abstand " style="text-align: center">
+                    <div class="col-xs-12 col-sm-12 col-md-12 abstand " style="text-align: center; border-bottom:1px solid grey">
                         <!--Button "New Search":-->
-                        <form action="search.jsp" method="POST" >
-                            <input type="submit" name="search" value="New Search">
+                        <form action="toSearch" method="POST" >
+                            <input class="btn btn-primary btn-lg" type="submit" name="search" value="New Search">
                         </form>
-
-                        <!--Ausgewählte Destination:-->
-                        </br><h2> Destination: <%out.println(destination);%> </h2>
+                        <br>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 abstand" style="text-align: center">
+                    <div class="col-xs-12 col-sm-12 col-md-12 abstand " style="text-align:center;">
+                        <!--Ausgewählte Destination:-->
+                        <font size="6" color="grey">Destination:</font>
+                        <br>
+                        <!--Ausgewählte Destination:-->
+                        <font size="6" color="grey"><%out.println(destination);%></font>
+                    </div>
+                    <div class="col-xs-1 col-sm-2 col-md-3 abstand" ></div>
+                    <div class="col-xs-11 col-sm-10 col-md-9 abstand" >
 
                         <!--
                         *-------------------------------Find TravelMates------------------------------------------------*
@@ -132,8 +125,8 @@ import java.util.List;
                           weitergeleitet zu werden
                         -->
 
-                        <%java.util.List<webservice.User> travelmates = findTravelmates(destination, gender);%> //Aufruf der webService Methode 
-
+                        <%java.util.List<webservice.User> travelmates = (java.util.List<webservice.User>)session.getAttribute("travelmates");
+                         tm.User user = (tm.User) nsession.getAttribute("user");%>
                         <!--Ausgabe der potenziellen Travelmates-->
                         <ul>
                         <%for (int i = 0; i < travelmates.size(); i++) {
@@ -146,9 +139,9 @@ import java.util.List;
                                 out.println("<li>" + travelmates.get(i).getName() + " " + travelmates.get(i).getLastName() + "</br>");
                                 out.println("Looking for: " + travelmates.get(i).getLookingFor() + "</br>");
                                 out.println("Startdate: " + travelmates.get(i).getStartdate() + "</br>");
-                                out.println(" <form action=\"Profile\" method=\"POST\">");
+                                out.println(" <form action=\"toProfil\" method=\"POST\">");
                                 out.println(" <input type=\"hidden\" name=\"email\" value=\"" + travelmates.get(i).getEmail() + "\">");
-                                out.println(" <input type=submit class=\"btn btn-primary btn-s\" style=\"margin-top:5px;\" value=\"Submit\">\n"
+                                out.println(" <input id=\"tmMail\" onclick=\"setTmEmail()\" type=submit class=\"btn btn-info btn-xs\" style=\"margin-top:5px;\" value=\"show profile\">\n"
                                         + "        </form>");
                                 out.println("</li>");
                                 out.println("</br>");
@@ -157,10 +150,9 @@ import java.util.List;
                         </ul>
                     </div>
                     
-                    <div class="col-xs-12 col-sm-12 col-md-12 abstand" style="text-align: center">
-                    </div>
                 </form>
             </div>
+            <br>
         </div>
     </body>
 </html>

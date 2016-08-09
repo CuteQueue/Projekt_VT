@@ -161,10 +161,10 @@ public class tmChatServlet extends HttpServlet {
                 "            <!-- Collect the nav links, forms, and other content for toggling -->\n" +
                 "            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
                 "              <ul class=\"nav navbar-nav\">\n" +
-                "                <li class=\"active\"><a href=\"toHome\">Profile<span class=\"sr-only\">(current)</span></a></li>\n" +
+                "                <li><a href=\"toHome\">Profile</a></li>\n" +
                 "                <li><a href=\"toSearch\">Search</a></li>\n" +
-                "                <li><a href=\"#\">Messages</a></li>\n" +
-                "                <li><a href=\"tmChat\">Chat</a></li>\n" +
+                "                <li><a href=\"Inbox\">Messages</a></li>\n" +
+                "                <li class=\"active\"><a href=\"tmChat\">Chat<span class=\"sr-only\">(current)</span></a></li>\n" +
                 "              </ul>\n" +
                 "              <ul class=\"nav navbar-nav navbar-right\">\n" +
                 "                <li><a href=\"Logout\"><span class=\"glyphicon glyphicon-off\" aria-hidden=\"true\"></span> Logout</a></li>\n" +

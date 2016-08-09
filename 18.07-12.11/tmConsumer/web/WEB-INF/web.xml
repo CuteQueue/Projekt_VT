@@ -76,6 +76,30 @@
         <servlet-name>WeiterleitungIndexServlet</servlet-name>
         <servlet-class>Weiterleitung.WeiterleitungIndexServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewMessageServlet</servlet-name>
+        <servlet-class>Messages.NewMessageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SendNewMessageServlet</servlet-name>
+        <servlet-class>Messages.SendNewMessageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InboxServlet</servlet-name>
+        <servlet-class>Messages.InboxServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MessagesServlet</servlet-name>
+        <servlet-class>Messages.MessagesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WeiterleitungSearchResServlet</servlet-name>
+        <servlet-class>Weiterleitung.WeiterleitungSearchResServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WeiterleitungProfilServlet</servlet-name>
+        <servlet-class>Weiterleitung.WeiterleitungProfilServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -151,6 +175,30 @@
     <servlet-mapping>
         <servlet-name>WeiterleitungIndexServlet</servlet-name>
         <url-pattern>/Index</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewMessageServlet</servlet-name>
+        <url-pattern>/NewMessage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendNewMessageServlet</servlet-name>
+        <url-pattern>/SendNewMessage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InboxServlet</servlet-name>
+        <url-pattern>/Inbox</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MessagesServlet</servlet-name>
+        <url-pattern>/Messages</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WeiterleitungSearchResServlet</servlet-name>
+        <url-pattern>/SearchRes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WeiterleitungProfilServlet</servlet-name>
+        <url-pattern>/toProfil</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

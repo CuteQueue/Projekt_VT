@@ -5,8 +5,6 @@
  */
 package tm;
 
-import Chat.ChatInterface;
-import Chat.ClientInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -55,16 +53,8 @@ public class ProfileServlet extends HttpServlet {
                 out.close();
                 return;
             }
-            try{
-                ClientInterface user = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
-                ChatInterface chat = (ChatInterface) session.getAttribute("chat"); //chat aus Session erholen
-                String ipSession = (String) session.getAttribute("ip");
-                chat.sendMessage(user.getUsername(), "hat sich ausgeloggt");
-                user.getStub().unsubscribeUser(user.getUsername());
-            }catch(Exception err){
-                System.out.println("User nicht im Chat aktiv. Muss nicht ausgeloggt werden.");
-            }
 
+            System.out.println("ProfileServlet");
 
             //--------Passende Userdaten holen ----------------------------------
             String email = request.getParameterValues("email")[0];
@@ -86,6 +76,18 @@ public class ProfileServlet extends HttpServlet {
             out.println("Contact details: " + "</br>");
             out.println("Email: " + u.getEmail());
 
+            out.println(" <form action=\"newMessage.jsp\" method=\"POST\">");
+           // out.println(" <input type=\"hidden\" name=\"chatPartnerId\" value=\"" + u.getId() + "\">");
+            //out.println(" <input type=\"hidden\" name=\"chatPartnerName\" value=\"" + u.getName() + "\">");
+            session.setAttribute("chatPartnerId", u.getId());
+            session.setAttribute("chatPartnerName", u.getName());
+            out.println(" <input type=submit value=\"Send Message\"></form>");
+
+            /* session.setAttribute("chatPartnerId", u.getId()); 
+            session.setAttribute("chatPartnerName", u.getName()); 
+          
+            out.println(" <form action=\"newMessage.jsp\" method=\"POST\">");            
+            out.println(" <input type=submit value=\"Send Message\"></form>");*/
         }
     }
 

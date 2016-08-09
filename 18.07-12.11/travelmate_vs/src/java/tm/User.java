@@ -46,6 +46,14 @@ public class User {
         this.looking_for = looking_for;
         this.startdate = startdate;
     }
+    
+     public User(int user_id, String email, String name, String last_name){
+        //Folgende Attribute werden von tm_Consumer benötigt:
+        this.user_id = user_id;
+        this.email = email;
+        this.name = name;
+        this.last_name = last_name;
+    }
 
     public String getName() {
         return name;

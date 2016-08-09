@@ -5,8 +5,6 @@
  */
 package tm;
 
-import Chat.ChatInterface;
-import Chat.ClientInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -58,16 +56,8 @@ public class SearchServlet extends HttpServlet {
                 return;
             }
 
-            try{
-                ClientInterface userI = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
-                ChatInterface chat = (ChatInterface) session.getAttribute("chat"); //chat aus Session erholen
-                String ipSession = (String) session.getAttribute("ip");
-                chat.sendMessage(userI.getUsername(), "hat sich ausgeloggt");
-                userI.getStub().unsubscribeUser(userI.getUsername());
-            }catch(Exception err){
-                System.out.println("User nicht im Chat aktiv. Muss nicht ausgeloggt werden.");
-            }
-            
+            System.out.println("SearchServlet");
+
             //In search.jsp ausgewählte Parameter
             String destination = request.getParameterValues("Destination")[0];
             String gender = request.getParameterValues("Gender")[0];
@@ -160,4 +150,6 @@ public class SearchServlet extends HttpServlet {
         return port.findTravelmates(destination, gender);
     }
 
+    
+        
 }

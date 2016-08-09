@@ -98,7 +98,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/toProfil">Profile<span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Search</a></li>
                 <li><a href="#">Messages</a></li>
                 <li><a href="/toChat">Chat</a></li>
@@ -197,7 +197,7 @@
                   </div>
                   <div class="row center-me">
                     <div class="col-xs-12 col-sm-12 col-md-12 abstand">
-                      <input type="button" class="btn btn-primary btn-s" onclick="window.location.href='toHome'" value="cancel" name="button" id="button"/>​  
+                      <input type="button" class="btn btn-primary btn-s" onclick="window.location.href='toProfil'" value="cancel" name="button" id="button"/>​  
                       <input class="btn btn-primary btn-s" type="submit" value="save changes" />
                     </div>                        
                   </div>

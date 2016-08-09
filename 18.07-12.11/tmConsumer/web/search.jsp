@@ -67,9 +67,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
-                <li><a href="${pageContext.request.contextPath}/toSearch">Search</a></li>
-                <li><a href="#">Messages</a></li>
+                <li><a href="${pageContext.request.contextPath}/toProfil">Profile</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/toSearch">Search<span class="sr-only">(current)</span></a></li>
+                <li><a href="${pageContext.request.contextPath}/Inbox">Messages</a></li>
                 <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
@@ -83,7 +83,7 @@
     <div class="fixed-bg container">
         <div class="row center-me profilesheet-search" >
             <div class="col-xs-12 col-sm-12 col-md-12 abstand" style="text-align: center">
-                <form action="Search" method="POST">
+                <form action="SearchRes" method="POST">
                     <h4><font size="5" color="#2a96c0">Find your travelmates</font><h4>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 abstand " style="text-align: center">

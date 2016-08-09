@@ -5,6 +5,8 @@
  */
 package Weiterleitung;
 
+import Chat.ChatInterface;
+import Chat.ClientInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -43,10 +45,18 @@ public class WeiterleitungHomeServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         
         try (PrintWriter out = response.getWriter()) {
-                request.getRequestDispatcher("/Home").forward(request, response);
-                
-             
+            try{
+                ClientInterface userI = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
+                ChatInterface chat = (ChatInterface) session.getAttribute("chat"); //chat aus Session erholen
+                String ipSession = (String) session.getAttribute("ip");
+                chat.sendMessage(userI.getUsername(), "hat sich ausgeloggt");
+                userI.getStub().unsubscribeUser(userI.getUsername());
+            }catch(Exception err){
+                System.out.println("User nicht im Chat aktiv. Muss nicht ausgeloggt werden.");
+            }
             
+                RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                rd.forward(request, response);
         }     
     }
 

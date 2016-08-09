@@ -53,15 +53,15 @@
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               </button>
-              <a class="navbar-brand" href="${pageContext.request.contextPath}/toHome">TravelMate</a>
+              <a class="navbar-brand" href="#">TravelMate<span class="sr-only">(current)</span></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
+                <li><a href="${pageContext.request.contextPath}/toProfil">Profile</a></li>
                 <li><a href="${pageContext.request.contextPath}/toSearch">Search</a></li>
-                <li><a href="#">Messages</a></li>
+                <li><a href="${pageContext.request.contextPath}/Inbox">Messages</a></li>
                 <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
@@ -75,185 +75,79 @@
 
         <div class="fixed-bg container">
               <div class="row center-me profilesheet" >
-                <div class="col-xs-12 col-sm-5 col-md-5 abstand">
-                  <img src="images/blank-profile-picture-973460_1280.png" class="img-fluid img-rounded pull-xs-left profile-img" alt="responsive img">
+                <div class="col-xs-12 col-sm-12 col-md-12 abstand" style="text-align: center;">
                 </div>
-                <div class="col-xs-3 col-sm-2 col-md-2 ">
-                  <table class="table abstand table-borderless">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <table class="table abstand table-borderless" style="text-align: center">
                     <tbody>
                       <tr>
-                        <td><h4><font color="#2a96c0">Profile </font><h4></td>
-                      </tr>
-                      <tr>
-                        <td>Name: </td>
-                      </tr>
-                      <tr>
-                        <td>Last&nbspname: </td>
-                      </tr>
-                      <tr>
-                        <td>Nickname: </td>
-                      </tr>
-                      <tr>
-                        <td>Age: </td>
-                      </tr>
-                      <tr>
-                        <td>Gender: </td>
-                      </tr>
-
-                    </tbody>
-                  </table>
-                </div> 
-                <div class="col-xs-5 col-sm-5 col-md-5 ">
-                  <table class="table abstand table-borderless">
-                    <tbody>
-                      <tr>
-                        <td><h4></br><h4></td>
-                      </tr>
-                      <tr>
-                        <td>
-                            <% 
-                                User u = new User((String) session.getAttribute("email"));
-                                User user = (User) session.getAttribute("user");
-                                u.getProfileData(); //Profildaten holen
-                                out.println(u.getName());
-                            %> 
-                        </td>
+                        <td><h4><font color="#2a96c0">TM FAQ</font><h4></td>
                       </tr>
                       <tr>
                           <td>
-                              <% 
-                                out.println(u.getLast_name());
-                              %> 
+                              Ich bin unterwegs zu Orten<br>
+                            Die so schnell vorüberziehen<br>
+                            Die unbeschreiblich sind mit Worten<br>
+                            Man muss sie selber sehen<br>
+                            Die Sonne geht grad auf und nimmt mich ein Stück mit<br>
+                            Weil ich die Ferne brauch<br>
+                            Und bin ich auch weit weg<br>
+                            Mein Zuhause ist immer im Gepäck<br>
+                            <br>
+                            Das Leben ist wie eine Reise<br>
+                            Und keiner weiß wohin<br>
+                            Warum spür ich deine Nähe am Meisten<br>
+                            Wenn ich meilenweit entfernt von dir bin<br>
+                            Das Leben ist wie eine Reise<br>
+                            Die mich in Atem hält.<br>
+                            Der Kürzeste Weg zu sich selbst<br>
+                            Führt manchmal ganz um die Welt<br>
+                            <br>
+                            Ich bin unterwegs durchs Leben<br>
+                            Das Ziel ist der Moment<br>
+                            Man muss nur weitergehen<br>
+                            Auch wenn man die Richtung mal nicht kennt<br>
+                            Mit jedem neuen Schritt entdeck ich immer mehr<br>
+                            Ich nehm dich überall hin mit<br>
+                            Vielleicht lauf ich davon<br>
+                            Und bin doch längst schon angekommen<br>
+                            <br>
+                            Das Leben ist wie eine Reise<br>
+                            Und keiner weiß wohin<br>
+                            Warum spür ich deine Nähe am Meisten<br>
+                            Wenn ich meilenweit entfernt von dir bin<br>
+                            Das Leben ist wie eine Reise<br>
+                            Die mich in Atem hält<br>
+                            Der Kürzeste Weg zu sich selbst<br>
+                            Führt manchmal ganz um die Welt<br>
+                            <br>
+                            Manchmal auch bis zum Mond je nachdem<br>
+                            Wo hast du dich zuletzt denn gesehn<br>
+                            Und wo genau verlorn<br>
+                            Doch ich weiß<br>
+                            <br>
+                            Das Leben ist wie eine Reise<br>
+                            Und man kommt niemals an<br>
+                            Warum such ich mein Glück in der Weite<br>
+                            Obwohl es gar nicht näher sein kann<br>
+                            <br>
+                            Das Leben ist eine Reise<br>
+                            Man kommt niemals an<br>
+                            Warum such ich mein Glück in der Weite<br>
+                            Das Leben ist eine Reise<br>
+                            Die mich in Atem hält<br>
+                            Der Kürzeste Weg zu sich selbst<br>
+                            Führt manchmal ganz um die Welt<br>
                           </td>
                       </tr>
-                      <tr>
-                          <td>
-                              <% 
-                                out.println(u.getNickname());
-                              %> 
-                          </td>
-                      </tr>
-                      <tr>
-                        <td>
-                              <% 
-                                out.println(u.getAge());
-                              %> 
-                          </td>
-                      </tr>
-                      <tr>
-                        <td>
-                              <% 
-                                out.println(u.getSex());
-                              %> 
-                          </td>
-                      </tr>
-
-                    </tbody>
-                  </table>
-                </div> 
-              </div>
-
-              <div class="row center-me profilesheet-about" >
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <table class="table abstand table-borderless">
-                    <tbody>
-                      <tr>
-                        <td><h4><font color="#2a96c0">About&nbspme</font><h4></td>
-                      </tr>
-                      <tr>
-                        <td>
-                            <% 
-                              out.println(u.getAbout());
-                            %> 
-                        </td>
-                      </tr>
+                      
                       
                     </tbody>
                   </table>
                 </div>
               </div>
 
-              <div class="row center-me profilesheet-bottom" >
-                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
-                  <table class="table abstand table-borderless">
-                    <tbody>
-                      <tr>
-                        <td><h4><font color="#2a96c0">My&nbsptravel&nbspplans</font><h4></td>
-                      </tr>
-                      <tr>
-                        <td>Current&nbsplocation: </td>
-                      </tr>
-                      <tr>
-                        <td>Next&nbspdestination: </td>
-                      </tr>
-                      <tr>
-                        <td>Startdate: </td>
-                      </tr>
-                      <tr>
-                        <td>Looking&nbspfor: </td>
-                      </tr>
-                      <tr>
-                        <td>Interests: </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="col-xs-7 col-sm-7 col-md-9 col-lg-9">
-                  <table class="table abstand table-borderless">
-                    <tbody>
-                      <tr>
-                        <td><h4></br><h4></td>
-                      </tr>
-                      <tr>
-                        <td>
-                              <% 
-                                out.println(u.getLocation());
-                              %> 
-                          </td>
-                      </tr>
-                      <tr>
-                        <td>
-                              <% 
-                                out.println(u.getDestination());
-                              %> 
-                          </td>
-                      </tr>
-                      <tr>
-                        <td>
-                              <% 
-                                out.println(u.getStartdate());
-                              %> 
-                          </td>
-                      </tr>
-                      <tr>
-                        <td>
-                              <% 
-                                out.println(u.getLooking_for());
-                              %> 
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                              <% 
-                                out.println(u.getInterests());
-                              %> 
-                          </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div> 
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <table class="table table-borderless">
-                    <tbody>
-                      <tr>
-                        <td>
-                            <input type="button" class="btn btn-primary btn-s" style="margin-top:5px;" onclick="window.location.href='Edit'" value="edit profile" name="button" id="button"/>​
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-              </div>
-        </div></br></br>
+            <br><br>
     </body>
 </html>
 

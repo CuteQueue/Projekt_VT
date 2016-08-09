@@ -5,6 +5,9 @@
  */
 package Weiterleitung;
 
+
+import Chat.ChatInterface;
+import Chat.ClientInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -12,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,8 +39,18 @@ public class WeiterleitungSearchServlet extends HttpServlet {
         response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
         response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
-        
+        HttpSession session = request.getSession(true);
+ 
         try (PrintWriter out = response.getWriter()) {
+            try{
+                ClientInterface userI = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
+                ChatInterface chat = (ChatInterface) session.getAttribute("chat"); //chat aus Session erholen
+                String ipSession = (String) session.getAttribute("ip");
+                chat.sendMessage(userI.getUsername(), "hat sich ausgeloggt");
+                userI.getStub().unsubscribeUser(userI.getUsername());
+            }catch(Exception err){
+                System.out.println("User nicht im Chat aktiv. Muss nicht ausgeloggt werden.");
+            }
                 
                 RequestDispatcher rd = request.getRequestDispatcher("search.jsp");
                 rd.forward(request, response);

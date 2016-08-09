@@ -36,6 +36,18 @@
 
 <xs:element name="newUserResponse" type="tns:newUserResponse"/>
 
+<xs:element name="showConversations" type="tns:showConversations"/>
+
+<xs:element name="showConversationsResponse" type="tns:showConversationsResponse"/>
+
+<xs:element name="showMessages" type="tns:showMessages"/>
+
+<xs:element name="showMessagesResponse" type="tns:showMessagesResponse"/>
+
+<xs:element name="storeMessage" type="tns:storeMessage"/>
+
+<xs:element name="storeMessageResponse" type="tns:storeMessageResponse"/>
+
 <xs:complexType name="getEncryptedPw">
 <xs:sequence>
 <xs:element name="email" type="xs:string" minOccurs="0"/>
@@ -45,6 +57,40 @@
 <xs:complexType name="getEncryptedPwResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showConversations">
+<xs:sequence>
+<xs:element name="user_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showConversationsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:user" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="user">
+<xs:sequence>
+<xs:element name="about" type="xs:string" minOccurs="0"/>
+<xs:element name="age" type="xs:int"/>
+<xs:element name="created_at" type="xs:string" minOccurs="0"/>
+<xs:element name="destination" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="interests" type="xs:string" minOccurs="0"/>
+<xs:element name="last_name" type="xs:string" minOccurs="0"/>
+<xs:element name="location" type="xs:string" minOccurs="0"/>
+<xs:element name="looking_for" type="xs:string" minOccurs="0"/>
+<xs:element name="mobilenumber" type="xs:string" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="nickname" type="xs:string" minOccurs="0"/>
+<xs:element name="sex" type="xs:string" minOccurs="0"/>
+<xs:element name="startdate" type="xs:string" minOccurs="0"/>
+<xs:element name="updated_at" type="xs:string" minOccurs="0"/>
+<xs:element name="user_id" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -93,6 +139,20 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="storeMessage">
+<xs:sequence>
+<xs:element name="senderId" type="xs:int"/>
+<xs:element name="recipientId" type="xs:int"/>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="storeMessageResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="login">
 <xs:sequence>
 <xs:element name="email" type="xs:string" minOccurs="0"/>
@@ -131,28 +191,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="user">
-<xs:sequence>
-<xs:element name="about" type="xs:string" minOccurs="0"/>
-<xs:element name="age" type="xs:int"/>
-<xs:element name="created_at" type="xs:string" minOccurs="0"/>
-<xs:element name="destination" type="xs:string" minOccurs="0"/>
-<xs:element name="email" type="xs:string" minOccurs="0"/>
-<xs:element name="id" type="xs:int"/>
-<xs:element name="interests" type="xs:string" minOccurs="0"/>
-<xs:element name="last_name" type="xs:string" minOccurs="0"/>
-<xs:element name="location" type="xs:string" minOccurs="0"/>
-<xs:element name="looking_for" type="xs:string" minOccurs="0"/>
-<xs:element name="mobilenumber" type="xs:string" minOccurs="0"/>
-<xs:element name="name" type="xs:string" minOccurs="0"/>
-<xs:element name="nickname" type="xs:string" minOccurs="0"/>
-<xs:element name="sex" type="xs:string" minOccurs="0"/>
-<xs:element name="startdate" type="xs:string" minOccurs="0"/>
-<xs:element name="updated_at" type="xs:string" minOccurs="0"/>
-<xs:element name="user_id" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="newUser">
 <xs:sequence>
 <xs:element name="name" type="xs:string" minOccurs="0"/>
@@ -188,6 +226,27 @@
 <xs:complexType name="editProfileResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showMessages">
+<xs:sequence>
+<xs:element name="user_id" type="xs:int"/>
+<xs:element name="chatPartnerId" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showMessagesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:message" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="message">
+<xs:sequence>
+<xs:element name="content" type="xs:string" minOccurs="0"/>
+<xs:element name="friendId" type="xs:int"/>
+<xs:element name="user_id" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>
