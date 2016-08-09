@@ -37,7 +37,7 @@ public class WeiterleitungChatServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
   
-           RequestDispatcher rd = request.getRequestDispatcher("tmChat.jsp");
+           RequestDispatcher rd = request.getRequestDispatcher("tmChat");
            rd.forward(request, response);
         }
     }

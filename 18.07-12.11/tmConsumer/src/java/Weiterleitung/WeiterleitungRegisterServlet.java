@@ -7,6 +7,7 @@ package Weiterleitung;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +38,8 @@ public class WeiterleitungRegisterServlet extends HttpServlet {
         response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
         
         try (PrintWriter out = response.getWriter()) {
-                request.getRequestDispatcher("/Register").forward(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+            rd.forward(request, response);
         }  
     }
 

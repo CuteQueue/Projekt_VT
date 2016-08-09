@@ -1,0 +1,60 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04.08.2016, 11:11:32
+    Author     : Manuela
+*/
+
+        .parent {
+          width: 100%;
+          height: 100%;
+        }
+        .child {
+          width: 100%;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        .center-me {
+          margin: 0 auto;
+        }
+        
+        /*für Hintergrunddarstellung im Browser*/
+        body { 
+            background: url(../images/pexels-photo-25562_edit.jpg) no-repeat center center fixed; 
+            -webkit-background-size: 100%; 
+            -moz-background-size: 100%; 
+            -o-background-size: 100%; 
+            background-size: 100%; 
+            -webkit-background-size: cover; 
+            -moz-background-size: cover; 
+            -o-background-size: cover; 
+            background-size: cover; 
+            min-height: 100%;
+          }
+        
+         /*fixed-bg für korrekte Darstellung auf dem Smartphone bei Wisch-Geste*/
+        .fixed-bg {
+            background-image: url(../images/pexels-photo-25562_edit.jpg);
+            min-height: 600px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .formInputRegister{
+            margin-left:10px;
+            margin-bottom: 10px;
+        }
+        
+        input:required {
+            box-shadow:none;
+        }
+        
+        .checkboxTypo{
+            font-size: 5pt;
+        }

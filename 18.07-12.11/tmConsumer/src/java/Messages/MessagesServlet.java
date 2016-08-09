@@ -51,10 +51,11 @@ public class MessagesServlet extends HttpServlet {
             //Chatverlauf laden
             java.util.List<webservice.Message> messages = showMessages(user.getId(), chatPartnerId);
             
+            session.setAttribute("messages", messages);
             //Ausgabe der Nachrichten:
             out.println("<h2>Messages with " + chatPartnerName + "</h2></br>");
             for (int i = 0; i < messages.size(); i++) {
-                System.out.println("Message " + messages.get(i).getContent());
+               
                 
                 //Wenn die zur Nachrichten gespeicherte UserId gleich der Id des aktuellen Users ist,
                 //dann wurde die Nachricht vom aktuellen User gesendet:
@@ -76,6 +77,7 @@ public class MessagesServlet extends HttpServlet {
             out.println("    <form action=\"SendNewMessage\" method=\"post\">\n"
                     + "        <table border=\"0\" align=\"center\">\n"
                     + "            <input type=\"hidden\" name=\"chatPartnerId\" value=\"" + chatPartnerId + "\" size=\"50\"/>\n"
+                    + "            <input type=\"hidden\" name=\"chatPartnerName\" value=\"" + chatPartnerName + "\" size=\"50\"/>\n"
                     + "            <tr>\n"
                     + "                <td><textarea rows=\"10\" cols=\"39\" name=\"content\"></textarea> </td>\n"
                     + "            </tr>\n"

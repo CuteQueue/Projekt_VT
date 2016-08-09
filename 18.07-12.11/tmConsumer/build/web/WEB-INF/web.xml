@@ -69,6 +69,14 @@
         <servlet-class>tm.ProfileServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>WeiterleitungSearchServlet</servlet-name>
+        <servlet-class>Weiterleitung.WeiterleitungSearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WeiterleitungIndexServlet</servlet-name>
+        <servlet-class>Weiterleitung.WeiterleitungIndexServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>NewMessageServlet</servlet-name>
         <servlet-class>Messages.NewMessageServlet</servlet-class>
     </servlet>
@@ -153,6 +161,14 @@
         <url-pattern>/Profile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>WeiterleitungSearchServlet</servlet-name>
+        <url-pattern>/toSearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WeiterleitungIndexServlet</servlet-name>
+        <url-pattern>/Index</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
         <servlet-name>NewMessageServlet</servlet-name>
         <url-pattern>/NewMessage</url-pattern>
     </servlet-mapping>

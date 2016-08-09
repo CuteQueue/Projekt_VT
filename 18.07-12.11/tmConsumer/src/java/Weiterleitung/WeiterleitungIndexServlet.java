@@ -3,29 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Messages;
+package Weiterleitung;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.util.Calendar;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.xml.ws.WebServiceRef;
-import tm.User;
-import webservice.TmWebService_Service;
 
 /**
  *
- * @author nina
+ * @author Manuela
  */
-public class SendNewMessageServlet extends HttpServlet {
-
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
-    private TmWebService_Service service;
+public class WeiterleitungIndexServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,36 +31,18 @@ public class SendNewMessageServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+        response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
+        response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+        response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
+        
         try (PrintWriter out = response.getWriter()) {
-
-            //akuteller User:
-            HttpSession session = request.getSession(true);
-            User user = (User) session.getAttribute("user");
-
-            //aktueller Chatpartner:
-            int chatPartnerId =  (int)session.getAttribute("chatPartnerId");
-          //  int chatPartnerId = Integer.parseInt(chatPartnerIdString);
-            String chatPartnerName = (String) session.getAttribute("chatPartnerName");
-
-            //Inhalt der Nachricht:
-            String content = request.getParameter("content");
+                
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                rd.forward(request, response);
+             
             
-            //Nachricht in der Datenbank mit Inhalt, aktueller User und Chatpartner speichern:
-            String answer = storeMessage(user.getId(), chatPartnerId, content);
-            System.out.println(answer);
-       
-            
-            //Ausgabe:
-            out.println("Nachricht wurde gesendet!");
-            out.println(" <form action=\"messages.jsp\" method=\"POST\">");
-            //In session speichern!
-            out.println(" <input type=\"hidden\" name=\"chatPartnerId\" value=\"" + chatPartnerId + "\">");
-            out.println("   <input type=\"hidden\" name=\"chatPartnerName\" value=\"" + chatPartnerName + "\">");
-            out.println("   <input type=submit value=\"Show Messages\">"
-                      + " </form>");
-            out.println("</li>");
-
-        }
+        }     
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -109,12 +83,5 @@ public class SendNewMessageServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private String storeMessage(int senderId, int recipientId, java.lang.String message) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        webservice.TmWebService port = service.getTmWebServicePort();
-        return port.storeMessage(senderId, recipientId, message);
-    }
 
 }

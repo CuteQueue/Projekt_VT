@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -54,22 +55,19 @@ public class HomeServlet extends HttpServlet {
         String email;
         
         try (PrintWriter out = response.getWriter()) {
-            System.out.println("SESSION???????????????????? " + session.getAttribute("serverIp"));
             try {
 
                 //----------Falls keine Session vorhanden-----------------------------------------
                 if (session.getAttribute("email") == null) {
-                    out.println("<html><head><title>SessionError</title></head>");
-                    out.println("<body><h2>Keine Session vorhanden1</h2>");
-                    out.print("<form action=\"http://localhost:8080/tmConsumer\"");
-                    out.println("\" method=\"POST\" >");
-                    out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
-                    out.println("</form>");
-                    out.println("</body>");
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Keine Session vorhanden');");
+                    out.println("location= window.location.href='Index';");
+                    out.println("</script>");
                     out.close();
                     return;
                 }
 
+                
                 //--------Passende Userdaten holen ----------------------------------
                 email = (String) session.getAttribute("email");
                 User u = new User(email);
@@ -81,39 +79,19 @@ public class HomeServlet extends HttpServlet {
 
                 u.getProfileData(); //Profildaten holen
                 if (u.getLocation() != null) { //Wenn Profil schon vorhanden
-                    //-----------Ausgabe der Profildaten------------------------------------------
-                    out.println("Location: " + u.getLocation() + "</br>");
-                    out.println("Age: " + u.getAge() + "</br>");
-                    out.println("Destination: " + u.getDestination() + "</br>");
-                    out.println("Startdate: " + u.getStartdate() + "</br>");
-                    out.println("Interests: " + u.getInterests() + "</br>");
-                    out.println("Looking for: " + u.getLooking_for() + "</br>");
-                    out.println("About: " + u.getAbout() + "</b>");
-
-                    //--------Edit Button----------------------------------------------------
-                    out.println("<form action=\"http://" + session.getAttribute("serverIp") + ":8080/tmConsumer/editProfile.jsp\">");
-                    out.println("<input type=submit value=\"Edit\">");
-                    out.println("</form>");
+                    RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                    rd.forward(request, response);
 
                 } else { //Wenn noch kein Profil vorhanden:
-                    out.println("Noch kein Profil vorhanden");
-                    out.println("Jetzt anlegen: ");
-                    out.println("<form action=\"http://" + session.getAttribute("serverIp") + ":8080/tmConsumer/Create\">");
-                    out.println("<input type=submit value=\"Create Profile\">");
-                    out.println("</form>");
+                    RequestDispatcher rd = request.getRequestDispatcher("createProfile.jsp");
+                    rd.forward(request, response);
 
                 }
 
                 //------Search Button --------------------------------------
-                out.print("<form action=\"search.jsp");
+                /*out.print("<form action=\"search.jsp");
                 out.println("\" method=\"POST\" >");
                 out.println("<input type=\"submit\" name=\"search\" value=\"Search\">");
-                out.println("</form>");
-                
-                //------Inbox Button --------------------------------------
-                out.print("<form action=\"Inbox");
-                out.println("\" method=\"POST\" >");
-                out.println("<input type=\"submit\" name=\"inbox\" value=\"Inbox\">");
                 out.println("</form>");
 
                 //------Chat Button-------------------------------------------------------
@@ -125,7 +103,7 @@ public class HomeServlet extends HttpServlet {
                 out.print("<form action=\"Logout");
                 out.println("\" method=\"POST\" >");
                 out.println("<input type=\"submit\" name=\"logout\" value=\"Logout\">");
-                out.println("</form>");
+                out.println("</form>");*/
 
                 
                 

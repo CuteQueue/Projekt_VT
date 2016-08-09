@@ -65,9 +65,53 @@ String exit = "";
             
             /*----------------------------HTML-Teil----------------------------*/
             out.println("<html><head><title>Chat</title>");
-            out.println("<meta http-equiv=\"refresh\" content=\"10;URL=\"http://"+session.getAttribute("ip")+":8080/tmConsumer/tmChatOn></head>");
+            out.println("<meta http-equiv=\"refresh\" content=\"10;URL=\"http://"+session.getAttribute("ip")+":8080/tmConsumer/tmChatOn>");
+            out.println("<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->\n" +
+            "    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js\"></script>\n" +
+            "\n" +
+            "    <!-- Bootstrap -->\n" +
+            "    <!-- Latest compiled and minified CSS -->\n" +
+            "    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">\n" +
+            "\n" +
+            "    <!-- Optional theme -->\n" +
+            "    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css\" integrity=\"sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp\" crossorigin=\"anonymous\">\n" +
+            "\n" +
+            "    <!-- Latest compiled and minified JavaScript -->\n" +
+            "    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script></head>\n");
             out.println("<style>textarea {resize: none;}</style>");
-            out.println("<body style=\"font-family:arial;\">\n");
+            
+         
+            
+            out.println("<body>\n" +
+            "      <div>\n" +
+            "        <nav class=\"navbar navbar-default\">\n" +
+            "          <div class=\"container-fluid\">\n" +
+            "            <!-- Brand and toggle get grouped for better mobile display -->\n" +
+            "            <div class=\"navbar-header\">\n" +
+            "              <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\n" +
+            "              </button>\n" +
+            "              <a class=\"navbar-brand\" href=\"toHome\">TravelMate</a>\n" +
+            "            </div>\n" +
+            "            <!-- Collect the nav links, forms, and other content for toggling -->\n" +
+            "            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
+            "              <ul class=\"nav navbar-nav\">\n" +
+            "                <li class=\"active\"><a href=\"toHome\">Profile<span class=\"sr-only\">(current)</span></a></li>\n" +
+            "                <li><a href=\"toSearch\">Search</a></li>\n" +
+            "                <li><a href=\"#\">Messages</a></li>\n" +
+            "                <li><a href=\"tmChat\">Chat</a></li>\n" +
+            "              </ul>\n" +
+            "              <ul class=\"nav navbar-nav navbar-right\">\n" +
+            "                <li><a href=\"Logout\"><span class=\"glyphicon glyphicon-off\" aria-hidden=\"true\"></span> Logout</a></li>\n" +
+            "              </ul>\n" +
+            "            </div><!-- /.navbar-collapse -->\n" +
+            "          </div><!-- /.container-fluid -->\n" +
+            "        </nav>\n" +
+            "       </div>     ");
+            
+            out.println("<div class=\"fixed-bg container\">\n" +
+"              <div class=\"row center-me profilesheet\" >\n" +
+"                <div class=\"col-xs-12 col-sm-5 col-md-5 abstand\">");
+            
             out.println("<h2>Willkommen im Chat, " + user.getUsername()
                     + "!</h2>");
             
@@ -85,26 +129,27 @@ String exit = "";
              
             //Chatfenster und Client-Ausgabeliste
             out.println("<div>\n" +
-                        "	<table>\n" +
-                        "		<td>\n" +
-                        "			<textarea name=\"chatoutput\" id =\"chatWindow\" cols=\"100\" rows=\"30\" readonly=\"\">");
-            List <String> chatAusgabe = user.getAusgaben();
-            for (String nachricht : chatAusgabe) {
-                out.println(nachricht + "\n");
-            }
-            
-            out.println("</textarea>\n" +
-                        "		</td>\n" +
-                        "		<td>\n" +
-                        "			<textarea name=\"clientsOnline\" cols=\"15\" rows=\"30\" readonly=\"\">");
-            Set<String> clientsOnline = user.getStub().getClients().keySet();
-            for ( String key : clientsOnline ) {
-                out.println( key );
-            }
-            out.println("</textarea>\n" +
-                        "		</td>\n" +
-                        "	</table>\n" +
+            "               <table>\n" +
+            "                   <td>\n" +
+            "                       <textarea name=\"chatoutput\" id =\"chatWindow\" cols=\"100\" rows=\"20\" readonly=\"\">");
+                                        List <String> chatAusgabe = user.getAusgaben();
+                                        for (String nachricht : chatAusgabe) {
+                                            out.println(nachricht + "\n");
+                                        }
+                        out.println("</textarea>\n" +
+                        "       </td>\n" +
+                        "	<td>\n" +
+                        "           <textarea name=\"clientsOnline\" cols=\"15\" rows=\"20\" readonly=\"\">");
+                                        Set<String> clientsOnline = user.getStub().getClients().keySet();
+                                        for ( String key : clientsOnline ) {
+                                            out.println( key );
+                                        }
+                        out.println("</textarea>\n" +
+                        "       </td>\n" +
+                        "   </table>\n" +
                         "</div>");
+            
+            
             //Eingabefeld für die Nachricht
             out.print("<form action=\"");
             out.print(res.encodeURL ("tmChatOn")); //damit das Session-Tracking auch funktioniert, wenn Cookies deaktiviert sind
@@ -124,9 +169,7 @@ String exit = "";
              try{
                 msg = req.getParameterValues("message")[0]; //eingebene Nachricht in msg speichern
                 out.println("<meta http-equiv=\"refresh\" content=\"0; URL=http://"+session.getAttribute("ip")+":8080/tmConsumer/tmChatOn\">");
-                               
             }catch(Exception ex){
-               
                 msg = " "; 
             }
              if(!msg.equals(" ")){
@@ -135,33 +178,16 @@ String exit = "";
                 msg="";
             }
             
-           
-            //Button zum Verlassen des Chats
-            out.println("</br>");
-            out.print("<form action=\"");
-            out.println("\" method=\"POST\" >");
-            out.println("<input type=\"submit\" name=\"logout\" value=\"Home\">");
-            out.println("</form>");
-            
-            
-             if(exit.equals("exit")){
-                String ipSession = (String) session.getAttribute("ip");
-                chat.sendMessage(user.getUsername(), "hat sich ausgeloggt");
-                user.getStub().unsubscribeUser(user.getUsername());
-                exit ="";
-                
-                
-                out.println("<meta http-equiv=\"refresh\" content=\"1; URL=http://"+session.getAttribute("ip")+":8080/tmConsumer/Home\">");
-            }
              
             //Ende HTML-Teil
-            System.out.println("!!!!!!!!!!!!!!!!!!! SessionIP ChatOnServlet: " + session.getAttribute("serverIp"));
+            out.println("</div>\n" +
+            "            </div>\n" +
+            "            </div>");
             out.println("</body></html>");
             
             } finally {
-            //out.print("Finally Servlet");
-            out.close();
-        }
+                out.close();
+            }
      }
      
      // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -194,7 +220,6 @@ String exit = "";
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, RemoteException {
         try {
-            logout(request, response);
             processRequest(request, response);
         } catch (NotBoundException ex) {
             Logger.getLogger(tmChatServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -211,14 +236,5 @@ String exit = "";
         return "Short description";
     }// </editor-fold>
     
-    public void logout(HttpServletRequest request, HttpServletResponse response) throws RemoteException, IOException{
-        PrintWriter out = response.getWriter();
-        if (request.getParameter("logout")!=null) {
-            HttpSession session = request.getSession();
-            ClientInterface user = (ClientInterface) session.getAttribute("chatUser");
-            
-            exit = "exit";
-        }
-    }
     
 }

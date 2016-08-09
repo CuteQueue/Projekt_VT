@@ -1,8 +1,9 @@
 <%-- 
-    Document   : newMessage
-    Created on : 08.08.2016, 15:28:22
+    Document   : messages
+    Created on : 08.08.2016, 17:33:56
     Author     : nina
 --%>
+
 <%@page import="java.io.PrintWriter"%>
 <%@page import="tm.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -79,23 +80,45 @@
 
                 <%
                     String chatPartnerName = (String) session.getAttribute("chatPartnerName");
+
                 %> 
 
-                <form action=SendNewMessage method=post>
-                    <table border=0>
-                        <h2>Send  <%out.println(chatPartnerName);%> A Message!</h2>
+
+                <h2>Messages with <% out.println(chatPartnerName);%></h2></br>
+                
+             <% out.println(messages.get(1).getContent());%>
+                <%-- for (int i = 0; i < messages.size(); i++) {
+                    
+                     
+                     //Wenn die zur Nachrichten gespeicherte UserId gleich der Id des aktuellen Users ist,
+                     //dann wurde die Nachricht vom aktuellen User gesendet:
+                     if (messages.get(i).getUserId() == user.getId()) {
+                         out.println("</br>");
+                         out.println("<li style=\"text-align:right;background-color:blue;\">" + messages.get(i).getContent() + "</br>");
+                         out.println("</li>");
+                         out.println("</br>");
+                     } else {
+                     //Ansonsten wurde die Nachricht vom Chatpartner gesendet:
+                         out.println("</br>");
+                         out.println("<li style=\"background-color:cyan\">" + messages.get(i).getContent() + "</br>");
+                         out.println("</li>");
+                         out.println("</br>");
+                     }
+                 } 
+                 
+                 //Chatfenster zum Senden einer neuen Nachricht:--%>
+                <form action="SendNewMessage" method="post">
+                    <table border="0" align="center">
                         <tr>
-                            <td><textarea rows="10" cols="39" name="content"></textarea> </td>
+                            <td><textarea rows="5" cols="39" name="content"></textarea> </td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" value="Send"/></td>
                         </tr>
                     </table>
-                </form>
+
             </div> 
         </div>
         </br></br>
 </body>
 </html>
-
-

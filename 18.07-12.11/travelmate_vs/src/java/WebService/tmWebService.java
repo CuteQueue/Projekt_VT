@@ -223,8 +223,7 @@ public class tmWebService {
             //byte[] encryptedPw = rs.getBytes("password");
             //rs.close();
             con.close();
-            System.out.println(id);
-            System.out.println(age);
+
             if (update == 1) {
                 System.out.println("Profile is updated!");
             } else {
@@ -316,7 +315,6 @@ public class tmWebService {
                 User user = new User(rs.getInt("user_id"), rs.getString("email"), rs.getString("name"), rs.getString("last_name"));;
              
                 sender.add(user);
-                System.out.println("Sender: "  + rs.getInt("senderId") +  rs.getString("name"));
             }
             rs.close();
             con.close();

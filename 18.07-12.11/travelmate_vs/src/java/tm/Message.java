@@ -19,8 +19,6 @@ public class Message {
         this.content = content;
         this.user_id = user_id;
         this.friendId = friendId;
-        System.out.println("New Message created!");
-        
     }
 
     public String getContent() {

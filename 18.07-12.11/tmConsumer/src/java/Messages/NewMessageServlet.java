@@ -38,7 +38,7 @@ public class NewMessageServlet extends HttpServlet {
             //Attribute es Chatpartners:
             String chatPartnerId = request.getParameter("chatPartnerId");
             String chatPartnerName = request.getParameter("chatPartnerName");
-            
+            System.out.println("chatNameNew: " + chatPartnerName);
             //Chat-Fenster zum senden einer Nachricht,
             //mit dem Abschicken wird "SendNewMessageServlet" aufgerufen
             out.println("<html>\n"
@@ -52,7 +52,7 @@ public class NewMessageServlet extends HttpServlet {
                     + "            <caption><h2>Send New Message</h2></caption>\n"
                     + "            <tr>\n"
                     + "                <td><input type=\"hidden\" name=\"chatPartnerId\" value=\"" + chatPartnerId + "\" size=\"50\"/></td>\n"
-                    + "              <td><input type=\"hidden\" name=\"chatPartnerId\" value=\"" + chatPartnerName + "\" size=\"50\"/></td>\n"
+                    + "              <td><input type=\"hidden\" name=\"chatPartnerName\" value=\"" + chatPartnerName + "\" size=\"50\"/></td>\n"
                     + "            </tr>\n"
                     + "            <tr>\n"
                     + "                <td><textarea rows=\"10\" cols=\"39\" name=\"content\"></textarea> </td>\n"
