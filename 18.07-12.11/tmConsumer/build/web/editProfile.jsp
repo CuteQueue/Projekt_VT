@@ -99,9 +99,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="${pageContext.request.contextPath}/toProfil">Profile<span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Search</a></li>
-                <li><a href="#">Messages</a></li>
-                <li><a href="/toChat">Chat</a></li>
+                <li><a href="${pageContext.request.contextPath}/toSearch">Search</a></li>
+                <li><a href="${pageContext.request.contextPath}/Inbox">Messages</a></li>
+                <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="${pageContext.request.contextPath}/Logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>

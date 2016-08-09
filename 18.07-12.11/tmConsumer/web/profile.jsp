@@ -112,10 +112,12 @@
                       <tr>
                         <td>
                             <%  
+                                String tm = null;
                                 User u = new User((String) session.getAttribute("email"));
                                 User user = (User) session.getAttribute("user");
                                 if(!u.getEmail().equals(user.getEmail())){
                                     session.setAttribute("email", user.getEmail());
+                                    tm = "tm";
                                 }
                                 u.getProfileData(); //Profildaten holen
                                 out.println(u.getName());
@@ -250,7 +252,14 @@
                     <tbody>
                       <tr>
                         <td>
-                            <input type="button" class="btn btn-primary btn-s" style="margin-top:5px;" onclick="window.location.href='Edit'" value="edit profile" name="button" id="button"/>​
+                            <%
+                                if(tm==null){
+                                    out.println("<input type=\"button\" class=\"btn btn-primary btn-s\" style=\"margin-top:5px;\" onclick=\"window.location.href='Edit'\" value=\"edit profile\" name=\"button\" id=\"button\"/>​");
+                                }else{
+                                    tm=null;
+                                }
+                            %>
+                            
                         </td>
                       </tr>
                     </tbody>

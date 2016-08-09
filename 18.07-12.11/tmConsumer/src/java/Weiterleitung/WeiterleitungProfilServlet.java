@@ -38,14 +38,12 @@ public class WeiterleitungProfilServlet extends HttpServlet {
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
         response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
         HttpSession session = request.getSession(true);
-        
         try (PrintWriter out = response.getWriter()) {
             User user = (User)session.getAttribute("user");
             try{
                 String email = request.getParameterValues("email")[0];
                 if(!email.equals(user.getEmail())){
                     session.setAttribute("email", email);
-                    
                 }
                 RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
                 rd.forward(request, response);
