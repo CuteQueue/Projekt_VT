@@ -36,7 +36,7 @@ public class WeiterleitungChatServlet extends HttpServlet {
         response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-  
+               out.println("");
            RequestDispatcher rd = request.getRequestDispatcher("tmChat");
            rd.forward(request, response);
         }

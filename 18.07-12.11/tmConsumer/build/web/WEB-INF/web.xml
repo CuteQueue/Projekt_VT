@@ -100,9 +100,13 @@
         <servlet-name>WeiterleitungProfilServlet</servlet-name>
         <servlet-class>Weiterleitung.WeiterleitungProfilServlet</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>WeiterleitungMessagesServlet</servlet-name>
         <servlet-class>Weiterleitung.WeiterleitungMessagesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>tm.UploadServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -204,9 +208,13 @@
         <servlet-name>WeiterleitungProfilServlet</servlet-name>
         <url-pattern>/toProfil</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>WeiterleitungMessagesServlet</servlet-name>
         <url-pattern>/toMessages</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/Upload</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

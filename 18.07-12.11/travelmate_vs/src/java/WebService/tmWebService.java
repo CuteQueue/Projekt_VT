@@ -5,6 +5,7 @@
  */
 package WebService;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.mail.Part;
 import javax.sql.DataSource;
 import static sun.security.krb5.Confounder.bytes;
 import tm.Message;
@@ -369,6 +371,23 @@ public class tmWebService {
         }
     }
     
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "uploadImage")
+    public String getName(@WebParam(name = "userId") int userId, @WebParam(name = "photo") String photo) {
+        try {
+            //TODO write your implementation code here:
+            Connection con = travelmate_vs.getConnection();
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO profils (photo) values (?) WHERE user_id=?");
+
+            
+            return "noch in Arbeit";
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
     
     
 
