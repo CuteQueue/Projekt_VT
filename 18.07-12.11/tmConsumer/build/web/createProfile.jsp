@@ -148,10 +148,8 @@
           </div><!-- /.container-fluid -->
         </nav>
         
-        <div class="fixed-bg container-fluid">
-        <div class="parent">
-          <div class="child">
-            <div class="row">
+        <div class="fixed-bg container">
+              <div class="row center-me profilesheet" >
                 
               <div class="col-xs-12 col-sm-12 text-center">
                 <div class="panel panel-default center-me" style="max-width:300px;">
@@ -214,8 +212,7 @@
               <!-- Optional: clear the XS cols if their content doesn't match in height -->
               <div class="col-xs-12 col-sm-12 text-center"></div>
             </div>
-          </div>
-        </div>
+
         </div>
       </body>
     </html>
