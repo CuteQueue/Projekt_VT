@@ -102,23 +102,6 @@ public class tmChatServlet extends HttpServlet {
                 System.out.println("Nickname aus Clientliste werfen, weil nicht korrekt ausgeloggt.");
                 user.getStub().unsubscribeUser(name);
                 
-                /*out.println("<html><head><body>");
-                out.print("<form action=\"");
-                out.print(res.encodeURL ("tmChatOn"));
-                out.println("\" method=\"POST\" >");
-                out.println("<h2>Der Nickname ist bereits vergeben!</h2>");
-                out.println("<p>Bitte geben Sie einen neuen Namen ein: <input type=\"text\" name=\"name\"></p>");
-                out.println("<input type=\"submit\" name = \"name\" value=\"Abschicken\">");
-                out.println("</form></body></html>");
-                out.close();
-               
-                name = req.getParameterValues("name")[0];
-                if (!user.getStub().getClients().containsKey(name)){
-                    vorhanden = "nein";
-                    
-                    session.setAttribute("name", name);
-                }*/
-           
             } 
                 user.setUsername(name); //Usernamen festlegen
                 ChatInterface chat = user.getStub().subscribeUser(user.getUsername(), user); //User beim Chat anmelden
@@ -132,9 +115,16 @@ public class tmChatServlet extends HttpServlet {
 
 
                 /*----------------------------HTML-Teil----------------------------*/
-                out.println("<html><head><title>Chat</title>");
-                out.println("<meta http-equiv=\"refresh\" content=\"10;URL=\"http://"+session.getAttribute("ip")+":8080/tmConsumer/tmChatOn>");
-                out.println("<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->\n" +
+                
+                out.println("<head>\n" +
+                "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
+                "    <meta http-equiv=\"refresh\" content=\"10;URL=\"http://"+session.getAttribute("ip")+":8080/tmConsumer/tmChatOn\">\n"+
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
+                "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n" +
+                "    <meta http-equiv=\"Pragma\" content=\"no-cache\">\n" +
+                "    <meta http-equiv=\"Expires\" content=\"-1\">\n" +
+                "    <title>TravelMate</title>\n" +
+                "    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->\n" +
                 "    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js\"></script>\n" +
                 "\n" +
                 "    <!-- Bootstrap -->\n" +
@@ -145,11 +135,28 @@ public class tmChatServlet extends HttpServlet {
                 "    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css\" integrity=\"sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp\" crossorigin=\"anonymous\">\n" +
                 "\n" +
                 "    <!-- Latest compiled and minified JavaScript -->\n" +
-                "    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script></head>\n");
-                out.println("<style>textarea {resize: none;}</style>");
+                "    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>\n" +
+                "\n" +
+                "   \n" +
+                "    <link rel=\"stylesheet\" href=\"css/css02.css\" type=\"text/css\">\n" +
+                "    </head>");
+                
+                
+                //Scrollbalken des Chatfensters immer unten
+                out.println("<script>\n" +
+                        "window.onload = load;\n" +
+                        "function load(){\n" +
+                        "	var chatWindow = document.getElementById(\"chatWindow\");\n" +
+                        "	chatWindow.scrollTop = chatWindow.scrollHeight;\n" +
+                        "};\n" +
+                        "</script>");
+                
+                
+                out.println("<style>textarea {resize: none;}"+
+                        ".responsive-input{width: 100%;}" +
+                        "</style>");
 
                 out.println("<body>\n" +
-                "      <div>\n" +
                 "        <nav class=\"navbar navbar-default\">\n" +
                 "          <div class=\"container-fluid\">\n" +
                 "            <!-- Brand and toggle get grouped for better mobile display -->\n" +
@@ -171,55 +178,67 @@ public class tmChatServlet extends HttpServlet {
                 "              </ul>\n" +
                 "            </div><!-- /.navbar-collapse -->\n" +
                 "          </div><!-- /.container-fluid -->\n" +
-                "        </nav>\n" +
-                "       </div>     ");
+                "        </nav>");
 
+ 
+                
                 out.println("<div class=\"fixed-bg container\">\n" +
-    "              <div class=\"row center-me profilesheet\" >\n" +
-    "                <div class=\"col-xs-12 col-sm-5 col-md-5 abstand\">");
+                "            <div class=\"row center-me profilesheet\" style=\"max-width:1000px;min-height:400px;\">");
+                
+                out.println("<div class=\"col-xs-12 col-sm-12\">\n" +
+                "             <div class=\"text-center\">");
 
-                out.println("<h2>Willkommen im Chat, " + user.getUsername()
-                        + "!</h2>");
+                out.println("<h3>Willkommen, " + user.getUsername()
+                        + "!</h3>");
 
                 
                 //Chatfenster und Client-Ausgabeliste
-                out.println("<div>\n" +
-                "               <table>\n" +
-                "                   <td>\n" +
-                "                       <textarea name=\"chatoutput\" id =\"chatWindow\" cols=\"100\" rows=\"20\" readonly=\"\">");
-                                            List <String> chatAusgabe = user.getAusgaben();
-                                            for (String nachricht : chatAusgabe) {
-                                                out.println(nachricht + "\n");
-                                            }
+                out.println("<div class=\"col-xs-9 col-sm-9 col-md-9 text-center\" style=\"padding:0;\">\n" +
+
+                "           <textarea name=\"chatoutput\" class=\"responsive-input\" id =\"chatWindow\" cols=\"100\" rows=\"15\" readonly=\"\">");
+                                List <String> chatAusgabe = user.getAusgaben();
+                                for (String nachricht : chatAusgabe) {
+                                    out.println(nachricht + "\n");
+                                }
                             out.println("</textarea>\n" +
-                            "       </td>\n" +
-                            "	<td>\n" +
-                            "           <textarea name=\"clientsOnline\" cols=\"15\" rows=\"20\" readonly=\"\">");
+                            "       </div>\n" +
+                            "<div class=\"col-xs-3 col-sm-3 col-md-3 text-center\" style=\"padding:0;\">\n" +
+                            "           <textarea name=\"clientsOnline\" cols=\"15\" rows=\"15\" class=\"responsive-input\" readonly=\"\">");
                                             Set<String> clientsOnline = user.getStub().getClients().keySet();
                                             for ( String key : clientsOnline ) {
                                                 out.println( key );
                                             }
                             out.println("</textarea>\n" +
-                            "       </td>\n" +
-                            "   </table>\n" +
                             "</div>");
 
                 //Eingabefeld für die Nachricht
-                out.print("<form action=\"");
-                out.print(res.encodeURL ("tmChatOn")); //damit das Session-Tracking auch funktioniert, wenn Cookies deaktiviert sind
-                out.println("\" method=\"POST\" >");
-                out.println("<h3>Nachricht hier:</h3>");
-                out.println("<input type=\"hidden\" name=\"name\" value="+user.getUsername()+">");
-                out.println("<div>\n" +
-                            "	<td>\n" +
-                            "		<input vk_13ff6=\"subscribed\" size=\"50\" name=\"message\" type=\"text\">\n" +
-                            "	</td>\n" +
-                            "	<td>\n" +
-                            "		<input value=\"Abschicken\" type=\"submit\">\n" +
-                            "	</td>\n" +
-                            "</div>\n" +
-                            "</form>");
+                out.println("<div class=\"col-xs-9 col-sm-9 col-md-9 text-center\" style=\"margin-top:15px;padding:0;\">\n");
+                    out.print("<form action=\"");
+                    out.print(res.encodeURL ("tmChatOn")); //damit das Session-Tracking auch funktioniert, wenn Cookies deaktiviert sind
+                    out.println("\" method=\"POST\" >");
+                    out.println("<input type=\"hidden\" name=\"name\" value="+user.getUsername()+">");
+                    out.println("<input vk_13ff6=\"subscribed\" class=\"form-control\" name=\"message\" placeholder=\"your message...\" type=\"text\">\n" +
+                                "</div>\n"+
+                                "<div class=\"col-xs-3 col-sm-3 col-md-3\" text-center\" style=\"margin-top:15px;padding:0;\">\n"+
+                                "<input value=\"send\" class=\"form-control\" type=\"submit\">\n" +
+                                "</div>\n" +
+                                "</form>\n"+
+                            
+                "</div");
+                    
+                out.println("</div></div></div></div>");
                 
+                try{
+                    msg = req.getParameterValues("message")[0]; //eingebene Nachricht in msg speichern
+                    out.println("<meta http-equiv=\"refresh\" content=\"0; URL=http://"+session.getAttribute("ip")+":8080/tmConsumer/tmChatOn\">");
+                }catch(Exception ex){
+                    msg = " "; 
+                }
+                 if(!msg.equals(" ")){
+                    //user.getStub().ausgabeHinzu(user.getUsername() + ": " + msg); //Name des Users + seine Nachricht zur ausgaben-Liste hinzufügen
+                    chat.sendMessage(user.getUsername(), msg); //Nachricht senden
+                    msg="";
+                }
                 
                 //Ende HTML-Teil
                 out.println("</body></html>");
