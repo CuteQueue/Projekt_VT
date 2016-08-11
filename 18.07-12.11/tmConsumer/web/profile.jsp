@@ -39,10 +39,22 @@
     
     
     </head>
-      <% HttpSession nsession = request.getSession(true);
-          if(nsession.getAttribute("email")==null) {
-              %><script>meldung();</script><%     
-          } 
+      <% 
+        //Prüfen, ob gültige session vorhanden ist.
+        HttpSession nsession = request.getSession(true);
+        if(nsession.getAttribute("email")==null) {
+            %><script>meldung();</script><%     
+        } 
+        
+        //Prüfen, ob Profil des eingeloggten Users oder fremdes Profil angezeigt werden soll
+        String foreignProfile = null;
+        User u = new User((String) session.getAttribute("email"));
+        User user = (User) session.getAttribute("user");
+        if(!u.getEmail().equals(user.getEmail())){
+            session.setAttribute("email", user.getEmail());
+            foreignProfile = "yes";
+        }
+        u.getProfileData(); //Profildaten holen
       %>
 
     <body>
@@ -59,8 +71,16 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="${pageContext.request.contextPath}/toProfil">Profile<span class="sr-only">(current)</span></a></li>
-                <li><a href="${pageContext.request.contextPath}/toSearch">Search</a></li>
+                <!-- Markierung der Navbar setzen, je nachdem, ob man über search oder über profile ein Profil anschaut -->
+                <% if(foreignProfile ==null){
+                    out.println("<li class=\"active\"><a href=\"toProfil\">Profile<span class=\"sr-only\">(current)</span></a></li>\n" +
+                    "                <li><a href=\"toSearch\">Search</a></li>");
+                }else{
+                    out.println("<li><a href=\"toProfil\">Profile</a></li>\n" +
+                    "                <li class=\"active\"><a href=\"toSearch\">Search<span class=\"sr-only\">(current)</span></a></li>");
+                }
+                %>
+                
                 <li><a href="${pageContext.request.contextPath}/Inbox">Messages</a></li>
                 <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
               </ul>
@@ -112,14 +132,7 @@
                       <tr>
                         <td>
                             <%  
-                                String tm = null;
-                                User u = new User((String) session.getAttribute("email"));
-                                User user = (User) session.getAttribute("user");
-                                if(!u.getEmail().equals(user.getEmail())){
-                                    session.setAttribute("email", user.getEmail());
-                                    tm = "tm";
-                                }
-                                u.getProfileData(); //Profildaten holen
+                                
                                 out.println(u.getName());
                             %> 
                         </td>
@@ -253,10 +266,10 @@
                       <tr>
                         <td>
                             <%
-                                if(tm==null){
+                                if(foreignProfile ==null){
                                     out.println("<input type=\"button\" class=\"btn btn-primary btn-s\" style=\"margin-top:5px;\" onclick=\"window.location.href='Edit'\" value=\"edit profile\" name=\"button\" id=\"button\"/>");
                                 }else{
-                                    tm=null;
+                                    foreignProfile=null;
                                 }
                             %>
                             

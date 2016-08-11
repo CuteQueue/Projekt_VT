@@ -70,7 +70,7 @@ public class RegisterServlet extends HttpServlet {
             System.out.println("addUser: " + addUser);
             if(addUser==null){
                 out.println("<script type=\"text/javascript\">");
-                out.println("alert('Mail already in use.');");
+                out.println("alert('Mail or Nickname already in use.');");
                 out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/register.jsp\';");
                 out.println("</script>");
                 
