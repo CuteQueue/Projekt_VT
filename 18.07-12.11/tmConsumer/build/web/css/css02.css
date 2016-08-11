@@ -26,6 +26,13 @@ and open the template in the editor.
           margin: 0 auto;
         }
         
+        div.centered_table{
+            margin: 0 auto; 
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+        
         /*für Hintergrunddarstellung im Browser*/
         body { 
           padding-top: 0px;

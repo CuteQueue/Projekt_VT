@@ -34,6 +34,11 @@
               alert("No valid session, please login!");
               location= window.location.href='Index';
             };
+        
+        //Wurde in der DB kein Bild gefunden, wird blank-profile-picture als Alternative ausgegeben 
+        function noImage() {
+            document.getElementById('foo').src='images/blank-profile-picture-973460_1280.png';
+        };
     </script>
     <link rel="stylesheet" href="css/css02.css" type="text/css">
     
@@ -96,7 +101,8 @@
         <div class="fixed-bg container">
               <div class="row center-me profilesheet" >
                 <div class="col-xs-12 col-sm-5 col-md-5 abstand">
-                  <img src="images/blank-profile-picture-973460_1280.png" class="img-fluid img-rounded pull-xs-left profile-img" alt="responsive img">
+                    <% int user_id = u.getUser_id();%>
+                       <img id="foo" src="/tmConsumer/getImageServlet?user_id=<%out.println(user_id);%>" class="img-fluid img-rounded pull-xs-left profile-img" onerror="noImage()"/>
                 </div>
                 <div class="col-xs-3 col-sm-2 col-md-2 ">
                   <table class="table abstand table-borderless">
@@ -268,11 +274,12 @@
                             <%
                                 if(foreignProfile ==null){
                                     out.println("<input type=\"button\" class=\"btn btn-primary btn-s\" style=\"margin-top:5px;\" onclick=\"window.location.href='Edit'\" value=\"edit profile\" name=\"button\" id=\"button\"/>");
+                                    out.println("<input type=\"button\" class=\"btn btn-primary btn-s\" style=\"margin-top:5px;\" onclick=\"window.location.href='uploadImage.jsp'\" value=\"upload Image\" name=\"button2\" id=\"button2\"/>");
                                 }else{
                                     foreignProfile=null;
                                 }
                             %>
-                            
+                             
                         </td>
                       </tr>
                     </tbody>

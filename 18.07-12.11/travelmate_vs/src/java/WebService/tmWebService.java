@@ -17,6 +17,8 @@ import javax.annotation.Resource;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.mail.Part;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import static sun.security.krb5.Confounder.bytes;
 import tm.Message;
@@ -368,9 +370,7 @@ public class tmWebService {
             return null;
         }
     }
-    
-    
-    
 
+    
 
 }

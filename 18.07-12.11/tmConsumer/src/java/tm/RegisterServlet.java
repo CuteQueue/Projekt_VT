@@ -49,7 +49,6 @@ public class RegisterServlet extends HttpServlet {
         response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
         response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
-        response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(true);
         session.setAttribute("registered", null);
         try (PrintWriter out = response.getWriter()) {
