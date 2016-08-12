@@ -40,7 +40,7 @@ public class NewMessageServlet extends HttpServlet {
             //----------Falls keine Session vorhanden-----------------------------------------
             if (session.getAttribute("email") == null) {
                 out.println("<script type=\"text/javascript\">");
-                out.println("alert('Keine Session vorhanden');");
+                out.println("alert('No valid session.');");
                 out.println("location= window.location.href='Index';");
                 out.println("</script>");
                 out.close();

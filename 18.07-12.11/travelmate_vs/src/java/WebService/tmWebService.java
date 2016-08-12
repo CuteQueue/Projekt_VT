@@ -113,7 +113,8 @@ public class tmWebService {
 
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO users (name, last_name, nickname, email, salt, password) VALUES (?,?,?,?,?,?)"); //where id = ?
-
+            pstmt.executeQuery("SET NAMES UTF8");
+            pstmt.executeQuery("SET CHARACTER SET UTF8");
             pstmt.setString(1, name);
             pstmt.setString(2, last_name);
             pstmt.setString(3, nickname);
@@ -139,7 +140,8 @@ public class tmWebService {
             
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO profils (user_id, mobilenumber, age, location, sex, destination, startdate, interests, looking_for, about) VALUES (?,?,?,?,?,?,?,?,?,?)"); //where id = ?
-
+            pstmt.executeQuery("SET NAMES UTF8");
+            pstmt.executeQuery("SET CHARACTER SET UTF8");
             pstmt.setInt(1, id);
             pstmt.setString(2, mobilenumber);
             pstmt.setInt(3, age);
@@ -171,7 +173,8 @@ public class tmWebService {
             //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("UPDATE profils SET mobilenumber = ?, age = ?, location = ?, sex = ?, destination = ?, startdate = ?, interests = ?, looking_for = ?, about = ? WHERE user_id = ?"); 
-
+            pstmt.executeQuery("SET NAMES UTF8");
+            pstmt.executeQuery("SET CHARACTER SET UTF8");
             pstmt.setString(1, mobilenumber);
             pstmt.setInt(2, age);
             pstmt.setString(3, location);
@@ -265,7 +268,8 @@ public class tmWebService {
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO messages (senderId, recipientId, message, seen) VALUES (?,?,?,?)"); 
             
-            
+            pstmt.executeQuery("SET NAMES UTF8");
+            pstmt.executeQuery("SET CHARACTER SET UTF8");
             pstmt.setInt(1, senderId);
             pstmt.setInt(2, recipientId);
             pstmt.setString(3, message);

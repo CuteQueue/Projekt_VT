@@ -1,7 +1,7 @@
 <%-- 
     Document   : createProfile
     Created on : 20.07.2016, 13:48:08
-    Author     : nina
+    Author     : Manuela & Nina
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,8 +12,6 @@
         input[type=number] {
             -moz-appearance: textfield;
         }
-        
-        
     </style>
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,9 +66,7 @@
                     var data = ids[i];
                     var value = document.getElementById(data).value;
 
-                    // Save the name in localStorage.
                     localStorage.setItem(data, value);
-                    //alert(localStorage.getItem(data));
                 }
             };
             
@@ -89,11 +85,9 @@
                 if(document.getElementById('female').checked) {
                     localStorage.setItem('female', "store");
                     localStorage.setItem('male', "unstore");
-                    //alert("female: " + localStorage.getItem('female'));
                 } else {
                     localStorage.setItem('male', "store");
                     localStorage.setItem('female', "unstore");
-                    //alert("male: " + localStorage.getItem('male'));
                 }
             };
             
@@ -124,14 +118,12 @@
     <body>
         <nav class="navbar navbar-default">
           <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               </button>
               <a class="navbar-brand" href="${pageContext.request.contextPath}/toHome">TravelMate</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="${pageContext.request.contextPath}/toProfil">Profile<span class="sr-only">(current)</span></a></li>
@@ -142,8 +134,8 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="${pageContext.request.contextPath}/Logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
               </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
+            </div>
+          </div>
         </nav>
         
         <div class="fixed-bg container-fluid">
@@ -151,7 +143,6 @@
                 
               <div class="col-xs-12 col-sm-12 text-center">
                 <div class="panel panel-default center-me" style="max-width:300px;">
-                  <!-- Default panel contents -->
                   <div class="panel-heading">No profile data found.</div>
                     <form action="CreateProfile" method = "POST">
                         <table border="0" style="margin-left:25px; margin-top:15px">

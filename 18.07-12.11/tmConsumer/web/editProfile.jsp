@@ -3,7 +3,7 @@
 <%-- 
     Document   : editProfile
     Created on : 21.07.2016, 11:07:33
-    Author     : nina
+    Author     : Manuela & Nina
 --%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="tm.User"%>
@@ -62,14 +62,12 @@
             window.onload = checkBoxes;
 
             function checkBoxes() {
-
                 var getStatus = "${profileDetails.sex}";
                 if (getStatus === "female") {
                     document.getElementById("female").checked = true;                   
                 } else {
                     document.getElementById("male").checked = true;
                 }
-
             };
             
             function meldung(){
@@ -77,7 +75,9 @@
               location= window.location.href='Index';
             };
         </script>
+        
         <link rel="stylesheet" href="css/css02.css" type="text/css">
+        
     </head>
     <% HttpSession nsession = request.getSession(true);
         if(nsession.getAttribute("email")==null) {
@@ -88,14 +88,11 @@
       <div>
         <nav class="navbar navbar-default">
           <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               </button>
               <a class="navbar-brand" href="${pageContext.request.contextPath}/toHome">TravelMate</a>
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="${pageContext.request.contextPath}/toProfil">Profile<span class="sr-only">(current)</span></a></li>
@@ -106,8 +103,8 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="${pageContext.request.contextPath}/Logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
               </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
+            </div>
+          </div>
         </nav>
        </div>     
 

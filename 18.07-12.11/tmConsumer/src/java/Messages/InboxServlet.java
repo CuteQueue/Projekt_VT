@@ -40,7 +40,7 @@ public class InboxServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            //aktueller User:
+            
             HttpSession session = request.getSession(true);
             //----------Falls keine Session vorhanden-----------------------------------------
                 if (session.getAttribute("email") == null) {
@@ -52,6 +52,7 @@ public class InboxServlet extends HttpServlet {
                     return;
                 }
 
+            //aktueller User:
             User user = (User) session.getAttribute("user");
             int user_id = user.getId();
             

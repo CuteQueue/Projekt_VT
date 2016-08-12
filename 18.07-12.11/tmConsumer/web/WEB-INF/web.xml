@@ -26,7 +26,7 @@
     </servlet>
     <servlet>
         <servlet-name>WeiterleitungLoginServlet</servlet-name>
-        <servlet-class>tm.WeiterleitungLoginServlet</servlet-class>
+        <servlet-class>Weiterleitung.WeiterleitungLoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>StartServlet</servlet-name>
