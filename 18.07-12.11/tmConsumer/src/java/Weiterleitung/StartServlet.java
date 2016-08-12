@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tm;
+package Weiterleitung;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Manuela
+ * @author Manuela & Nina
  */
 public class StartServlet extends HttpServlet {
 
@@ -29,20 +30,20 @@ public class StartServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(true);
         String serverIp = "";
         try (PrintWriter out = response.getWriter()){
             serverIp = request.getParameterValues("serverIp")[0];
-            
             session.setAttribute("serverIp", serverIp);
-            out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/toLogin\">");
             
+            //Einsetzen der gewählten ServerIP und weiterleiten an geänderte Adresse
+            out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/toLogin\">");  
         }catch(Exception errStartServlet1){
-                
-            }
+            System.out.println("Error Startservlet");
         }
+    }
     
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

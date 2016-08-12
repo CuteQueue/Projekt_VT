@@ -5,6 +5,8 @@
  */
 package Messages;
 
+import Chat.ChatInterface;
+import Chat.ClientInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -19,7 +21,7 @@ import webservice.TmWebService_Service;
 
 /**
  *
- * @author nina
+ * @author nina & manuela
  */
 public class InboxServlet extends HttpServlet {
 
@@ -45,7 +47,7 @@ public class InboxServlet extends HttpServlet {
             //----------Falls keine Session vorhanden-----------------------------------------
                 if (session.getAttribute("email") == null) {
                     out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Keine Session vorhanden');");
+                    out.println("alert('No valid session.');");
                     out.println("location= window.location.href='Index';");
                     out.println("</script>");
                     out.close();
@@ -55,6 +57,16 @@ public class InboxServlet extends HttpServlet {
             //aktueller User:
             User user = (User) session.getAttribute("user");
             int user_id = user.getId();
+            
+            //Prüfung, ob Nutzer noch in Chat eingeloggt, dann ausloggen, weil Chatfenster nicht aktiv
+            try{
+                ClientInterface userI = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
+                ChatInterface chat = (ChatInterface) session.getAttribute("chat"); //chat aus Session erholen
+                chat.sendMessage(userI.getUsername(), "hat sich ausgeloggt");
+                userI.getStub().unsubscribeUser(userI.getUsername());
+            }catch(Exception err){
+                System.out.println("User nicht im Chat aktiv. Muss nicht ausgeloggt werden.");
+            }
             
             //Die verschiedenen Unterhaltungen laden
             java.util.List<webservice.User> conversations = showConversations(user_id);
@@ -110,15 +122,11 @@ public class InboxServlet extends HttpServlet {
     }// </editor-fold>
 
     private java.util.List<webservice.User> showConversations(int userId) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.showConversations(userId);
     }
 
     private java.util.List<webservice.User> anyNewMessages(int userId) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.anyNewMessages(userId);
     }

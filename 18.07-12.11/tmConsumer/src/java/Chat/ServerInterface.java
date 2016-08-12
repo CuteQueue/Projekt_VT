@@ -1,3 +1,6 @@
+/* 
+    Author     : manuela & nina
+*/
 package Chat;
 
 /*
@@ -8,8 +11,7 @@ package Chat;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
+
 
 
 

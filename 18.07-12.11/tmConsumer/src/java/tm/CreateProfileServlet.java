@@ -2,7 +2,6 @@ package tm;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,7 @@ import webservice.TmWebService_Service;
 
 /**
  *
- * @author nina
+ * @author nina & manuela
  */
 public class CreateProfileServlet extends HttpServlet {
 
@@ -39,11 +38,9 @@ public class CreateProfileServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
             HttpSession session = request.getSession(true);
-            System.out.println("!!!!!!!!!!!!!!!!!!! SessionIP ChatOnServlet: " + session.getAttribute("serverIp"));
             if (session.getAttribute("email") == null) {
                 out.println("<html><head><title>SessionError</title></head>");
                 out.println("<body><h2>Keine Session vorhanden</h2>");
-                //out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
                 out.print("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer\"");
                 out.println("\" method=\"POST\" >");
                 out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
@@ -54,22 +51,18 @@ public class CreateProfileServlet extends HttpServlet {
             }
             String email = (String) session.getAttribute("email");
             User u = new User(email);
+            
             session.setAttribute("user", u); //in Session gespeichert 
             User user = (User) session.getAttribute("user");
-
-            System.out.println("CreateProfileServlet");
-
+            
             String mobilenumber = request.getParameterValues("mobilenumber")[0];
-
             String ageString = request.getParameterValues("age")[0];
             int age = Integer.parseInt(ageString);
-
             String location = request.getParameterValues("location")[0];
             String sex = request.getParameterValues("sex")[0];
             String destination = request.getParameterValues("destination")[0];
 
             String startdate = request.getParameterValues("startdate")[0];
-            // String startdate = java.sql.Date.valueOf(startdateString); 
 
             String interests = request.getParameterValues("interests")[0];
             String looking_for = request.getParameterValues("looking_for")[0];
@@ -79,9 +72,7 @@ public class CreateProfileServlet extends HttpServlet {
 
             if (answer.equals("ok")) {
                 request.getRequestDispatcher("/Home").forward(request, response);
-                //response.sendRedirect("Home");
             } else {
-                //out.println("Ooooops, something went wrong!");
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please check all inputs, something seems to be missing.');");
                 out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Create\';");
@@ -130,8 +121,6 @@ public class CreateProfileServlet extends HttpServlet {
     }// </editor-fold>
 
     private String createProfile(int id, java.lang.String mobilenumber, int age, java.lang.String location, java.lang.String sex, java.lang.String destination, java.lang.String startdate, java.lang.String interests, java.lang.String lookingFor, java.lang.String about) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.createProfile(id, mobilenumber, age, location, sex, destination, startdate, interests, lookingFor, about);
     }

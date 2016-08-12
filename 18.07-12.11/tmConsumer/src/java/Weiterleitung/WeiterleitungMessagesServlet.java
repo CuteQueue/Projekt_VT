@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author nina
+ * @author nina & manuela
  */
 public class WeiterleitungMessagesServlet extends HttpServlet {
 
@@ -30,7 +30,7 @@ public class WeiterleitungMessagesServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
         try (PrintWriter out = response.getWriter()) {
@@ -39,10 +39,10 @@ public class WeiterleitungMessagesServlet extends HttpServlet {
            String chatPartnerName =  request.getParameter("chatPartnerName");
            String chatPartnerIdString =  request.getParameter("chatPartnerId");
            int chatPartnerId = Integer.parseInt(chatPartnerIdString);
+           
+           //Setzen der Attribute für ChatPartner zur Anzeige eines ausgewählten Chatverlaufs
            session.setAttribute("chatPartnerId", chatPartnerId);
-           session.setAttribute("chatPartnerName", chatPartnerName);
-           
-           
+           session.setAttribute("chatPartnerName", chatPartnerName);           
            out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Messages\">");
         }
     }

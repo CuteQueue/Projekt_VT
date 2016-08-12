@@ -1,7 +1,7 @@
 <%-- 
     Document   : logout
     Created on : 21.07.2016, 10:22:47
-    Author     : Manuela
+    Author     : Manuela & Nina
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -37,7 +37,6 @@
                 </div>
               <div class="col-xs-12 col-sm-12 text-center">
                 <div class="panel panel-default center-me" style="max-width:300px;">
-                  <!-- Default panel contents -->
                   <div class="panel-heading">You have logged out!</div>
             
                     <form action="toLogin" method="POST">
@@ -47,26 +46,22 @@
                   </br></br>
                 </div>
               </div>
-              <!-- Optional: clear the XS cols if their content doesn't match in height -->
-              <div class="col-xs-12 col-sm-12 text-center"></div>
             </div>
           </div>
         </div>
         </div>
       </body>
-        
-     
     </html>
     
     
 <!--Deaktivieren des Back-Buttons-->
 <script>
     window.location.hash="session ended";
-    window.location.hash="session ended";//again because google chrome don't insert first hash into history
+    window.location.hash="session ended";//abermals, da google chrome ersten Hash nicht in history einpflegt
     window.onhashchange=function(){window.location.hash="noSession";};   };
 </script> 
 
-        
+<!--Session beenden--> 
 <%
     session.invalidate();
 %>

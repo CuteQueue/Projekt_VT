@@ -2,7 +2,7 @@
 <%-- 
     Document   : searchRes
     Created on : 08.08.2016, 11:24:41
-    Author     : manuela
+    Author     : manuela & nina
 --%>
 
 <%-- Alle Reiseziele (Destination) werden aus der Datenbank gelesen und in result gespeichert --%>
@@ -71,14 +71,12 @@
         <div>
         <nav class="navbar navbar-default">
           <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               </button>
               <a class="navbar-brand" href="${pageContext.request.contextPath}/toHome">TravelMate</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li><a href="${pageContext.request.contextPath}/toProfil">Profile</a></li>
@@ -89,8 +87,8 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="${pageContext.request.contextPath}/Logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
               </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
+            </div>
+          </div>
         </nav>
     </div>   
        
@@ -111,7 +109,6 @@
                         <!--Ausgewählte Destination:-->
                         <font size="6" color="grey">Destination:</font>
                         <br>
-                        <!--Ausgewählte Destination:-->
                         <font size="6" color="grey"><%out.println(destination);%></font>
                     </div>
                     <div class="col-xs-1 col-sm-2 col-md-3 abstand" ></div>
@@ -134,7 +131,6 @@
                             //Damit der aktuelle User nicht selbst bei der Suche ausgeben wird:
                             if (travelmates.get(i).getUserId() != user.getId()) { 
 
-
                                 out.println("</br>");
                                 out.println("<li>" + travelmates.get(i).getName() + " " + travelmates.get(i).getLastName() + "</br>");
                                 out.println("Looking for: " + travelmates.get(i).getLookingFor() + "</br>");
@@ -149,7 +145,6 @@
                         }%>
                         </ul>
                     </div>
-                    
                 </form>
             </div>
             <br>

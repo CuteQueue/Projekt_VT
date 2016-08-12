@@ -1,3 +1,6 @@
+/* 
+    Author     : manuela & nina
+*/
 package Chat;
 
 /*
@@ -14,7 +17,6 @@ import java.util.List;
 public interface ClientInterface extends Remote {
     
     public void receiveMessage(String username, String message) throws RemoteException;
-    //public boolean clientVorhanden () throws RemoteException;
     
     public void setUsername(String username) throws RemoteException ;
     public String getUsername() throws RemoteException ;
@@ -25,6 +27,5 @@ public interface ClientInterface extends Remote {
     
      public List<String> getAusgaben() throws RemoteException;
      public void ausgabeHinzu(String ausgabe)throws RemoteException;
-    /*public String getIpServer();
-    public void setIpServer(String IpServer);*/
+
 }

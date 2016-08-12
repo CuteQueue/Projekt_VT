@@ -1,7 +1,7 @@
 <%-- 
     Document   : profile
     Created on : 09.08.2016, 15:23:39
-    Author     : Nina
+    Author     : Nina & Manuela
 --%>
 
 <%@page import="java.io.PrintWriter"%>
@@ -66,14 +66,12 @@
       <div>
         <nav class="navbar navbar-default">
           <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               </button>
               <a class="navbar-brand" href="${pageContext.request.contextPath}/toHome">TravelMate</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <!-- Markierung der Navbar setzen, je nachdem, ob man über search oder über profile ein Profil anschaut -->
@@ -92,8 +90,8 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="${pageContext.request.contextPath}/Logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
               </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
+            </div>
+          </div>
         </nav>
        </div>     
 
@@ -138,7 +136,6 @@
                       <tr>
                         <td>
                             <%  
-                                
                                 out.println(u.getName());
                             %> 
                         </td>
@@ -313,8 +310,7 @@
                                     session.setAttribute("chatPartnerName", u.getName()); 
                                     out.println("<button type=\"button\" class=\"btn btn-primary btn-s center-block\" onclick=\"window.location.href='newMessage.jsp'\"><span class=\"glyphicon glyphicon-envelope\"></span> Contact</button>");
                                 }
-                            %>
-                             
+                            %> 
                         </td>
                       </tr>
                     </tbody>

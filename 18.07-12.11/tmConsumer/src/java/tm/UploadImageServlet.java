@@ -7,7 +7,6 @@ package tm;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,7 +23,7 @@ import webservice.TmWebService_Service;
 
 /**
  *
- * @author Manuela
+ * @author Manuela & Nina
  */
 
 @MultipartConfig(maxFileSize = 16177215) // upload file bis zu 16MB
@@ -56,29 +55,20 @@ public class UploadImageServlet extends HttpServlet {
         response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
         HttpSession session = request.getSession(true);
         
-        InputStream inputStream = null; // input stream of the upload file
+        InputStream inputStream = null; 
          
-        // obtains the upload file part in this multipart request
         Part filePart = request.getPart("image");
         if (filePart != null) {
-            // prints out some information for debugging
-            System.out.println(filePart.getName());
-            System.out.println(filePart.getSize());
-            System.out.println(filePart.getContentType());
-             
-            // obtains input stream of the upload file
             inputStream = filePart.getInputStream();
         }
          
-        Connection conn = null; // connection to the database
-        String message = null;  // message will be sent back to client
+        Connection conn = null; 
+        String message = null; 
          
         try {
-            // connects to the database
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
  
-            // constructs SQL statement
             String sql = "UPDATE profils SET image = ? WHERE user_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             User user = (User)session.getAttribute("user");
@@ -86,13 +76,11 @@ public class UploadImageServlet extends HttpServlet {
             statement.setInt(2, userId);
              
             if (inputStream != null) {
-                // fetches input stream of the upload file for the blob column
                 statement.setBlob(1, inputStream);
             }
  
-            // sends the statement to the database server
-            int row = statement.executeUpdate();
-            if (row > 0) {
+            int result = statement.executeUpdate();
+            if (result > 0) {
                 message = "File uploaded and saved into database";
             }
         } catch (Exception ex) {
@@ -100,22 +88,16 @@ public class UploadImageServlet extends HttpServlet {
             ex.printStackTrace();
         } finally {
             if (conn != null) {
-                // closes the database connection
+                // schließt Datenbankverbindung
                 try {
                     conn.close();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-            }
-            // sets the message in request scope
-            request.setAttribute("Message", message);
-            System.out.println(message);
-             
-            // forwards to the message page
+            }       
             RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
             rd.forward(request, response);
         }
-    
     }
 
     /**

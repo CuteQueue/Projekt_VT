@@ -15,14 +15,13 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Manuela
+ * @author Manuela & Nina
  */
 public class User {
     String host = "jdbc:mysql://localhost:3306/trvmate_db?zeroDateTimeBehavior=convertToNull";
     String uName = "root";
     String uPass= "root";
     Connection con;
-    //String SQL;
     Statement stmt;
     ResultSet rs;    
     
@@ -53,7 +52,6 @@ public class User {
     public void connect(){
         try {
             con = DriverManager.getConnection(host, uName, uPass);
-            System.out.println("connected!");
         }
         catch ( SQLException err ) {
             System.out.println( err.getMessage( ) );
@@ -76,22 +74,9 @@ public class User {
             
             String SQL2 = "SELECT * FROM profils WHERE user_id = " + this.id;
             rs = stmt.executeQuery(SQL2);
-            
             rs.next();
-          /*  this.mobilenumber = rs.getString("mobilenumber");
-            this.location = rs.getString("location");
-            this.updated_at = rs.getString("updated_at");
-            this.sex = rs.getString("sex");
-            this.destination = rs.getString("destination");
-            this.startdate = rs.getString("startdate");
-            this.interests = rs.getString("interests");
-            this.looking_for = rs.getString("looking_for");
-            this.about = rs.getString("about");
-            this.user_id = rs.getInt("user_id");
-            this.age = rs.getInt("age");*/
-    
-
-            returnUser = name + " " + last_name + " " + nickname + " " + user_id + "wurde angelegt.";
+          
+            returnUser = name + " " + last_name  + " wurde angelegt.";
             
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,7 +85,6 @@ public class User {
     }
     
       public void getProfileData(){
-        String returnProfile = "kein Profile gefunden";
         try {
             stmt = con.createStatement();
             String SQL = "SELECT * FROM users WHERE email = \"" + this.email + "\"";
@@ -126,14 +110,10 @@ public class User {
             this.about = rs.getString("about");
             this.user_id = rs.getInt("user_id");
             this.age = rs.getInt("age");
-    
-
-            returnProfile = "Profil von" + " " + name + " " + last_name + " wurde mit user_id " + user_id + "angelegt.";
-            
+                
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }    
-        System.out.println(returnProfile);
     }
 
     public String getHost() {

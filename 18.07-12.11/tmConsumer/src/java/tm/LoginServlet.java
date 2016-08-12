@@ -6,18 +6,15 @@
 package tm;
 
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Arrays;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +25,7 @@ import webservice.TmWebService_Service;
 
 /**
  *
- * @author Manuela
+ * @author Manuela & Nina
  */
 public class LoginServlet extends HttpServlet {
     
@@ -45,23 +42,18 @@ public class LoginServlet extends HttpServlet {
      */
      int exit = 0;
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-         response.setContentType("text/html;charset=UTF-8");
+        throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
+        response.setContentType("text/html;charset=UTF-8");
         response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
         response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
         response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
-       HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(true);
        
-       
-       String email;
+        String email;
         try (PrintWriter out = response.getWriter()){
-            // Neue Session anlegen
-          
-       
-            //System.out.println("Session created");
+            
             try {
-               // String serverIp = request.getParameterValues("serverIp")[0];
                 String serverIp = request.getParameterValues("serverIp")[0];
                 session.setAttribute("serverIp", serverIp);
                 email = request.getParameterValues("email")[0]; 
@@ -73,33 +65,23 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("email", email);
                     User user = new User(email);
                     String nickname = user.getNickname();
-                    System.out.println("NICKNAME: " + nickname);
                     session.setAttribute("nickname", nickname);
-                    //out.println(email + session.getAttribute("serverIp"));
-                     //request.getRequestDispatcher("/toHome").forward(request, response);
-                     System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Profile\">");
-                    System.out.println("eingeloggt");
                 }else{
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('User or password incorrect.');");
                     out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/toLogin\';");
                     out.println("</script>");   
                 }
-                    
-            }catch(Exception homeErr0){
+            }catch(Exception Err0){
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please use username and password to login.');");
                 out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/toLogin\';");
                 out.println("</script>");
-                
             }
-       
-        }catch(Exception homeErr1){
-            System.out.println("ooooops");
+        }catch(Exception Err1){
+            System.out.println("error LoginServlet");
         }  
-        
-        
        
     }
 
@@ -155,15 +137,6 @@ public class LoginServlet extends HttpServlet {
     }// </editor-fold>
 
     
-
-   /* private String login(java.lang.String email, java.lang.String pw) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        webservice.TmWebService port = service.getTmWebServicePort();
-        return port.login(email, pw);
-    }*/
-
-    
     public byte[] retrieveSalt(String email){
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.getSalt(email);
@@ -203,11 +176,7 @@ public class LoginServlet extends HttpServlet {
        int iterations = 20000;
 
        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, derivedKeyLength);
-
        SecretKeyFactory f = SecretKeyFactory.getInstance(algorithm);
-
        return f.generateSecret(spec).getEncoded();
-     }
-    
-     
+     }  
 }

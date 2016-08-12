@@ -9,8 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
@@ -18,13 +16,12 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.sql.DataSource;
-import static sun.security.krb5.Confounder.bytes;
 import tm.Message;
 import tm.User;
 
 /**
  *
- * @author nina
+ * @author nina & manuela
  */
 @WebService(serviceName = "tmWebService")
 public class tmWebService {
@@ -40,7 +37,7 @@ public class tmWebService {
         try {
 
             Connection con = travelmate_vs.getConnection();
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?"); //where id = ?
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?"); 
 
             pstmt.setString(1, email);
             pstmt.setString(2, pw);
@@ -63,14 +60,11 @@ public class tmWebService {
     @WebMethod(operationName = "getSalt")
     public byte[] getSalt(@WebParam(name = "email") String email) {
         try {
-            //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ?"); //where id = ?
-
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ?");
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
-            //String text = "butz";
             byte[] salt = rs.getBytes("salt");
             rs.close();
             con.close();
@@ -87,10 +81,8 @@ public class tmWebService {
     @WebMethod(operationName = "getEncryptedPw")
     public byte[] getEncryptedPw(@WebParam(name = "email") String email) {
         try {
-            //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ?"); //where id = ?
-
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ?"); 
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
@@ -112,7 +104,7 @@ public class tmWebService {
         try {
 
             Connection con = travelmate_vs.getConnection();
-            PreparedStatement pstmt = con.prepareStatement("INSERT INTO users (name, last_name, nickname, email, salt, password) VALUES (?,?,?,?,?,?)"); //where id = ?
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO users (name, last_name, nickname, email, salt, password) VALUES (?,?,?,?,?,?)"); 
             pstmt.executeQuery("SET NAMES UTF8");
             pstmt.executeQuery("SET CHARACTER SET UTF8");
             pstmt.setString(1, name);
@@ -153,9 +145,6 @@ public class tmWebService {
             pstmt.setString(9, looking_for);
             pstmt.setString(10, about);
             pstmt.executeUpdate();
-            //rs.next();
-            //byte[] encryptedPw = rs.getBytes("password");
-            //rs.close();
             con.close();
             return "ok";
         } catch (SQLException ex) {
@@ -170,7 +159,6 @@ public class tmWebService {
     @WebMethod(operationName = "editProfile")
     public String editProfile(@WebParam(name = "id") int id, @WebParam(name = "mobilenumber") String mobilenumber, @WebParam(name = "age") int age, @WebParam(name = "location") String location, @WebParam(name = "sex") String sex, @WebParam(name = "destination") String destination, @WebParam(name = "startdate") String startdate, @WebParam(name = "interests") String interests, @WebParam(name = "looking_for") String looking_for, @WebParam(name = "about") String about) {
         try {
-            //TODO write your implementation code here:
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("UPDATE profils SET mobilenumber = ?, age = ?, location = ?, sex = ?, destination = ?, startdate = ?, interests = ?, looking_for = ?, about = ? WHERE user_id = ?"); 
             pstmt.executeQuery("SET NAMES UTF8");
@@ -186,7 +174,6 @@ public class tmWebService {
             pstmt.setString(9, about);
             pstmt.setInt(10, id);
             int update = pstmt.executeUpdate();
-           
             con.close();
 
             if (update == 1) {
@@ -237,7 +224,6 @@ public class tmWebService {
             while (rs.next()) {
                 User tm = new User(rs.getInt("user_id"), rs.getString("email"), rs.getString("name"), rs.getString("last_name"), rs.getString("looking_for"),rs.getString("startdate"));
                 travelmates.add(tm);
-
             }
             rs.close();
             con.close();
@@ -302,7 +288,6 @@ public class tmWebService {
             PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT senderId, user_id, email, name, last_name FROM messages, users,profils WHERE recipientId = ? AND senderId = users.id AND profils.user_id = users.id"); //where id = ?
 
             pstmt.setInt(1, user_id);
-            
             ResultSet rs = pstmt.executeQuery();
             
             /*Für jeden ChatPartner wird ein User-Objekt erstellt mit:
@@ -315,8 +300,6 @@ public class tmWebService {
                 User user = new User(rs.getInt("user_id"), rs.getString("email"), rs.getString("name"), rs.getString("last_name"));;
                 chatPartner.add(user);
             }
-            
-           
             rs.close();
             con.close();
             
@@ -363,7 +346,6 @@ public class tmWebService {
                 messages.add(m);
             }
             rs.close();
-            
             
             /*Für die empfangenen Nachrichten, die der aktuelle User sich gerade anzeigen lässt,
               wird seen auf true gesetzt,so kann unterschieden werden, welche Nachrichten gelesen und welche ungelesen sind:  */
@@ -426,9 +408,5 @@ public class tmWebService {
             return null;
         }
     }
-
-    
-    
-
 
 }

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Manuela
+ * @author Manuela & Nina
  */
 public class WeiterleitungSearchServlet extends HttpServlet {
 
@@ -33,7 +33,7 @@ public class WeiterleitungSearchServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
         response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
@@ -43,9 +43,9 @@ public class WeiterleitungSearchServlet extends HttpServlet {
  
         try (PrintWriter out = response.getWriter()) {
             try{
+                //Prüfung, ob Nutzer noch in Chat eingeloggt, dann ausloggen, weil Chatfenster nicht aktiv
                 ClientInterface userI = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
                 ChatInterface chat = (ChatInterface) session.getAttribute("chat"); //chat aus Session erholen
-                String ipSession = (String) session.getAttribute("ip");
                 chat.sendMessage(userI.getUsername(), "hat sich ausgeloggt");
                 userI.getStub().unsubscribeUser(userI.getUsername());
             }catch(Exception err){
@@ -53,9 +53,7 @@ public class WeiterleitungSearchServlet extends HttpServlet {
             }
                 
                 RequestDispatcher rd = request.getRequestDispatcher("search.jsp");
-                rd.forward(request, response);
-             
-            
+                rd.forward(request, response);            
         }     
     }
 

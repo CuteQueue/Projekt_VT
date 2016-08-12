@@ -7,7 +7,7 @@ package tm;
 
 /**
  *
- * @author nina
+ * @author nina & manuela
  */
 public class Message {
     private String content;

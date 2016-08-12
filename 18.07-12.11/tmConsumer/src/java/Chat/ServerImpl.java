@@ -1,3 +1,6 @@
+/* 
+    Author     : manuela & nina
+*/
 package Chat;
 
 /*
@@ -11,10 +14,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.List;
 
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
@@ -23,18 +24,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     
     
     public static void main(String[] args) {
-        // Man kann entweder eine lokale Registry erzeugen ...
-        // LocateRegistry.createRegistry (Registry.REGISTRY_PORT);
-        // ... oder verwendet die Standard-RMI Registry als externer
-        // Prozess auf dem lokalen Host unter Port 1099. 
-        // In diesem Fall wird mit getRegistry() auf diese zugegriffen.
-        // Bei Verwendung der externen Registry kann es zu einer ClassNotException kommen, 
-        // wenn rmiregistry keinen Zugriff auf die Stud-Klasse TimeServer hat.
-        // 'rmiregistry 1099' sollte also im Verzeichnis build/classes aufgerufen 
-        // werden (alternativ kann auch der Classpath angepasst werden).
-        //
-        // Die Konfiguration von Policies wird in der Datei 
-        // timer.policy gezeigt.
 
         Registry registry = null;
         try {
@@ -51,14 +40,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
         
         try {
-            // Objekt anlegen und exportieren des Server-Objektes
+            // Objekt anlegen und Export v. Serverobjekt
             ServerImpl obj = new ServerImpl();
      
-            //ServerInterface stub = (ServerInterface) UnicastRemoteObject.exportObject(obj, 0);
             // Stub registrieren
             registry.rebind ("ChatServer", obj);
-            // Es gibt auch eine statische Methode, die verwendet werden kann.
-            // Naming.rebind ("TimeServer", new TimeServerImpl());
             System.out.println ("ServerImpl registered as 'ChatServer' ...");
             obj.chat = new ChatImpl();
         } catch (java.rmi.ConnectException cex) {
@@ -73,25 +59,23 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
     
     ServerImpl() throws RemoteException {
-        // Ctor emittiert ggf. RemoteException
         clients = new HashMap();
-      
         System.out.println ("ServerImpl created...");
     }
     
     @Override
     public synchronized boolean clientPruefenSenden (String name) throws RemoteException{
         
-              try{
-                  System.out.println("Aktueller Key: " + name);
-                  clients.get(name).getUsername();
-                  return true;
-              }
-              catch (RemoteException rex){
-                 System.out.println(name + " hat Chat verlassen.");
-                 unsubscribeUser(name);                 
-                 return false;               
-            } 
+        try{
+            System.out.println("Aktueller Key: " + name);
+            clients.get(name).getUsername();
+            return true;
+        }
+        catch (RemoteException rex){
+           System.out.println(name + " hat Chat verlassen.");
+           unsubscribeUser(name);                 
+           return false;               
+      } 
     }
     
     @Override
@@ -130,8 +114,4 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return chat;
     }
 
-
-    
-    
-    
 }

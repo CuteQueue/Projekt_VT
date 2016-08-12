@@ -1,7 +1,7 @@
 <%-- 
     Document   : home
     Created on : 19.07.2016, 13:48:22
-    Author     : Manuela
+    Author     : Manuela & Nina
 --%>
 
 <%@page import="java.io.PrintWriter"%>
@@ -46,14 +46,12 @@
     <body>
         <nav class="navbar navbar-default">
           <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               </button>
               <a class="navbar-brand" href="${pageContext.request.contextPath}/toHome">TravelMate</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="${pageContext.request.contextPath}/toProfil">Profile<span class="sr-only">(current)</span></a></li>
@@ -64,8 +62,8 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
               </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
+            </div>
+          </div>
         </nav>
             
 
@@ -77,7 +75,6 @@
                 
               <div class="col-xs-12 col-sm-12 text-center">
                 <div class="panel panel-default center-me" style="max-width:300px;">
-                  <!-- Default panel contents -->
                   <div class="panel-heading">No profile data found.</div>
                     <table>
                         <tbody>
@@ -89,14 +86,11 @@
                     </table>
                   </div>
                 </div>
-              <!-- Optional: clear the XS cols if their content doesn't match in height -->
-              <div class="col-xs-12 col-sm-12 text-center"></div>
             </div>
           </div>
         </div>    
-                    </br></br>
-
-        </div>
-      </body>
-    </html>
+    </br></br>
+    </div>
+  </body>
+</html>
       

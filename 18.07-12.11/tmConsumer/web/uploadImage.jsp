@@ -1,7 +1,7 @@
 <%-- 
     Document   : uploadImage
     Created on : 11.08.2016, 10:26:25
-    Author     : Manuela
+    Author     : Manuela & Nina
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -47,14 +47,12 @@
         <div>
         <nav class="navbar navbar-default">
           <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               </button>
               <a class="navbar-brand" href="${pageContext.request.contextPath}/toHome">TravelMate</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="${pageContext.request.contextPath}/toProfil">Profile<span class="sr-only">(current)</span></a></li>
@@ -80,22 +78,21 @@
                 </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 abstand " style="text-align: center">
                             For best results, choose image with resolution of 250x250 pixel.
+                            (Max datasize: 1MB)
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 abstand" style="text-align: center">
                             <form method="post" action="UploadImage" enctype="multipart/form-data">
                                 <label>
                                     <input type="file" name="image" required >
                                 </label>
-                             
-                            
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 abstand " style="text-align: center">    
                             <input type="submit" class="btn btn-primary btn-s" value="Submit">
                             <input type="reset" class="btn btn-primary btn-s" value="Clear" />
                             </br></br>
                         </div>
-                        
-                    </form><br><br>
+                    </form>
+                  <br><br>
                 </div>
             </div>
         </div>

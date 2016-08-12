@@ -19,7 +19,7 @@ import tm.User;
 
 /**
  *
- * @author Manuela
+ * @author Manuela & Nina
  */
 public class WeiterleitungProfilServlet extends HttpServlet {
 
@@ -43,10 +43,10 @@ public class WeiterleitungProfilServlet extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             User user = (User)session.getAttribute("user");
+            //Prüfung, ob Nutzer noch in Chat eingeloggt, dann ausloggen, weil Chatfenster nicht aktiv
             try{
                 ClientInterface userI = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
                 ChatInterface chat = (ChatInterface) session.getAttribute("chat"); //chat aus Session erholen
-                String ipSession = (String) session.getAttribute("ip");
                 chat.sendMessage(userI.getUsername(), "hat sich ausgeloggt");
                 userI.getStub().unsubscribeUser(userI.getUsername());
             }catch(Exception err){
@@ -54,13 +54,15 @@ public class WeiterleitungProfilServlet extends HttpServlet {
             }
             try{
                 String email = request.getParameterValues("email")[0];
+                //wenn Parameter für Email-Wert übergeben wird und dieser sich von der user email unterscheidet
+                //wird die übergebene Email in der Session gespeichert und zur profil.jsp weitergeleitet (zur Anzeige eines fremden Profils)
                 if(!email.equals(user.getEmail())){
                     session.setAttribute("email", email);
-                    
                 }
                 RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
                 rd.forward(request, response);
             }catch(Exception weiterleitungProfil){
+                //wird keine abweichende Email übergeben, dann wird einfach zur profil.jsp weitergeleitet (zur Anzeige des eigenen Profils)
                 RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
                 rd.forward(request, response);
             }

@@ -5,17 +5,10 @@
  */
 package tm;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author Manuela
+ * @author Manuela & Nina
  */
 public class User {
 
@@ -38,7 +31,7 @@ public class User {
     private int age;
 
     public User(int user_id, String email, String name, String last_name, String looking_for, String startdate) {
-        //Folgende Attribute werden von tm_Consumer benötigt:
+        //Zum Erstellen von Usern in der findTravelmates-Methode (in tmWebService.java)
         this.user_id = user_id;
         this.email = email;
         this.name = name;
@@ -48,7 +41,7 @@ public class User {
     }
     
      public User(int user_id, String email, String name, String last_name){
-        //Folgende Attribute werden von tm_Consumer benötigt:
+        //Zum Erstellen von Usern in der showConversation-Methode (in tmWebService.java)
         this.user_id = user_id;
         this.email = email;
         this.name = name;

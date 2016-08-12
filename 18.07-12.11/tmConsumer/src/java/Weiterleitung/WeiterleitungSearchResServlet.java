@@ -9,7 +9,6 @@ import Chat.ChatInterface;
 import Chat.ClientInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,12 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.ws.WebServiceRef;
 import webservice.TmWebService_Service;
-import tm.*;
 
 
 /**
  *
- * @author Manuela
+ * @author Manuela & Nina
  */
 public class WeiterleitungSearchResServlet extends HttpServlet {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
@@ -44,27 +42,17 @@ public class WeiterleitungSearchResServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         
         try (PrintWriter out = response.getWriter()) {
-            //Prüfen, ob User noch im Chat angemeldet ist, wenn dies der Fall ist, wird er dort ausgeloggt        
             tm.User user = (tm.User) session.getAttribute("user");
-            try{
-                ClientInterface userI = (ClientInterface) session.getAttribute("chatUser"); //user aus Session holen
-                ChatInterface chat = (ChatInterface) session.getAttribute("chat"); //chat aus Session erholen
-                String ipSession = (String) session.getAttribute("ip");
-                chat.sendMessage(userI.getUsername(), "hat sich ausgeloggt");
-                userI.getStub().unsubscribeUser(userI.getUsername());
-            }catch(Exception err){
-                System.out.println("User nicht im Chat aktiv. Muss nicht ausgeloggt werden.");
-            }
             
             String destination = request.getParameterValues("Destination")[0];
             String gender = request.getParameterValues("Gender")[0];
+            //Liste der TravelMates anlegen, für die Angaben "destination" und "gender" übereinstimmen
             java.util.List<webservice.User> travelmates = findTravelmates(destination, gender); //Aufruf der webService Methode 
             session.setAttribute("travelmates", travelmates);
             
+            //Weiterleitung zur Ergebnisliste der TravelMate-Suche
             RequestDispatcher rd = request.getRequestDispatcher("searchRes.jsp");
-            rd.forward(request, response);
-             
-            
+            rd.forward(request, response);   
         }     
     }
 

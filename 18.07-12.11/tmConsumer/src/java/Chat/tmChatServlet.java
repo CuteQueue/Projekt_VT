@@ -1,4 +1,6 @@
-/*
+/* 
+    Author     : manuela & nina
+
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -8,27 +10,19 @@ package Chat;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
-import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Manuela
- */
+
 public class tmChatServlet extends HttpServlet {
     ServerInterface stub;
     
@@ -253,10 +247,7 @@ public class tmChatServlet extends HttpServlet {
                     out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/tmChatOn\">"); 
                     //auf Servlet weiterleiten
                 }vorhanden = "";
-            
-
-            
-            
+    
         } finally {            
             out.close();
         }

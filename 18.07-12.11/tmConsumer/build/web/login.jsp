@@ -1,7 +1,7 @@
 <%-- 
     Document   : login
     Created on : 18.07.2016, 11:36:16
-    Author     : manuela
+    Author     : manuela & nina
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -32,12 +32,12 @@
             };
         </script>
     </head>
-    <!--Abfrage, ob Session gültig ist, sonst kein Zugriff auf create.jsp-->
+    <!--Abfrage, ob Attribut "registered" gesetzt, dann Attribute entfernen und meldung ausgeben-->
     <% HttpSession nsession = request.getSession(true);
         if(nsession.getAttribute("registered")!=null) {
             nsession.removeAttribute("registered");
             %><script>meldung();</script><%  
-        } %>
+    } %>
     <body>
         <div class="fixed-bg">
         <div class="parent">
@@ -68,11 +68,9 @@
                     
                     <script>
                         function getLocation() {
-                            //alert(window.location.href);
                             var href = window.location.href ;
                             var l = document.createElement("a");
                             l.href = href;
-                            //alert(l.hostname);
                             return l.hostname;
                         };
                         document.getElementById("serverIp").value = getLocation();
@@ -80,8 +78,6 @@
                     </script>
                   </div>
                 </div>
-              <!-- Optional: clear the XS cols if their content doesn't match in height -->
-              <div class="col-xs-12 col-sm-12 text-center"></div>
             </div>
           </div>
         </div>
@@ -89,48 +85,4 @@
       </body>
     </html>
        
-        <!--<script>
-            function getLocation() {
-                //alert(window.location.href);
-                var href = window.location.href ;
-                var l = document.createElement("a");
-                l.href = href;
-                //alert(l.hostname);
-                return l.hostname;
-            };
-            document.getElementById("serverIp").value = getLocation();
-        </script>-->
-       
-       <!--LOCALSTORAGE abfragen-->
-       <!-- <script>
-            function load(){
-                alert(localStorage.getItem('serverIp'));
-                var serverIp = localStorage.getItem('serverIp');
-                return serverIp;
-            };
-            document.getElementById("serverIp").value = load();  
-       </script>-->
-       
-
-<!-- Umleitung bei Nutzung des Back-Buttons
-<script>
-    (function(window, location) {
-        var href = window.location.href ;
-        var l = document.createElement("a");
-        l.href = href;
-        var host = l.hostname;
-        var hash = l.h
-        
-        history.replaceState(null, document.title, location.pathname+"#!/history");
-        history.pushState(null, document.title, location.pathname);
-
-        window.addEventListener("popstate", function() {
-          if(location.hash === "#!/history") {
-            history.replaceState(null, document.title, location.pathname);
-            setTimeout(function(){
-              location.replace("http://"+host+":8080/tmConsumer#nosession");
-            },0);
-          }
-        }, false);
-    }(window, location));
-</script>-->
+      

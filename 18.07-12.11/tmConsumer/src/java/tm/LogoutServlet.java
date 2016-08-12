@@ -13,8 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +21,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Manuela
+ * @author Manuela & Nina
  */
 public class LogoutServlet extends HttpServlet {
 
@@ -60,14 +58,14 @@ public class LogoutServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("logout.jsp");
                 rd.forward(request, response);
              } else {
-                 //keine aktuelle Session vorhanden
-                /*RequestDispatcher rd = request.getRequestDispatcher("logout.jsp");
-                rd.forward(request, response);*/
-                out.println("keine aktuelle Session vorhanden");
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('No valid session.');");
+                out.println("location= window.location.href='Index';");
+                out.println("</script>");
+                out.close();
+                return;
              }
-            
         }     
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

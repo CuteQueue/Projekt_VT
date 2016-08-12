@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Manuela
+ * @author Manuela & Nina
  */
 public class getImageServlet extends HttpServlet {
     

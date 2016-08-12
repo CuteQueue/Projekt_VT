@@ -1,3 +1,7 @@
+/* 
+    Author     : manuela & nina
+*/
+
 package Chat;
 
 /*

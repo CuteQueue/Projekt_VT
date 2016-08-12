@@ -19,7 +19,7 @@ import webservice.TmWebService_Service;
 
 /**
  *
- * @author nina
+ * @author nina & manuela
  */
 public class MessagesServlet extends HttpServlet {
 
@@ -110,8 +110,6 @@ public class MessagesServlet extends HttpServlet {
     }// </editor-fold>
 
     private java.util.List<webservice.Message> showMessages(int userId, int chatPartnerId) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.showMessages(userId, chatPartnerId);
     }

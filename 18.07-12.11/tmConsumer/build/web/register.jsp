@@ -1,7 +1,7 @@
 <%-- 
     Document   : register
     Created on : 21.07.2016, 10:32:38
-    Author     : nina
+    Author     : nina & manuela
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -35,9 +35,7 @@
                     var data = ids[i];
                     var value = document.getElementById(data).value;
 
-                    // Save the name in localStorage.
                     localStorage.setItem(data, value);
-                    //alert(localStorage.getItem(data));
                 }
             };
             
@@ -51,7 +49,6 @@
                 checkBoxes();
             };
         </script>
-
     </head>
       
     <body>
@@ -64,7 +61,6 @@
                 </div>
               <div class="col-xs-12 col-sm-12 text-center">
                 <div class="panel panel-default center-me" style="max-width:300px;">
-                  <!-- Default panel contents -->
                   <div class="panel-heading">Register</div>
                     <form action="Register" method="POST">
                         <table border="0" style="margin-left:30px; margin-top:15px">
@@ -93,13 +89,11 @@
                                     <td></td>
                                     <td><input type=submit class="btn btn-primary btn-s" style="margin-bottom:15px;" value="Submit">
                                     <input type="button" class="btn btn-primary btn-s" style="margin-bottom:15px;" onclick="window.location.href='login.jsp'" value="Cancel" name="button" id="button"/>​</td>
-
                                 </tr>
                             </tbody>
                         </table>
                     </form>
                 </div>
-              </div>        
+            </div>        
     </body>
-    
 </html>

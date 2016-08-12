@@ -17,7 +17,7 @@ import webservice.TmWebService_Service;
 
 /**
  *
- * @author nina
+ * @author nina & manuela
  */
 public class EditProfileServlet extends HttpServlet {
 
@@ -46,7 +46,6 @@ public class EditProfileServlet extends HttpServlet {
             if (session.getAttribute("email") == null) {
                 out.println("<html><head><title>SessionError</title></head>");
                 out.println("<body><h2>Keine Session vorhanden</h2>");
-                //out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/webChat\"");
                 out.print("<form action=\"http://"+session.getAttribute("serverIp")+":8080/tmConsumer\"");
                 out.println("\" method=\"POST\" >");
                 out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
@@ -59,33 +58,28 @@ public class EditProfileServlet extends HttpServlet {
             User u = new User(email);
             session.setAttribute("user", u); //in Session gespeichert 
             User user = (User) session.getAttribute("user");
-
-            System.out.println("EditProfileServlet");
-
-            String mobilenumber = request.getParameterValues("mobilenumber")[0];
-
-            String ageString = request.getParameterValues("age")[0];
-            int age = Integer.parseInt(ageString);
-
-            String location = request.getParameterValues("location")[0];
-            String sex = request.getParameterValues("sex")[0];
-            String destination = request.getParameterValues("destination")[0];
-
-            String startdate = request.getParameterValues("startdate")[0];
-            // String startdate = java.sql.Date.valueOf(startdateString); 
-
-            String interests = request.getParameterValues("interests")[0];
-            String looking_for = request.getParameterValues("looking_for")[0];
-            String about = request.getParameterValues("about")[0];
+            
+            String mobilenumber,location,ageString,sex,destination,startdate,interests,looking_for,about;
+            int age;
+            
+            try{mobilenumber = request.getParameterValues("mobilenumber")[0];}catch(Exception err){mobilenumber=null;};
+            try{ageString = request.getParameterValues("age")[0];
+                age = Integer.parseInt(ageString);}catch(Exception err){age=0;};
+            try{location = request.getParameterValues("location")[0];}catch(Exception err){location=null;};
+            try{sex = request.getParameterValues("sex")[0];}catch(Exception err){sex=null;};
+            try{destination = request.getParameterValues("destination")[0];}catch(Exception err){destination=null;};
+            try{startdate = request.getParameterValues("startdate")[0];}catch(Exception err){startdate=null;};
+            try{interests = request.getParameterValues("interests")[0];}catch(Exception err){interests=null;};
+            try{looking_for = request.getParameterValues("looking_for")[0];}catch(Exception err){looking_for=null;};
+            try{about = request.getParameterValues("about")[0];}catch(Exception err){about=null;};
+                
+        
             System.out.println("userid: " + user.getId());
             String answer = editProfile(user.getId(), mobilenumber, age, location, sex, destination, startdate, interests, looking_for, about);
            
             if (answer.equals("ok")) {
-                System.out.println("OK");
-                      out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Home\">");
-                //response.sendRedirect("Home");
+                out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/toProfil\">");
             } else {
-                //out.println("Ooooops, something went wrong!");
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please check all inputs, something seems to be missing.');");
                 out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Edit\';");
@@ -134,8 +128,6 @@ public class EditProfileServlet extends HttpServlet {
     }// </editor-fold>
 
     private String editProfile(int id, java.lang.String mobilenumber, int age, java.lang.String location, java.lang.String sex, java.lang.String destination, java.lang.String startdate, java.lang.String interests, java.lang.String lookingFor, java.lang.String about) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.editProfile(id, mobilenumber, age, location, sex, destination, startdate, interests, lookingFor, about);
     }

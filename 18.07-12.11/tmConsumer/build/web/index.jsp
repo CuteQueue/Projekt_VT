@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 18.07.2016, 11:36:16
-    Author     : manuela
+    Author     : manuela & nina
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -72,36 +72,10 @@
 
                 </div>
               </div>
-              <!-- Optional: clear the XS cols if their content doesn't match in height -->
-              <div class="col-xs-12 col-sm-12 text-center"></div>
             </div>
           </div>
         </div>
         </div>
       </body>
     </html>
-
-<!-- Umleitung bei Nutzung des Back-Buttons
-<script>
-    (function(window, location) {
-        var href = window.location.href ;
-        var l = document.createElement("a");
-        l.href = href;
-        var host = l.hostname;
-        
-        history.replaceState(null, document.title, location.pathname+"#!/history");
-        history.pushState(null, document.title, location.pathname);
-
-        window.addEventListener("popstate", function() {
-          if(location.hash === "#!/history") {
-            history.replaceState(null, document.title, location.pathname);
-            setTimeout(function(){
-              location.replace("http://"+host+":8080/tmConsumer");
-            },0);
-          }
-        }, false);
-    }(window, location));
-</script>-->
-
-
 

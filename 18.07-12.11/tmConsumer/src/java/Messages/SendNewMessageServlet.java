@@ -7,9 +7,6 @@ package Messages;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.util.Calendar;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +18,7 @@ import webservice.TmWebService_Service;
 
 /**
  *
- * @author nina
+ * @author nina & manuela
  */
 public class SendNewMessageServlet extends HttpServlet {
 
@@ -112,8 +109,6 @@ public class SendNewMessageServlet extends HttpServlet {
     }// </editor-fold>
 
     private String storeMessage(int senderId, int recipientId, java.lang.String message) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.storeMessage(senderId, recipientId, message);
     }

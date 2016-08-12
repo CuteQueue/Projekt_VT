@@ -26,7 +26,7 @@ import webservice.TmWebService_Service;
 
 /**
  *
- * @author nina
+ * @author nina & manuela
  */
 public class ProfileServlet extends HttpServlet {
 
@@ -43,7 +43,7 @@ public class ProfileServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(true); //Erzeugt eine neue Session, wenn noch keine vorhanden und speichert diese in session
         response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
@@ -66,7 +66,6 @@ public class ProfileServlet extends HttpServlet {
                     return;
                 }
 
-                
                 //--------Passende Userdaten holen ----------------------------------
                 email = (String) session.getAttribute("email");
                 User u = new User(email);
@@ -84,28 +83,7 @@ public class ProfileServlet extends HttpServlet {
                 } else { //Wenn noch kein Profil vorhanden:
                     RequestDispatcher rd = request.getRequestDispatcher("createProfile.jsp");
                     rd.forward(request, response);
-
                 }
-
-                //------Search Button --------------------------------------
-                /*out.print("<form action=\"search.jsp");
-                out.println("\" method=\"POST\" >");
-                out.println("<input type=\"submit\" name=\"search\" value=\"Search\">");
-                out.println("</form>");
-
-                //------Chat Button-------------------------------------------------------
-                out.println("<form action=\"http://" + session.getAttribute("serverIp") + ":8080/tmConsumer/tmChat\">");
-                out.println("<br><br><input type=\"submit\" name=\"chat\" value=\"Chat\">");
-                out.println("</form>");
-                
-                //------Logout Button --------------------------------------
-                out.print("<form action=\"Logout");
-                out.println("\" method=\"POST\" >");
-                out.println("<input type=\"submit\" name=\"logout\" value=\"Logout\">");
-                out.println("</form>");*/
-
-                
-                
 
             } catch (Exception err2) {
                 System.out.println("catch, ProfileServlet 111");
@@ -160,54 +138,5 @@ public class ProfileServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    /* private String login(java.lang.String email, java.lang.String pw) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        webservice.TmWebService port = service.getTmWebServicePort();
-        return port.login(email, pw);
-    }*/
-    public byte[] retrieveSalt(String email) {
-        webservice.TmWebService port = service.getTmWebServicePort();
-        return port.getSalt(email);
-    }
-
-    public byte[] retrieveEncryptedPw(String email) {
-        webservice.TmWebService port = service.getTmWebServicePort();
-        return port.getEncryptedPw(email);
-    }
-
-    public boolean authenticate(String attemptedPassword, byte[] encryptedPassword, byte[] salt)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
-        // Encrypt the clear-text password using the same salt that was used to
-        // encrypt the original password
-        System.out.println("authenticate 1");
-        byte[] encryptedAttemptedPassword = getEncryptedPassword(attemptedPassword, salt);
-        System.out.println("ENCRYPTED PW: " + encryptedAttemptedPassword);
-        // Authentication succeeds if encrypted password that the user entered
-        // is equal to the stored hash
-        return Arrays.equals(encryptedPassword, encryptedAttemptedPassword);
-    }
-
-    public byte[] getEncryptedPassword(String password, byte[] salt)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
-        // PBKDF2 with SHA-1 as the hashing algorithm. Note that the NIST
-        // specifically names SHA-1 as an acceptable hashing algorithm for PBKDF2
-        String algorithm = "PBKDF2WithHmacSHA1";
-        // SHA-1 generates 160 bit hashes, so that's what makes sense here
-        int derivedKeyLength = 160;
-        // Pick an iteration count that works for you. The NIST recommends at
-        // least 1,000 iterations:
-        // http://csrc.nist.gov/publications/nistpubs/800-132/nist-sp800-132.pdf
-        // iOS 4.x reportedly uses 10,000:
-        // http://blog.crackpassword.com/2010/09/smartphone-forensics-cracking-blackberry-backup-passwords/
-        int iterations = 20000;
-
-        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, derivedKeyLength);
-
-        SecretKeyFactory f = SecretKeyFactory.getInstance(algorithm);
-
-        return f.generateSecret(spec).getEncoded();
-    }
 
 }

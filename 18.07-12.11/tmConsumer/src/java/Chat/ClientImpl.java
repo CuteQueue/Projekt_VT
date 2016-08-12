@@ -1,3 +1,7 @@
+/* 
+    Author     : manuela & nina
+*/
+
 package Chat;
 
 /*
@@ -32,13 +36,6 @@ public class ClientImpl extends UnicastRemoteObject implements ClientInterface {
           
           Scanner sc = new Scanner(System.in);
 
-            // Zwei Moeglichkeiten, auf die Registry zuzugreifen:
-            // 1. Option: Referenz auf Registry bestimmen und darauf lookup()
-            // durchführen.
-            // Registry registry = LocateRegistry.getRegistry();
-            // TimeServer timer = (TimeServer) registry.lookup("TimeServer");
-            // 2. Option: Per URL direkt auf registriertes Interface zugreifen.
-            
             System.out.println("ChatServer: ");
             System.out.println("Bitte geben Sie einen Nutzernamen ein: ");
             

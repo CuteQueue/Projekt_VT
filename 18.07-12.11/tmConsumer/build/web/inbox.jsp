@@ -40,25 +40,21 @@
 
         <% HttpSession nsession = request.getSession(true);
             if (nsession.getAttribute("email") == null) {
-        %><script>meldung();</script><%
+                %><script>meldung();</script><%
             }
         %>
-
-
     </head>
 
     <body>
         <div>
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         </button>
                         <a class="navbar-brand" href="${pageContext.request.contextPath}/toHome">TravelMate</a>
                     </div>
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li><a href="${pageContext.request.contextPath}/toProfil">Profile</a></li>
@@ -69,8 +65,8 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="${pageContext.request.contextPath}/Logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
                         </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
+                    </div>
+                </div>
             </nav>
         </div>   
 
@@ -86,76 +82,55 @@
                       java.util.List<webservice.User> anyNewMessages = (java.util.List<webservice.User>) session.getAttribute("anyNewMessages");
 
                         if (conversations.size() == 0) { %>
-
-                        <p><strong>Your messages are empty.</strong> 
-                        <p>Look for Travelmates using the Search Button on top.
-                        Once you find a traveller you want to contact, click on the Contact Button on their profile</p>
-                      
+                            <p><strong>Your inbox is empty.</strong> 
+                            <p>Look for Travelmates using the Search Button on top.
+                            Once you find a traveller you want to contact, click on the Contact Button on their profile</p>
                         <% } else {
-
-                           /* if (anyNewMessages.size() > 0) {
-                                out.println("<p>You got new messages from: </p>");
-                            }
-                            for (int i = 0; i < anyNewMessages.size(); i++) {
-                                out.println(anyNewMessages.get(i).getName());
-
-                            }*/
                             out.println("</br>");
-                        
-
-                        //Die verschiedenen Unterhalten mit den jeweiligen Nutzernamen anzeigen
-                        //Wird der Name angeklickt, wird der zugehörige Chatverlauf angezeigt
-                    %>
+                        %>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 abstand">
+                    <!--Die verschiedenen Unterhalten mit den jeweiligen Nutzernamen anzeigen
+                    Wird der Name angeklickt, wird der zugehörige Chatverlauf angezeigt-->
                     <ul class="chat"> <%                    
-                        boolean test = false;
+                        boolean newMessage = false;
                         for (int i = 0; i < conversations.size(); i++) {
-                            test =false;
+                            newMessage =false;
                              for (int j = 0; j < anyNewMessages.size(); j++) {
-                            
                                 if (conversations.get(i).getName().equals(anyNewMessages.get(j).getName())){
                                   %>
                                     <li class="left clearfix">
                                     <form action="toMessages" method="POST">
-                                    <%
-                                    out.println("   <input type=\"hidden\" name=\"chatPartnerId\" value=\"" + conversations.get(i).getUserId() + "\">");
-                                    out.println("   <input type=\"hidden\" name=\"chatPartnerName\" value=\"" + conversations.get(i).getName() + "\">");
-
-                                    out.println("<p><font size=\"4\">" + conversations.get(i).getName() + " " + conversations.get(i).getLastName() + " " + "</font><font size=\"2\">" +" - New Message(s)!</font>");
-                                    out.println("<input type=\"submit\" class=\"btn btn-primary btn-s pull-right\" style=\"margin-top:5px;\" value=\"Open\" name=\"button\" id=\"button\"></p>");
-                                    
-                                    %>
+                                        <%
+                                            out.println("<input type=\"hidden\" name=\"chatPartnerId\" value=\"" + conversations.get(i).getUserId() + "\">");
+                                            out.println("<input type=\"hidden\" name=\"chatPartnerName\" value=\"" + conversations.get(i).getName() + "\">");
+                                            out.println("<p><font size=\"4\">" + conversations.get(i).getName() + " " + conversations.get(i).getLastName() + " " + "</font><font size=\"2\">" +" - New Message(s)!</font>");
+                                            out.println("<input type=\"submit\" class=\"btn btn-primary btn-s pull-right\" style=\"margin-top:5px;\" value=\"Open\" name=\"button\" id=\"button\"></p>");
+                                        %>
                                     </form>
                                     </li>
                                     <%
-                                    test = true;
+                                    newMessage = true;
                                 }                           
                             }   
-                             if (test == false){
-                                    out.println("<li class=\"left clearfix\">");
-                                    out.println(" <form action=\"toMessages\" method=\"POST\">");
-                                    out.println("   <input type=\"hidden\" name=\"chatPartnerId\" value=\"" + conversations.get(i).getUserId() + "\">");
-                                    out.println("   <input type=\"hidden\" name=\"chatPartnerName\" value=\"" + conversations.get(i).getName() + "\">");
-
-                                    out.println("<p><font size=\"4\">" + conversations.get(i).getName() + " " + conversations.get(i).getLastName() + "</font>");
-                                    out.println("<input type=\"submit\" class=\"btn btn-primary btn-s pull-right\" style=\"margin-top:5px;\" value=\"Open\" name=\"button\"></p>");
-
-                                    out.println("</form>");
-                                    out.println("</li>");
-                             }
+                            if (newMessage == false){
+                                out.println("<li class=\"left clearfix\">");
+                                out.println(" <form action=\"toMessages\" method=\"POST\">");
+                                out.println("<input type=\"hidden\" name=\"chatPartnerId\" value=\"" + conversations.get(i).getUserId() + "\">");
+                                out.println("<input type=\"hidden\" name=\"chatPartnerName\" value=\"" + conversations.get(i).getName() + "\">");
+                                out.println("<p><font size=\"4\">" + conversations.get(i).getName() + " " + conversations.get(i).getLastName() + "</font>");
+                                out.println("<input type=\"submit\" class=\"btn btn-primary btn-s pull-right\" style=\"margin-top:5px;\" value=\"Open\" name=\"button\"></p>");
+                                out.println("</form>");
+                                out.println("</li>");
+                            }
                         }
-
-                        %>
-
-                        <%}
-                        %>
+                    }
+                    %>
                     </ul>
                   </br>
                   </br>
                 </div>
             </div>
         </div>
-
     </body>
 </html>

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Manuela
+ * @author Nina & Manuela
  */
 public class WeiterleitungIndexServlet extends HttpServlet {
 
@@ -29,7 +29,7 @@ public class WeiterleitungIndexServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
         response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
@@ -38,10 +38,9 @@ public class WeiterleitungIndexServlet extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
                 
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                rd.forward(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            rd.forward(request, response);
              
-            
         }     
     }
 
