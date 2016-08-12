@@ -35,18 +35,13 @@ String exit = "";
     throws ServletException, IOException, RemoteException, NotBoundException {
         PrintWriter out = res.getWriter();
            try {
-            HttpSession session = req.getSession(false); //Liefert null zurück, wenn es keine aktuelle Session gibt
-             if (session == null) {
-                out.println("<html><head><title>SessionError</title></head>");
-                out.println("<body><h2>Keine Session vorhanden</h2>");
-                out.print("<form action=\"http://"+session.getAttribute("ip")+":8080/tmConsumer/Home\"");
-                out.println("\" method=\"POST\" >");
-                out.println("<br><br><input type=\"submit\" value=\"Startseite\">");
-                out.println("</form>");
-                out.println("</body>");
-                out.close();
-                return;
-            }
+            HttpSession session = req.getSession(true); //Liefert null zurück, wenn es keine aktuelle Session gibt
+            if(session.getAttribute("email")==null) {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('No valid session.');");
+                out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/toLogin\';");
+                out.println("</script>");   
+            } 
             res.setContentType("text/html;charset=UTF-8");
             System.out.println("Session serverIp: " + session.getAttribute("serverIp"));
             System.out.println("Session Ip: " + session.getAttribute("ip"));

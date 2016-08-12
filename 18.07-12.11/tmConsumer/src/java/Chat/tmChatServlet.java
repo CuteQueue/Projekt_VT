@@ -58,7 +58,12 @@ public class tmChatServlet extends HttpServlet {
             // Neue Session anlegen
             
             HttpSession session = req.getSession(true); //Erzeugt eine neue Session, wenn noch keine vorhanden und speichert diese in session
-            
+            if(session.getAttribute("email")==null) {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('No valid session.');");
+                out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/toLogin\';");
+                out.println("</script>");   
+            } 
             
             //IP des Nutzers
             try{
@@ -137,9 +142,11 @@ public class tmChatServlet extends HttpServlet {
                 "    <!-- Latest compiled and minified JavaScript -->\n" +
                 "    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>\n" +
                 "\n" +
-                "   \n" +
                 "    <link rel=\"stylesheet\" href=\"css/css02.css\" type=\"text/css\">\n" +
+                "   \n" +
+                "   <script>function meldung(){alert(\\\"No valid session, please login!\\\"); location= window.location.href='Index';};</script>\n" +
                 "    </head>");
+                
                 
                 
                 //Scrollbalken des Chatfensters immer unten
