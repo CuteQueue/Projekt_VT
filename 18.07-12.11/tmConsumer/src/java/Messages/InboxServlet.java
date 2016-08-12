@@ -47,8 +47,11 @@ public class InboxServlet extends HttpServlet {
             
             //Die verschiedenen Unterhaltungen laden
             java.util.List<webservice.User> conversations = showConversations(user_id);
-            
             session.setAttribute("conversations", conversations);
+            
+            //Schauen ob es neue Nachrichten gibt:
+            java.util.List<webservice.User> anyNewMessages = anyNewMessages(user_id);
+            session.setAttribute("anyNewMessages", anyNewMessages);
             
             //Weiterleitung zu "inbox.jsp", um die verschiedenen Gesprächspartner anzuzeigen
             RequestDispatcher rd = request.getRequestDispatcher("inbox.jsp");
@@ -100,6 +103,13 @@ public class InboxServlet extends HttpServlet {
         // If the calling of port operations may lead to race condition some synchronization is required.
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.showConversations(userId);
+    }
+
+    private java.util.List<webservice.User> anyNewMessages(int userId) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        webservice.TmWebService port = service.getTmWebServicePort();
+        return port.anyNewMessages(userId);
     }
 
 }

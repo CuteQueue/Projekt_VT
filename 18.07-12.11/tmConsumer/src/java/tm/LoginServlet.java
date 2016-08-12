@@ -77,7 +77,8 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("nickname", nickname);
                     //out.println(email + session.getAttribute("serverIp"));
                      //request.getRequestDispatcher("/toHome").forward(request, response);
-                    out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Home\">");
+                     System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Profile\">");
                     System.out.println("eingeloggt");
                 }else{
                     out.println("<script type=\"text/javascript\">");

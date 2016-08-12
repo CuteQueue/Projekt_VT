@@ -59,9 +59,9 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
+                        <li><a href="${pageContext.request.contextPath}/toProfil">Profile</a></li>
                         <li><a href="${pageContext.request.contextPath}/toSearch">Search</a></li>
-                        <li><a href="${pageContext.request.contextPath}/Inbox">Messages</a></li>
+                        <li  class="active"><a href="${pageContext.request.contextPath}/Inbox">Messages<span class="sr-only">(current)</span></a></li>
                         <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -80,20 +80,20 @@
                 <%
                     String chatPartnerName = (String) session.getAttribute("chatPartnerName");
                 %> 
-
-                <form action=SendNewMessage method=post>
-                    <table border=0>
-                        <h2>Send  <%out.println(chatPartnerName);%> A Message!</h2>
-                        <tr>
-                            <td><textarea rows="10" cols="39" name="content"></textarea> </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="center"><input type="submit" value="Send"/></td>
-                        </tr>
-                    </table>
+                 <h4 style="text-align: center;"><font size="5" color="#2a96c0" >Send  <%out.println(chatPartnerName);%> A Message!</font></h4>
+               
+                 <%-- Chatfenster zum Senden einer neuen Nachricht: --%>
+                <form action="SendNewMessage" method="post">
+                <div class="form-group">
+                    <label for="content"></label>
+                    <textarea class="form-control" rows="5" name="content"></textarea>
+                </div>
+                    <input type="submit" class="btn btn-primary btn-s center-block" style="margin-top:5px; margin-bottom: 5px" value="Send" name="button">
                 </form>
-            </div> 
+                </br>
+            </div>
         </div>
+    </div>
         </br></br>
 </body>
 </html>

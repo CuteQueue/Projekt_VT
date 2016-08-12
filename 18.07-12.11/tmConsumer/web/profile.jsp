@@ -160,14 +160,22 @@
                       <tr>
                         <td>
                               <% 
-                                out.println(u.getAge());
+                                if(u.getAge()==0){
+                                    out.println("---");
+                                }else{
+                                    out.println(u.getAge());
+                                }
                               %> 
                           </td>
                       </tr>
                       <tr>
                         <td>
                               <% 
-                                out.println(u.getSex());
+                                if(u.getSex()==null){
+                                    out.println("---");
+                                }else{
+                                    out.println(u.getSex());
+                                }
                               %> 
                           </td>
                       </tr>
@@ -187,7 +195,11 @@
                       <tr>
                         <td>
                             <% 
-                              out.println(u.getAbout());
+                              if(u.getAbout()==null){
+                                out.println("---");
+                              }else{
+                                out.println(u.getAbout());
+                              }
                             %> 
                         </td>
                       </tr>
@@ -231,35 +243,55 @@
                       <tr>
                         <td>
                               <% 
-                                out.println(u.getLocation());
+                                if(u.getLocation()==null){
+                                    out.println("---");
+                                }else{
+                                    out.println(u.getLocation());
+                                }
                               %> 
                           </td>
                       </tr>
                       <tr>
                         <td>
                               <% 
-                                out.println(u.getDestination());
+                                if(u.getDestination()==null){
+                                    out.println("---");
+                                }else{
+                                    out.println(u.getDestination());
+                                }
                               %> 
                           </td>
                       </tr>
                       <tr>
                         <td>
                               <% 
-                                out.println(u.getStartdate());
+                                if(u.getStartdate()==null){
+                                    out.println("---");
+                                }else{
+                                    out.println(u.getStartdate());
+                                }
                               %> 
                           </td>
                       </tr>
                       <tr>
                         <td>
                               <% 
-                                out.println(u.getLooking_for());
+                                if(u.getLooking_for()==null){
+                                    out.println("---");
+                                }else{
+                                    out.println(u.getLooking_for());
+                                }
                               %> 
                         </td>
                       </tr>
                       <tr>
                         <td>
                               <% 
-                                out.println(u.getInterests());
+                                if(u.getInterests()==null){
+                                    out.println("---");
+                                }else{
+                                    out.println(u.getInterests());
+                                }
                               %> 
                           </td>
                       </tr>
@@ -277,6 +309,9 @@
                                     out.println("<input type=\"button\" class=\"btn btn-primary btn-s\" style=\"margin-top:5px;\" onclick=\"window.location.href='uploadImage.jsp'\" value=\"upload Image\" name=\"button2\" id=\"button2\"/>");
                                 }else{
                                     foreignProfile=null;
+                                    session.setAttribute("chatPartnerId", u.getId()); 
+                                    session.setAttribute("chatPartnerName", u.getName()); 
+                                    out.println("<button type=\"button\" class=\"btn btn-primary btn-s center-block\" onclick=\"window.location.href='newMessage.jsp'\"><span class=\"glyphicon glyphicon-envelope\"></span> Contact</button>");
                                 }
                             %>
                              
@@ -284,8 +319,9 @@
                       </tr>
                     </tbody>
                   </table>
-              </div>
+                </div>
+            </div>
+        </br></br>
         </div>
-        </div></br></br>
     </body>
 </html>

@@ -66,30 +66,6 @@
     window.onhashchange=function(){window.location.hash="noSession";};   };
 </script> 
 
-
-
-<!-- Umleitung zum Login bei Nutzung des Back-Buttons
-<script>
-    (function(window, location) {
-        var href = window.location.href ;
-        var l = document.createElement("a");
-        l.href = href;
-        var host = l.hostname;
-        
-        history.replaceState(null, document.title, location.pathname+"#!/history");
-        history.pushState(null, document.title, location.pathname);
-
-        window.addEventListener("popstate", function() {
-          if(location.hash === "#!/history") {
-            history.replaceState(null, document.title, location.pathname);
-            setTimeout(function(){
-              location.replace("http://"+host+":8080/tmConsumer/toLogin");
-            },0);
-          }
-        }, false);
-    }(window, location));
-</script>-->
-
         
 <%
     session.invalidate();

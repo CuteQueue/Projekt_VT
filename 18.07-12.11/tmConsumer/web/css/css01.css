@@ -25,26 +25,13 @@ and open the template in the editor.
         /*für Hintergrunddarstellung im Browser*/
         body { 
             background: url(../images/pexels-photo-25562_edit.jpg) no-repeat center center fixed; 
-            -webkit-background-size: 100%; 
-            -moz-background-size: 100%; 
-            -o-background-size: 100%; 
-            background-size: 100%; 
-            -webkit-background-size: cover; 
-            -moz-background-size: cover; 
-            -o-background-size: cover; 
-            background-size: cover; 
-            min-height: 100%;
-          }
-        
-         /*fixed-bg für korrekte Darstellung auf dem Smartphone bei Wisch-Geste*/
-        .fixed-bg {
-            background-image: url(../images/pexels-photo-25562_edit.jpg);
-            min-height: 600px;
+            padding-top: 0px;
+            background-repeat:no-repeat;
+            height:100%;
+            background-position:center;
             background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+
+          }
         
         .formInputRegister{
             margin-left:10px;

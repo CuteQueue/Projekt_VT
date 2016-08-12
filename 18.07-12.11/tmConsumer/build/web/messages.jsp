@@ -35,6 +35,11 @@
             location = window.location.href = 'Index';
         }
         ;
+           
+        //Wurde in der DB kein Bild gefunden, wird blank-profile-picture als Alternative ausgegeben 
+        function noImage() {
+            document.getElementById('foo').src='images/blank-profile-picture-973460_1280.png';
+        };
     </script>
     <link rel="stylesheet" href="css/css02.css" type="text/css">
 
@@ -60,9 +65,9 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
+                        <li><a href="${pageContext.request.contextPath}/toProfil">Profile</a></li>
                         <li><a href="${pageContext.request.contextPath}/toSearch">Search</a></li>
-                        <li><a href="${pageContext.request.contextPath}/Inbox">Messages</a></li>
+                        <li class="active"><a href="${pageContext.request.contextPath}/Inbox">Messages<span class="sr-only">(current)</span></a></li>
                         <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -82,41 +87,62 @@
                     String chatPartnerName = (String) session.getAttribute("chatPartnerName");
                     java.util.List<webservice.Message> messages = (java.util.List<webservice.Message>) session.getAttribute("messages");
                     User user = (User) session.getAttribute("user");
-                %> 
+                %>
 
+                <h4><font size="5" color="#2a96c0">Messages with <% out.println(chatPartnerName);%></font></h4>
+                </br>
+               
+                <ul class="chat">
+                    <%for (int i = 0; i < messages.size(); i++) {
+                            //Wenn die zur Nachrichten gespeicherte UserId gleich der Id des aktuellen Users ist,
+                            //dann wurde die Nachricht vom aktuellen User gesendet:
 
-                <h2>Messages with <% out.println(chatPartnerName);%></h2></br>
-                
-                <% for (int i = 0; i < messages.size(); i++) {
-                     //Wenn die zur Nachrichten gespeicherte UserId gleich der Id des aktuellen Users ist,
-                     //dann wurde die Nachricht vom aktuellen User gesendet:
-                     if (messages.get(i).getUserId() == user.getId()) { 
-                         out.println("</br>");
-                         out.println("<li style=\"text-align:right;background-color:blue;\">" + messages.get(i).getContent() + "</br>");
-                         out.println("</li>");
-                         out.println("</br>");
-                     } else {
-                     //Ansonsten wurde die Nachricht vom Chatpartner gesendet:
-                         out.println("</br>");
-                         out.println("<li style=\"background-color:cyan\">" + messages.get(i).getContent() + "</br>");
-                         out.println("</li>");
-                         out.println("</br>");
-                     }
-                 } %>
-                 
+                            if (messages.get(i).getUserId() == user.getId()) {
+                                out.println("<li style =\"text-align: right;\" class=\"right clearfix\"> <span class =\"chat-img pull-right\"><img id=\"foo\" src = \"/tmConsumer/getImageServlet?user_id=" + user.getId() + "\" class = \"message-img img-circle\" onerror=\"noImage()\"> </span>");
+                                out.println("<div class=\"chat-body clearfix\">");
+                                out.println("<div class=\"header\"><strong class = \"primary-font\">");
+                                out.println(user.getName());
+                                out.println("</strong></div>");
+
+                                out.println("<p>");
+                                out.println("<span style=\"word-wrap: break-word; word-break: break-all;\">");
+                                out.println(messages.get(i).getContent());
+                                out.println("</span></p></div>");
+                                out.println("</li>");
+
+                            } else {
+                                //Ansonsten wurde die Nachricht vom Chatpartner gesendet:
+                                out.println("<li class=\"left clearfix\"> <span class =\"chat-img pull-left\"><img id=\"foo\" src = \"/tmConsumer/getImageServlet?user_id=" + messages.get(i).getUserId() + "\" class = \"message-img img-circle\" onerror=\"noImage()\"> </span>");
+                                       
+                                out.println("<div class=\"chat-body clearfix\">");
+                                out.println("<div class=\"header\"><strong class = \"primary-font\">");
+                                out.println(chatPartnerName);
+                                out.println("</strong></div>");
+
+                                out.println("<p>");
+                                out.println("<span style=\"word-wrap: break-word; word-break: break-all;\">");
+                                out.println(messages.get(i).getContent());
+                                out.println("</span></p></div>");
+                                out.println("</li>");
+                        }
+                    }%> 
+                </ul>
+               
+
+               
                 <%-- Chatfenster zum Senden einer neuen Nachricht: --%>
                 <form action="SendNewMessage" method="post">
-                    <table border="0" align="center">
-                        <tr>
-                            <td><textarea rows="5" cols="50"  name="content"></textarea> </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="center"><input type="submit" value="Send"/></td>
-                        </tr>
-                    </table>
-
+                <div class="form-group">
+                    <label for="content"></label>
+                    <textarea class="form-control" rows="5" name="content"></textarea>
+                </div>
+                    <input type="submit" class="btn btn-primary btn-s center-block" style="margin-top:5px; margin-bottom: 5px" value="Send" name="button">
+                </form>
+                </br>
             </div> 
         </div>
-        </br></br>
+    </div>
+    </br></br>
 </body>
 </html>
+

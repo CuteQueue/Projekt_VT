@@ -24,6 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _AnyNewMessages_QNAME = new QName("http://WebService/", "anyNewMessages");
+    private final static QName _AnyNewMessagesResponse_QNAME = new QName("http://WebService/", "anyNewMessagesResponse");
     private final static QName _CreateProfile_QNAME = new QName("http://WebService/", "createProfile");
     private final static QName _CreateProfileResponse_QNAME = new QName("http://WebService/", "createProfileResponse");
     private final static QName _EditProfile_QNAME = new QName("http://WebService/", "editProfile");
@@ -32,12 +34,8 @@ public class ObjectFactory {
     private final static QName _FindTravelmatesResponse_QNAME = new QName("http://WebService/", "findTravelmatesResponse");
     private final static QName _GetEncryptedPw_QNAME = new QName("http://WebService/", "getEncryptedPw");
     private final static QName _GetEncryptedPwResponse_QNAME = new QName("http://WebService/", "getEncryptedPwResponse");
-    private final static QName _GetName_QNAME = new QName("http://WebService/", "getName");
-    private final static QName _GetNameResponse_QNAME = new QName("http://WebService/", "getNameResponse");
     private final static QName _GetSalt_QNAME = new QName("http://WebService/", "getSalt");
     private final static QName _GetSaltResponse_QNAME = new QName("http://WebService/", "getSaltResponse");
-    private final static QName _Hello_QNAME = new QName("http://WebService/", "hello");
-    private final static QName _HelloResponse_QNAME = new QName("http://WebService/", "helloResponse");
     private final static QName _Login_QNAME = new QName("http://WebService/", "login");
     private final static QName _LoginResponse_QNAME = new QName("http://WebService/", "loginResponse");
     private final static QName _NewUser_QNAME = new QName("http://WebService/", "newUser");
@@ -57,6 +55,22 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link AnyNewMessages }
+     * 
+     */
+    public AnyNewMessages createAnyNewMessages() {
+        return new AnyNewMessages();
+    }
+
+    /**
+     * Create an instance of {@link AnyNewMessagesResponse }
+     * 
+     */
+    public AnyNewMessagesResponse createAnyNewMessagesResponse() {
+        return new AnyNewMessagesResponse();
     }
 
     /**
@@ -124,22 +138,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetName }
-     * 
-     */
-    public GetName createGetName() {
-        return new GetName();
-    }
-
-    /**
-     * Create an instance of {@link GetNameResponse }
-     * 
-     */
-    public GetNameResponse createGetNameResponse() {
-        return new GetNameResponse();
-    }
-
-    /**
      * Create an instance of {@link GetSalt }
      * 
      */
@@ -153,22 +151,6 @@ public class ObjectFactory {
      */
     public GetSaltResponse createGetSaltResponse() {
         return new GetSaltResponse();
-    }
-
-    /**
-     * Create an instance of {@link Hello }
-     * 
-     */
-    public Hello createHello() {
-        return new Hello();
-    }
-
-    /**
-     * Create an instance of {@link HelloResponse }
-     * 
-     */
-    public HelloResponse createHelloResponse() {
-        return new HelloResponse();
     }
 
     /**
@@ -268,6 +250,24 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AnyNewMessages }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "anyNewMessages")
+    public JAXBElement<AnyNewMessages> createAnyNewMessages(AnyNewMessages value) {
+        return new JAXBElement<AnyNewMessages>(_AnyNewMessages_QNAME, AnyNewMessages.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AnyNewMessagesResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WebService/", name = "anyNewMessagesResponse")
+    public JAXBElement<AnyNewMessagesResponse> createAnyNewMessagesResponse(AnyNewMessagesResponse value) {
+        return new JAXBElement<AnyNewMessagesResponse>(_AnyNewMessagesResponse_QNAME, AnyNewMessagesResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateProfile }{@code >}}
      * 
      */
@@ -340,24 +340,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetName }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://WebService/", name = "getName")
-    public JAXBElement<GetName> createGetName(GetName value) {
-        return new JAXBElement<GetName>(_GetName_QNAME, GetName.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetNameResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://WebService/", name = "getNameResponse")
-    public JAXBElement<GetNameResponse> createGetNameResponse(GetNameResponse value) {
-        return new JAXBElement<GetNameResponse>(_GetNameResponse_QNAME, GetNameResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetSalt }{@code >}}
      * 
      */
@@ -373,24 +355,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://WebService/", name = "getSaltResponse")
     public JAXBElement<GetSaltResponse> createGetSaltResponse(GetSaltResponse value) {
         return new JAXBElement<GetSaltResponse>(_GetSaltResponse_QNAME, GetSaltResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Hello }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://WebService/", name = "hello")
-    public JAXBElement<Hello> createHello(Hello value) {
-        return new JAXBElement<Hello>(_Hello_QNAME, Hello.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link HelloResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://WebService/", name = "helloResponse")
-    public JAXBElement<HelloResponse> createHelloResponse(HelloResponse value) {
-        return new JAXBElement<HelloResponse>(_HelloResponse_QNAME, HelloResponse.class, null, value);
     }
 
     /**

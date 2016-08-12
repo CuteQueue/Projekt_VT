@@ -13,12 +13,14 @@ public class Message {
     private String content;
     private int user_id;
     private int friendId;
+    private boolean seen;
     
-    public Message (String content, int user_id, int friendId){
+    public Message (String content, int user_id, int friendId, boolean seen){
         
         this.content = content;
         this.user_id = user_id;
         this.friendId = friendId;
+        this.seen = seen;
     }
 
     public String getContent() {
@@ -43,6 +45,14 @@ public class Message {
 
     public void setFriendId(int friendId) {
         this.friendId = friendId;
+    }
+    
+     public boolean isSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
     }
     
 }

@@ -22,9 +22,7 @@
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="-1">
         <title>TravelMate</title>
-
         
-        <link rel="stylesheet" href="css/css01.css" type="text/css">
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
@@ -37,7 +35,7 @@
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+        <link rel="stylesheet" href="css/css02.css" type="text/css">
         
         <!--Datepicker für die Datumseingabe anlegen, falls Browser das Eingabeformat date nicht unterstützt-->
         <script type="text/javascript">
@@ -138,7 +136,7 @@
               <ul class="nav navbar-nav">
                 <li class="active"><a href="${pageContext.request.contextPath}/toProfil">Profile<span class="sr-only">(current)</span></a></li>
                 <li><a href="${pageContext.request.contextPath}/toSearch">Search</a></li>
-                <li><a href="#">Messages</a></li>
+                <li><a href="${pageContext.request.contextPath}/Inbox">Messages</a></li>
                 <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
@@ -148,8 +146,8 @@
           </div><!-- /.container-fluid -->
         </nav>
         
-        <div class="fixed-bg container">
-              <div class="row center-me profilesheet" >
+        <div class="fixed-bg container-fluid">
+              <div class="row" >
                 
               <div class="col-xs-12 col-sm-12 text-center">
                 <div class="panel panel-default center-me" style="max-width:300px;">
@@ -208,15 +206,8 @@
                         </table>
                     </form>
                   </div>
+                  <br><br>
                 </div>
-              <!-- Optional: clear the XS cols if their content doesn't match in height -->
-              <div class="col-xs-12 col-sm-12 text-center"></div>
-            </div>
-
         </div>
       </body>
     </html>
-              
-              
-              
-

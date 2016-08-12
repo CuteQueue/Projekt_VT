@@ -93,11 +93,10 @@
               <div class="col-xs-12 col-sm-12 text-center"></div>
             </div>
           </div>
-        </div>
+        </div>    
+                    </br></br>
+
         </div>
       </body>
     </html>
       
-      
-    </body>
-</html>

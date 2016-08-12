@@ -41,10 +41,10 @@
         <% HttpSession nsession = request.getSession(true);
             if (nsession.getAttribute("email") == null) {
         %><script>meldung();</script><%
-    }
+            }
         %>
 
-       
+
     </head>
 
     <body>
@@ -61,9 +61,9 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Inbox<span class="sr-only">(current)</span></a></li>
+                            <li><a href="${pageContext.request.contextPath}/toProfil">Profile</a></li>
                             <li><a href="${pageContext.request.contextPath}/toSearch">Search</a></li>
-                            <li><a href="${pageContext.request.contextPath}/Inbox">Messages</a></li>
+                            <li class="active"><a href="${pageContext.request.contextPath}/Inbox">Messages<span class="sr-only">(current)</span></a></li>
                             <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -74,38 +74,88 @@
             </nav>
         </div>   
 
+
         <div class="fixed-bg container">
             <div class="row center-me profilesheet-search" >
                 <div class="col-xs-12 col-sm-12 col-md-12 abstand" style="text-align: center">
-                    <h4><font size="5" color="#2a96c0">Find your travelmates</font></h4>
+                    <h4><font size="5" color="#2a96c0">Inbox</font></h4>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 abstand " style="text-align: center">
 
                     <%java.util.List<webservice.User> conversations = (java.util.List<webservice.User>) session.getAttribute("conversations");
+                      java.util.List<webservice.User> anyNewMessages = (java.util.List<webservice.User>) session.getAttribute("anyNewMessages");
+
+                        if (conversations.size() == 0) { %>
+
+                        <p><strong>Your messages are empty.</strong> 
+                        <p>Look for Travelmates using the Search Button on top.
+                        Once you find a traveller you want to contact, click on the Contact Button on their profile</p>
+                      
+                        <% } else {
+
+                           /* if (anyNewMessages.size() > 0) {
+                                out.println("<p>You got new messages from: </p>");
+                            }
+                            for (int i = 0; i < anyNewMessages.size(); i++) {
+                                out.println(anyNewMessages.get(i).getName());
+
+                            }*/
+                            out.println("</br>");
+                        
 
                         //Die verschiedenen Unterhalten mit den jeweiligen Nutzernamen anzeigen
                         //Wird der Name angeklickt, wird der zugehörige Chatverlauf angezeigt
-                        for (int i = 0; i < conversations.size(); i++) {
-
-                            out.println(" <form action=\"toMessages\" method=\"POST\">");
-                            out.println("   <input type=\"hidden\" name=\"chatPartnerId\" value=\"" + conversations.get(i).getUserId() + "\">");
-                            out.println("   <input type=\"hidden\" name=\"chatPartnerName\" value=\"" + conversations.get(i).getName() + "\">");
-                            out.println("   <input type=\"submit\" value=\"" + conversations.get(i).getName()+ "\">");
-                            out.println("</form>");
-
-                        }
                     %>
-                    <%--<select name="Destination">
-                        <c:forEach var="row" items="${result.rowsByIndex}">
-                            <c:forEach var="column" items="${row}">
-                                <option><c:out value="${column}"/></option>
-                            </c:forEach>
-                        </c:forEach>
-                    </select>--%>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 abstand">
+                    <ul class="chat"> <%                    
+                        boolean test = false;
+                        for (int i = 0; i < conversations.size(); i++) {
+                            test =false;
+                             for (int j = 0; j < anyNewMessages.size(); j++) {
+                            
+                                if (conversations.get(i).getName().equals(anyNewMessages.get(j).getName())){
+                                  %>
+                                    <li class="left clearfix">
+                                    <form action="toMessages" method="POST">
+                                    <%
+                                    out.println("   <input type=\"hidden\" name=\"chatPartnerId\" value=\"" + conversations.get(i).getUserId() + "\">");
+                                    out.println("   <input type=\"hidden\" name=\"chatPartnerName\" value=\"" + conversations.get(i).getName() + "\">");
 
+                                    out.println("<p><font size=\"4\">" + conversations.get(i).getName() + " " + conversations.get(i).getLastName() + " " + "</font><font size=\"2\">" +" - New Message(s)!</font>");
+                                    out.println("<input type=\"submit\" class=\"btn btn-primary btn-s pull-right\" style=\"margin-top:5px;\" value=\"Open\" name=\"button\" id=\"button\"></p>");
+                                    
+                                    %>
+                                    </form>
+                                    </li>
+                                    <%
+                                    test = true;
+                                }                           
+                            }   
+                             if (test == false){
+                                    out.println("<li class=\"left clearfix\">");
+                                    out.println(" <form action=\"toMessages\" method=\"POST\">");
+                                    out.println("   <input type=\"hidden\" name=\"chatPartnerId\" value=\"" + conversations.get(i).getUserId() + "\">");
+                                    out.println("   <input type=\"hidden\" name=\"chatPartnerName\" value=\"" + conversations.get(i).getName() + "\">");
 
+                                    out.println("<p><font size=\"4\">" + conversations.get(i).getName() + " " + conversations.get(i).getLastName() + "</font>");
+                                    out.println("<input type=\"submit\" class=\"btn btn-primary btn-s pull-right\" style=\"margin-top:5px;\" value=\"Open\" name=\"button\"></p>");
+
+                                    out.println("</form>");
+                                    out.println("</li>");
+                             }
+                        }
+
+                        %>
+
+                        <%}
+                        %>
+                    </ul>
+                  </br>
+                  </br>
+                </div>
             </div>
         </div>
+
     </body>
 </html>
