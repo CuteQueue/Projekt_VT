@@ -23,15 +23,20 @@ and open the template in the editor.
         }
         
         /*für Hintergrunddarstellung im Browser*/
-        body { 
-            background: url(../images/pexels-photo-25562_edit.jpg) no-repeat center center fixed; 
-            padding-top: 0px;
-            background-repeat:no-repeat;
-            height:100%;
-            background-position:center;
-            background-attachment: fixed;
+        
+        html {
+            background: url(../images/pexels-photo-25562_edit.jpg) no-repeat center center fixed;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        background-position: center center;
+        background-repeat: no-repeat;
+        }
 
-          }
         
         .formInputRegister{
             margin-left:10px;
