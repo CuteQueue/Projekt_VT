@@ -28,24 +28,22 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-        <script>
-            function meldung() {
-                alert("No valid session, please login!");
-                location = window.location.href = 'Index';
-            }
-            ;
-        </script>
         <link rel="stylesheet" href="css/css02.css" type="text/css">
 
-
-        <% HttpSession nsession = request.getSession(true);
-            if (nsession.getAttribute("email") == null) {
-        %><script>meldung();</script><%
-            }
-        %>
-
-
+        <script>
+            function meldung(){
+              alert("Welcome to TravelMate!\nLogin and let the adventure begin!");
+              location= window.location.href='toLogin';
+            };
+        </script>
     </head>
+    <!--Abfrage, ob Session gültig ist, sonst kein Zugriff auf create.jsp-->
+     <% 
+        //Prüfen, ob gültige session vorhanden ist.
+        HttpSession nsession = request.getSession(true);
+        if(nsession.getAttribute("email")==null) {
+            %><script>meldung();</script><%     
+        } 
 
     <body>
         <div>

@@ -42,6 +42,16 @@ public class InboxServlet extends HttpServlet {
             
             //aktueller User:
             HttpSession session = request.getSession(true);
+            //----------Falls keine Session vorhanden-----------------------------------------
+                if (session.getAttribute("email") == null) {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Keine Session vorhanden');");
+                    out.println("location= window.location.href='Index';");
+                    out.println("</script>");
+                    out.close();
+                    return;
+                }
+
             User user = (User) session.getAttribute("user");
             int user_id = user.getId();
             

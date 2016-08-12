@@ -40,8 +40,19 @@ public class MessagesServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            //aktueller User:
             HttpSession session = request.getSession(true);
+            
+            //----------Falls keine Session vorhanden-----------------------------------------
+            if (session.getAttribute("email") == null) {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('No valid session.');");
+                out.println("location= window.location.href='Index';");
+                out.println("</script>");
+                out.close();
+                return;
+            }
+
+            //aktueller User:            
             User user = (User) session.getAttribute("user");
             
             //aktueller Chatpartner:

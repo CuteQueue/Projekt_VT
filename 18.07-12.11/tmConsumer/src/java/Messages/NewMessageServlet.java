@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,7 +33,20 @@ public class NewMessageServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
+            
+            
+            //----------Falls keine Session vorhanden-----------------------------------------
+            if (session.getAttribute("email") == null) {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Keine Session vorhanden');");
+                out.println("location= window.location.href='Index';");
+                out.println("</script>");
+                out.close();
+                return;
+            }
+
             
             
             //Attribute es Chatpartners:
