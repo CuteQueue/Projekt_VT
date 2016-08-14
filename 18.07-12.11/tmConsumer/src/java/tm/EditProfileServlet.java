@@ -36,6 +36,7 @@ public class EditProfileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
         response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
@@ -65,13 +66,23 @@ public class EditProfileServlet extends HttpServlet {
             try{mobilenumber = request.getParameterValues("mobilenumber")[0];}catch(Exception err){mobilenumber=null;};
             try{ageString = request.getParameterValues("age")[0];
                 age = Integer.parseInt(ageString);}catch(Exception err){age=0;};
-            try{location = request.getParameterValues("location")[0];}catch(Exception err){location=null;};
+            try{location = request.getParameterValues("location")[0];
+                location = location.replaceAll("ß", "ss");
+                }catch(Exception err){location=null;};
             try{sex = request.getParameterValues("sex")[0];}catch(Exception err){sex=null;};
-            try{destination = request.getParameterValues("destination")[0];}catch(Exception err){destination=null;};
+            try{destination = request.getParameterValues("destination")[0];
+                destination = destination.replaceAll("ß", "ss");
+                }catch(Exception err){destination=null;};
             try{startdate = request.getParameterValues("startdate")[0];}catch(Exception err){startdate=null;};
-            try{interests = request.getParameterValues("interests")[0];}catch(Exception err){interests=null;};
-            try{looking_for = request.getParameterValues("looking_for")[0];}catch(Exception err){looking_for=null;};
-            try{about = request.getParameterValues("about")[0];}catch(Exception err){about=null;};
+            try{interests = request.getParameterValues("interests")[0];
+                destination = destination.replaceAll("ß", "ss");
+                }catch(Exception err){interests=null;};
+            try{looking_for = request.getParameterValues("looking_for")[0];
+                looking_for = looking_for.replaceAll("ß", "ss");
+                }catch(Exception err){looking_for=null;};
+            try{about = request.getParameterValues("about")[0];
+                about = about.replaceAll("ß", "ss");
+                }catch(Exception err){about=null;};
                 
         
             System.out.println("userid: " + user.getId());

@@ -31,6 +31,7 @@ public class CreateProfileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
         response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
@@ -55,23 +56,34 @@ public class CreateProfileServlet extends HttpServlet {
             session.setAttribute("user", u); //in Session gespeichert 
             User user = (User) session.getAttribute("user");
             
-            String mobilenumber = request.getParameterValues("mobilenumber")[0];
-            String ageString = request.getParameterValues("age")[0];
-            int age = Integer.parseInt(ageString);
-            String location = request.getParameterValues("location")[0];
-            String sex = request.getParameterValues("sex")[0];
-            String destination = request.getParameterValues("destination")[0];
-
-            String startdate = request.getParameterValues("startdate")[0];
-
-            String interests = request.getParameterValues("interests")[0];
-            String looking_for = request.getParameterValues("looking_for")[0];
-            String about = request.getParameterValues("about")[0];
+            String mobilenumber,location,ageString,sex,destination,startdate,interests,looking_for,about;
+            int age;
+            
+            try{mobilenumber = request.getParameterValues("mobilenumber")[0];}catch(Exception err){mobilenumber=null;};
+            try{ageString = request.getParameterValues("age")[0];
+                age = Integer.parseInt(ageString);}catch(Exception err){age=0;};
+            try{location = request.getParameterValues("location")[0];
+                location = location.replaceAll("ß", "ss");
+                }catch(Exception err){location=null;};
+            try{sex = request.getParameterValues("sex")[0];}catch(Exception err){sex=null;};
+            try{destination = request.getParameterValues("destination")[0];
+                destination = destination.replaceAll("ß", "ss");
+                }catch(Exception err){destination=null;};
+            try{startdate = request.getParameterValues("startdate")[0];}catch(Exception err){startdate=null;};
+            try{interests = request.getParameterValues("interests")[0];
+                destination = destination.replaceAll("ß", "ss");
+                }catch(Exception err){interests=null;};
+            try{looking_for = request.getParameterValues("looking_for")[0];
+                looking_for = looking_for.replaceAll("ß", "ss");
+                }catch(Exception err){looking_for=null;};
+            try{about = request.getParameterValues("about")[0];
+                about = about.replaceAll("ß", "ss");
+                }catch(Exception err){about=null;};
 
             String answer = createProfile(user.getId(), mobilenumber, age, location, sex, destination, startdate, interests, looking_for, about);
 
             if (answer.equals("ok")) {
-                request.getRequestDispatcher("/Home").forward(request, response);
+                request.getRequestDispatcher("/toProfil").forward(request, response);
             } else {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Please check all inputs, something seems to be missing.');");

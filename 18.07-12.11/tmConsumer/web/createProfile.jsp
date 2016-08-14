@@ -121,15 +121,15 @@
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               </button>
-              <a class="navbar-brand" href="${pageContext.request.contextPath}/toHome">TravelMate</a>
+              <a class="navbar-brand" href="#">TravelMate</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="${pageContext.request.contextPath}/toProfil">Profile<span class="sr-only">(current)</span></a></li>
-                <li><a href="${pageContext.request.contextPath}/toSearch">Search</a></li>
-                <li><a href="${pageContext.request.contextPath}/Inbox">Messages</a></li>
-                <li><a href="${pageContext.request.contextPath}/toChat">Chat</a></li>
+                <li class="disabled"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
+                <li class="disabled"><a href="#">Search</a></li>
+                <li class="disabled"><a href="#">Messages</a></li>
+                <li class="disabled"><a href="#">Chat</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="${pageContext.request.contextPath}/Logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
@@ -149,15 +149,15 @@
                             <tbody>
                                 <tr>
                                     <td>Phone:</td>
-                                    <td><input class="formInputRegister" type="number" name="mobilenumber" id="mobilenumber" onchange="store()" value="" /></td>
+                                    <td><input class="formInputRegister" type="number" name="mobilenumber" id="mobilenumber" onchange="store()" value="" placeholder="e.g. +49 0173 XXXX XXXX" /></td>
                                 </tr>
                                 <tr>
                                     <td>Age:</td>
-                                    <td><input class="formInputRegister" type="number" name="age" value="" id="age" onchange="store()" /></td>
+                                    <td><input class="formInputRegister" type="number" name="age" value="" id="age" onchange="store()" placeholder="your age"/></td>
                                 </tr>
                                 <tr>
                                     <td>Location:</td>
-                                    <td><input class="formInputRegister" type="text" name="location" value="" id="location" onchange="store()"/></td>
+                                    <td><input class="formInputRegister" type="text" name="location" value="" id="location" onchange="store()" placeholder="your current location"/></td>
                                 </tr>
                                 <tr>
                                     <td>Gender:</td>
@@ -171,23 +171,23 @@
                                 </tr>
                                 <tr>
                                     <td>Destination:</td>
-                                    <td><input class="formInputRegister" type="text" name="destination" value="" id="destination" onchange="store()"/></td>
+                                    <td><input class="formInputRegister" type="text" name="destination" value="" id="destination" onchange="store()" placeholder="your travel destination"/></td>
                                 </tr>
                                 <tr>
                                     <td>Startdate:</td>
-                                    <td><input class="formInputRegister" type="date" name="startdate" value="" id="startdate" onchange="store()" /></td>
+                                    <td><input class="formInputRegister" type="date" name="startdate" value="" id="startdate" onchange="store()" placeholder="startdate of your trip"/></td>
                                 </tr>
                                 <tr>
                                     <td>Interests:</td>
-                                    <td><input class="formInputRegister" type="text" name="interests" value=""  id="interests" onchange="store()"/></td>
+                                    <td><input class="formInputRegister" type="text" name="interests" value=""  id="interests" onchange="store()" placeholder="e.g. party, surfing, sight-seeing"/></td>
                                 </tr>
                                 <tr>
                                     <td>Looking for:</td>
-                                    <td><input class="formInputRegister" type="text" name="looking_for" value=""  id="looking_for" onchange="store()"/></td>
+                                    <td><input class="formInputRegister" type="text" name="looking_for" value=""  id="looking_for" onchange="store()" placeholder="e.g. share a car, meet-up, party"/></td>
                                 </tr>
                                 <tr>
                                     <td>About</td>
-                                    <td><input class="formInputRegister" type="text" name="about" value=""  id="about" onchange="store()"/></td>
+                                    <td><input class="formInputRegister" type="text" name="about" value=""  id="about" onchange="store()" placeholder="sth. about you and your trip"/></td>
                                 </tr
                                 <tr>
                                     <td></td>

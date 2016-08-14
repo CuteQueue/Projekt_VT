@@ -37,6 +37,7 @@ public class SendNewMessageServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
             
@@ -59,10 +60,10 @@ public class SendNewMessageServlet extends HttpServlet {
          
             //Inhalt der Nachricht:
             String content = request.getParameter("content");
+            content = content.replaceAll("ß", "ss");
             
             //Nachricht in der Datenbank mit Inhalt, aktueller User und Chatpartner speichern:
             String answer = storeMessage(user.getId(), chatPartnerId, content);
-            System.out.println(answer);
             
             //Weiterleitung zu "MessagesServlet, um den Chatverlauf zu  laden
             out.println("<meta http-equiv=\"refresh\" content=\"0;URL=http://"+session.getAttribute("serverIp")+":8080/tmConsumer/Messages\">");
@@ -108,7 +109,7 @@ public class SendNewMessageServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private String storeMessage(int senderId, int recipientId, java.lang.String message) {
+    private String storeMessage(int senderId, int recipientId, String message) {
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.storeMessage(senderId, recipientId, message);
     }

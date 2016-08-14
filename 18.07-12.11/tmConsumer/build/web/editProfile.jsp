@@ -124,7 +124,7 @@
                       Mobilenumber:
                     </div>
                     <div class="col-xs-12 col-sm-2 col-md-8 abstand-edit">
-                      <input type="number" name="mobilenumber" value="${profileDetails.mobilenumber}" />
+                      <input type="number" name="mobilenumber" value="${profileDetails.mobilenumber}"/>
                     </div>
                   </div>
                   <div class="row">

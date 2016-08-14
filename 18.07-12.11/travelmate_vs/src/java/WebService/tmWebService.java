@@ -250,12 +250,12 @@ public class tmWebService {
                 in die Datenbank gespeichert. Das Attribut seen (ob eine Nachricht gelesen wurde),
                 wird erstmal auf "false" gesetzt.          
             */
-             
+            System.out.println("MESSAGE: " + message);
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO messages (senderId, recipientId, message, seen) VALUES (?,?,?,?)"); 
             
-            pstmt.executeQuery("SET NAMES UTF8");
-            pstmt.executeQuery("SET CHARACTER SET UTF8");
+            pstmt.execute("SET NAMES 'utf8'");
+            pstmt.execute("SET CHARACTER SET 'utf8'");
             pstmt.setInt(1, senderId);
             pstmt.setInt(2, recipientId);
             pstmt.setString(3, message);
@@ -285,9 +285,9 @@ public class tmWebService {
             
             List<User> chatPartner = new ArrayList();
             Connection con = travelmate_vs.getConnection();
-            PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT senderId, user_id, email, name, last_name FROM messages, users,profils WHERE recipientId = ? AND senderId = users.id AND profils.user_id = users.id"); //where id = ?
-
+            PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT user_id, email, name, last_name FROM messages, users,profils WHERE (recipientId = ? AND senderId = users.id AND profils.user_id = users.id) OR (senderId = ? AND recipientId = users.id AND profils.user_id = users.id)");
             pstmt.setInt(1, user_id);
+            pstmt.setInt(2, user_id);
             ResultSet rs = pstmt.executeQuery();
             
             /*Für jeden ChatPartner wird ein User-Objekt erstellt mit:

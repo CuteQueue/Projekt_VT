@@ -45,6 +45,7 @@ public class RegisterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
         response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
@@ -57,9 +58,13 @@ public class RegisterServlet extends HttpServlet {
             String pw = request.getParameterValues("pw")[0];
             byte[] encryptedPw = getEncryptedPassword(pw, newSalt);
             String name = request.getParameterValues("name")[0];
+            name = name.replaceAll("ß", "ss");
             String last_name = request.getParameterValues("last_name")[0];
+            last_name = last_name.replaceAll("ß", "ss");
             String nickname = request.getParameterValues("nickname")[0];
+            nickname = nickname.replaceAll("ß", "ss");
             String email = request.getParameterValues("email")[0];
+            
             
             //Neuer User wird in der Datenbank angelegt
             String addUser = newUser(name, last_name, nickname, email, newSalt, encryptedPw);
