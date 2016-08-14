@@ -187,7 +187,7 @@
                                 </tr>
                                 <tr>
                                     <td>About</td>
-                                    <td><input class="formInputRegister" type="textarea" name="about" value=""  id="about" onchange="store()" placeholder="sth. about you and your trip" required/></td>
+                                    <td><input class="formInputRegister" type="text" name="about" value=""  id="about" onchange="store()" placeholder="sth. about you and your trip" required/></td>
                                 </tr
                                 <tr>
                                     <td></td>
