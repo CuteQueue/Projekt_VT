@@ -7,6 +7,8 @@ package Messages;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +39,6 @@ public class SendNewMessageServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
             
@@ -60,7 +61,8 @@ public class SendNewMessageServlet extends HttpServlet {
          
             //Inhalt der Nachricht:
             String content = request.getParameter("content");
-            content = content.replaceAll("ß", "ss");
+            byte[] bytes = content.getBytes(StandardCharsets.ISO_8859_1);
+            content = new String(bytes, StandardCharsets.UTF_8);
             
             //Nachricht in der Datenbank mit Inhalt, aktueller User und Chatpartner speichern:
             String answer = storeMessage(user.getId(), chatPartnerId, content);

@@ -7,6 +7,7 @@ package tm;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +37,6 @@ public class EditProfileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
         response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
@@ -65,23 +65,31 @@ public class EditProfileServlet extends HttpServlet {
             
             try{mobilenumber = request.getParameterValues("mobilenumber")[0];}catch(Exception err){mobilenumber=null;};
             try{ageString = request.getParameterValues("age")[0];
-                age = Integer.parseInt(ageString);}catch(Exception err){age=0;};
+                byte[] bytesAgeString = ageString.getBytes(StandardCharsets.ISO_8859_1);
+                ageString = new String(bytesAgeString, StandardCharsets.UTF_8);
+                age = Integer.parseInt(ageString);}
+            catch(Exception err){age=0;};
             try{location = request.getParameterValues("location")[0];
-                location = location.replaceAll("ß", "ss");
-                }catch(Exception err){location=null;};
+                byte[] bytesLocation = location.getBytes(StandardCharsets.ISO_8859_1);
+                location = new String(bytesLocation, StandardCharsets.UTF_8);
+            }catch(Exception err){location=null;};
             try{sex = request.getParameterValues("sex")[0];}catch(Exception err){sex=null;};
             try{destination = request.getParameterValues("destination")[0];
-                destination = destination.replaceAll("ß", "ss");
+                byte[] bytesDestination = destination.getBytes(StandardCharsets.ISO_8859_1);
+                destination = new String(bytesDestination, StandardCharsets.UTF_8);
                 }catch(Exception err){destination=null;};
             try{startdate = request.getParameterValues("startdate")[0];}catch(Exception err){startdate=null;};
             try{interests = request.getParameterValues("interests")[0];
-                destination = destination.replaceAll("ß", "ss");
+                byte[] bytesInterests = interests.getBytes(StandardCharsets.ISO_8859_1);
+                interests = new String(bytesInterests, StandardCharsets.UTF_8);
                 }catch(Exception err){interests=null;};
             try{looking_for = request.getParameterValues("looking_for")[0];
-                looking_for = looking_for.replaceAll("ß", "ss");
+                byte[] bytesLooking_for = looking_for.getBytes(StandardCharsets.ISO_8859_1);
+                looking_for = new String(bytesLooking_for, StandardCharsets.UTF_8);
                 }catch(Exception err){looking_for=null;};
             try{about = request.getParameterValues("about")[0];
-                about = about.replaceAll("ß", "ss");
+                byte[] bytesAbout = about.getBytes(StandardCharsets.ISO_8859_1);
+                about = new String(bytesAbout, StandardCharsets.UTF_8);
                 }catch(Exception err){about=null;};
                 
         

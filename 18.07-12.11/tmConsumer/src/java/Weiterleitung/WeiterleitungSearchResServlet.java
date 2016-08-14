@@ -5,8 +5,7 @@
  */
 package Weiterleitung;
 
-import Chat.ChatInterface;
-import Chat.ClientInterface;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;

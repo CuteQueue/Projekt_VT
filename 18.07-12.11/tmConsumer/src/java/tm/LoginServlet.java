@@ -13,6 +13,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -44,7 +45,6 @@ public class LoginServlet extends HttpServlet {
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
         response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
@@ -58,7 +58,12 @@ public class LoginServlet extends HttpServlet {
                 String serverIp = request.getParameterValues("serverIp")[0];
                 session.setAttribute("serverIp", serverIp);
                 email = request.getParameterValues("email")[0]; 
+                byte[] bytesEmail = email.getBytes(StandardCharsets.ISO_8859_1);
+                email = new String(bytesEmail, StandardCharsets.UTF_8);
+                
                 String attemptedPassword = request.getParameterValues("pw")[0];
+                byte[] bytesPw = attemptedPassword.getBytes(StandardCharsets.ISO_8859_1);
+                attemptedPassword = new String(bytesPw, StandardCharsets.UTF_8);
                
                 byte[] salt = retrieveSalt(email);
                 byte[] encryptedPassword = retrieveEncryptedPw(email);

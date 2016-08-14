@@ -149,21 +149,21 @@
                             <tbody>
                                 <tr>
                                     <td>Phone:</td>
-                                    <td><input class="formInputRegister" type="number" name="mobilenumber" id="mobilenumber" onchange="store()" value="" placeholder="e.g. +49 0173 XXXX XXXX" /></td>
+                                    <td><input class="formInputRegister" type="number" name="mobilenumber" id="mobilenumber" onchange="store()" value="" placeholder="e.g. +49 0173 XXXX XXXX" required/></td>
                                 </tr>
                                 <tr>
                                     <td>Age:</td>
-                                    <td><input class="formInputRegister" type="number" name="age" value="" id="age" onchange="store()" placeholder="your age"/></td>
+                                    <td><input class="formInputRegister" type="number" name="age" value="" id="age" onchange="store()" placeholder="your age" required/></td>
                                 </tr>
                                 <tr>
                                     <td>Location:</td>
-                                    <td><input class="formInputRegister" type="text" name="location" value="" id="location" onchange="store()" placeholder="your current location"/></td>
+                                    <td><input class="formInputRegister" type="text" name="location" value="" id="location" onchange="store()" placeholder="your current location" required/></td>
                                 </tr>
                                 <tr>
                                     <td>Gender:</td>
                                     <td>
                                     male
-                                    <input type="radio" style="margin-right:15px;margin-bottom:15px" class="checkboxTypo" name="sex" value="male" id="male" onclick="setStatus()" checked>
+                                    <input type="radio" style="margin-right:15px;margin-bottom:15px" class="checkboxTypo" name="sex" value="male" id="male" onclick="setStatus()" checked >
                                     female
                                     <input type="radio" class="checkboxTypo" name="sex" value="female" id="female" onclick="setStatus()" checked>
                                     </td>
@@ -171,27 +171,27 @@
                                 </tr>
                                 <tr>
                                     <td>Destination:</td>
-                                    <td><input class="formInputRegister" type="text" name="destination" value="" id="destination" onchange="store()" placeholder="your travel destination"/></td>
+                                    <td><input class="formInputRegister" type="text" name="destination" value="" id="destination" onchange="store()" placeholder="your travel destination" required/></td>
                                 </tr>
                                 <tr>
                                     <td>Startdate:</td>
-                                    <td><input class="formInputRegister" type="date" name="startdate" value="" id="startdate" onchange="store()" placeholder="startdate of your trip"/></td>
+                                    <td><input class="formInputRegister" type="date" name="startdate" value="" id="startdate" onchange="store()" placeholder="startdate of your trip" required/></td>
                                 </tr>
                                 <tr>
                                     <td>Interests:</td>
-                                    <td><input class="formInputRegister" type="text" name="interests" value=""  id="interests" onchange="store()" placeholder="e.g. party, surfing, sight-seeing"/></td>
+                                    <td><input class="formInputRegister" type="text" name="interests" value=""  id="interests" onchange="store()" placeholder="e.g. party, surfing, sight-seeing" required/></td>
                                 </tr>
                                 <tr>
                                     <td>Looking for:</td>
-                                    <td><input class="formInputRegister" type="text" name="looking_for" value=""  id="looking_for" onchange="store()" placeholder="e.g. share a car, meet-up, party"/></td>
+                                    <td><input class="formInputRegister" type="text" name="looking_for" value=""  id="looking_for" onchange="store()" placeholder="e.g. share a car, meet-up, party" required/></td>
                                 </tr>
                                 <tr>
                                     <td>About</td>
-                                    <td><input class="formInputRegister" type="text" name="about" value=""  id="about" onchange="store()" placeholder="sth. about you and your trip"/></td>
+                                    <td><input class="formInputRegister" type="text" name="about" value=""  id="about" onchange="store()" placeholder="sth. about you and your trip" required/></td>
                                 </tr
                                 <tr>
                                     <td></td>
-                                    <td><input class="formInputRegister btn btn-primary btn-s" style="margin-bottom:15px;margin-right: 30px" type="submit" value="Create Profile" /></td>
+                                    <td><input class="formInputRegister btn btn-primary btn-s" style="margin-bottom:15px;margin-right: 30px" type="submit" value="Create Profile" required/></td>
                                 </tr>
                             </tbody>
                         </table>

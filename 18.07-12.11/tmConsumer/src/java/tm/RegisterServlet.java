@@ -7,6 +7,7 @@ package tm;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
@@ -45,7 +46,6 @@ public class RegisterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
         response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
         response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
@@ -55,15 +55,27 @@ public class RegisterServlet extends HttpServlet {
         session.setAttribute("registered", null);
         try (PrintWriter out = response.getWriter()) {
             byte[] newSalt = generateSalt();
+            
             String pw = request.getParameterValues("pw")[0];
+            byte[] bytesPw = pw.getBytes(StandardCharsets.ISO_8859_1);
+            pw = new String(bytesPw, StandardCharsets.UTF_8);
             byte[] encryptedPw = getEncryptedPassword(pw, newSalt);
+            
             String name = request.getParameterValues("name")[0];
-            name = name.replaceAll("ß", "ss");
+            byte[] bytesName = name.getBytes(StandardCharsets.ISO_8859_1);
+            name = new String(bytesName, StandardCharsets.UTF_8);
+            
             String last_name = request.getParameterValues("last_name")[0];
-            last_name = last_name.replaceAll("ß", "ss");
+            byte[] bytesLast_name = last_name.getBytes(StandardCharsets.ISO_8859_1);
+            last_name = new String(bytesLast_name, StandardCharsets.UTF_8);
+            
             String nickname = request.getParameterValues("nickname")[0];
-            nickname = nickname.replaceAll("ß", "ss");
+            byte[] bytesNickname = nickname.getBytes(StandardCharsets.ISO_8859_1);
+            nickname = new String(bytesNickname, StandardCharsets.UTF_8);
+            
             String email = request.getParameterValues("email")[0];
+            byte[] bytesEmail = email.getBytes(StandardCharsets.ISO_8859_1);
+            email = new String(bytesEmail, StandardCharsets.UTF_8);
             
             
             //Neuer User wird in der Datenbank angelegt
