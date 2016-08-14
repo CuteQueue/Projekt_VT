@@ -149,7 +149,7 @@
                             <tbody>
                                 <tr>
                                     <td>Phone:</td>
-                                    <td><input class="formInputRegister" type="number" name="mobilenumber" id="mobilenumber" onchange="store()" value="" placeholder="e.g. +49 0173 XXXX XXXX" required/></td>
+                                    <td><input class="formInputRegister" type="number" name="mobilenumber" id="mobilenumber" onchange="store()" value="" placeholder="e.g. 0173XXXXXXXX" required/></td>
                                 </tr>
                                 <tr>
                                     <td>Age:</td>
@@ -187,7 +187,7 @@
                                 </tr>
                                 <tr>
                                     <td>About</td>
-                                    <td><input class="formInputRegister" type="text" name="about" value=""  id="about" onchange="store()" placeholder="sth. about you and your trip" required/></td>
+                                    <td><input class="formInputRegister" type="textarea" name="about" value=""  id="about" onchange="store()" placeholder="sth. about you and your trip" required/></td>
                                 </tr
                                 <tr>
                                     <td></td>
