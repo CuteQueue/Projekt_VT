@@ -14,10 +14,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 /**
- *
- * @author Manuela & Nina
- */
+* <h1>StartServlet</h1>
+* Das StartServlet holt sich aus den Formulardaten der index.jsp
+* die angegebene Host-IP, legt eine Session und das Session-Attribut 
+* "serverIp" an und leitet auf den Loginbereich des gewählten Servers weiter.
+* <p>
+* <b>Note:</b>Bei einer festen Serververgabe wäre dieser Schritt überflüssig,
+* er dient vorrangig zur angenehmeren Handhabung in der Testumgebung bei Serverwechseln.
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
+
 public class StartServlet extends HttpServlet {
 
     /**

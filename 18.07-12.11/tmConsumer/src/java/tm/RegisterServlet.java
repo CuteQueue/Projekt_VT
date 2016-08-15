@@ -25,9 +25,15 @@ import javax.xml.ws.WebServiceRef;
 import webservice.TmWebService_Service;
 
 /**
- *
- * @author Manuela & Nina
- */
+* <h1>RegisterServlet</h1>
+* Das RegisterServlet legt einen neuen Nutzer anhand der 
+* Formularangaben aus dem register.jsp in der Datenbank an.
+* 
+* <p>
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 public class RegisterServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
@@ -144,7 +150,15 @@ public class RegisterServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
+    /**
+   * Die Methode getEncryptedPassword(String password, byte[] salt)
+   * nutzt PBKDF2 (Password-Based Key Derivation Function 2) und salt, 
+   * um von dem eingegebenen Passwort einen Schlüssel abzuleiten
+   * @param password This is the first paramter to addNum method
+   * @param salt  This is the second parameter to addNum method
+   * @return byte[] This returns sum of numA and numB.
+   */
     
     public byte[] getEncryptedPassword(String password, byte[] salt)
         throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -181,8 +195,5 @@ public class RegisterServlet extends HttpServlet {
         return salt;
    }
 
-    
-    
-    
     
 }
