@@ -1,7 +1,7 @@
 /**
 * <h1>tmChatServlet</h1>
 * Servlet legt bei valider Session Session-Attribute
-* für die spätere Handhabung des Chats im tmChatOnServlet an
+* für die spätere Handhabung des Chats im tmChatOn-Servlet an
 * <p>
 *
 * @author  Nina Gödde und Manuela Reker
@@ -56,34 +56,29 @@ public class tmChatServlet extends HttpServlet {
             
             HttpSession session = req.getSession(true); //Erzeugt eine neue Session, wenn noch keine vorhanden und speichert diese in session
             if(session.getAttribute("email")==null) {
-                out.println("<script type=\"text/javascript\">");
-                out.println("alert('No valid session.');");
-                out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/toLogin\';");
-                out.println("</script>");   
+                out.println("<script>function meldung(){alert(\\\"No valid session, please login!\\\"); location= window.location.href='Index';};</script>");
             } 
             
             //IP des Nutzers
             try{
-                //Wird beim ersten Aufruf aufgerufen
-                ip = req.getParameterValues("serverIp")[0]; //wird aus Eingabe gelesen
-                session.setAttribute("ip", ip); //in Session gespeichert
-            } catch (Exception ex){
-                //Wird beim refresh aufgerufen
                 ip = (String) session.getAttribute("serverIp"); //wird aus Session gelesen
                 session.setAttribute("ip", ip);
                 System.out.println("IP aus Session geholt.");
+            } catch (Exception ex){
+                System.out.println("error tmChat ip");
+                session.setAttribute("ip", null);
+                ip = (String)session.getAttribute("ip");
             }
             
             //Name des Nutzers
              try{
                 //Wird beim ersten Aufruf aufgerufen
                 name = (String) session.getAttribute("nickname");
-                //name = req.getParameterValues("name")[0];
-                session.setAttribute("name", name);
                 System.out.println("nickname aus Session geholt.");
             } catch (Exception ex){
                 //Wird beim refresh aufgerufen
-                name = (String) session.getAttribute("nickname");
+                name = "noNameFound";
+                System.out.println("nickname konnte nicht gefunden werden.");
             }
 
             

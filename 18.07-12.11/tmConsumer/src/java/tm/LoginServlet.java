@@ -176,9 +176,7 @@ public class LoginServlet extends HttpServlet {
         throws NoSuchAlgorithmException, InvalidKeySpecException {
         // Encrypt the clear-text password using the same salt that was used to
         // encrypt the original password
-        System.out.println("authenticate 1");
         byte[] encryptedAttemptedPassword = getEncryptedPassword(attemptedPassword, salt);
-        System.out.println("ENCRYPTED PW: " + encryptedAttemptedPassword);
         // Authentication succeeds if encrypted password that the user entered
         // is equal to the stored hash
         return Arrays.equals(encryptedPassword, encryptedAttemptedPassword);

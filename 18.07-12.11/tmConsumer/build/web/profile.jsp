@@ -303,7 +303,7 @@
                             <%
                                 if(foreignProfile ==null){
                                     out.println("<input type=\"button\" class=\"btn btn-primary btn-s\" style=\"margin-top:5px;\" onclick=\"window.location.href='Edit'\" value=\"edit profile\" name=\"button\" id=\"button\"/>");
-                                    out.println("<input type=\"button\" class=\"btn btn-primary btn-s\" style=\"margin-top:5px;\" onclick=\"window.location.href='uploadImage.jsp'\" value=\"upload Image\" name=\"button2\" id=\"button2\"/>");
+                                    out.println("<input type=\"button\" class=\"btn btn-primary btn-s\" style=\"margin-top:5px;\" onclick=\"window.location.href='uploadImage.jsp'\" value=\"upload image\" name=\"button2\" id=\"button2\"/>");
                                 }else{
                                     foreignProfile=null;
                                     session.setAttribute("chatPartnerId", u.getId()); 

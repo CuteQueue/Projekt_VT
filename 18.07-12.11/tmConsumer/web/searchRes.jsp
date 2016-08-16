@@ -137,7 +137,7 @@
                                 out.println("Startdate: " + travelmates.get(i).getStartdate() + "</br>");
                                 out.println(" <form action=\"toProfil\" method=\"POST\">");
                                 out.println(" <input type=\"hidden\" name=\"email\" value=\"" + travelmates.get(i).getEmail() + "\">");
-                                out.println(" <input id=\"tmMail\" onclick=\"setTmEmail()\" type=submit class=\"btn btn-info btn-xs\" style=\"margin-top:5px;\" value=\"show profile\">\n"
+                                out.println(" <input type=submit class=\"btn btn-info btn-xs\" style=\"margin-top:5px;\" value=\"show profile\">\n"
                                         + "        </form>");
                                 out.println("</li>");
                                 out.println("</br>");

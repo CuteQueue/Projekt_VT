@@ -83,59 +83,39 @@
                       </tr>
                       <tr>
                           <td>
-                              Ich bin unterwegs zu Orten<br>
-                            Die so schnell vorüberziehen<br>
-                            Die unbeschreiblich sind mit Worten<br>
-                            Man muss sie selber sehen<br>
-                            Die Sonne geht grad auf und nimmt mich ein Stück mit<br>
-                            Weil ich die Ferne brauch<br>
-                            Und bin ich auch weit weg<br>
-                            Mein Zuhause ist immer im Gepäck<br>
-                            <br>
-                            Das Leben ist wie eine Reise<br>
-                            Und keiner weiß wohin<br>
-                            Warum spür ich deine Nähe am Meisten<br>
-                            Wenn ich meilenweit entfernt von dir bin<br>
-                            Das Leben ist wie eine Reise<br>
-                            Die mich in Atem hält.<br>
-                            Der Kürzeste Weg zu sich selbst<br>
-                            Führt manchmal ganz um die Welt<br>
-                            <br>
-                            Ich bin unterwegs durchs Leben<br>
-                            Das Ziel ist der Moment<br>
-                            Man muss nur weitergehen<br>
-                            Auch wenn man die Richtung mal nicht kennt<br>
-                            Mit jedem neuen Schritt entdeck ich immer mehr<br>
-                            Ich nehm dich überall hin mit<br>
-                            Vielleicht lauf ich davon<br>
-                            Und bin doch längst schon angekommen<br>
-                            <br>
-                            Das Leben ist wie eine Reise<br>
-                            Und keiner weiß wohin<br>
-                            Warum spür ich deine Nähe am Meisten<br>
-                            Wenn ich meilenweit entfernt von dir bin<br>
-                            Das Leben ist wie eine Reise<br>
-                            Die mich in Atem hält<br>
-                            Der Kürzeste Weg zu sich selbst<br>
-                            Führt manchmal ganz um die Welt<br>
-                            <br>
-                            Manchmal auch bis zum Mond je nachdem<br>
-                            Wo hast du dich zuletzt denn gesehn<br>
-                            Und wo genau verlorn<br>
-                            Doch ich weiß<br>
-                            <br>
-                            Das Leben ist wie eine Reise<br>
-                            Und man kommt niemals an<br>
-                            Warum such ich mein Glück in der Weite<br>
-                            Obwohl es gar nicht näher sein kann<br>
-                            <br>
-                            Das Leben ist eine Reise<br>
-                            Man kommt niemals an<br>
-                            Warum such ich mein Glück in der Weite<br>
-                            Das Leben ist eine Reise<br>
-                            Die mich in Atem hält<br>
-                            Der Kürzeste Weg zu sich selbst<br>
-                            Führt manchmal ganz um die Welt<br>
+                              TravelMate by Nina Gödde and Manuela Reker<br>
+                              Version 1.0, August 2016<br><br>
+                              
+                              Die grundlegende Idee zur von uns erstellten <br>
+                              Anwendung liegt darin, dass Reisende weltweit<br>
+                              nach anderen Reisenden mit demselben Reiseziel <br>
+                              mittels einer eingebauten Suchfunktion suchen können. <br>
+                              Durch ein hinterlegtes Profil mit Angaben zu den<br>
+                              einzelnen Nutzern (Alter, Interessen, <br>
+                              aktueller Standort, Reiseziel, Startdatum der Reise etc.)<br>
+                              und Kontaktfunktion sollten sich die Reisenden <br>
+                              miteinander in Verbindung setzen können. <br>
+                              Die Nutzer sollen somit die Möglichkeit erhalten,<br>
+                              sich über die Anwendung zu verabreden bzw. zu <br>
+                              planen gemeinsam Reiseabschnitte zurückzulegen, <br>
+                              Ticketpreise zu teilen, oder sich einfach in der <br>
+                              aktuellen Stadt auf einen Kaffee zu treffen, 
+                              <br>gemeinsam feiern zu gehen etc. 
+                              <br>Die für die Nutzer wichtigen Aspekte 
+                              <br>(bspw. Geschlecht, Reiseziel, ...) bezüglich <br>
+                              der Suche nach anderen Reisenden sollten individuell <br>
+                              in der Suchanfrage auswählbar sein. <br><br>
+
+                              Eine weitere Idee, ergänzend zur privaten Kontaktfunktion<br>
+                              über das Profil, bestand darin Chats umzusetzen in denen<br>
+                              sich mehrere Nutzer gleichzeitig auf unkomplizierte Weise<br> 
+                              live austauschen sowie Reisetipps und Erfahrungen <br>
+                              weitergeben können. <br><br>
+
+                              Da es sich bei der App um die Suche nach Reisepartnern<br>
+                              und Gleichgesinnten handelt lautet ihr Arbeitstitel "TravelMate".
+
+                              
                           </td>
                       </tr>
                     </tbody>

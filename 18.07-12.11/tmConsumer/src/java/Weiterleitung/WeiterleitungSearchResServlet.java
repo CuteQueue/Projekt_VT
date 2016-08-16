@@ -95,6 +95,15 @@ public class WeiterleitungSearchResServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
+    /**
+   * Bestimmt diejenigen User, die mit den übergebenen Suchkriterien übereinstimmen.
+   * 
+   *
+   * @param destination Reiseziel nach dem die TravelMates gefiltert werden sollen
+   * @param gender -  Geschlecht, nach dem die TravelMates gefiltert werden sollen
+   * 
+   * @return eine Liste von Usern, die den Suchkriterien entsprechen
+   */
     public java.util.List<webservice.User> findTravelmates(java.lang.String destination, java.lang.String gender) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
