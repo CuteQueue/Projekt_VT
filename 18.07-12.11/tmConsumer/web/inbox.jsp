@@ -92,7 +92,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 abstand">
                     <!--Die verschiedenen Unterhalten mit den jeweiligen Nutzernamen anzeigen
                     Wird der Name angeklickt, wird der zugehörige Chatverlauf angezeigt-->
-                    <ul class="chat"> <%                    
+                    <ul class="messages"> <%                    
                         boolean newMessage = false;
                         for (int i = 0; i < conversations.size(); i++) {
                             newMessage =false;

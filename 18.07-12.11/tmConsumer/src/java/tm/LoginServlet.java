@@ -20,10 +20,6 @@ import javax.servlet.http.HttpSession;
 import javax.xml.ws.WebServiceRef;
 import webservice.TmWebService_Service;
 
-/**
- *
- * @author Manuela & Nina
- */
 
 /**
 * <h1>LoginServlet</h1>

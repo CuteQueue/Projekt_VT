@@ -147,7 +147,23 @@ public class EditProfileServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    /**
+   * Aktualisiert über den Web Service das Profil des Users in der profils-Tabelle 
+   * mit den übergebenen Daten.
+   *
+   * @param id Id des Users
+   * @param mobilenumber Mobilnummer des Users
+   * @param age Alter des Users
+   * @param location Akuteller Aufenhaltsort des Users
+   * @param sex Geschlecht des Users
+   * @param destination Reiseziel des Users
+   * @param startdate Startdatum der Reise des Users
+   * @param interests Interesen des Users
+   * @param looking_for Wonach der User auf der Suche ist (TravelMate, Meet Up etc)
+   * @param about Text über den User, in dem er sich und seine Reiseplaene beschreibt
+   * 
+   * @return String mit Information, ob User erfolgreich angelegt wurde
+   */
     private String editProfile(int id, java.lang.String mobilenumber, int age, java.lang.String location, java.lang.String sex, java.lang.String destination, java.lang.String startdate, java.lang.String interests, java.lang.String lookingFor, java.lang.String about) {
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.editProfile(id, mobilenumber, age, location, sex, destination, startdate, interests, lookingFor, about);

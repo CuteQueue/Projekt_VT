@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Messages;
 
 import java.io.IOException;
@@ -18,9 +13,15 @@ import tm.User;
 import webservice.TmWebService_Service;
 
 /**
- *
- * @author nina & manuela
- */
+* <h1>MessagesSerlvet</h1>
+* Das MessagesServlet holt sich die Nachrichten, die der aktuelle User mit dem ausgewählten
+* Chatpartner ausgetauscht hat.
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 public class MessagesServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
@@ -108,7 +109,14 @@ public class MessagesServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    /**
+   * Bestimmt über den WebService die verschiedenen Nachrichten, die zwischen dem akutellen User und dem
+   * ausgewählten Chatpartner ausgetauscht wurden.
+   *
+   * @param user_id Id des aktuellen Users
+   * @param chatPartnerId Id des ausgewählten chatParnters
+   * @return eine Liste von Messages, die zwischen dem aktuellen User und dem Chatparnter ausgetauscht wurden
+   */
     private java.util.List<webservice.Message> showMessages(int userId, int chatPartnerId) {
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.showMessages(userId, chatPartnerId);

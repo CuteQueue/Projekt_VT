@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Messages;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,9 +13,15 @@ import tm.User;
 import webservice.TmWebService_Service;
 
 /**
- *
- * @author nina & manuela
- */
+* <h1>SendNewMessagesServlet</h1>
+* Das SendNewMessagesServlet speichert eine neue Nachricht in die messages-Tabelle der
+* Datenbank trvmate_db.
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 public class SendNewMessageServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
@@ -110,7 +110,15 @@ public class SendNewMessageServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    /**
+   * Speichert über den Web Service eine neue Nachrichten in der Tabelle "messages".
+   *
+   * @param senderId Id desjenigen, der die Nachricht gesendet hat
+   * @param recipientId Id des Empfägners
+   * @param message Nachrichteninhalt
+   * 
+   * @return String mit Information, ob User erfolgreich angelegt wurde
+   */
     private String storeMessage(int senderId, int recipientId, String message) {
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.storeMessage(senderId, recipientId, message);

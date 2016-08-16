@@ -44,18 +44,6 @@
 
 <xs:element name="storeMessageResponse" type="tns:storeMessageResponse"/>
 
-<xs:complexType name="getEncryptedPw">
-<xs:sequence>
-<xs:element name="email" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getEncryptedPwResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="showConversations">
 <xs:sequence>
 <xs:element name="user_id" type="xs:int"/>
@@ -87,6 +75,18 @@
 <xs:element name="startdate" type="xs:string" minOccurs="0"/>
 <xs:element name="updated_at" type="xs:string" minOccurs="0"/>
 <xs:element name="user_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getEncryptedPw">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getEncryptedPwResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -123,6 +123,19 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="login">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="pw" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="loginResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="storeMessage">
 <xs:sequence>
 <xs:element name="senderId" type="xs:int"/>
@@ -132,19 +145,6 @@
 </xs:complexType>
 
 <xs:complexType name="storeMessageResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="login">
-<xs:sequence>
-<xs:element name="email" type="xs:string" minOccurs="0"/>
-<xs:element name="pw" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="loginResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
@@ -229,9 +229,9 @@
 <xs:complexType name="message">
 <xs:sequence>
 <xs:element name="content" type="xs:string" minOccurs="0"/>
-<xs:element name="friendId" type="xs:int"/>
+<xs:element name="recipientId" type="xs:int"/>
 <xs:element name="seen" type="xs:boolean"/>
-<xs:element name="user_id" type="xs:int"/>
+<xs:element name="senderId" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

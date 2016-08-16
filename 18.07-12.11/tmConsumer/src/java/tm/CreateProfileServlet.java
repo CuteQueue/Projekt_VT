@@ -12,9 +12,16 @@ import javax.xml.ws.WebServiceRef;
 import webservice.TmWebService_Service;
 
 /**
- *
- * @author nina & manuela
- */
+* <h1>CreateProfileServlet</h1>
+* Das Servlet holt sich aus den Formulardaten der createProfile.jsp
+* die Userdaten speichert ein neues Profil in die profils-Tabelle der
+* Datenbank trvmate_db.
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 public class CreateProfileServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
@@ -140,7 +147,22 @@ public class CreateProfileServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-
+     /**
+   * Legt über den Web Service ein neues Profil in der Tabelle "profils" mit übergebenen Profil-Daten an.
+   *
+   * @param id Id des Users
+   * @param mobilenumber Mobilnummer des Users
+   * @param age Alter des Users
+   * @param location Akuteller Aufenhaltsort des Users
+   * @param sex Geschlecht des Users
+   * @param destination Reiseziel des Users
+   * @param startdate Startdatum der Reise des Users
+   * @param interests Interesen des Users
+   * @param looking_for Wonach der User auf der Suche ist (TravelMate, Meet Up etc)
+   * @param about Text über den User, in dem er sich und seine Reiseplaene beschreibt
+   * 
+   * @return String mit Information, ob User erfolgreich angelegt wurde
+   */
     private String createProfile(int id, java.lang.String mobilenumber, int age, java.lang.String location, java.lang.String sex, java.lang.String destination, java.lang.String startdate, java.lang.String interests, java.lang.String lookingFor, java.lang.String about) {
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.createProfile(id, mobilenumber, age, location, sex, destination, startdate, interests, lookingFor, about);

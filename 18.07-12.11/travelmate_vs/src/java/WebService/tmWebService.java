@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package WebService;
 
 import java.sql.Connection;
@@ -20,43 +15,29 @@ import tm.Message;
 import tm.User;
 
 /**
- *
- * @author nina & manuela
- */
+* <h1>tmWebService</h1>
+* Das tmWebService bietet verschiedene Funktionen zur
+* Arbeit mit der Datenbank.
+* 
+* <p>
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 @WebService(serviceName = "tmWebService")
 public class tmWebService {
 
     @Resource(name = "travelmate_vs")
     private DataSource travelmate_vs;
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "login")
-    public String login(@WebParam(name = "email") String email, @WebParam(name = "pw") String pw) {
-        try {
 
-            Connection con = travelmate_vs.getConnection();
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?"); 
 
-            pstmt.setString(1, email);
-            pstmt.setString(2, pw);
-            ResultSet rs = pstmt.executeQuery();
-            rs.next();
-            String text = rs.getString("name");
-            rs.close();
-            con.close();
-            
-            return text;
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-            return null;
-        }
-    }
-
-    /**
-     * Web service operation
-     */
+     /**
+   * Liefert die zufällige Zeichenfolge (salt), die zu dem User
+   * erstellt wurde.
+   * @param email Email des Users
+   * @return Zeichenfolge (salt) in byte[]
+   */
     @WebMethod(operationName = "getSalt")
     public byte[] getSalt(@WebParam(name = "email") String email) {
         try {
@@ -75,9 +56,11 @@ public class tmWebService {
         }
     }
 
-    /**
-     * Web service operation
-     */
+   /**
+   * Liefert verschlüsseltes Passwort aus der Datenbank
+   * @param email Email des Users
+   * @return verschlüsseltes Paswort des Users
+   */
     @WebMethod(operationName = "getEncryptedPw")
     public byte[] getEncryptedPw(@WebParam(name = "email") String email) {
         try {
@@ -97,8 +80,17 @@ public class tmWebService {
     }
 
     /**
-     * Web service operation
-     */
+   * Legt einen neuen User in der Tablle "users" mit den übergebenen User-Daten an.
+   *
+   * @param name Vorname des Users
+   * @param last_name Nachname des Users
+   * @param nickname Nickname des Users
+   * @param email Email des Users
+   * @param salt TODO
+   * @param password Passwort des Users
+   * 
+   * @return  String mit Information, ob User erfolgreich angelegt wurde
+   */
     @WebMethod(operationName = "newUser")
     public String newUser(@WebParam(name = "name") String name, @WebParam(name = "last_name") String last_name, @WebParam(name = "nickname") String nickname, @WebParam(name = "email") String email, @WebParam(name = "salt") byte[] salt, @WebParam(name = "password") byte[] password) {
         try {
@@ -123,8 +115,21 @@ public class tmWebService {
     }
 
     /**
-     * Web service operation
-     */
+   * Legt ein neues Profil in der Tabelle "profils" mit übergebenen Profil-Daten an.
+   *
+   * @param id Id des Users
+   * @param mobilenumber Mobilnummer des Users
+   * @param age Alter des Users
+   * @param location Akuteller Aufenhaltsort des Users
+   * @param sex Geschlecht des Users
+   * @param destination Reiseziel des Users
+   * @param startdate Startdatum der Reise des Users
+   * @param interests Interesen des Users
+   * @param looking_for Wonach der User auf der Suche ist (TravelMate, Meet Up etc)
+   * @param about Text über den User, in dem er sich und seine Reiseplaene beschreibt
+   * 
+   * @return String mit Information, ob User erfolgreich angelegt wurde
+   */
     @WebMethod(operationName = "createProfile")
     public String createProfile(@WebParam(name = "id") int id, @WebParam(name = "mobilenumber") String mobilenumber, @WebParam(name = "age") int age, @WebParam(name = "location") String location, @WebParam(name = "sex") String sex, @WebParam(name = "destination") String destination, @WebParam(name = "startdate") String startdate, @WebParam(name = "interests") String interests, @WebParam(name = "looking_for") String looking_for, @WebParam(name = "about") String about) {
         try {
@@ -151,9 +156,22 @@ public class tmWebService {
         }
     }
 
-    /**
-     * Web service operation
-     */
+ /**
+   * Aktualisiert das Profil des Users in der profils-Tabelle mit den übergebenen Daten.
+   * 
+   * @param id Id des Users
+   * @param mobilenumber Mobilnummer des Users
+   * @param age Alter des Users
+   * @param location Akuteller Aufenhaltsort des Users
+   * @param sex Geschlecht des Users
+   * @param destination Reiseziel des Users
+   * @param startdate Startdatum der Reise des Users
+   * @param interests Interesen des Users
+   * @param looking_for Wonach der User auf der Suche ist (TravelMate, Meet Up etc)
+   * @param about Text über den User, in dem er sich und seine Reiseplaene beschreibt
+   * 
+   * @return String mit Information, ob User erfolgreich angelegt wurde
+   */
     @WebMethod(operationName = "editProfile")
     public String editProfile(@WebParam(name = "id") int id, @WebParam(name = "mobilenumber") String mobilenumber, @WebParam(name = "age") int age, @WebParam(name = "location") String location, @WebParam(name = "sex") String sex, @WebParam(name = "destination") String destination, @WebParam(name = "startdate") String startdate, @WebParam(name = "interests") String interests, @WebParam(name = "looking_for") String looking_for, @WebParam(name = "about") String about) {
         try {
@@ -185,9 +203,15 @@ public class tmWebService {
         }
     }
     
-    /**
-     * Web service operation
-     */
+  /**
+   * Bestimmt diejenigen User, die mit den übergebenen Suchkriterien übereinstimmen.
+   * 
+   *
+   * @param destination Reiseziel nach dem die TravelMates gefiltert werden sollen
+   * @param gender -  Geschlecht, nach dem die TravelMates gefiltert werden sollen
+   * 
+   * @return eine Liste von Usern, die den Suchkriterien entsprechen
+   */
     @WebMethod(operationName = "findTravelmates")
     public List<User> findTravelmates(@WebParam(name = "destination") String destination, @WebParam(name = "gender") String gender) {
         try {
@@ -233,21 +257,26 @@ public class tmWebService {
         }
     }
     
-      /**
-     * Web service operation
-     */
+  /**
+   * Speichert eine neue Nachrichten in der Tabelle "messages".
+   *
+   * @param senderId Id desjenigen, der die Nachricht gesendet hat
+   * @param recipientId Id des Empfägners
+   * @param message Nachrichteninhalt
+   * 
+   * @return String mit Information, ob User erfolgreich angelegt wurde
+   */
     @WebMethod(operationName = "storeMessage")
     public String storeMessage(@WebParam(name = "senderId") int senderId, @WebParam(name = "recipientId") int recipientId, @WebParam(name = "message") String message) {
         try {
              /* Die neu geschriebene Nachricht wird mit 
                 - Id des Senders
-                - Id des Empfängers
+                - Id des Empfänger
                 - Nachrichteninhalt
             
                 in die Datenbank gespeichert. Das Attribut seen (ob eine Nachricht gelesen wurde),
                 wird erstmal auf "false" gesetzt.          
             */
-            System.out.println("MESSAGE: " + message);
             Connection con = travelmate_vs.getConnection();
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO messages (senderId, recipientId, message, seen) VALUES (?,?,?,?)"); 
             
@@ -267,9 +296,13 @@ public class tmWebService {
         }
     }
 
-    /**
-     * Web service operation
-     */
+   /**
+   * Bestimmt die verschiedenen Chatpartner, mit dem der aktuelle User
+   * Nachrichten ausgetauscht hat.
+   *
+   * @param user_id Id des aktuellen Users
+   * @return eine Liste von Usern, die mit dem aktuellen User Nachrichten ausgetauscht haben
+   */
     @WebMethod(operationName = "showConversations")
     public List<User> showConversations(@WebParam(name = "user_id") int user_id) {
         try {
@@ -307,10 +340,14 @@ public class tmWebService {
         }
     
     }
-
-    /**
-     * Web service operation
-     */
+/**
+   * Bestimmt die verschiedenen Nachrichten, die zwischen dem akutellen User und dem
+   * ausgewählten Chatpartner ausgetauscht wurden.
+   *
+   * @param user_id Id des aktuellen Users
+   * @param chatPartnerId Id des ausgewählten chatParnters
+   * @return eine Liste von Messages, die zwischen dem aktuellen User und dem Chatparnter ausgetauscht wurden
+   */
     @WebMethod(operationName = "showMessages")
     public List<Message> showMessages(@WebParam(name = "user_id") int user_id, @WebParam(name = "chatPartnerId") int chatPartnerId) {
       try {
@@ -354,7 +391,7 @@ public class tmWebService {
            
             con.close();
             if (update == 1) {
-                System.out.println("In messages: Column seen is updated!");
+               // System.out.println("In messages: Column seen is updated!");
             } else {
                 System.out.println("Error! In messages: Could not update column seen");
             }            
@@ -366,9 +403,13 @@ public class tmWebService {
         }
     }
 
-    /**
-     * Web service operation
-     */
+   /**
+   * Bestimmt die  Nachrichten, die der aktuelle User noch nicht gelesen hat, also noch 
+   * neu sind
+   * 
+   * @param user_id Id des aktuellen Users
+   * @return eine Liste von Usern, von denen der aktuellen User neue Nachrichten hat
+   */
     @WebMethod(operationName = "anyNewMessages")
     public List<User> anyNewMessages(@WebParam(name = "user_id") int user_id) {
          try {
@@ -392,7 +433,7 @@ public class tmWebService {
             pstmt.setInt(2, user_id);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                User user = new User(rs.getInt("user_id"), rs.getString("email"), rs.getString("name"), rs.getString("last_name"));;
+                User user = new User(rs.getInt("user_id"), rs.getString("email"), rs.getString("name"), rs.getString("last_name"));
                 newMessagesFrom.add(user);
             }
             rs.close();

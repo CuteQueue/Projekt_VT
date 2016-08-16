@@ -3,7 +3,6 @@ package webservice;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -18,9 +17,9 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="content" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="friendId" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="recipientId" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="seen" type="{http://www.w3.org/2001/XMLSchema}boolean"/&gt;
- *         &lt;element name="user_id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="senderId" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -32,17 +31,16 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "message", propOrder = {
     "content",
-    "friendId",
+    "recipientId",
     "seen",
-    "userId"
+    "senderId"
 })
 public class Message {
 
     protected String content;
-    protected int friendId;
+    protected int recipientId;
     protected boolean seen;
-    @XmlElement(name = "user_id")
-    protected int userId;
+    protected int senderId;
 
     /**
      * Ruft den Wert der content-Eigenschaft ab.
@@ -69,19 +67,19 @@ public class Message {
     }
 
     /**
-     * Ruft den Wert der friendId-Eigenschaft ab.
+     * Ruft den Wert der recipientId-Eigenschaft ab.
      * 
      */
-    public int getFriendId() {
-        return friendId;
+    public int getRecipientId() {
+        return recipientId;
     }
 
     /**
-     * Legt den Wert der friendId-Eigenschaft fest.
+     * Legt den Wert der recipientId-Eigenschaft fest.
      * 
      */
-    public void setFriendId(int value) {
-        this.friendId = value;
+    public void setRecipientId(int value) {
+        this.recipientId = value;
     }
 
     /**
@@ -101,19 +99,19 @@ public class Message {
     }
 
     /**
-     * Ruft den Wert der userId-Eigenschaft ab.
+     * Ruft den Wert der senderId-Eigenschaft ab.
      * 
      */
-    public int getUserId() {
-        return userId;
+    public int getSenderId() {
+        return senderId;
     }
 
     /**
-     * Legt den Wert der userId-Eigenschaft fest.
+     * Legt den Wert der senderId-Eigenschaft fest.
      * 
      */
-    public void setUserId(int value) {
-        this.userId = value;
+    public void setSenderId(int value) {
+        this.senderId = value;
     }
 
 }

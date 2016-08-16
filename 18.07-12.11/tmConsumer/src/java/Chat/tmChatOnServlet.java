@@ -36,10 +36,7 @@ String exit = "";
            try {
             HttpSession session = req.getSession(true); //Liefert null zurück, wenn es keine aktuelle Session gibt
             if(session.getAttribute("email")==null) {
-                out.println("<script type=\"text/javascript\">");
-                out.println("alert('No valid session.');");
-                out.println("location='http://"+session.getAttribute("serverIp")+":8080/tmConsumer/toLogin\';");
-                out.println("</script>");   
+                out.println("<script>function meldung(){alert(\\\"No valid session, please login!\\\"); location= window.location.href='Index';};</script>");   
             } 
             res.setContentType("text/html;charset=UTF-8");
             System.out.println("Session serverIp: " + session.getAttribute("serverIp"));

@@ -27,6 +27,189 @@ public interface TmWebService {
 
     /**
      * 
+     * @param userId
+     * @return
+     *     returns java.util.List<webservice.User>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "showConversations", targetNamespace = "http://WebService/", className = "webservice.ShowConversations")
+    @ResponseWrapper(localName = "showConversationsResponse", targetNamespace = "http://WebService/", className = "webservice.ShowConversationsResponse")
+    @Action(input = "http://WebService/tmWebService/showConversationsRequest", output = "http://WebService/tmWebService/showConversationsResponse")
+    public List<User> showConversations(
+        @WebParam(name = "user_id", targetNamespace = "")
+        int userId);
+
+    /**
+     * 
+     * @param mobilenumber
+     * @param sex
+     * @param destination
+     * @param about
+     * @param lookingFor
+     * @param location
+     * @param id
+     * @param startdate
+     * @param interests
+     * @param age
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "editProfile", targetNamespace = "http://WebService/", className = "webservice.EditProfile")
+    @ResponseWrapper(localName = "editProfileResponse", targetNamespace = "http://WebService/", className = "webservice.EditProfileResponse")
+    @Action(input = "http://WebService/tmWebService/editProfileRequest", output = "http://WebService/tmWebService/editProfileResponse")
+    public String editProfile(
+        @WebParam(name = "id", targetNamespace = "")
+        int id,
+        @WebParam(name = "mobilenumber", targetNamespace = "")
+        String mobilenumber,
+        @WebParam(name = "age", targetNamespace = "")
+        int age,
+        @WebParam(name = "location", targetNamespace = "")
+        String location,
+        @WebParam(name = "sex", targetNamespace = "")
+        String sex,
+        @WebParam(name = "destination", targetNamespace = "")
+        String destination,
+        @WebParam(name = "startdate", targetNamespace = "")
+        String startdate,
+        @WebParam(name = "interests", targetNamespace = "")
+        String interests,
+        @WebParam(name = "looking_for", targetNamespace = "")
+        String lookingFor,
+        @WebParam(name = "about", targetNamespace = "")
+        String about);
+
+    /**
+     * 
+     * @param email
+     * @return
+     *     returns byte[]
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getEncryptedPw", targetNamespace = "http://WebService/", className = "webservice.GetEncryptedPw")
+    @ResponseWrapper(localName = "getEncryptedPwResponse", targetNamespace = "http://WebService/", className = "webservice.GetEncryptedPwResponse")
+    @Action(input = "http://WebService/tmWebService/getEncryptedPwRequest", output = "http://WebService/tmWebService/getEncryptedPwResponse")
+    public byte[] getEncryptedPw(
+        @WebParam(name = "email", targetNamespace = "")
+        String email);
+
+    /**
+     * 
+     * @param mobilenumber
+     * @param sex
+     * @param destination
+     * @param about
+     * @param lookingFor
+     * @param location
+     * @param id
+     * @param startdate
+     * @param interests
+     * @param age
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "createProfile", targetNamespace = "http://WebService/", className = "webservice.CreateProfile")
+    @ResponseWrapper(localName = "createProfileResponse", targetNamespace = "http://WebService/", className = "webservice.CreateProfileResponse")
+    @Action(input = "http://WebService/tmWebService/createProfileRequest", output = "http://WebService/tmWebService/createProfileResponse")
+    public String createProfile(
+        @WebParam(name = "id", targetNamespace = "")
+        int id,
+        @WebParam(name = "mobilenumber", targetNamespace = "")
+        String mobilenumber,
+        @WebParam(name = "age", targetNamespace = "")
+        int age,
+        @WebParam(name = "location", targetNamespace = "")
+        String location,
+        @WebParam(name = "sex", targetNamespace = "")
+        String sex,
+        @WebParam(name = "destination", targetNamespace = "")
+        String destination,
+        @WebParam(name = "startdate", targetNamespace = "")
+        String startdate,
+        @WebParam(name = "interests", targetNamespace = "")
+        String interests,
+        @WebParam(name = "looking_for", targetNamespace = "")
+        String lookingFor,
+        @WebParam(name = "about", targetNamespace = "")
+        String about);
+
+    /**
+     * 
+     * @param gender
+     * @param destination
+     * @return
+     *     returns java.util.List<webservice.User>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "findTravelmates", targetNamespace = "http://WebService/", className = "webservice.FindTravelmates")
+    @ResponseWrapper(localName = "findTravelmatesResponse", targetNamespace = "http://WebService/", className = "webservice.FindTravelmatesResponse")
+    @Action(input = "http://WebService/tmWebService/findTravelmatesRequest", output = "http://WebService/tmWebService/findTravelmatesResponse")
+    public List<User> findTravelmates(
+        @WebParam(name = "destination", targetNamespace = "")
+        String destination,
+        @WebParam(name = "gender", targetNamespace = "")
+        String gender);
+
+    /**
+     * 
+     * @param userId
+     * @return
+     *     returns java.util.List<webservice.User>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "anyNewMessages", targetNamespace = "http://WebService/", className = "webservice.AnyNewMessages")
+    @ResponseWrapper(localName = "anyNewMessagesResponse", targetNamespace = "http://WebService/", className = "webservice.AnyNewMessagesResponse")
+    @Action(input = "http://WebService/tmWebService/anyNewMessagesRequest", output = "http://WebService/tmWebService/anyNewMessagesResponse")
+    public List<User> anyNewMessages(
+        @WebParam(name = "user_id", targetNamespace = "")
+        int userId);
+
+    /**
+     * 
+     * @param chatPartnerId
+     * @param userId
+     * @return
+     *     returns java.util.List<webservice.Message>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "showMessages", targetNamespace = "http://WebService/", className = "webservice.ShowMessages")
+    @ResponseWrapper(localName = "showMessagesResponse", targetNamespace = "http://WebService/", className = "webservice.ShowMessagesResponse")
+    @Action(input = "http://WebService/tmWebService/showMessagesRequest", output = "http://WebService/tmWebService/showMessagesResponse")
+    public List<Message> showMessages(
+        @WebParam(name = "user_id", targetNamespace = "")
+        int userId,
+        @WebParam(name = "chatPartnerId", targetNamespace = "")
+        int chatPartnerId);
+
+    /**
+     * 
+     * @param pw
+     * @param email
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "login", targetNamespace = "http://WebService/", className = "webservice.Login")
+    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://WebService/", className = "webservice.LoginResponse")
+    @Action(input = "http://WebService/tmWebService/loginRequest", output = "http://WebService/tmWebService/loginResponse")
+    public String login(
+        @WebParam(name = "email", targetNamespace = "")
+        String email,
+        @WebParam(name = "pw", targetNamespace = "")
+        String pw);
+
+    /**
+     * 
      * @param email
      * @return
      *     returns byte[]
@@ -90,188 +273,5 @@ public interface TmWebService {
         int recipientId,
         @WebParam(name = "message", targetNamespace = "")
         String message);
-
-    /**
-     * 
-     * @param mobilenumber
-     * @param sex
-     * @param destination
-     * @param about
-     * @param lookingFor
-     * @param location
-     * @param id
-     * @param startdate
-     * @param interests
-     * @param age
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "editProfile", targetNamespace = "http://WebService/", className = "webservice.EditProfile")
-    @ResponseWrapper(localName = "editProfileResponse", targetNamespace = "http://WebService/", className = "webservice.EditProfileResponse")
-    @Action(input = "http://WebService/tmWebService/editProfileRequest", output = "http://WebService/tmWebService/editProfileResponse")
-    public String editProfile(
-        @WebParam(name = "id", targetNamespace = "")
-        int id,
-        @WebParam(name = "mobilenumber", targetNamespace = "")
-        String mobilenumber,
-        @WebParam(name = "age", targetNamespace = "")
-        int age,
-        @WebParam(name = "location", targetNamespace = "")
-        String location,
-        @WebParam(name = "sex", targetNamespace = "")
-        String sex,
-        @WebParam(name = "destination", targetNamespace = "")
-        String destination,
-        @WebParam(name = "startdate", targetNamespace = "")
-        String startdate,
-        @WebParam(name = "interests", targetNamespace = "")
-        String interests,
-        @WebParam(name = "looking_for", targetNamespace = "")
-        String lookingFor,
-        @WebParam(name = "about", targetNamespace = "")
-        String about);
-
-    /**
-     * 
-     * @param gender
-     * @param destination
-     * @return
-     *     returns java.util.List<webservice.User>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "findTravelmates", targetNamespace = "http://WebService/", className = "webservice.FindTravelmates")
-    @ResponseWrapper(localName = "findTravelmatesResponse", targetNamespace = "http://WebService/", className = "webservice.FindTravelmatesResponse")
-    @Action(input = "http://WebService/tmWebService/findTravelmatesRequest", output = "http://WebService/tmWebService/findTravelmatesResponse")
-    public List<User> findTravelmates(
-        @WebParam(name = "destination", targetNamespace = "")
-        String destination,
-        @WebParam(name = "gender", targetNamespace = "")
-        String gender);
-
-    /**
-     * 
-     * @param mobilenumber
-     * @param sex
-     * @param destination
-     * @param about
-     * @param lookingFor
-     * @param location
-     * @param id
-     * @param startdate
-     * @param interests
-     * @param age
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "createProfile", targetNamespace = "http://WebService/", className = "webservice.CreateProfile")
-    @ResponseWrapper(localName = "createProfileResponse", targetNamespace = "http://WebService/", className = "webservice.CreateProfileResponse")
-    @Action(input = "http://WebService/tmWebService/createProfileRequest", output = "http://WebService/tmWebService/createProfileResponse")
-    public String createProfile(
-        @WebParam(name = "id", targetNamespace = "")
-        int id,
-        @WebParam(name = "mobilenumber", targetNamespace = "")
-        String mobilenumber,
-        @WebParam(name = "age", targetNamespace = "")
-        int age,
-        @WebParam(name = "location", targetNamespace = "")
-        String location,
-        @WebParam(name = "sex", targetNamespace = "")
-        String sex,
-        @WebParam(name = "destination", targetNamespace = "")
-        String destination,
-        @WebParam(name = "startdate", targetNamespace = "")
-        String startdate,
-        @WebParam(name = "interests", targetNamespace = "")
-        String interests,
-        @WebParam(name = "looking_for", targetNamespace = "")
-        String lookingFor,
-        @WebParam(name = "about", targetNamespace = "")
-        String about);
-
-    /**
-     * 
-     * @param chatPartnerId
-     * @param userId
-     * @return
-     *     returns java.util.List<webservice.Message>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "showMessages", targetNamespace = "http://WebService/", className = "webservice.ShowMessages")
-    @ResponseWrapper(localName = "showMessagesResponse", targetNamespace = "http://WebService/", className = "webservice.ShowMessagesResponse")
-    @Action(input = "http://WebService/tmWebService/showMessagesRequest", output = "http://WebService/tmWebService/showMessagesResponse")
-    public List<Message> showMessages(
-        @WebParam(name = "user_id", targetNamespace = "")
-        int userId,
-        @WebParam(name = "chatPartnerId", targetNamespace = "")
-        int chatPartnerId);
-
-    /**
-     * 
-     * @param email
-     * @return
-     *     returns byte[]
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getEncryptedPw", targetNamespace = "http://WebService/", className = "webservice.GetEncryptedPw")
-    @ResponseWrapper(localName = "getEncryptedPwResponse", targetNamespace = "http://WebService/", className = "webservice.GetEncryptedPwResponse")
-    @Action(input = "http://WebService/tmWebService/getEncryptedPwRequest", output = "http://WebService/tmWebService/getEncryptedPwResponse")
-    public byte[] getEncryptedPw(
-        @WebParam(name = "email", targetNamespace = "")
-        String email);
-
-    /**
-     * 
-     * @param pw
-     * @param email
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "login", targetNamespace = "http://WebService/", className = "webservice.Login")
-    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://WebService/", className = "webservice.LoginResponse")
-    @Action(input = "http://WebService/tmWebService/loginRequest", output = "http://WebService/tmWebService/loginResponse")
-    public String login(
-        @WebParam(name = "email", targetNamespace = "")
-        String email,
-        @WebParam(name = "pw", targetNamespace = "")
-        String pw);
-
-    /**
-     * 
-     * @param userId
-     * @return
-     *     returns java.util.List<webservice.User>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "showConversations", targetNamespace = "http://WebService/", className = "webservice.ShowConversations")
-    @ResponseWrapper(localName = "showConversationsResponse", targetNamespace = "http://WebService/", className = "webservice.ShowConversationsResponse")
-    @Action(input = "http://WebService/tmWebService/showConversationsRequest", output = "http://WebService/tmWebService/showConversationsResponse")
-    public List<User> showConversations(
-        @WebParam(name = "user_id", targetNamespace = "")
-        int userId);
-
-    /**
-     * 
-     * @param userId
-     * @return
-     *     returns java.util.List<webservice.User>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "anyNewMessages", targetNamespace = "http://WebService/", className = "webservice.AnyNewMessages")
-    @ResponseWrapper(localName = "anyNewMessagesResponse", targetNamespace = "http://WebService/", className = "webservice.AnyNewMessagesResponse")
-    @Action(input = "http://WebService/tmWebService/anyNewMessagesRequest", output = "http://WebService/tmWebService/anyNewMessagesResponse")
-    public List<User> anyNewMessages(
-        @WebParam(name = "user_id", targetNamespace = "")
-        int userId);
 
 }

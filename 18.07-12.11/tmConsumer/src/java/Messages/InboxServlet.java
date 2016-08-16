@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Messages;
 
 import Chat.ChatInterface;
@@ -20,9 +15,16 @@ import tm.User;
 import webservice.TmWebService_Service;
 
 /**
- *
- * @author nina & manuela
- */
+* <h1>InboxSerlvet</h1>
+* Das InboxServlet holt sich diejenigen User (Chatparnter), mit denen der aktuelle User
+* Nachrichten ausgetausch hat und überprüft, ob neue Nachrichten vorliegen, 
+* die noch nicht gelesen wurden.
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 public class InboxServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
@@ -120,12 +122,25 @@ public class InboxServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    /**
+   * Bestimmt über den Web Service die verschiedenen Chatpartner, mit dem der aktuelle User
+   * Nachrichten ausgetauscht hat.
+   *
+   * @param user_id Id des aktuellen Users
+   * @return eine Liste von Usern, die mit dem aktuellen User Nachrichten ausgetauscht haben
+   */
     private java.util.List<webservice.User> showConversations(int userId) {
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.showConversations(userId);
     }
-
+    
+     /**
+   * Bestimmt die über den Web Service Nachrichten, die der aktuelle User noch nicht gelesen hat, also noch 
+   * neu sind
+   * 
+   * @param user_id Id des aktuellen Users
+   * @return eine Liste von Usern, von denen der aktuellen User neue Nachrichten hat
+   */
     private java.util.List<webservice.User> anyNewMessages(int userId) {
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.anyNewMessages(userId);

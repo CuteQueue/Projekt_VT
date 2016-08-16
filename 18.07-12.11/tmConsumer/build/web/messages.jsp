@@ -89,14 +89,14 @@
                 <h4><font size="5" color="#2a96c0">Messages with <% out.println(chatPartnerName);%></font></h4>
                 </br>
                
-                <ul class="chat">
+                <ul class="messages">
                     <%for (int i = 0; i < messages.size(); i++) {
-                            //Wenn die zur Nachrichten gespeicherte UserId gleich der Id des aktuellen Users ist,
+                            //Wenn die zur Nachrichten gespeicherte SenderId gleich der Id des aktuellen Users ist,
                             //dann wurde die Nachricht vom aktuellen User gesendet:
 
-                            if (messages.get(i).getUserId() == user.getId()) {
-                                out.println("<li style =\"text-align: right;\" class=\"right clearfix\"> <span class =\"chat-img pull-right\"><img id=\"foo\" src = \"/tmConsumer/getImageServlet?user_id=" + user.getId() + "\" class = \"message-img img-circle\" onerror=\"noImage()\"> </span>");
-                                out.println("<div class=\"chat-body clearfix\">");
+                            if (messages.get(i).getSenderId() == user.getId()) {
+                                out.println("<li style =\"text-align: right;\" class=\"right clearfix\"> <span class =\"pull-right\"><img id=\"foo\" src = \"/tmConsumer/getImageServlet?user_id=" + user.getId() + "\" class = \"message-img img-circle\" onerror=\"noImage()\"> </span>");
+                                out.println("<div class=\"messages-body clearfix\">");
                                 out.println("<div class=\"header\"><strong class = \"primary-font\">");
                                 out.println(user.getName());
                                 out.println("</strong></div>");
@@ -109,9 +109,9 @@
 
                             } else {
                                 //Ansonsten wurde die Nachricht vom Chatpartner gesendet:
-                                out.println("<li class=\"left clearfix\"> <span class =\"chat-img pull-left\"><img id=\"foo\" src = \"/tmConsumer/getImageServlet?user_id=" + messages.get(i).getUserId() + "\" class = \"message-img img-circle\" onerror=\"noImage()\"> </span>");
+                                out.println("<li class=\"left clearfix\"> <span class =\"pull-left\"><img id=\"foo\" src = \"/tmConsumer/getImageServlet?user_id=" + messages.get(i).getSenderId() + "\" class = \"message-img img-circle\" onerror=\"noImage()\"> </span>");
                                        
-                                out.println("<div class=\"chat-body clearfix\">");
+                                out.println("<div class=\"messages-body clearfix\">");
                                 out.println("<div class=\"header\"><strong class = \"primary-font\">");
                                 out.println(chatPartnerName);
                                 out.println("</strong></div>");

@@ -4,22 +4,34 @@
  * and open the template in the editor.
  */
 package tm;
-
 /**
- *
- * @author nina & manuela
- */
+* <h1>Messages</h1>
+* Die Klasse Message erstellt Message-Objekte,
+* um diese an den tm-Consumer weitergeben zu können.
+* 
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 public class Message {
     private String content;
-    private int user_id;
-    private int friendId;
+    private int senderId;
+    private int recipientId;
     private boolean seen;
     
-    public Message (String content, int user_id, int friendId, boolean seen){
+    /**
+   * Message Konstruktur zum Erstellen von Messages-Objekten.
+   * 
+   * @param content Inhalt der Nachricht
+   * @param senderId Email des Users
+   * @param recipientId Email des Users
+   * @param seen Email des Users
+   */
+    public Message (String content, int senderId, int recipientId, boolean seen){
         
         this.content = content;
-        this.user_id = user_id;
-        this.friendId = friendId;
+        this.senderId = senderId; //user_id
+        this.recipientId = recipientId;
         this.seen = seen;
     }
 
@@ -31,28 +43,29 @@ public class Message {
         this.content = content;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getSenderId() {
+        return senderId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setSenderId(int senderId) {
+        this.senderId = senderId;
     }
 
-    public int getFriendId() {
-        return friendId;
+    public int getRecipientId() {
+        return recipientId;
     }
 
-    public void setFriendId(int friendId) {
-        this.friendId = friendId;
+    public void setRecipientId(int recipientId) {
+        this.recipientId = recipientId;
     }
-    
-     public boolean isSeen() {
+
+    public boolean isSeen() {
         return seen;
     }
 
     public void setSeen(boolean seen) {
         this.seen = seen;
     }
+
     
 }

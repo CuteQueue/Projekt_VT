@@ -5,11 +5,16 @@
  */
 package tm;
 
-
 /**
- *
- * @author Manuela & Nina
- */
+* <h1>User</h1>
+* Die Klasse User erstellt User-Objekte,
+* um diese an den tm-Consumer weiterzugeben.
+* 
+* <p>
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 public class User {
 
     private String name = null;
@@ -29,7 +34,19 @@ public class User {
     private int id;
     private int user_id;
     private int age;
-
+    
+      /**
+   * User Konstruktur zum Erstellen von Usern, die in der findTravelmates-Methode (in tmWebService.java)
+   * benötigt werden. So sind werden hier User mit folgenden Parametern erstellt, die
+   * für den tmConsumer beim Suchergebnis wichtig sind:
+   *   
+   * @param user_id Id des Users
+   * @param email Email des Users
+   * @param name Vorname des Users
+   * @param last_name Nachname des Users
+   * @param startdate Startdatum der Reise des Users
+   * @param looking_for Wonach der User auf der Suche ist (TravelMate, Meet Up etc)
+   */
     public User(int user_id, String email, String name, String last_name, String looking_for, String startdate) {
         //Zum Erstellen von Usern in der findTravelmates-Methode (in tmWebService.java)
         this.user_id = user_id;
@@ -40,7 +57,18 @@ public class User {
         this.startdate = startdate;
     }
     
-     public User(int user_id, String email, String name, String last_name){
+    /**
+   * User Konstruktur zum Erstellen von Usern, die in der showConversation-Methode (in tmWebService.java)
+   * benötigt werden. So sind werden hier User mit folgenden Parametern erstellt, die
+   * für den tmConsumer beim Anzeigen der Chatpartner wichtig sind:
+   *   
+   * @param user_id Id des Users
+   * @param email Email des Users
+   * @param name Vorname des Users
+   * @param last_name Nachname des Users
+   
+   */
+    public User(int user_id, String email, String name, String last_name){
         //Zum Erstellen von Usern in der showConversation-Methode (in tmWebService.java)
         this.user_id = user_id;
         this.email = email;

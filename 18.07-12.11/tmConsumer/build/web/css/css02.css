@@ -123,41 +123,43 @@ and open the template in the editor.
         }
         
                 
-        .chat
-        {
-            list-style: none;
+       
+                
+       .messages
+        {   
             margin: 0;
             padding: 0;
+            list-style: none;
+            
         }
 
-        .chat li
-        {
+        .messages li
+        {   
+            border-bottom: 1px dotted #B3A9A9;
             margin-bottom: 10px;
             padding-bottom: 5px;
-            border-bottom: 1px dotted #B3A9A9;
+            
         }
-
-        .chat li.left .chat-body
-        {
-            margin-left: 60px;
-        }
-
-        .chat li.right .chat-body
+        
+        
+        .messages li.right .messages-body
         {
             margin-right: 60px;
         }
 
 
-        .chat li .chat-body p
+        .messages li.left .messages-body
         {
-            margin: 0;
-            color: #777777;
+            margin-left: 60px;
         }
 
-        .panel .slidedown .glyphicon, .chat .glyphicon
+
+        .messages li .messages-body p
         {
-            margin-right: 5px;
+            margin: 0;
         }
+
+      
 
         .panel-body
         {
@@ -187,4 +189,3 @@ and open the template in the editor.
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
             background-color: #555;
         }
-
