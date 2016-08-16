@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tm;
 
 import java.io.IOException;
@@ -17,9 +13,15 @@ import javax.xml.ws.WebServiceRef;
 import webservice.TmWebService_Service;
 
 /**
- *
- * @author nina & manuela
- */
+* <h1>EditProfileServlet</h1>
+* Das Servlet holt sich aus den Formulardaten der editProfile.jsp
+* die Userdaten und updated die Angaben im Userprofil.
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 public class EditProfileServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")

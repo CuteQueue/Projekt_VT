@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tm;
 
 import java.io.IOException;
@@ -19,9 +15,16 @@ import javax.xml.ws.WebServiceRef;
 import webservice.TmWebService_Service;
 
 /**
- *
- * @author nina & manuela
- */
+* <h1>ProfileServlet</h1>
+* Das Servlet prüft, ob ein Profil angelegt ist.
+* Wenn ja leitet es auf profile.jsp weiter,
+* andernfalls wird createProfile.jsp angezeigt.
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 public class ProfileServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tm;
 
 import java.security.NoSuchAlgorithmException;
@@ -30,13 +26,10 @@ import webservice.TmWebService_Service;
  */
 
 /**
-* <h1>StartServlet</h1>
-* Das StartServlet holt sich aus den Formulardaten der index.jsp
-* die angegebene Host-IP, legt eine Session und das Session-Attribut 
-* "serverIp" an und leitet auf den Loginbereich des gewählten Servers weiter.
+* <h1>LoginServlet</h1>
+* Das LoginServlet holt sich aus den Formulardaten der login.jsp
+* die Userdaten und führt Login-Prozess durch.
 * <p>
-* <b>Note:</b>Bei einer festen Serververgabe wäre dieser Schritt überflüssig,
-* er dient vorrangig zur angenehmeren Handhabung in der Testumgebung bei Serverwechseln.
 *
 * @author  Nina Gödde und Manuela Reker
 * @version 1.0
@@ -156,19 +149,33 @@ public class LoginServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
+    /**
+   * liefert Salt aus Datenbank passend zur User-Email
+   * @param email  Email-Adresse des Users
+   * @return Salt zur Emailadresse
+   */
     public byte[] retrieveSalt(String email){
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.getSalt(email);
     }
     
-    
+    /**
+   * liefert verschlüsseltes Passwort aus Datenbank passend zur User-Email
+   * @param email  Email-Adresse des Users
+   * @return verschlüsseltes Passwort zru Emailadresse
+   */
     public byte[] retrieveEncryptedPw(String email){
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.getEncryptedPw(email);
     }
 
-
+    /**
+   * prüft, ob beim Login genutztes Passwort dem bei der
+   * Registration angegebenem Passwort entspricht
+   * @param attemptedPassword  beim Login angegebenes Passwort
+   * @param encryptedPassword  verschlüsseltes Passwort aus Datenbank
+   * @return boolschen Wert, ob Passwörter übereinstimmen
+   */
     public boolean authenticate(String attemptedPassword, byte[] encryptedPassword, byte[] salt)
         throws NoSuchAlgorithmException, InvalidKeySpecException {
         // Encrypt the clear-text password using the same salt that was used to
@@ -181,6 +188,13 @@ public class LoginServlet extends HttpServlet {
         return Arrays.equals(encryptedPassword, encryptedAttemptedPassword);
      }
     
+    /**
+   * nutzt PBKDF2 (Password-Based Key Derivation Function 2) und salt, 
+   * um von dem eingegebenen Passwort einen Schlüssel abzuleiten
+   * @param password Klartext-Passwort aus Usereingabe
+   * @param salt generierte Zeichenfolge
+   * @return byte[] mit verschlüsseltem Passwort.
+   */ 
     public byte[] getEncryptedPassword(String password, byte[] salt)
         throws NoSuchAlgorithmException, InvalidKeySpecException {
        // PBKDF2 with SHA-1 as the hashing algorithm. Note that the NIST

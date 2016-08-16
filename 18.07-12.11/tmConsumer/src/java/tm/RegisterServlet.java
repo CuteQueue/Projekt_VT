@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tm;
 
 import java.io.IOException;
@@ -152,14 +148,12 @@ public class RegisterServlet extends HttpServlet {
     }// </editor-fold>
     
     /**
-   * Die Methode getEncryptedPassword(String password, byte[] salt)
    * nutzt PBKDF2 (Password-Based Key Derivation Function 2) und salt, 
    * um von dem eingegebenen Passwort einen Schlüssel abzuleiten
-   * @param password This is the first paramter to addNum method
-   * @param salt  This is the second parameter to addNum method
-   * @return byte[] This returns sum of numA and numB.
-   */
-    
+   * @param password Klartext-Passwort aus Usereingabe
+   * @param salt generierte Zeichenfolge
+   * @return byte[] mit verschlüsseltem Passwort.
+   */ 
     public byte[] getEncryptedPassword(String password, byte[] salt)
         throws NoSuchAlgorithmException, InvalidKeySpecException {
        // PBKDF2 with SHA-1 as the hashing algorithm. Note that the NIST
@@ -179,11 +173,25 @@ public class RegisterServlet extends HttpServlet {
        return f.generateSecret(spec).getEncoded();
      }
     
+    /**
+   * legt über den Web Service einen neuen User an
+   * @param name Name aus Usereingabe
+   * @param last_name  Nachname aus Usereingabe
+   * @param nickname  Spitzname/Nickname aus Usereingabe
+   * @param email  Email-Adresse aus Usereingabe
+   * @param salt  generierte Zeichenfolge
+   * @param password  verschlüsseltes Passwort
+   * @return String mit Information, ob User erfolgreich angelegt wurde
+   */
     public String newUser(String name, String last_name, String nickname, String email, byte[] salt, byte[] password){
         webservice.TmWebService port = service.getTmWebServicePort();
         return port.newUser(name, last_name, nickname, email, salt, password);
     }
-     
+    
+    /**
+   * generiert eine zufällige Zeichenfolge
+   * @return zufällig gewählte Zeichenfolge (salt)
+   */
     public byte[] generateSalt() throws NoSuchAlgorithmException {
         // VERY important to use SecureRandom instead of just Random
         SecureRandom random = SecureRandom.getInstance("SHA1PRNG");

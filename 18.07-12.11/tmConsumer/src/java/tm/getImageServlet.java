@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tm;
 
 import java.io.IOException;
@@ -20,13 +16,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Manuela & Nina
- */
+* <h1>getImageServlet</h1>
+* Das Servlet holt eine Bilddatei 
+* zur passenden UserID aus der 
+* profiles-Tabelle der Datenbank.
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 public class getImageServlet extends HttpServlet {
     
     //Servlet holt Bild (wenn vorhanden) zur passenden UserID aus der Datenbank.
     
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tm;
 
 import java.sql.Connection;
@@ -14,9 +10,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Manuela & Nina
- */
+* <h1>User</h1>
+* Schablone für User-Objekt mit Userdaten 
+* aus der Datenbank
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 public class User {
     String host = "jdbc:mysql://localhost:3306/trvmate_db?zeroDateTimeBehavior=convertToNull";
     String uName = "root";
@@ -43,12 +45,19 @@ public class User {
     private int user_id;
     private int age;
     
+    /**
+   * User-Konstruktor
+   * @param email User-Email
+   */
     public User (String email){
         this.email = email;
         connect();
         getUserData();
     }
     
+    /**
+   * erstellt Verbindung zur Datenbank
+   */
     public void connect(){
         try {
             con = DriverManager.getConnection(host, uName, uPass);
@@ -58,6 +67,9 @@ public class User {
         } 
     }
     
+    /**
+   * holt Userdaten id, name, last_name, nickname, created_at aus Datenbank
+   */
     public void getUserData(){
         String returnUser = "kein User gefunden";
         try {
@@ -84,6 +96,9 @@ public class User {
         System.out.println(returnUser);
     }
     
+    /**
+   * holt Profildaten des Users aus der Datenbank
+   */
       public void getProfileData(){
         try {
             stmt = con.createStatement();

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tm;
 
 import java.io.IOException;
@@ -22,9 +18,15 @@ import javax.xml.ws.WebServiceRef;
 import webservice.TmWebService_Service;
 
 /**
- *
- * @author Manuela & Nina
- */
+* <h1>UploadImageServlet</h1>
+* Das Servlet lädt eine Bilddatei in 
+* die profiles-Tabelle der Datenbank trvmate_db
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 
 @MultipartConfig(maxFileSize = 16177215) // upload file bis zu 16MB
 public class UploadImageServlet extends HttpServlet {
