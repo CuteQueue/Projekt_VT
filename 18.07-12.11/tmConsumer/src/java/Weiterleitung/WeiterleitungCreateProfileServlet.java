@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Weiterleitung;
 
 import java.io.IOException;
@@ -14,9 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author nina & manuela
- */
+* <h1>WeiterleitungCreateProfileServlet</h1>
+* Das Servlet leitet den User zum createProfil.jsp weiter.
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 public class WeiterleitungCreateProfileServlet extends HttpServlet {
 
     /**

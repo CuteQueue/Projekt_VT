@@ -1,13 +1,15 @@
-/* 
-    Author     : manuela & nina
-*/
+
 package Chat;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+* <h1>ServerInterface</h1>
+* Interface für Implementation des Servers
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Map;

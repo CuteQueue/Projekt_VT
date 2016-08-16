@@ -1,11 +1,14 @@
 
-/* 
-    Author     : manuela & nina
-
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+* <h1>tmChatOnServlet</h1>
+* sich regelmäßig aktualisierender Chat;
+* arbeitet mit in tmChatServlet zuvor angelegten Session-Attributen
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 package Chat;
 
 import java.io.IOException;

@@ -1,5 +1,5 @@
 
-package tm;
+package ProfileImages;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.xml.ws.WebServiceRef;
+import tm.User;
 import webservice.TmWebService_Service;
 
 /**

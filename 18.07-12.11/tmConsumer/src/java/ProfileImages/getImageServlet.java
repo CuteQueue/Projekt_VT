@@ -1,5 +1,5 @@
 
-package tm;
+package ProfileImages;
 
 import java.io.IOException;
 import java.io.OutputStream;

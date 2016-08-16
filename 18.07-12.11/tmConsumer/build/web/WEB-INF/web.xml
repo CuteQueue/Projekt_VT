@@ -14,7 +14,7 @@
     </servlet>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>tm.LogoutServlet</servlet-class>
+        <servlet-class>Weiterleitung.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HomeServlet</servlet-name>
@@ -98,11 +98,11 @@
     </servlet>
     <servlet>
         <servlet-name>UploadImageServlet</servlet-name>
-        <servlet-class>tm.UploadImageServlet</servlet-class>
+        <servlet-class>ProfileImages.UploadImageServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>getImageServlet</servlet-name>
-        <servlet-class>tm.getImageServlet</servlet-class>
+        <servlet-class>ProfileImages.getImageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>

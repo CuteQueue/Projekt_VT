@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Weiterleitung;
 
 
@@ -17,11 +13,16 @@ import javax.servlet.http.HttpSession;
 import javax.xml.ws.WebServiceRef;
 import webservice.TmWebService_Service;
 
-
 /**
- *
- * @author Manuela & Nina
- */
+* <h1>WeiterleitungSearchResServlet</h1>
+* Das Servlet leitet den User zum searchRes.jsp mit 
+* dem Ergebnis der Suche weiter.
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 public class WeiterleitungSearchResServlet extends HttpServlet {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
     private TmWebService_Service service;

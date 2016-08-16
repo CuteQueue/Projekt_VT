@@ -1,14 +1,14 @@
-/* 
-    Author     : manuela & nina
-*/
 package Chat;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+/**
+* <h1>ServerImpl</h1>
+* Server-Implementation
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -22,7 +22,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     private ChatInterface chat;
     private Map <String, ClientInterface> clients;
     
-    
+    /**
+    * main Methode der Klasse ServerImpl
+    */ 
     public static void main(String[] args) {
 
         Registry registry = null;
@@ -58,11 +60,20 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
     
+    /**
+    * Klassenkonstruktor ServerImpl;
+    * legt HashMap für Clients an.
+    */ 
     ServerImpl() throws RemoteException {
         clients = new HashMap();
         System.out.println ("ServerImpl created...");
     }
     
+    /**
+    * prüft, ob Client noch im Chat aktiv, sonst wird er aus der HashMap entfernt.
+    * @param name Name des zu prüfenden Clients
+    * @return boolschen Wert mit Angabe, ob client NAchricht empfangen kann oder nicht
+    */ 
     @Override
     public synchronized boolean clientPruefenSenden (String name) throws RemoteException{
         
@@ -78,6 +89,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
       } 
     }
     
+    /**
+    * prüft, ob der Name im Chat bereits vergeben ist
+    * @param eingabe eingegebener Username
+    * @return boolschen Wert mit Angabe, ob Username bereits vergeben
+    */ 
     @Override
     public synchronized boolean usernameVergeben (String eingabe) throws RemoteException{
         if(clients.get(eingabe)!=null){
@@ -87,13 +103,24 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             return false;
         }
     }
-
+    
+    /**
+    * Client wird in die HashMap der im Chat aktiven Clients zugefügt
+    * @param username Name des Users
+    * @param handle Clientinterface
+    * @return ChatImpl mit sendMessage Methode
+    */ 
     @Override
     public synchronized ChatInterface subscribeUser(String username, ClientInterface handle) throws RemoteException{
         clients.put(username, handle);
         return this.chat;
     }
     
+    /**
+    * Client wird aus der HashMap der Clients entfernt
+    * @param username Name des Users
+    * @return boolschen Wert, ob User entfernt wurde
+    */
     @Override
     public synchronized boolean unsubscribeUser(String username) throws RemoteException{
         if (clients.containsKey(username)){
@@ -107,8 +134,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public synchronized Map getClients(){
         return clients;
     }
-    
-   
+     
     @Override
     public ChatInterface getChat() {
         return chat;

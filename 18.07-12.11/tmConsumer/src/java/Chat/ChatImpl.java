@@ -1,15 +1,6 @@
-/* 
-    Author     : manuela & nina
-*/
+
 
 package Chat;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -19,19 +10,33 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 import java.util.Set;
 
-
+/**
+* <h1>ChatImpl</h1>
+* kümmert sich um die Nachrichtenverteilung an alle Clients
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 
 public class ChatImpl extends UnicastRemoteObject implements ChatInterface{
     ServerInterface stub;
      
     /**
-     * @param args the command line arguments
+     * Klassenkonstruktor
      */
-    
     public ChatImpl()throws RemoteException, NotBoundException, MalformedURLException{
         stub = (ServerInterface) Naming.lookup ("rmi://localhost:1099/ChatServer");
     }
     
+    
+   /**
+   * prüft an welche Clients eine Nachricht geschickt werden 
+   * kann und informiert diese, neue Nachricht zu empfangen
+   * @param username  User, der Nachricht geschrieben hat
+   * @param username  zu übermittelnde Nachricht
+   */
     @Override
     public synchronized void sendMessage(String username, String message) throws RemoteException{
         Map <String, ClientInterface > clients = stub.getClients();

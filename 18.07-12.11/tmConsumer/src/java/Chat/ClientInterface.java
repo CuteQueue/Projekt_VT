@@ -1,13 +1,15 @@
-/* 
-    Author     : manuela & nina
-*/
+
 package Chat;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+* <h1>ClientInterface</h1>
+* Interface für Implementation der Clients
+* <p>
+*
+* @author  Nina Gödde und Manuela Reker
+* @version 1.0
+* @since   2016-07-11
+*/
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -25,7 +27,7 @@ public interface ClientInterface extends Remote {
     public void setStub (ServerInterface stub) throws RemoteException;
     public ServerInterface getStub() throws RemoteException ;
     
-     public List<String> getAusgaben() throws RemoteException;
-     public void ausgabeHinzu(String ausgabe)throws RemoteException;
+    public List<String> getAusgaben() throws RemoteException;
+    public void ausgabeHinzu(String ausgabe)throws RemoteException;
 
 }
