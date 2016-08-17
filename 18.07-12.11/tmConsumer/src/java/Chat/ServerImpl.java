@@ -24,6 +24,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     
     /**
     * main Methode der Klasse ServerImpl
+    * 
+    * @param args contains the supplied command-line arguments as an array of String objects
     */ 
     public static void main(String[] args) {
 

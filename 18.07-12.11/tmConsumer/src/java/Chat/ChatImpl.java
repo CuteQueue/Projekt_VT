@@ -25,7 +25,12 @@ public class ChatImpl extends UnicastRemoteObject implements ChatInterface{
      
     /**
      * Klassenkonstruktor
-     */
+     * 
+     *@throws NotBoundException is thrown if an attempt is made to lookup or unbind in the registry a name that has no associated binding
+     *@throws MalformedURLException Thrown to indicate that a malformed URL has occurred
+     *@throws RemoteException communication-related exceptions that may occur during the execution of a remote method call
+    */ 
+     
     public ChatImpl()throws RemoteException, NotBoundException, MalformedURLException{
         stub = (ServerInterface) Naming.lookup ("rmi://localhost:1099/ChatServer");
     }
@@ -35,8 +40,10 @@ public class ChatImpl extends UnicastRemoteObject implements ChatInterface{
    * prüft an welche Clients eine Nachricht geschickt werden 
    * kann und informiert diese, neue Nachricht zu empfangen
    * @param username  User, der Nachricht geschrieben hat
-   * @param username  zu übermittelnde Nachricht
-   */
+   * @param message  zu übermittelnde Nachricht
+    *@throws RemoteException communication-related exceptions that may occur during the execution of a remote method call
+    */ 
+   
     @Override
     public synchronized void sendMessage(String username, String message) throws RemoteException{
         Map <String, ClientInterface > clients = stub.getClients();

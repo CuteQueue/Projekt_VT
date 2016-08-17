@@ -68,7 +68,7 @@ public class Message {
 
     /**
      * Ruft den Wert der recipientId-Eigenschaft ab.
-     * 
+     * @return recipientId
      */
     public int getRecipientId() {
         return recipientId;
@@ -76,7 +76,7 @@ public class Message {
 
     /**
      * Legt den Wert der recipientId-Eigenschaft fest.
-     * 
+     * @param value wird übergeben
      */
     public void setRecipientId(int value) {
         this.recipientId = value;
@@ -84,7 +84,7 @@ public class Message {
 
     /**
      * Ruft den Wert der seen-Eigenschaft ab.
-     * 
+     * @return seen
      */
     public boolean isSeen() {
         return seen;
@@ -92,7 +92,7 @@ public class Message {
 
     /**
      * Legt den Wert der seen-Eigenschaft fest.
-     * 
+     * @param value wird übergeben
      */
     public void setSeen(boolean value) {
         this.seen = value;
@@ -100,7 +100,7 @@ public class Message {
 
     /**
      * Ruft den Wert der senderId-Eigenschaft ab.
-     * 
+     * @return senderId
      */
     public int getSenderId() {
         return senderId;
@@ -108,7 +108,7 @@ public class Message {
 
     /**
      * Legt den Wert der senderId-Eigenschaft fest.
-     * 
+     * @param value wird übergeben
      */
     public void setSenderId(int value) {
         this.senderId = value;

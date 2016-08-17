@@ -44,6 +44,8 @@ public class RegisterServlet extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws NoSuchAlgorithmException is thrown when a particular cryptographic algorithm is requested but is not available in the environment.
+     * @throws InvalidKeySpecException  is when there are invalid key specifications.
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
@@ -153,6 +155,8 @@ public class RegisterServlet extends HttpServlet {
    * @param password Klartext-Passwort aus Usereingabe
    * @param salt generierte Zeichenfolge
    * @return byte[] mit verschlüsseltem Passwort.
+   * @throws NoSuchAlgorithmException is thrown when a particular cryptographic algorithm is requested but is not available in the environment.
+   * @throws InvalidKeySpecException  is when there are invalid key specifications.
    */ 
     public byte[] getEncryptedPassword(String password, byte[] salt)
         throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -191,6 +195,7 @@ public class RegisterServlet extends HttpServlet {
     /**
    * generiert eine zufällige Zeichenfolge
    * @return zufällig gewählte Zeichenfolge (salt)
+   * @throws NoSuchAlgorithmException is thrown when a particular cryptographic algorithm is requested but is not available in the environment.
    */
     public byte[] generateSalt() throws NoSuchAlgorithmException {
         // VERY important to use SecureRandom instead of just Random
@@ -199,7 +204,6 @@ public class RegisterServlet extends HttpServlet {
         // Generate a 8 byte (64 bit) salt as recommended by RSA PKCS5
         byte[] salt = new byte[8];
         random.nextBytes(salt);
-
         return salt;
    }
 

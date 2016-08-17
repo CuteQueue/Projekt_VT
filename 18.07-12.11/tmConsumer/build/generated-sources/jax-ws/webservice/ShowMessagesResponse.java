@@ -56,7 +56,7 @@ public class ShowMessagesResponse {
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link Message }
-     * 
+     * @return list with Message objects
      * 
      */
     public List<Message> getReturn() {

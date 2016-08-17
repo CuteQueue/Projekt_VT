@@ -59,7 +59,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AnyNewMessages }
-     * 
+     * @return new AnyNewMessages()
      */
     public AnyNewMessages createAnyNewMessages() {
         return new AnyNewMessages();
@@ -67,7 +67,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AnyNewMessagesResponse }
-     * 
+     * @return new AnyNewMessagesResponse()
      */
     public AnyNewMessagesResponse createAnyNewMessagesResponse() {
         return new AnyNewMessagesResponse();
@@ -75,7 +75,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateProfile }
-     * 
+     * @return new CreateProfile()
      */
     public CreateProfile createCreateProfile() {
         return new CreateProfile();
@@ -83,7 +83,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateProfileResponse }
-     * 
+     * @return new CreateProfileResponse()
      */
     public CreateProfileResponse createCreateProfileResponse() {
         return new CreateProfileResponse();
@@ -91,7 +91,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link EditProfile }
-     * 
+     * @return new EditProfile
      */
     public EditProfile createEditProfile() {
         return new EditProfile();
@@ -99,7 +99,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link EditProfileResponse }
-     * 
+     * @return new EditProfileResponse()
      */
     public EditProfileResponse createEditProfileResponse() {
         return new EditProfileResponse();
@@ -107,7 +107,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FindTravelmates }
-     * 
+     * @return new FindTravelMates()
      */
     public FindTravelmates createFindTravelmates() {
         return new FindTravelmates();
@@ -115,7 +115,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FindTravelmatesResponse }
-     * 
+     * @return new FindTravelMatesResponse()
      */
     public FindTravelmatesResponse createFindTravelmatesResponse() {
         return new FindTravelmatesResponse();
@@ -123,7 +123,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetEncryptedPw }
-     * 
+     * @return new GetEncryptedPw()
      */
     public GetEncryptedPw createGetEncryptedPw() {
         return new GetEncryptedPw();
@@ -131,7 +131,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetEncryptedPwResponse }
-     * 
+     * @return new GetEncryptedPWResponse()
      */
     public GetEncryptedPwResponse createGetEncryptedPwResponse() {
         return new GetEncryptedPwResponse();
@@ -139,7 +139,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetSalt }
-     * 
+     * @return new GetSalt()
      */
     public GetSalt createGetSalt() {
         return new GetSalt();
@@ -147,7 +147,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetSaltResponse }
-     * 
+     * @return new GetSaltResponse()
      */
     public GetSaltResponse createGetSaltResponse() {
         return new GetSaltResponse();
@@ -155,7 +155,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Login }
-     * 
+     * @return new Login()
      */
     public Login createLogin() {
         return new Login();
@@ -163,7 +163,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LoginResponse }
-     * 
+     * @return new LoginResponse()
      */
     public LoginResponse createLoginResponse() {
         return new LoginResponse();
@@ -171,7 +171,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link NewUser }
-     * 
+     * @return new NewUser()
      */
     public NewUser createNewUser() {
         return new NewUser();
@@ -179,7 +179,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link NewUserResponse }
-     * 
+     * @return new NewUserResponse()
      */
     public NewUserResponse createNewUserResponse() {
         return new NewUserResponse();
@@ -187,7 +187,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ShowConversations }
-     * 
+     * @return new ShowConversations()
      */
     public ShowConversations createShowConversations() {
         return new ShowConversations();
@@ -195,7 +195,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ShowConversationsResponse }
-     * 
+     * @return new ShowConversationsResponse()
      */
     public ShowConversationsResponse createShowConversationsResponse() {
         return new ShowConversationsResponse();
@@ -203,7 +203,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ShowMessages }
-     * 
+     * @return new ShowMessages()
      */
     public ShowMessages createShowMessages() {
         return new ShowMessages();
@@ -211,7 +211,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ShowMessagesResponse }
-     * 
+     * @return new NewShowMessagesResponse()
      */
     public ShowMessagesResponse createShowMessagesResponse() {
         return new ShowMessagesResponse();
@@ -219,7 +219,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link StoreMessage }
-     * 
+     * @return new StoreMessages()
      */
     public StoreMessage createStoreMessage() {
         return new StoreMessage();
@@ -227,7 +227,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link StoreMessageResponse }
-     * 
+     * @return new StoreMessageResponse()
      */
     public StoreMessageResponse createStoreMessageResponse() {
         return new StoreMessageResponse();
@@ -235,7 +235,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link User }
-     * 
+     * @return new User()
      */
     public User createUser() {
         return new User();
@@ -243,7 +243,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Message }
-     * 
+     * @return new Message()
      */
     public Message createMessage() {
         return new Message();
@@ -251,7 +251,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AnyNewMessages }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with AnyNewMessages
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "anyNewMessages")
     public JAXBElement<AnyNewMessages> createAnyNewMessages(AnyNewMessages value) {
@@ -260,7 +261,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AnyNewMessagesResponse }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with AnyNewMessagesResponse
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "anyNewMessagesResponse")
     public JAXBElement<AnyNewMessagesResponse> createAnyNewMessagesResponse(AnyNewMessagesResponse value) {
@@ -269,7 +271,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateProfile }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with CreateProfile
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "createProfile")
     public JAXBElement<CreateProfile> createCreateProfile(CreateProfile value) {
@@ -278,7 +281,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateProfileResponse }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with CreateProfileResponse
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "createProfileResponse")
     public JAXBElement<CreateProfileResponse> createCreateProfileResponse(CreateProfileResponse value) {
@@ -287,7 +291,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link EditProfile }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with EditProfile
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "editProfile")
     public JAXBElement<EditProfile> createEditProfile(EditProfile value) {
@@ -296,7 +301,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link EditProfileResponse }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with EditProfileResponse
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "editProfileResponse")
     public JAXBElement<EditProfileResponse> createEditProfileResponse(EditProfileResponse value) {
@@ -305,7 +311,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link FindTravelmates }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with FindTravelMates
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "findTravelmates")
     public JAXBElement<FindTravelmates> createFindTravelmates(FindTravelmates value) {
@@ -314,7 +321,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link FindTravelmatesResponse }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with FindTravelMatesResponse
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "findTravelmatesResponse")
     public JAXBElement<FindTravelmatesResponse> createFindTravelmatesResponse(FindTravelmatesResponse value) {
@@ -323,7 +331,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetEncryptedPw }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with GetEncryptedPW
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "getEncryptedPw")
     public JAXBElement<GetEncryptedPw> createGetEncryptedPw(GetEncryptedPw value) {
@@ -332,7 +341,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetEncryptedPwResponse }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with GetEncryptedPWResponse
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "getEncryptedPwResponse")
     public JAXBElement<GetEncryptedPwResponse> createGetEncryptedPwResponse(GetEncryptedPwResponse value) {
@@ -341,7 +351,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetSalt }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with GetSalt
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "getSalt")
     public JAXBElement<GetSalt> createGetSalt(GetSalt value) {
@@ -350,7 +361,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetSaltResponse }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with GetSaltResponse
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "getSaltResponse")
     public JAXBElement<GetSaltResponse> createGetSaltResponse(GetSaltResponse value) {
@@ -359,7 +371,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Login }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with Login
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "login")
     public JAXBElement<Login> createLogin(Login value) {
@@ -368,7 +381,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link LoginResponse }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with LoginResponse
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "loginResponse")
     public JAXBElement<LoginResponse> createLoginResponse(LoginResponse value) {
@@ -377,7 +391,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link NewUser }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with NewUser
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "newUser")
     public JAXBElement<NewUser> createNewUser(NewUser value) {
@@ -386,7 +401,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link NewUserResponse }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with NewUserResponse
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "newUserResponse")
     public JAXBElement<NewUserResponse> createNewUserResponse(NewUserResponse value) {
@@ -395,7 +411,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ShowConversations }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with ShowConversations
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "showConversations")
     public JAXBElement<ShowConversations> createShowConversations(ShowConversations value) {
@@ -404,7 +421,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ShowConversationsResponse }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with ShowConversationsResponse
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "showConversationsResponse")
     public JAXBElement<ShowConversationsResponse> createShowConversationsResponse(ShowConversationsResponse value) {
@@ -413,7 +431,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ShowMessages }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with ShowMessages
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "showMessages")
     public JAXBElement<ShowMessages> createShowMessages(ShowMessages value) {
@@ -422,7 +441,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ShowMessagesResponse }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with ShowMessagesResponse
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "showMessagesResponse")
     public JAXBElement<ShowMessagesResponse> createShowMessagesResponse(ShowMessagesResponse value) {
@@ -431,7 +451,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link StoreMessage }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with StoreMessages
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "storeMessage")
     public JAXBElement<StoreMessage> createStoreMessage(StoreMessage value) {
@@ -440,7 +461,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link StoreMessageResponse }{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement with StoreMessageResponse
      */
     @XmlElementDecl(namespace = "http://WebService/", name = "storeMessageResponse")
     public JAXBElement<StoreMessageResponse> createStoreMessageResponse(StoreMessageResponse value) {
@@ -449,7 +471,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link byte[]}{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement
      */
     @XmlElementDecl(namespace = "", name = "salt", scope = NewUser.class)
     public JAXBElement<byte[]> createNewUserSalt(byte[] value) {
@@ -458,7 +481,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link byte[]}{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement
      */
     @XmlElementDecl(namespace = "", name = "password", scope = NewUser.class)
     public JAXBElement<byte[]> createNewUserPassword(byte[] value) {
@@ -467,7 +491,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link byte[]}{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement
      */
     @XmlElementDecl(namespace = "", name = "return", scope = GetSaltResponse.class)
     public JAXBElement<byte[]> createGetSaltResponseReturn(byte[] value) {
@@ -476,7 +501,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link byte[]}{@code >}}
-     * 
+     * @param value wird übergeben
+     * @return JAXBElement
      */
     @XmlElementDecl(namespace = "", name = "return", scope = GetEncryptedPwResponse.class)
     public JAXBElement<byte[]> createGetEncryptedPwResponseReturn(byte[] value) {

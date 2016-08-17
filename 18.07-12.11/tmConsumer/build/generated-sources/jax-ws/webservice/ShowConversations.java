@@ -37,7 +37,7 @@ public class ShowConversations {
 
     /**
      * Ruft den Wert der userId-Eigenschaft ab.
-     * 
+     * @return userId
      */
     public int getUserId() {
         return userId;
@@ -45,7 +45,7 @@ public class ShowConversations {
 
     /**
      * Legt den Wert der userId-Eigenschaft fest.
-     * 
+     * @param value wird übergeben
      */
     public void setUserId(int value) {
         this.userId = value;

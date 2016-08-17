@@ -113,7 +113,7 @@ public class User {
 
     /**
      * Ruft den Wert der age-Eigenschaft ab.
-     * 
+     * @return age
      */
     public int getAge() {
         return age;
@@ -121,7 +121,7 @@ public class User {
 
     /**
      * Legt den Wert der age-Eigenschaft fest.
-     * 
+     * @param value übergebener Wert
      */
     public void setAge(int value) {
         this.age = value;
@@ -201,7 +201,7 @@ public class User {
 
     /**
      * Ruft den Wert der id-Eigenschaft ab.
-     * 
+     * @return id
      */
     public int getId() {
         return id;
@@ -209,7 +209,7 @@ public class User {
 
     /**
      * Legt den Wert der id-Eigenschaft fest.
-     * 
+     * @param value übergebener Wert
      */
     public void setId(int value) {
         this.id = value;
@@ -457,7 +457,7 @@ public class User {
 
     /**
      * Ruft den Wert der userId-Eigenschaft ab.
-     * 
+     * @return userId
      */
     public int getUserId() {
         return userId;
@@ -465,7 +465,7 @@ public class User {
 
     /**
      * Legt den Wert der userId-Eigenschaft fest.
-     * 
+     * @param value übergebener Wert
      */
     public void setUserId(int value) {
         this.userId = value;

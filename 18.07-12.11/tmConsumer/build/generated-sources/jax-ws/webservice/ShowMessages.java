@@ -40,7 +40,7 @@ public class ShowMessages {
 
     /**
      * Ruft den Wert der userId-Eigenschaft ab.
-     * 
+     * @return userId
      */
     public int getUserId() {
         return userId;
@@ -48,7 +48,7 @@ public class ShowMessages {
 
     /**
      * Legt den Wert der userId-Eigenschaft fest.
-     * 
+     * @param value wird übergeben
      */
     public void setUserId(int value) {
         this.userId = value;
@@ -56,7 +56,7 @@ public class ShowMessages {
 
     /**
      * Ruft den Wert der chatPartnerId-Eigenschaft ab.
-     * 
+     * @return chatPartnerId
      */
     public int getChatPartnerId() {
         return chatPartnerId;
@@ -64,7 +64,7 @@ public class ShowMessages {
 
     /**
      * Legt den Wert der chatPartnerId-Eigenschaft fest.
-     * 
+     * @param value wird übergeben
      */
     public void setChatPartnerId(int value) {
         this.chatPartnerId = value;

@@ -64,7 +64,7 @@ public class CreateProfile {
 
     /**
      * Ruft den Wert der id-Eigenschaft ab.
-     * 
+     * @return id
      */
     public int getId() {
         return id;
@@ -72,7 +72,7 @@ public class CreateProfile {
 
     /**
      * Legt den Wert der id-Eigenschaft fest.
-     * 
+     * @param value wird übergeben
      */
     public void setId(int value) {
         this.id = value;
@@ -104,7 +104,7 @@ public class CreateProfile {
 
     /**
      * Ruft den Wert der age-Eigenschaft ab.
-     * 
+     * @return age
      */
     public int getAge() {
         return age;
@@ -112,7 +112,7 @@ public class CreateProfile {
 
     /**
      * Legt den Wert der age-Eigenschaft fest.
-     * 
+     * @param value wird übergeben
      */
     public void setAge(int value) {
         this.age = value;

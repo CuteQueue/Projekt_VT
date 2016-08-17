@@ -3,7 +3,7 @@ package Chat;
 
 /**
 * <h1>ClientImpl</h1>
-* Client Implementation für Konsolenanwendung
+* Client Implementation
 * <p>
 *
 * @author  Nina Gödde und Manuela Reker
@@ -30,6 +30,10 @@ public class ClientImpl extends UnicastRemoteObject implements ClientInterface {
       
     /**
     * main Methode der Klasse ClientImpl
+    * @param args contains the command-line arguments as an array of String objects
+    *@throws NotBoundException is thrown if an attempt is made to lookup or unbind in the registry a name that has no associated binding
+    *@throws MalformedURLException Thrown to indicate that a malformed URL has occurred
+    *@throws RemoteException communication-related exceptions that may occur during the execution of a remote method call
     */ 
       public static void main(String[] args) throws NotBoundException, MalformedURLException, RemoteException  {
           
@@ -87,7 +91,10 @@ public class ClientImpl extends UnicastRemoteObject implements ClientInterface {
     /**
     * Klassenkonstruktor ohne Parameter;
     * legt stub mit localhost als ServerIp an
-    */   
+    *@throws NotBoundException is thrown if an attempt is made to lookup or unbind in the registry a name that has no associated binding
+    *@throws MalformedURLException Thrown to indicate that a malformed URL has occurred
+    *@throws RemoteException communication-related exceptions that may occur during the execution of a remote method call
+    */ 
     public ClientImpl()throws RemoteException, NotBoundException, MalformedURLException{
         stub = (ServerInterface) Naming.lookup ("rmi://localhost:1099/ChatServer");
         ausgaben = new ArrayList();
@@ -96,7 +103,10 @@ public class ClientImpl extends UnicastRemoteObject implements ClientInterface {
     /**
     * Klassenkonstruktor;
     * legt stub mit mitgeteilter Ip als ServerIp an
-    * @param ip
+    * @param ip ServerIP-Adresse
+    *@throws NotBoundException is thrown if an attempt is made to lookup or unbind in the registry a name that has no associated binding
+    *@throws MalformedURLException Thrown to indicate that a malformed URL has occurred
+    *@throws RemoteException communication-related exceptions that may occur during the execution of a remote method call
     */ 
     public ClientImpl(String ip)throws RemoteException, NotBoundException, MalformedURLException{      
         stub = (ServerInterface) Naming.lookup ("rmi://" + ip + ":1099/ChatServer");
@@ -108,7 +118,8 @@ public class ClientImpl extends UnicastRemoteObject implements ClientInterface {
     * Username und Nachricht anderer Nutzer aus
     * @param username Name des Absenders
     * @param message Nachricht des Absenders
-    */ 
+    *@throws RemoteException communication-related exceptions that may occur during the execution of a remote method call
+    */  
     @Override
     public void receiveMessage(String username, String message) throws RemoteException{
        this.ausgabeHinzu(username + ": " +message);//Name des Users + seine Nachricht zur ausgaben-Liste hinzufügen

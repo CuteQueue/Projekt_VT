@@ -125,7 +125,6 @@ public class InboxServlet extends HttpServlet {
     /**
    * Bestimmt über den Web Service die verschiedenen Chatpartner, mit dem der aktuelle User
    * Nachrichten ausgetauscht hat.
-   *
    * @param user_id Id des aktuellen Users
    * @return eine Liste von Usern, die mit dem aktuellen User Nachrichten ausgetauscht haben
    */
@@ -137,7 +136,6 @@ public class InboxServlet extends HttpServlet {
      /**
    * Bestimmt die über den Web Service Nachrichten, die der aktuelle User noch nicht gelesen hat, also noch 
    * neu sind
-   * 
    * @param user_id Id des aktuellen Users
    * @return eine Liste von Usern, von denen der aktuellen User neue Nachrichten hat
    */

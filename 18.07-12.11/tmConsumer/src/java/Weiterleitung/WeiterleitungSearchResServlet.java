@@ -100,7 +100,7 @@ public class WeiterleitungSearchResServlet extends HttpServlet {
    * 
    *
    * @param destination Reiseziel nach dem die TravelMates gefiltert werden sollen
-   * @param gender -  Geschlecht, nach dem die TravelMates gefiltert werden sollen
+   * @param gender - Geschlecht, nach dem die TravelMates gefiltert werden sollen
    * 
    * @return eine Liste von Usern, die den Suchkriterien entsprechen
    */

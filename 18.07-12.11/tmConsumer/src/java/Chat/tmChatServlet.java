@@ -37,11 +37,13 @@ public class tmChatServlet extends HttpServlet {
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
+     * @param req servlet request
+     * @param res servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */
+     *@throws NotBoundException is thrown if an attempt is made to lookup or unbind in the registry a name that has no associated binding
+     *@throws RemoteException communication-related exceptions that may occur during the execution of a remote method call
+     */ 
     protected void processRequest(HttpServletRequest req, HttpServletResponse res)
     throws ServletException, IOException, RemoteException, NotBoundException {
         res.setContentType("text/html;charset=UTF-8");

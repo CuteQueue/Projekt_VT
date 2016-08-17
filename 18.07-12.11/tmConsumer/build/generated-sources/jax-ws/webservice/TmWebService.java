@@ -27,9 +27,8 @@ public interface TmWebService {
 
     /**
      * 
-     * @param userId
-     * @return
-     *     returns java.util.List<webservice.User>
+     * @param userId wird übergeben
+     * @return java.util.List with webservice.User
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -42,18 +41,17 @@ public interface TmWebService {
 
     /**
      * 
-     * @param mobilenumber
-     * @param sex
-     * @param destination
-     * @param about
-     * @param lookingFor
-     * @param location
-     * @param id
-     * @param startdate
-     * @param interests
-     * @param age
-     * @return
-     *     returns java.lang.String
+     * @param mobilenumber vom User angegebener Wert
+     * @param sex vom User angegebener Wert
+     * @param destination vom User angegebener Wert
+     * @param about vom User angegebener Wert
+     * @param lookingFor vom User angegebener Wert
+     * @param location vom User angegebener Wert
+     * @param id vom User angegebener Wert
+     * @param startdate vom User angegebener Wert
+     * @param interests vom User angegebener Wert
+     * @param age vom User angegebener Wert
+     * @return java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -84,9 +82,8 @@ public interface TmWebService {
 
     /**
      * 
-     * @param email
-     * @return
-     *     returns byte[]
+     * @param email vom User angegebener Wert
+     * @return byte[]
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -99,18 +96,17 @@ public interface TmWebService {
 
     /**
      * 
-     * @param mobilenumber
-     * @param sex
-     * @param destination
-     * @param about
-     * @param lookingFor
-     * @param location
-     * @param id
-     * @param startdate
-     * @param interests
-     * @param age
-     * @return
-     *     returns java.lang.String
+     * @param mobilenumber vom User angegebener Wert
+     * @param sex vom User angegebener Wert
+     * @param destination vom User angegebener Wert
+     * @param about vom User angegebener Wert
+     * @param lookingFor vom User angegebener Wert
+     * @param location vom User angegebener Wert
+     * @param id vom User angegebener Wert
+     * @param startdate vom User angegebener Wert
+     * @param interests vom User angegebener Wert
+     * @param age vom User angegebener Wert
+     * @return java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -141,10 +137,9 @@ public interface TmWebService {
 
     /**
      * 
-     * @param gender
-     * @param destination
-     * @return
-     *     returns java.util.List<webservice.User>
+     * @param gender vom User angegebener Wert
+     * @param destination vom User angegebener Wert
+     * @return java.util.List with webservice.User
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -159,9 +154,8 @@ public interface TmWebService {
 
     /**
      * 
-     * @param userId
-     * @return
-     *     returns java.util.List<webservice.User>
+     * @param userId Id des Users
+     * @return java.util.List with webservice.User
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -174,10 +168,9 @@ public interface TmWebService {
 
     /**
      * 
-     * @param chatPartnerId
-     * @param userId
-     * @return
-     *     returns java.util.List<webservice.Message>
+     * @param chatPartnerId Id des chatPartners
+     * @param userId Id des Users
+     * @return java.util.List with webservice.Message
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -192,10 +185,9 @@ public interface TmWebService {
 
     /**
      * 
-     * @param pw
-     * @param email
-     * @return
-     *     returns java.lang.String
+     * @param pw wird übergeben
+     * @param email wird übergeben
+     * @return returns java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -210,9 +202,8 @@ public interface TmWebService {
 
     /**
      * 
-     * @param email
-     * @return
-     *     returns byte[]
+     * @param email email des Users
+     * @return returns byte[]
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -225,14 +216,13 @@ public interface TmWebService {
 
     /**
      * 
-     * @param lastName
-     * @param password
-     * @param salt
-     * @param name
-     * @param nickname
-     * @param email
-     * @return
-     *     returns java.lang.String
+     * @param lastName vom User angegebener Wert
+     * @param password vom User angegebener Wert
+     * @param salt vom User angegebener Wert
+     * @param name vom User angegebener Wert
+     * @param nickname vom User angegebener Wert
+     * @param email vom User angegebener Wert
+     * @return java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -255,11 +245,10 @@ public interface TmWebService {
 
     /**
      * 
-     * @param senderId
-     * @param recipientId
-     * @param message
-     * @return
-     *     returns java.lang.String
+     * @param senderId Id des Absenders
+     * @param recipientId Id des Empfängers
+     * @param message Nachricht
+     * @return java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")

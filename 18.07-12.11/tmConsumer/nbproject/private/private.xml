@@ -3,46 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/CreateProfileServlet.java</file>
+            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/LoginServlet.java</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Chat/ClientInterface.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/createProfile.jsp</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/RegisterServlet.java</file>
+            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Chat/ServerInterface.java</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Chat/ClientImpl.java</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Chat/ChatInterface.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/css/css02.css</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Messages/MessagesServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/LogoutServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Chat/tmChatServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Chat/tmChatOnServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/register.jsp</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/ProfileImages/UploadImageServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungCreateProfileServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungSearchServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/StartServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Messages/SendNewMessageServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/editProfile.jsp</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungChatServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungLoginServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungSearchResServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/User.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungHomeServlet.java</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Chat/ServerImpl.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungRegisterServlet.java</file>
+            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Chat/tmChatOnServlet.java</file>
             <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Chat/ChatImpl.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/uploadImage.jsp</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/ProfileServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/LoginServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Chat/ServerInterface.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/css/css01.css</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/messages.jsp</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/ProfileImages/getImageServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Messages/InboxServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungIndexServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungMessagesServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/web/search.jsp</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungProfilServlet.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/Weiterleitung/WeiterleitungEditProfile.java</file>
-            <file>file:/C:/Users/Manuela/Documents/GitHub/Projekt_VT/Projekt_VT/18.07-12.11/tmConsumer/src/java/tm/EditProfileServlet.java</file>
         </group>
     </open-files>
 </project-private>

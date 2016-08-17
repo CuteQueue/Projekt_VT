@@ -42,7 +42,8 @@ public class tmWebService {
     public byte[] getSalt(@WebParam(name = "email") String email) {
         try {
             Connection con = travelmate_vs.getConnection();
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE email = ?");
+            PreparedStatement pstmt = 
+               con.prepareStatement("SELECT * FROM users WHERE email = ?");
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
             rs.next();

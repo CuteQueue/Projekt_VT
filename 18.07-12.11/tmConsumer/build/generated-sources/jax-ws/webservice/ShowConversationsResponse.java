@@ -56,7 +56,7 @@ public class ShowConversationsResponse {
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link User }
-     * 
+     * @return list with User objects
      * 
      */
     public List<User> getReturn() {

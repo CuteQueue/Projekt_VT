@@ -35,15 +35,7 @@ public class LoginServlet extends HttpServlet {
     
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/travelmate_vs/tmWebService.wsdl")
     private TmWebService_Service service;
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
      int exit = 0;
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
@@ -170,7 +162,10 @@ public class LoginServlet extends HttpServlet {
    * Registration angegebenem Passwort entspricht
    * @param attemptedPassword  beim Login angegebenes Passwort
    * @param encryptedPassword  verschlüsseltes Passwort aus Datenbank
+   * @param salt Zeichenkette aus der Datenbank
    * @return boolschen Wert, ob Passwörter übereinstimmen
+   * @throws NoSuchAlgorithmException is thrown when a particular cryptographic algorithm is requested but is not available in the environment.
+   * @throws InvalidKeySpecException  is when there are invalid key specifications.
    */
     public boolean authenticate(String attemptedPassword, byte[] encryptedPassword, byte[] salt)
         throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -188,6 +183,8 @@ public class LoginServlet extends HttpServlet {
    * @param password Klartext-Passwort aus Usereingabe
    * @param salt generierte Zeichenfolge
    * @return byte[] mit verschlüsseltem Passwort.
+   * @throws NoSuchAlgorithmException is thrown when a particular cryptographic algorithm is requested but is not available in the environment.
+   * @throws InvalidKeySpecException  is when there are invalid key specifications.
    */ 
     public byte[] getEncryptedPassword(String password, byte[] salt)
         throws NoSuchAlgorithmException, InvalidKeySpecException {

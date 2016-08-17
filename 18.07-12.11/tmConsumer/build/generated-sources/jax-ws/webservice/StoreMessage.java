@@ -41,7 +41,7 @@ public class StoreMessage {
 
     /**
      * Ruft den Wert der senderId-Eigenschaft ab.
-     * 
+     * @return senderId
      */
     public int getSenderId() {
         return senderId;
@@ -49,7 +49,7 @@ public class StoreMessage {
 
     /**
      * Legt den Wert der senderId-Eigenschaft fest.
-     * 
+     * @param value wird übergeben
      */
     public void setSenderId(int value) {
         this.senderId = value;
@@ -57,7 +57,7 @@ public class StoreMessage {
 
     /**
      * Ruft den Wert der recipientId-Eigenschaft ab.
-     * 
+     * @return recipientId;
      */
     public int getRecipientId() {
         return recipientId;
@@ -65,7 +65,7 @@ public class StoreMessage {
 
     /**
      * Legt den Wert der recipientId-Eigenschaft fest.
-     * 
+     * @param value wird übergeben
      */
     public void setRecipientId(int value) {
         this.recipientId = value;
